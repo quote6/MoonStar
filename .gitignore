@@ -50,3 +50,12 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+/F4_Chip/.vscode/
+/F4_Chip/MDK-ARM/MoonStar_F4/
+/F4_Chip/MDK-ARM/MoonStar_F4.uvguix.*
+
+/H7_Chip/.vscode/
+/H7_Chip/MDK-ARM/MoonStar_H7/
+/H7_Chip/MDK-ARM/MoonStar_H7.uvguix.*
+
