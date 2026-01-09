@@ -1,0 +1,1474 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>MoonStar: src/driver_dw1000.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="Quote6_logo_55x110.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">MoonStar<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">Wireless communication, one to many, host calling</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.15.0 -->
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<div id="main-nav">
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
+      <li><a href="topics.html"><span>专题</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li><a href="examples.html"><span>示例</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+      <li><a href="globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+</div><!-- main-nav -->
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#typedef-members">类型定义</a>  </div>
+  <div class="headertitle"><div class="title">driver_dw1000.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="driver__dw1000__reg_8h_source.html">driver_dw1000_reg.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+driver_dw1000.h 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8h__incl.png" border="0" usemap="#asrc_2driver__dw1000_8h" loading="lazy" alt=""/></div>
+<map name="asrc_2driver__dw1000_8h" id="asrc_2driver__dw1000_8h">
+<area shape="rect" title=" " alt="" coords="98,5,236,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,70,107"/>
+<area shape="poly" title=" " alt="" coords="146,34,75,74,72,70,142,31"/>
+<area shape="rect" title=" " alt="" coords="94,80,154,107"/>
+<area shape="poly" title=" " alt="" coords="162,31,141,69,137,65,157,34"/>
+<area shape="rect" title=" " alt="" coords="179,80,243,107"/>
+<area shape="poly" title=" " alt="" coords="176,30,198,67,193,66,173,35"/>
+<area shape="rect" href="driver__dw1000__reg_8h.html" title=" " alt="" coords="267,80,408,107"/>
+<area shape="poly" title=" " alt="" coords="197,30,296,73,291,74,196,35"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件被哪些文件直接或间接地引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8h__dep__incl.png" border="0" usemap="#asrc_2driver__dw1000_8hdep" loading="lazy" alt=""/></div>
+<map name="asrc_2driver__dw1000_8hdep" id="asrc_2driver__dw1000_8hdep">
+<area shape="rect" title=" " alt="" coords="5,5,144,32"/>
+<area shape="rect" href="driver__dw1000_8c.html" title=" " alt="" coords="5,80,144,107"/>
+<area shape="poly" title=" " alt="" coords="76,46,77,80,72,79,73,50"/>
+</map>
+</div>
+</div>
+<p><a href="driver__dw1000_8h_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:dw1000_5Ftx_5Fconfig_5Fs" id="r_dw1000_5Ftx_5Fconfig_5Fs"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdw1000__tx__config__s.html">dw1000_tx_config_s</a></td></tr>
+<tr class="memitem:dw1000_5Fconfig_5Fs" id="r_dw1000_5Fconfig_5Fs"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdw1000__config__s.html">dw1000_config_s</a></td></tr>
+<tr class="memitem:dw1000_5Fhandle_5Fs" id="r_dw1000_5Fhandle_5Fs"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdw1000__handle__s.html">dw1000_handle_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">DW1000 handle 结构体定义  <a href="structdw1000__handle__s.html#details">更多...</a><br /></td></tr>
+<tr class="memitem:dw1000_5Finfo_5Fs" id="r_dw1000_5Finfo_5Fs"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdw1000__info__s.html">dw1000_info_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">dw1000 信息 结构体定义  <a href="structdw1000__info__s.html#details">更多...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:ab18f0a12980c6af2e6bc2e63a45cca5f" id="r_ab18f0a12980c6af2e6bc2e63a45cca5f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab18f0a12980c6af2e6bc2e63a45cca5f">DW1000_CMD_ENABLE</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="memitem:a28e3a4c2519d1ea63146a76dc2fc6dab" id="r_a28e3a4c2519d1ea63146a76dc2fc6dab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28e3a4c2519d1ea63146a76dc2fc6dab">DW1000_CMD_DISABLE</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memitem:a1a34934c05c6cabc1a7993cb751958c1" id="r_a1a34934c05c6cabc1a7993cb751958c1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a34934c05c6cabc1a7993cb751958c1">DW1000_CLOCK_CMD_ENABLE_ALL_SEQ</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="memitem:a2d95b5f7d8cf9d674b1bebd6423ef285" id="r_a2d95b5f7d8cf9d674b1bebd6423ef285"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d95b5f7d8cf9d674b1bebd6423ef285">DW1000_CLOCK_CMD_FORCE_SYS_XTI</a>&#160;&#160;&#160;0x02</td></tr>
+<tr class="memitem:ad199613bf3f987a162ad427cb5a19aed" id="r_ad199613bf3f987a162ad427cb5a19aed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad199613bf3f987a162ad427cb5a19aed">DW1000_CLOCK_CMD_FORCE_SYS_PLL</a>&#160;&#160;&#160;0x03</td></tr>
+<tr class="memitem:af4d490090afdec3dca4e2487cf2ffd17" id="r_af4d490090afdec3dca4e2487cf2ffd17"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af4d490090afdec3dca4e2487cf2ffd17">DW1000_TX_FINE_SEQ_CMD_ENABLE</a>&#160;&#160;&#160;0x0B74</td></tr>
+<tr class="memdesc:af4d490090afdec3dca4e2487cf2ffd17"><td class="mdescLeft">&#160;</td><td class="mdescRight">定义DW1000 精细粒度的Tx序列控制值  <br /></td></tr>
+<tr class="memitem:ad82dc12e67d8f58a8be6bb2d17511ad2" id="r_ad82dc12e67d8f58a8be6bb2d17511ad2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad82dc12e67d8f58a8be6bb2d17511ad2">DW1000_TX_FINE_SEQ_CMD_DISABLE</a>&#160;&#160;&#160;0x0000</td></tr>
+<tr class="memitem:a6ed91ae6ed78e946558e72fafc72359b" id="r_a6ed91ae6ed78e946558e72fafc72359b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ed91ae6ed78e946558e72fafc72359b">DW1000_TX_FINE_SEQ_CMD_DEFAULT</a>&#160;&#160;&#160;<a class="el" href="#af4d490090afdec3dca4e2487cf2ffd17">DW1000_TX_FINE_SEQ_CMD_ENABLE</a></td></tr>
+<tr class="memitem:a3147091b20fa958189c0bd1a87a4a1e3" id="r_a3147091b20fa958189c0bd1a87a4a1e3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3147091b20fa958189c0bd1a87a4a1e3">DW1000_GPIO_MODE_0</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memdesc:a3147091b20fa958189c0bd1a87a4a1e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">定义GPIO模式  <br /></td></tr>
+<tr class="memitem:ad814d93b2f39a69f58e646d51d968b73" id="r_ad814d93b2f39a69f58e646d51d968b73"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad814d93b2f39a69f58e646d51d968b73">DW1000_GPIO_MODE_1</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="memitem:a7c760dff0f5690cc30c2fe43b463b2a8" id="r_a7c760dff0f5690cc30c2fe43b463b2a8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c760dff0f5690cc30c2fe43b463b2a8">DW1000_GPIO_MODE_DEFAULT</a>&#160;&#160;&#160;<a class="el" href="#a3147091b20fa958189c0bd1a87a4a1e3">DW1000_GPIO_MODE_0</a></td></tr>
+<tr class="memitem:ac7c324881d253d743a3447087caf1f58" id="r_ac7c324881d253d743a3447087caf1f58"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7c324881d253d743a3447087caf1f58">DW1000_GPIO_MODE_SELECT</a>(pin,  mode)</td></tr>
+<tr class="memdesc:ac7c324881d253d743a3447087caf1f58"><td class="mdescLeft">&#160;</td><td class="mdescRight">配置GPIO引脚的模式  <br /></td></tr>
+<tr class="memitem:aba6a51259f6100c537743582bad9b410" id="r_aba6a51259f6100c537743582bad9b410"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba6a51259f6100c537743582bad9b410">DW1000_LNA_PA_MODE_MASK</a>&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#a3c1a0485978fc27c04b725fcdc008c00">DW1000_REG_BIT_RANGE</a>(19, 14)</td></tr>
+<tr class="memitem:a3be78582d947c5c9d009cf0d5f346e8b" id="r_a3be78582d947c5c9d009cf0d5f346e8b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3be78582d947c5c9d009cf0d5f346e8b">DW1000_GPIO_MODE_P2_RXLED</a>&#160;&#160;&#160;<a class="el" href="#ac7c324881d253d743a3447087caf1f58">DW1000_GPIO_MODE_SELECT</a>(2, <a class="el" href="#ad814d93b2f39a69f58e646d51d968b73">DW1000_GPIO_MODE_1</a>)</td></tr>
+<tr class="memitem:aba0fa3c9af46274262ab8e13b0cf497d" id="r_aba0fa3c9af46274262ab8e13b0cf497d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba0fa3c9af46274262ab8e13b0cf497d">DW1000_GPIO_MODE_P3_TXLED</a>&#160;&#160;&#160;<a class="el" href="#ac7c324881d253d743a3447087caf1f58">DW1000_GPIO_MODE_SELECT</a>(3, <a class="el" href="#ad814d93b2f39a69f58e646d51d968b73">DW1000_GPIO_MODE_1</a>)</td></tr>
+<tr class="memitem:a3442d04328abc02de90285fd0e2ba8d1" id="r_a3442d04328abc02de90285fd0e2ba8d1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3442d04328abc02de90285fd0e2ba8d1">DW1000_GPIO_MODE_P4_EXTPA</a>&#160;&#160;&#160;<a class="el" href="#ac7c324881d253d743a3447087caf1f58">DW1000_GPIO_MODE_SELECT</a>(4, <a class="el" href="#ad814d93b2f39a69f58e646d51d968b73">DW1000_GPIO_MODE_1</a>)</td></tr>
+<tr class="memitem:a4139b52f450d2d9efb2d286e7104f1f1" id="r_a4139b52f450d2d9efb2d286e7104f1f1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4139b52f450d2d9efb2d286e7104f1f1">DW1000_GPIO_MODE_P5_EXTTXE</a>&#160;&#160;&#160;<a class="el" href="#ac7c324881d253d743a3447087caf1f58">DW1000_GPIO_MODE_SELECT</a>(5, <a class="el" href="#ad814d93b2f39a69f58e646d51d968b73">DW1000_GPIO_MODE_1</a>)</td></tr>
+<tr class="memitem:acfb85a0144105842d787bd77177bf98e" id="r_acfb85a0144105842d787bd77177bf98e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfb85a0144105842d787bd77177bf98e">DW1000_GPIO_MODE_P6_EXTRXE</a>&#160;&#160;&#160;<a class="el" href="#ac7c324881d253d743a3447087caf1f58">DW1000_GPIO_MODE_SELECT</a>(6, <a class="el" href="#ad814d93b2f39a69f58e646d51d968b73">DW1000_GPIO_MODE_1</a>)</td></tr>
+<tr class="memitem:a678e9d7e3cc9570ab3c0ebb3298afa44" id="r_a678e9d7e3cc9570ab3c0ebb3298afa44"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a678e9d7e3cc9570ab3c0ebb3298afa44">DW1000_LNA_PA_MODE_NONE</a>&#160;&#160;&#160;0x00000000</td></tr>
+<tr class="memitem:ac7635b4e6bc5b8c86314f39d28e40b7c" id="r_ac7635b4e6bc5b8c86314f39d28e40b7c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7635b4e6bc5b8c86314f39d28e40b7c">DW1000_LNA_PA_MODE_LNA</a>&#160;&#160;&#160;<a class="el" href="#acfb85a0144105842d787bd77177bf98e">DW1000_GPIO_MODE_P6_EXTRXE</a></td></tr>
+<tr class="memitem:a3b26f07c25efcd1ca0439bc4aa0cf03e" id="r_a3b26f07c25efcd1ca0439bc4aa0cf03e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b26f07c25efcd1ca0439bc4aa0cf03e">DW1000_LNA_PA_MODE_PA</a>&#160;&#160;&#160;(<a class="el" href="#a3442d04328abc02de90285fd0e2ba8d1">DW1000_GPIO_MODE_P4_EXTPA</a> | <a class="el" href="#a4139b52f450d2d9efb2d286e7104f1f1">DW1000_GPIO_MODE_P5_EXTTXE</a>)</td></tr>
+<tr class="memitem:a26a0ed2d3486c56cf7f2796596e901ec" id="r_a26a0ed2d3486c56cf7f2796596e901ec"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26a0ed2d3486c56cf7f2796596e901ec">DW1000_LNA_PA_MODE_ALL</a>&#160;&#160;&#160;(<a class="el" href="#ac7635b4e6bc5b8c86314f39d28e40b7c">DW1000_LNA_PA_MODE_LNA</a> | <a class="el" href="#a3b26f07c25efcd1ca0439bc4aa0cf03e">DW1000_LNA_PA_MODE_PA</a>)</td></tr>
+<tr class="memitem:af3b4fc8f1ef9b0abcbd433072b16c2f9" id="r_af3b4fc8f1ef9b0abcbd433072b16c2f9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3b4fc8f1ef9b0abcbd433072b16c2f9">DW1000_LNA_PA_MODE_DEFAULT</a>&#160;&#160;&#160;<a class="el" href="#a678e9d7e3cc9570ab3c0ebb3298afa44">DW1000_LNA_PA_MODE_NONE</a></td></tr>
+<tr class="memitem:aae03d40443074694dfeac5a0f1813eb8" id="r_aae03d40443074694dfeac5a0f1813eb8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae03d40443074694dfeac5a0f1813eb8">DW1000_GPIO_MODE_LNA_ENABLE</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="memitem:af5f584ad1f6900efc04b5ccea5fa0a93" id="r_af5f584ad1f6900efc04b5ccea5fa0a93"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af5f584ad1f6900efc04b5ccea5fa0a93">DW1000_GPIO_MODE_PA_ENABLE</a>&#160;&#160;&#160;0x02</td></tr>
+<tr class="memitem:a8ecb19eb18ad208a2907fe6d91ff1aaa" id="r_a8ecb19eb18ad208a2907fe6d91ff1aaa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ecb19eb18ad208a2907fe6d91ff1aaa">DW1000_GPIO_DIRECTION_OUTPUT_P0</a>&#160;&#160;&#160;0x00000010</td></tr>
+<tr class="memdesc:a8ecb19eb18ad208a2907fe6d91ff1aaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">定义GPIO方向  <br /></td></tr>
+<tr class="memitem:a2b9d6cd7bc8661784c04f78460efff35" id="r_a2b9d6cd7bc8661784c04f78460efff35"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b9d6cd7bc8661784c04f78460efff35">DW1000_GPIO_DIRECTION_OUTPUT_P1</a>&#160;&#160;&#160;0x00000020</td></tr>
+<tr class="memitem:adff02d282c7afac81ad3995fe9df42f4" id="r_adff02d282c7afac81ad3995fe9df42f4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adff02d282c7afac81ad3995fe9df42f4">DW1000_GPIO_DIRECTION_OUTPUT_P2</a>&#160;&#160;&#160;0x00000040</td></tr>
+<tr class="memitem:aff098caaf7503718e40a9b26984987b5" id="r_aff098caaf7503718e40a9b26984987b5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff098caaf7503718e40a9b26984987b5">DW1000_GPIO_DIRECTION_OUTPUT_P3</a>&#160;&#160;&#160;0x00000080</td></tr>
+<tr class="memitem:a1674cf31c915c82867f759790e155f75" id="r_a1674cf31c915c82867f759790e155f75"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1674cf31c915c82867f759790e155f75">DW1000_GPIO_DIRECTION_OUTPUT_P4</a>&#160;&#160;&#160;0x00001000</td></tr>
+<tr class="memitem:a470fdf472c250ef57073b624d015e6d1" id="r_a470fdf472c250ef57073b624d015e6d1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a470fdf472c250ef57073b624d015e6d1">DW1000_GPIO_DIRECTION_OUTPUT_P5</a>&#160;&#160;&#160;0x00002000</td></tr>
+<tr class="memitem:a2bd84433b2a179ca44033cb9004021af" id="r_a2bd84433b2a179ca44033cb9004021af"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2bd84433b2a179ca44033cb9004021af">DW1000_GPIO_DIRECTION_OUTPUT_P6</a>&#160;&#160;&#160;0x00004000</td></tr>
+<tr class="memitem:a841f70c21f6e1831ed857bc44af903bc" id="r_a841f70c21f6e1831ed857bc44af903bc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a841f70c21f6e1831ed857bc44af903bc">DW1000_GPIO_DIRECTION_OUTPUT_P7</a>&#160;&#160;&#160;0x00008000</td></tr>
+<tr class="memitem:ac9c573771c52084eedb2241fc63bd2fe" id="r_ac9c573771c52084eedb2241fc63bd2fe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac9c573771c52084eedb2241fc63bd2fe">DW1000_GPIO_DIRECTION_OUTPUT_P8</a>&#160;&#160;&#160;0x00100000</td></tr>
+<tr class="memitem:a27b45f45c3d72d5705ab5cbaa9dd778e" id="r_a27b45f45c3d72d5705ab5cbaa9dd778e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27b45f45c3d72d5705ab5cbaa9dd778e">DW1000_GPIO_DIRECTION_INPUT_P0</a>&#160;&#160;&#160;0x00000011</td></tr>
+<tr class="memitem:abcd9b412b7352f3140a998ce12cbaaff" id="r_abcd9b412b7352f3140a998ce12cbaaff"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abcd9b412b7352f3140a998ce12cbaaff">DW1000_GPIO_DIRECTION_INPUT_P1</a>&#160;&#160;&#160;0x00000022</td></tr>
+<tr class="memitem:a6d07ac5a5af649d119bfa822f5a78a4f" id="r_a6d07ac5a5af649d119bfa822f5a78a4f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d07ac5a5af649d119bfa822f5a78a4f">DW1000_GPIO_DIRECTION_INPUT_P2</a>&#160;&#160;&#160;0x00000044</td></tr>
+<tr class="memitem:ade8fc554b416dd1ed9684f549fb5cbf7" id="r_ade8fc554b416dd1ed9684f549fb5cbf7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade8fc554b416dd1ed9684f549fb5cbf7">DW1000_GPIO_DIRECTION_INPUT_P3</a>&#160;&#160;&#160;0x00000088</td></tr>
+<tr class="memitem:ae384d4ef3157a4d5aa6b675e3eae4799" id="r_ae384d4ef3157a4d5aa6b675e3eae4799"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae384d4ef3157a4d5aa6b675e3eae4799">DW1000_GPIO_DIRECTION_INPUT_P4</a>&#160;&#160;&#160;0x00001100</td></tr>
+<tr class="memitem:a9a3e263ce7f576b288375dd930911b83" id="r_a9a3e263ce7f576b288375dd930911b83"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a3e263ce7f576b288375dd930911b83">DW1000_GPIO_DIRECTION_INPUT_P5</a>&#160;&#160;&#160;0x00002200</td></tr>
+<tr class="memitem:af6461dd3f4d7996e73fd4be3891c8130" id="r_af6461dd3f4d7996e73fd4be3891c8130"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6461dd3f4d7996e73fd4be3891c8130">DW1000_GPIO_DIRECTION_INPUT_P6</a>&#160;&#160;&#160;0x00004400</td></tr>
+<tr class="memitem:a952766752f05ab94d98d51d410e518c6" id="r_a952766752f05ab94d98d51d410e518c6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a952766752f05ab94d98d51d410e518c6">DW1000_GPIO_DIRECTION_INPUT_P7</a>&#160;&#160;&#160;0x00008800</td></tr>
+<tr class="memitem:a5b7198ff2d1bcf6d84851aceccd269de" id="r_a5b7198ff2d1bcf6d84851aceccd269de"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b7198ff2d1bcf6d84851aceccd269de">DW1000_GPIO_DIRECTION_INPUT_P8</a>&#160;&#160;&#160;0x00110000</td></tr>
+<tr class="memitem:a474bae2b66a0cd86c8a5507679d50e97" id="r_a474bae2b66a0cd86c8a5507679d50e97"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a474bae2b66a0cd86c8a5507679d50e97">DW1000_GPIO_OUTPUT_STATE_LOW_P0</a>&#160;&#160;&#160;0x00000010</td></tr>
+<tr class="memdesc:a474bae2b66a0cd86c8a5507679d50e97"><td class="mdescLeft">&#160;</td><td class="mdescRight">定义GPIO方向  <br /></td></tr>
+<tr class="memitem:aa1f972a64d6ece929580298b86e90cda" id="r_aa1f972a64d6ece929580298b86e90cda"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1f972a64d6ece929580298b86e90cda">DW1000_GPIO_OUTPUT_STATE_LOW_P1</a>&#160;&#160;&#160;0x00000020</td></tr>
+<tr class="memitem:a007f48f01de12f55c71fa9995391ee89" id="r_a007f48f01de12f55c71fa9995391ee89"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a007f48f01de12f55c71fa9995391ee89">DW1000_GPIO_OUTPUT_STATE_LOW_P2</a>&#160;&#160;&#160;0x00000040</td></tr>
+<tr class="memitem:a3d7e900c39f474d4dfe559cb0aec4623" id="r_a3d7e900c39f474d4dfe559cb0aec4623"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d7e900c39f474d4dfe559cb0aec4623">DW1000_GPIO_OUTPUT_STATE_LOW_P3</a>&#160;&#160;&#160;0x00000080</td></tr>
+<tr class="memitem:a9eeea68f26643c94fb1f5297c5261062" id="r_a9eeea68f26643c94fb1f5297c5261062"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9eeea68f26643c94fb1f5297c5261062">DW1000_GPIO_OUTPUT_STATE_LOW_P4</a>&#160;&#160;&#160;0x00001000</td></tr>
+<tr class="memitem:afeb84ab9fd1f8c9d24d241642b0a8576" id="r_afeb84ab9fd1f8c9d24d241642b0a8576"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afeb84ab9fd1f8c9d24d241642b0a8576">DW1000_GPIO_OUTPUT_STATE_LOW_P5</a>&#160;&#160;&#160;0x00002000</td></tr>
+<tr class="memitem:a86a5c4f6b5e94c33be2ef1f3071cbdf6" id="r_a86a5c4f6b5e94c33be2ef1f3071cbdf6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86a5c4f6b5e94c33be2ef1f3071cbdf6">DW1000_GPIO_OUTPUT_STATE_LOW_P6</a>&#160;&#160;&#160;0x00004000</td></tr>
+<tr class="memitem:a0c6b9f2b4e0aa51b1d7beb7bdcb65f8c" id="r_a0c6b9f2b4e0aa51b1d7beb7bdcb65f8c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c6b9f2b4e0aa51b1d7beb7bdcb65f8c">DW1000_GPIO_OUTPUT_STATE_LOW_P7</a>&#160;&#160;&#160;0x00008000</td></tr>
+<tr class="memitem:ae839fc4be86910729c07a88b9ccc31ce" id="r_ae839fc4be86910729c07a88b9ccc31ce"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae839fc4be86910729c07a88b9ccc31ce">DW1000_GPIO_OUTPUT_STATE_LOW_P8</a>&#160;&#160;&#160;0x00100000</td></tr>
+<tr class="memitem:abac16b3071db531e4ffbb8cdde7eae99" id="r_abac16b3071db531e4ffbb8cdde7eae99"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abac16b3071db531e4ffbb8cdde7eae99">DW1000_GPIO_OUTPUT_STATE_HIGH_P0</a>&#160;&#160;&#160;0x00000011</td></tr>
+<tr class="memitem:a69d8cc365bb5cb3598bf50ec39d44109" id="r_a69d8cc365bb5cb3598bf50ec39d44109"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69d8cc365bb5cb3598bf50ec39d44109">DW1000_GPIO_OUTPUT_STATE_HIGH_P1</a>&#160;&#160;&#160;0x00000022</td></tr>
+<tr class="memitem:ab01e44d644abc9c5a80444ce63faa255" id="r_ab01e44d644abc9c5a80444ce63faa255"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab01e44d644abc9c5a80444ce63faa255">DW1000_GPIO_OUTPUT_STATE_HIGH_P2</a>&#160;&#160;&#160;0x00000044</td></tr>
+<tr class="memitem:a4c04c5b7c9b6e7260fb231881b397979" id="r_a4c04c5b7c9b6e7260fb231881b397979"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c04c5b7c9b6e7260fb231881b397979">DW1000_GPIO_OUTPUT_STATE_HIGH_P3</a>&#160;&#160;&#160;0x00000088</td></tr>
+<tr class="memitem:acb22131e88fd3494037a659894d697b2" id="r_acb22131e88fd3494037a659894d697b2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb22131e88fd3494037a659894d697b2">DW1000_GPIO_OUTPUT_STATE_HIGH_P4</a>&#160;&#160;&#160;0x00001100</td></tr>
+<tr class="memitem:a51d1a66e2492f8584bb2756091d26700" id="r_a51d1a66e2492f8584bb2756091d26700"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51d1a66e2492f8584bb2756091d26700">DW1000_GPIO_OUTPUT_STATE_HIGH_P5</a>&#160;&#160;&#160;0x00002200</td></tr>
+<tr class="memitem:a8747e517a3a1c2cc48802042e8d4e4a2" id="r_a8747e517a3a1c2cc48802042e8d4e4a2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8747e517a3a1c2cc48802042e8d4e4a2">DW1000_GPIO_OUTPUT_STATE_HIGH_P6</a>&#160;&#160;&#160;0x00004400</td></tr>
+<tr class="memitem:ab41969d12647eff909c067303cb8403d" id="r_ab41969d12647eff909c067303cb8403d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab41969d12647eff909c067303cb8403d">DW1000_GPIO_OUTPUT_STATE_HIGH_P7</a>&#160;&#160;&#160;0x00008800</td></tr>
+<tr class="memitem:a0ffb433c4345e214be8ef9669eb9c4db" id="r_a0ffb433c4345e214be8ef9669eb9c4db"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ffb433c4345e214be8ef9669eb9c4db">DW1000_GPIO_OUTPUT_STATE_HIGH_P8</a>&#160;&#160;&#160;0x00110000</td></tr>
+<tr class="memitem:aa8fa8b98ed981317da09379785cd419f" id="r_aa8fa8b98ed981317da09379785cd419f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8fa8b98ed981317da09379785cd419f">DW1000_GPIO_RAW_STATE_P0</a>&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#ac388ae2fd8495316ee470b6824c8b55f">DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP0</a></td></tr>
+<tr class="memitem:af81ec87f2fab71566a80196bedea6004" id="r_af81ec87f2fab71566a80196bedea6004"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af81ec87f2fab71566a80196bedea6004">DW1000_GPIO_RAW_STATE_P1</a>&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#a5fc26b8e1bf4c6d34d1d23290db2c184">DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP1</a></td></tr>
+<tr class="memitem:a35aa3b1c9a25d3359398e6c4bf9cd096" id="r_a35aa3b1c9a25d3359398e6c4bf9cd096"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35aa3b1c9a25d3359398e6c4bf9cd096">DW1000_GPIO_RAW_STATE_P2</a>&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#a35a9d6286f8bc2432289c540b942d369">DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP2</a></td></tr>
+<tr class="memitem:a0fec1b21231b4d38d1e3aea93fdf877e" id="r_a0fec1b21231b4d38d1e3aea93fdf877e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0fec1b21231b4d38d1e3aea93fdf877e">DW1000_GPIO_RAW_STATE_P3</a>&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#ac97bb33e424525339b121a4679565850">DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP3</a></td></tr>
+<tr class="memitem:a47aa16a4307d646afa6902362a3e33e9" id="r_a47aa16a4307d646afa6902362a3e33e9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47aa16a4307d646afa6902362a3e33e9">DW1000_GPIO_RAW_STATE_P4</a>&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#a7ddfad7e2a22dd8b79799b29a14faddc">DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP4</a></td></tr>
+<tr class="memitem:a722c2666493c3e96866f74b0157f6a0b" id="r_a722c2666493c3e96866f74b0157f6a0b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a722c2666493c3e96866f74b0157f6a0b">DW1000_GPIO_RAW_STATE_P5</a>&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#ab45282cdf0f02cd957a7f1bb1cee1a08">DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP5</a></td></tr>
+<tr class="memitem:a21689bf501e860bb8867d5796b410f45" id="r_a21689bf501e860bb8867d5796b410f45"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21689bf501e860bb8867d5796b410f45">DW1000_GPIO_RAW_STATE_P6</a>&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#ae4e3ecd4a95602dc4996a5396d263acd">DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP6</a></td></tr>
+<tr class="memitem:a8e43b57f3c032b0771d1fae9925d820c" id="r_a8e43b57f3c032b0771d1fae9925d820c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e43b57f3c032b0771d1fae9925d820c">DW1000_GPIO_RAW_STATE_P7</a>&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#a9cfcc279aac31780dc3166681dcb1866">DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP7</a></td></tr>
+<tr class="memitem:a0052348d875ef8ef1ef5deb4057b6821" id="r_a0052348d875ef8ef1ef5deb4057b6821"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0052348d875ef8ef1ef5deb4057b6821">DW1000_GPIO_RAW_STATE_P8</a>&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#a2a49c9555f1930d8dab3198b19bed92f">DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP8</a></td></tr>
+<tr class="memitem:ad8fc39af1151b940b99b941ee117eaec" id="r_ad8fc39af1151b940b99b941ee117eaec"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8fc39af1151b940b99b941ee117eaec">DW1000_PRF_16MHz</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="memitem:a0de3a6506abf22f7a00aecc725c32b78" id="r_a0de3a6506abf22f7a00aecc725c32b78"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0de3a6506abf22f7a00aecc725c32b78">DW1000_PRF_64MHz</a>&#160;&#160;&#160;0x02</td></tr>
+<tr class="memitem:ga1ccb6b5cfe80b62c177816d5572bae0d" id="r_ga1ccb6b5cfe80b62c177816d5572bae0d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dw1000__link__driver.html#ga1ccb6b5cfe80b62c177816d5572bae0d">DRIVER_DW1000_LINK_INIT</a>(HANDLE,  STRUCTURE)</td></tr>
+<tr class="memdesc:ga1ccb6b5cfe80b62c177816d5572bae0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化 <a class="el" href="#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体  <br /></td></tr>
+<tr class="memitem:ga5987d4731ac124a9e0644870f41bfc08" id="r_ga5987d4731ac124a9e0644870f41bfc08"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dw1000__link__driver.html#ga5987d4731ac124a9e0644870f41bfc08">DRIVER_DW1000_LINK_SPI_INIT</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:ga5987d4731ac124a9e0644870f41bfc08"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 spi_init 函数  <br /></td></tr>
+<tr class="memitem:ga11e0d3df1bc80410c47afec0c608ea70" id="r_ga11e0d3df1bc80410c47afec0c608ea70"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dw1000__link__driver.html#ga11e0d3df1bc80410c47afec0c608ea70">DRIVER_DW1000_LINK_SPI_DEINIT</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:ga11e0d3df1bc80410c47afec0c608ea70"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 spi_deinit 函数  <br /></td></tr>
+<tr class="memitem:gad6345a3bb9ef86ed392fb502e9c65c82" id="r_gad6345a3bb9ef86ed392fb502e9c65c82"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dw1000__link__driver.html#gad6345a3bb9ef86ed392fb502e9c65c82">DRIVER_DW1000_LINK_SPI_READ</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:gad6345a3bb9ef86ed392fb502e9c65c82"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 spi_read 函数  <br /></td></tr>
+<tr class="memitem:ga526b24f41e54bff213315fa886134af7" id="r_ga526b24f41e54bff213315fa886134af7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dw1000__link__driver.html#ga526b24f41e54bff213315fa886134af7">DRIVER_DW1000_LINK_SPI_WRITE</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:ga526b24f41e54bff213315fa886134af7"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 spi_write 函数  <br /></td></tr>
+<tr class="memitem:ga42523356ff5da80ae1fb24feb4bd4ed4" id="r_ga42523356ff5da80ae1fb24feb4bd4ed4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dw1000__link__driver.html#ga42523356ff5da80ae1fb24feb4bd4ed4">DRIVER_DW1000_LINK_DELAY_MS</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:ga42523356ff5da80ae1fb24feb4bd4ed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 delay_ms 函数  <br /></td></tr>
+<tr class="memitem:ga450d304f275f858c0910a363ee92000e" id="r_ga450d304f275f858c0910a363ee92000e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dw1000__link__driver.html#ga450d304f275f858c0910a363ee92000e">DRIVER_DW1000_LINK_DEBUG_PRINT</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:ga450d304f275f858c0910a363ee92000e"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 debug_print 函数  <br /></td></tr>
+<tr class="memitem:ga1bb8090d157b468f89aada3e2e11564a" id="r_ga1bb8090d157b468f89aada3e2e11564a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dw1000__link__driver.html#ga1bb8090d157b468f89aada3e2e11564a">DRIVER_DW1000_LINK_RECEIVE_CALLBACK</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:ga1bb8090d157b468f89aada3e2e11564a"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 receive_callback 函数  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:a8e51eab4abbfab18e6c59ac803aae780" id="r_a8e51eab4abbfab18e6c59ac803aae780"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structdw1000__handle__s.html">dw1000_handle_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a></td></tr>
+<tr class="memdesc:a8e51eab4abbfab18e6c59ac803aae780"><td class="mdescLeft">&#160;</td><td class="mdescRight">DW1000 handle 结构体定义  <br /></td></tr>
+<tr class="memitem:aca1028cbf8f069330cf8c4b762aae9a7" id="r_aca1028cbf8f069330cf8c4b762aae9a7"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structdw1000__info__s.html">dw1000_info_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca1028cbf8f069330cf8c4b762aae9a7">dw1000_info_t</a></td></tr>
+<tr class="memdesc:aca1028cbf8f069330cf8c4b762aae9a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">dw1000 信息 结构体定义  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><dl class="section author"><dt>作者</dt><dd>quote6 (<a href="#" onclick="location.href='mai'+'lto:'+'229'+'31'+'274'+'01'+'@qq'+'.c'+'om'; return false;">22931<span class="obfuscator">.nosp@m.</span>2740<span class="obfuscator">.nosp@m.</span>1@qq.<span class="obfuscator">.nosp@m.</span>com</a>) </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2025-11-24 </dd></dl>
+<dl class="section copyright"><dt>版权所有</dt><dd>Copyright (c) 2025 quote6 For study and research only, no reprinting</dd></dl>
+<dl class="section user"><dt>修改日志</dt><dd><table class="doxtable">
+<tr>
+<th>Date </th><th>Version </th><th>Author </th><th>Description </th></tr>
+<tr>
+<td>2025-11-24 </td><td>{version} </td><td>quote6 </td><td>{Description} </td></tr>
+</table>
+<hr  />
+ </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 中定义.</p>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">宏定义说明</h2>
+<a id="a1a34934c05c6cabc1a7993cb751958c1" name="a1a34934c05c6cabc1a7993cb751958c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a34934c05c6cabc1a7993cb751958c1">&#9670;&#160;</a></span>DW1000_CLOCK_CMD_ENABLE_ALL_SEQ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_CLOCK_CMD_ENABLE_ALL_SEQ&#160;&#160;&#160;0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00035">35</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad199613bf3f987a162ad427cb5a19aed" name="ad199613bf3f987a162ad427cb5a19aed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad199613bf3f987a162ad427cb5a19aed">&#9670;&#160;</a></span>DW1000_CLOCK_CMD_FORCE_SYS_PLL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_CLOCK_CMD_FORCE_SYS_PLL&#160;&#160;&#160;0x03</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00037">37</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2d95b5f7d8cf9d674b1bebd6423ef285" name="a2d95b5f7d8cf9d674b1bebd6423ef285"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d95b5f7d8cf9d674b1bebd6423ef285">&#9670;&#160;</a></span>DW1000_CLOCK_CMD_FORCE_SYS_XTI</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_CLOCK_CMD_FORCE_SYS_XTI&#160;&#160;&#160;0x02</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00036">36</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a28e3a4c2519d1ea63146a76dc2fc6dab" name="a28e3a4c2519d1ea63146a76dc2fc6dab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28e3a4c2519d1ea63146a76dc2fc6dab">&#9670;&#160;</a></span>DW1000_CMD_DISABLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_CMD_DISABLE&#160;&#160;&#160;0x00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00033">33</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab18f0a12980c6af2e6bc2e63a45cca5f" name="ab18f0a12980c6af2e6bc2e63a45cca5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab18f0a12980c6af2e6bc2e63a45cca5f">&#9670;&#160;</a></span>DW1000_CMD_ENABLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_CMD_ENABLE&#160;&#160;&#160;0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00032">32</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a27b45f45c3d72d5705ab5cbaa9dd778e" name="a27b45f45c3d72d5705ab5cbaa9dd778e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27b45f45c3d72d5705ab5cbaa9dd778e">&#9670;&#160;</a></span>DW1000_GPIO_DIRECTION_INPUT_P0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_DIRECTION_INPUT_P0&#160;&#160;&#160;0x00000011</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00103">103</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abcd9b412b7352f3140a998ce12cbaaff" name="abcd9b412b7352f3140a998ce12cbaaff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcd9b412b7352f3140a998ce12cbaaff">&#9670;&#160;</a></span>DW1000_GPIO_DIRECTION_INPUT_P1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_DIRECTION_INPUT_P1&#160;&#160;&#160;0x00000022</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00104">104</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6d07ac5a5af649d119bfa822f5a78a4f" name="a6d07ac5a5af649d119bfa822f5a78a4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d07ac5a5af649d119bfa822f5a78a4f">&#9670;&#160;</a></span>DW1000_GPIO_DIRECTION_INPUT_P2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_DIRECTION_INPUT_P2&#160;&#160;&#160;0x00000044</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00105">105</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ade8fc554b416dd1ed9684f549fb5cbf7" name="ade8fc554b416dd1ed9684f549fb5cbf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade8fc554b416dd1ed9684f549fb5cbf7">&#9670;&#160;</a></span>DW1000_GPIO_DIRECTION_INPUT_P3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_DIRECTION_INPUT_P3&#160;&#160;&#160;0x00000088</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00106">106</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae384d4ef3157a4d5aa6b675e3eae4799" name="ae384d4ef3157a4d5aa6b675e3eae4799"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae384d4ef3157a4d5aa6b675e3eae4799">&#9670;&#160;</a></span>DW1000_GPIO_DIRECTION_INPUT_P4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_DIRECTION_INPUT_P4&#160;&#160;&#160;0x00001100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00107">107</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9a3e263ce7f576b288375dd930911b83" name="a9a3e263ce7f576b288375dd930911b83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a3e263ce7f576b288375dd930911b83">&#9670;&#160;</a></span>DW1000_GPIO_DIRECTION_INPUT_P5</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_DIRECTION_INPUT_P5&#160;&#160;&#160;0x00002200</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00108">108</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af6461dd3f4d7996e73fd4be3891c8130" name="af6461dd3f4d7996e73fd4be3891c8130"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6461dd3f4d7996e73fd4be3891c8130">&#9670;&#160;</a></span>DW1000_GPIO_DIRECTION_INPUT_P6</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_DIRECTION_INPUT_P6&#160;&#160;&#160;0x00004400</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00109">109</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a952766752f05ab94d98d51d410e518c6" name="a952766752f05ab94d98d51d410e518c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a952766752f05ab94d98d51d410e518c6">&#9670;&#160;</a></span>DW1000_GPIO_DIRECTION_INPUT_P7</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_DIRECTION_INPUT_P7&#160;&#160;&#160;0x00008800</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00110">110</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5b7198ff2d1bcf6d84851aceccd269de" name="a5b7198ff2d1bcf6d84851aceccd269de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b7198ff2d1bcf6d84851aceccd269de">&#9670;&#160;</a></span>DW1000_GPIO_DIRECTION_INPUT_P8</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_DIRECTION_INPUT_P8&#160;&#160;&#160;0x00110000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00111">111</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8ecb19eb18ad208a2907fe6d91ff1aaa" name="a8ecb19eb18ad208a2907fe6d91ff1aaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ecb19eb18ad208a2907fe6d91ff1aaa">&#9670;&#160;</a></span>DW1000_GPIO_DIRECTION_OUTPUT_P0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_DIRECTION_OUTPUT_P0&#160;&#160;&#160;0x00000010</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>定义GPIO方向 </p>
+<dl class="section note"><dt>注解</dt><dd>备注 </dd></dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">DW1000_GPIO_DIRECTION_OUTPUT_Px</td><td>编号x引脚为输出，x取值0-8 </td></tr>
+    <tr><td class="paramname">DW1000_GPIO_DIRECTION_INPUT_Px</td><td>编号x引脚为输入，x取值0-8 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00094">94</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2b9d6cd7bc8661784c04f78460efff35" name="a2b9d6cd7bc8661784c04f78460efff35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b9d6cd7bc8661784c04f78460efff35">&#9670;&#160;</a></span>DW1000_GPIO_DIRECTION_OUTPUT_P1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_DIRECTION_OUTPUT_P1&#160;&#160;&#160;0x00000020</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00095">95</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adff02d282c7afac81ad3995fe9df42f4" name="adff02d282c7afac81ad3995fe9df42f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adff02d282c7afac81ad3995fe9df42f4">&#9670;&#160;</a></span>DW1000_GPIO_DIRECTION_OUTPUT_P2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_DIRECTION_OUTPUT_P2&#160;&#160;&#160;0x00000040</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00096">96</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aff098caaf7503718e40a9b26984987b5" name="aff098caaf7503718e40a9b26984987b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff098caaf7503718e40a9b26984987b5">&#9670;&#160;</a></span>DW1000_GPIO_DIRECTION_OUTPUT_P3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_DIRECTION_OUTPUT_P3&#160;&#160;&#160;0x00000080</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00097">97</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1674cf31c915c82867f759790e155f75" name="a1674cf31c915c82867f759790e155f75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1674cf31c915c82867f759790e155f75">&#9670;&#160;</a></span>DW1000_GPIO_DIRECTION_OUTPUT_P4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_DIRECTION_OUTPUT_P4&#160;&#160;&#160;0x00001000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00098">98</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a470fdf472c250ef57073b624d015e6d1" name="a470fdf472c250ef57073b624d015e6d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a470fdf472c250ef57073b624d015e6d1">&#9670;&#160;</a></span>DW1000_GPIO_DIRECTION_OUTPUT_P5</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_DIRECTION_OUTPUT_P5&#160;&#160;&#160;0x00002000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00099">99</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2bd84433b2a179ca44033cb9004021af" name="a2bd84433b2a179ca44033cb9004021af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bd84433b2a179ca44033cb9004021af">&#9670;&#160;</a></span>DW1000_GPIO_DIRECTION_OUTPUT_P6</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_DIRECTION_OUTPUT_P6&#160;&#160;&#160;0x00004000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00100">100</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a841f70c21f6e1831ed857bc44af903bc" name="a841f70c21f6e1831ed857bc44af903bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a841f70c21f6e1831ed857bc44af903bc">&#9670;&#160;</a></span>DW1000_GPIO_DIRECTION_OUTPUT_P7</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_DIRECTION_OUTPUT_P7&#160;&#160;&#160;0x00008000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00101">101</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac9c573771c52084eedb2241fc63bd2fe" name="ac9c573771c52084eedb2241fc63bd2fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9c573771c52084eedb2241fc63bd2fe">&#9670;&#160;</a></span>DW1000_GPIO_DIRECTION_OUTPUT_P8</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_DIRECTION_OUTPUT_P8&#160;&#160;&#160;0x00100000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00102">102</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3147091b20fa958189c0bd1a87a4a1e3" name="a3147091b20fa958189c0bd1a87a4a1e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3147091b20fa958189c0bd1a87a4a1e3">&#9670;&#160;</a></span>DW1000_GPIO_MODE_0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_MODE_0&#160;&#160;&#160;0x00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>定义GPIO模式 </p>
+<dl class="section note"><dt>注解</dt><dd>默认为DW1000_GPIO_MODE_DEFAULT </dd></dl>
+<dl class="section attention"><dt>注意</dt><dd>根据用户手册，GPIO模式2和模式3保留不应使用 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00055">55</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad814d93b2f39a69f58e646d51d968b73" name="ad814d93b2f39a69f58e646d51d968b73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad814d93b2f39a69f58e646d51d968b73">&#9670;&#160;</a></span>DW1000_GPIO_MODE_1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_MODE_1&#160;&#160;&#160;0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00056">56</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7c760dff0f5690cc30c2fe43b463b2a8" name="a7c760dff0f5690cc30c2fe43b463b2a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c760dff0f5690cc30c2fe43b463b2a8">&#9670;&#160;</a></span>DW1000_GPIO_MODE_DEFAULT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_MODE_DEFAULT&#160;&#160;&#160;<a class="el" href="#a3147091b20fa958189c0bd1a87a4a1e3">DW1000_GPIO_MODE_0</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00059">59</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aae03d40443074694dfeac5a0f1813eb8" name="aae03d40443074694dfeac5a0f1813eb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae03d40443074694dfeac5a0f1813eb8">&#9670;&#160;</a></span>DW1000_GPIO_MODE_LNA_ENABLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_MODE_LNA_ENABLE&#160;&#160;&#160;0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00085">85</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3be78582d947c5c9d009cf0d5f346e8b" name="a3be78582d947c5c9d009cf0d5f346e8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3be78582d947c5c9d009cf0d5f346e8b">&#9670;&#160;</a></span>DW1000_GPIO_MODE_P2_RXLED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_MODE_P2_RXLED&#160;&#160;&#160;<a class="el" href="#ac7c324881d253d743a3447087caf1f58">DW1000_GPIO_MODE_SELECT</a>(2, <a class="el" href="#ad814d93b2f39a69f58e646d51d968b73">DW1000_GPIO_MODE_1</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00073">73</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aba0fa3c9af46274262ab8e13b0cf497d" name="aba0fa3c9af46274262ab8e13b0cf497d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba0fa3c9af46274262ab8e13b0cf497d">&#9670;&#160;</a></span>DW1000_GPIO_MODE_P3_TXLED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_MODE_P3_TXLED&#160;&#160;&#160;<a class="el" href="#ac7c324881d253d743a3447087caf1f58">DW1000_GPIO_MODE_SELECT</a>(3, <a class="el" href="#ad814d93b2f39a69f58e646d51d968b73">DW1000_GPIO_MODE_1</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00074">74</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3442d04328abc02de90285fd0e2ba8d1" name="a3442d04328abc02de90285fd0e2ba8d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3442d04328abc02de90285fd0e2ba8d1">&#9670;&#160;</a></span>DW1000_GPIO_MODE_P4_EXTPA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_MODE_P4_EXTPA&#160;&#160;&#160;<a class="el" href="#ac7c324881d253d743a3447087caf1f58">DW1000_GPIO_MODE_SELECT</a>(4, <a class="el" href="#ad814d93b2f39a69f58e646d51d968b73">DW1000_GPIO_MODE_1</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00075">75</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4139b52f450d2d9efb2d286e7104f1f1" name="a4139b52f450d2d9efb2d286e7104f1f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4139b52f450d2d9efb2d286e7104f1f1">&#9670;&#160;</a></span>DW1000_GPIO_MODE_P5_EXTTXE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_MODE_P5_EXTTXE&#160;&#160;&#160;<a class="el" href="#ac7c324881d253d743a3447087caf1f58">DW1000_GPIO_MODE_SELECT</a>(5, <a class="el" href="#ad814d93b2f39a69f58e646d51d968b73">DW1000_GPIO_MODE_1</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00076">76</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acfb85a0144105842d787bd77177bf98e" name="acfb85a0144105842d787bd77177bf98e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfb85a0144105842d787bd77177bf98e">&#9670;&#160;</a></span>DW1000_GPIO_MODE_P6_EXTRXE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_MODE_P6_EXTRXE&#160;&#160;&#160;<a class="el" href="#ac7c324881d253d743a3447087caf1f58">DW1000_GPIO_MODE_SELECT</a>(6, <a class="el" href="#ad814d93b2f39a69f58e646d51d968b73">DW1000_GPIO_MODE_1</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00077">77</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af5f584ad1f6900efc04b5ccea5fa0a93" name="af5f584ad1f6900efc04b5ccea5fa0a93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5f584ad1f6900efc04b5ccea5fa0a93">&#9670;&#160;</a></span>DW1000_GPIO_MODE_PA_ENABLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_MODE_PA_ENABLE&#160;&#160;&#160;0x02</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00086">86</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac7c324881d253d743a3447087caf1f58" name="ac7c324881d253d743a3447087caf1f58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7c324881d253d743a3447087caf1f58">&#9670;&#160;</a></span>DW1000_GPIO_MODE_SELECT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_MODE_SELECT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>pin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>mode</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">((mode) &lt;&lt; (2 * (pin) + 6))</div>
+</div><!-- fragment -->
+<p>配置GPIO引脚的模式 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pin</td><td>引脚编号，取值0-8 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>模式 <ul>
+<li>DW1000_GPIO_MODE_x： 模式x，x取值0-3 </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>警告</dt><dd>目前只能使用模式0-1，模式2-3保留不应使用 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00068">68</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abac16b3071db531e4ffbb8cdde7eae99" name="abac16b3071db531e4ffbb8cdde7eae99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abac16b3071db531e4ffbb8cdde7eae99">&#9670;&#160;</a></span>DW1000_GPIO_OUTPUT_STATE_HIGH_P0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_OUTPUT_STATE_HIGH_P0&#160;&#160;&#160;0x00000011</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00128">128</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a69d8cc365bb5cb3598bf50ec39d44109" name="a69d8cc365bb5cb3598bf50ec39d44109"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69d8cc365bb5cb3598bf50ec39d44109">&#9670;&#160;</a></span>DW1000_GPIO_OUTPUT_STATE_HIGH_P1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_OUTPUT_STATE_HIGH_P1&#160;&#160;&#160;0x00000022</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00129">129</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab01e44d644abc9c5a80444ce63faa255" name="ab01e44d644abc9c5a80444ce63faa255"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab01e44d644abc9c5a80444ce63faa255">&#9670;&#160;</a></span>DW1000_GPIO_OUTPUT_STATE_HIGH_P2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_OUTPUT_STATE_HIGH_P2&#160;&#160;&#160;0x00000044</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00130">130</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4c04c5b7c9b6e7260fb231881b397979" name="a4c04c5b7c9b6e7260fb231881b397979"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c04c5b7c9b6e7260fb231881b397979">&#9670;&#160;</a></span>DW1000_GPIO_OUTPUT_STATE_HIGH_P3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_OUTPUT_STATE_HIGH_P3&#160;&#160;&#160;0x00000088</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00131">131</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acb22131e88fd3494037a659894d697b2" name="acb22131e88fd3494037a659894d697b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb22131e88fd3494037a659894d697b2">&#9670;&#160;</a></span>DW1000_GPIO_OUTPUT_STATE_HIGH_P4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_OUTPUT_STATE_HIGH_P4&#160;&#160;&#160;0x00001100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00132">132</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a51d1a66e2492f8584bb2756091d26700" name="a51d1a66e2492f8584bb2756091d26700"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51d1a66e2492f8584bb2756091d26700">&#9670;&#160;</a></span>DW1000_GPIO_OUTPUT_STATE_HIGH_P5</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_OUTPUT_STATE_HIGH_P5&#160;&#160;&#160;0x00002200</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00133">133</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8747e517a3a1c2cc48802042e8d4e4a2" name="a8747e517a3a1c2cc48802042e8d4e4a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8747e517a3a1c2cc48802042e8d4e4a2">&#9670;&#160;</a></span>DW1000_GPIO_OUTPUT_STATE_HIGH_P6</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_OUTPUT_STATE_HIGH_P6&#160;&#160;&#160;0x00004400</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00134">134</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab41969d12647eff909c067303cb8403d" name="ab41969d12647eff909c067303cb8403d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab41969d12647eff909c067303cb8403d">&#9670;&#160;</a></span>DW1000_GPIO_OUTPUT_STATE_HIGH_P7</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_OUTPUT_STATE_HIGH_P7&#160;&#160;&#160;0x00008800</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00135">135</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0ffb433c4345e214be8ef9669eb9c4db" name="a0ffb433c4345e214be8ef9669eb9c4db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ffb433c4345e214be8ef9669eb9c4db">&#9670;&#160;</a></span>DW1000_GPIO_OUTPUT_STATE_HIGH_P8</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_OUTPUT_STATE_HIGH_P8&#160;&#160;&#160;0x00110000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00136">136</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a474bae2b66a0cd86c8a5507679d50e97" name="a474bae2b66a0cd86c8a5507679d50e97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a474bae2b66a0cd86c8a5507679d50e97">&#9670;&#160;</a></span>DW1000_GPIO_OUTPUT_STATE_LOW_P0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_OUTPUT_STATE_LOW_P0&#160;&#160;&#160;0x00000010</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>定义GPIO方向 </p>
+<dl class="section note"><dt>注解</dt><dd>备注 </dd></dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">DW1000_GPIO_OUTPUT_STATE_LOW_Px</td><td>编号x引脚输出低电平，x取值0-8 </td></tr>
+    <tr><td class="paramname">DW1000_GPIO_OUTPUT_STATE_HIGH_Px</td><td>编号x引脚输出高电平，x取值0-8 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00119">119</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa1f972a64d6ece929580298b86e90cda" name="aa1f972a64d6ece929580298b86e90cda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1f972a64d6ece929580298b86e90cda">&#9670;&#160;</a></span>DW1000_GPIO_OUTPUT_STATE_LOW_P1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_OUTPUT_STATE_LOW_P1&#160;&#160;&#160;0x00000020</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00120">120</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a007f48f01de12f55c71fa9995391ee89" name="a007f48f01de12f55c71fa9995391ee89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a007f48f01de12f55c71fa9995391ee89">&#9670;&#160;</a></span>DW1000_GPIO_OUTPUT_STATE_LOW_P2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_OUTPUT_STATE_LOW_P2&#160;&#160;&#160;0x00000040</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00121">121</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3d7e900c39f474d4dfe559cb0aec4623" name="a3d7e900c39f474d4dfe559cb0aec4623"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d7e900c39f474d4dfe559cb0aec4623">&#9670;&#160;</a></span>DW1000_GPIO_OUTPUT_STATE_LOW_P3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_OUTPUT_STATE_LOW_P3&#160;&#160;&#160;0x00000080</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00122">122</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9eeea68f26643c94fb1f5297c5261062" name="a9eeea68f26643c94fb1f5297c5261062"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9eeea68f26643c94fb1f5297c5261062">&#9670;&#160;</a></span>DW1000_GPIO_OUTPUT_STATE_LOW_P4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_OUTPUT_STATE_LOW_P4&#160;&#160;&#160;0x00001000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00123">123</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afeb84ab9fd1f8c9d24d241642b0a8576" name="afeb84ab9fd1f8c9d24d241642b0a8576"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afeb84ab9fd1f8c9d24d241642b0a8576">&#9670;&#160;</a></span>DW1000_GPIO_OUTPUT_STATE_LOW_P5</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_OUTPUT_STATE_LOW_P5&#160;&#160;&#160;0x00002000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00124">124</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a86a5c4f6b5e94c33be2ef1f3071cbdf6" name="a86a5c4f6b5e94c33be2ef1f3071cbdf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86a5c4f6b5e94c33be2ef1f3071cbdf6">&#9670;&#160;</a></span>DW1000_GPIO_OUTPUT_STATE_LOW_P6</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_OUTPUT_STATE_LOW_P6&#160;&#160;&#160;0x00004000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00125">125</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0c6b9f2b4e0aa51b1d7beb7bdcb65f8c" name="a0c6b9f2b4e0aa51b1d7beb7bdcb65f8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c6b9f2b4e0aa51b1d7beb7bdcb65f8c">&#9670;&#160;</a></span>DW1000_GPIO_OUTPUT_STATE_LOW_P7</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_OUTPUT_STATE_LOW_P7&#160;&#160;&#160;0x00008000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00126">126</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae839fc4be86910729c07a88b9ccc31ce" name="ae839fc4be86910729c07a88b9ccc31ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae839fc4be86910729c07a88b9ccc31ce">&#9670;&#160;</a></span>DW1000_GPIO_OUTPUT_STATE_LOW_P8</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_OUTPUT_STATE_LOW_P8&#160;&#160;&#160;0x00100000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00127">127</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa8fa8b98ed981317da09379785cd419f" name="aa8fa8b98ed981317da09379785cd419f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8fa8b98ed981317da09379785cd419f">&#9670;&#160;</a></span>DW1000_GPIO_RAW_STATE_P0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_RAW_STATE_P0&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#ac388ae2fd8495316ee470b6824c8b55f">DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP0</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00145">145</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af81ec87f2fab71566a80196bedea6004" name="af81ec87f2fab71566a80196bedea6004"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af81ec87f2fab71566a80196bedea6004">&#9670;&#160;</a></span>DW1000_GPIO_RAW_STATE_P1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_RAW_STATE_P1&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#a5fc26b8e1bf4c6d34d1d23290db2c184">DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP1</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00146">146</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a35aa3b1c9a25d3359398e6c4bf9cd096" name="a35aa3b1c9a25d3359398e6c4bf9cd096"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35aa3b1c9a25d3359398e6c4bf9cd096">&#9670;&#160;</a></span>DW1000_GPIO_RAW_STATE_P2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_RAW_STATE_P2&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#a35a9d6286f8bc2432289c540b942d369">DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP2</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00147">147</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0fec1b21231b4d38d1e3aea93fdf877e" name="a0fec1b21231b4d38d1e3aea93fdf877e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fec1b21231b4d38d1e3aea93fdf877e">&#9670;&#160;</a></span>DW1000_GPIO_RAW_STATE_P3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_RAW_STATE_P3&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#ac97bb33e424525339b121a4679565850">DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP3</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00148">148</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a47aa16a4307d646afa6902362a3e33e9" name="a47aa16a4307d646afa6902362a3e33e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47aa16a4307d646afa6902362a3e33e9">&#9670;&#160;</a></span>DW1000_GPIO_RAW_STATE_P4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_RAW_STATE_P4&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#a7ddfad7e2a22dd8b79799b29a14faddc">DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP4</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00149">149</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a722c2666493c3e96866f74b0157f6a0b" name="a722c2666493c3e96866f74b0157f6a0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a722c2666493c3e96866f74b0157f6a0b">&#9670;&#160;</a></span>DW1000_GPIO_RAW_STATE_P5</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_RAW_STATE_P5&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#ab45282cdf0f02cd957a7f1bb1cee1a08">DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP5</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00150">150</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a21689bf501e860bb8867d5796b410f45" name="a21689bf501e860bb8867d5796b410f45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21689bf501e860bb8867d5796b410f45">&#9670;&#160;</a></span>DW1000_GPIO_RAW_STATE_P6</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_RAW_STATE_P6&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#ae4e3ecd4a95602dc4996a5396d263acd">DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP6</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00151">151</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8e43b57f3c032b0771d1fae9925d820c" name="a8e43b57f3c032b0771d1fae9925d820c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e43b57f3c032b0771d1fae9925d820c">&#9670;&#160;</a></span>DW1000_GPIO_RAW_STATE_P7</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_RAW_STATE_P7&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#a9cfcc279aac31780dc3166681dcb1866">DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP7</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00152">152</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0052348d875ef8ef1ef5deb4057b6821" name="a0052348d875ef8ef1ef5deb4057b6821"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0052348d875ef8ef1ef5deb4057b6821">&#9670;&#160;</a></span>DW1000_GPIO_RAW_STATE_P8</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_GPIO_RAW_STATE_P8&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#a2a49c9555f1930d8dab3198b19bed92f">DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP8</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00153">153</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a26a0ed2d3486c56cf7f2796596e901ec" name="a26a0ed2d3486c56cf7f2796596e901ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26a0ed2d3486c56cf7f2796596e901ec">&#9670;&#160;</a></span>DW1000_LNA_PA_MODE_ALL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_LNA_PA_MODE_ALL&#160;&#160;&#160;(<a class="el" href="#ac7635b4e6bc5b8c86314f39d28e40b7c">DW1000_LNA_PA_MODE_LNA</a> | <a class="el" href="#a3b26f07c25efcd1ca0439bc4aa0cf03e">DW1000_LNA_PA_MODE_PA</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00082">82</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af3b4fc8f1ef9b0abcbd433072b16c2f9" name="af3b4fc8f1ef9b0abcbd433072b16c2f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3b4fc8f1ef9b0abcbd433072b16c2f9">&#9670;&#160;</a></span>DW1000_LNA_PA_MODE_DEFAULT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_LNA_PA_MODE_DEFAULT&#160;&#160;&#160;<a class="el" href="#a678e9d7e3cc9570ab3c0ebb3298afa44">DW1000_LNA_PA_MODE_NONE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00083">83</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac7635b4e6bc5b8c86314f39d28e40b7c" name="ac7635b4e6bc5b8c86314f39d28e40b7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7635b4e6bc5b8c86314f39d28e40b7c">&#9670;&#160;</a></span>DW1000_LNA_PA_MODE_LNA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_LNA_PA_MODE_LNA&#160;&#160;&#160;<a class="el" href="#acfb85a0144105842d787bd77177bf98e">DW1000_GPIO_MODE_P6_EXTRXE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00080">80</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aba6a51259f6100c537743582bad9b410" name="aba6a51259f6100c537743582bad9b410"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba6a51259f6100c537743582bad9b410">&#9670;&#160;</a></span>DW1000_LNA_PA_MODE_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_LNA_PA_MODE_MASK&#160;&#160;&#160;<a class="el" href="driver__dw1000__reg_8h.html#a3c1a0485978fc27c04b725fcdc008c00">DW1000_REG_BIT_RANGE</a>(19, 14)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00071">71</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a678e9d7e3cc9570ab3c0ebb3298afa44" name="a678e9d7e3cc9570ab3c0ebb3298afa44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a678e9d7e3cc9570ab3c0ebb3298afa44">&#9670;&#160;</a></span>DW1000_LNA_PA_MODE_NONE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_LNA_PA_MODE_NONE&#160;&#160;&#160;0x00000000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00079">79</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3b26f07c25efcd1ca0439bc4aa0cf03e" name="a3b26f07c25efcd1ca0439bc4aa0cf03e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b26f07c25efcd1ca0439bc4aa0cf03e">&#9670;&#160;</a></span>DW1000_LNA_PA_MODE_PA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_LNA_PA_MODE_PA&#160;&#160;&#160;(<a class="el" href="#a3442d04328abc02de90285fd0e2ba8d1">DW1000_GPIO_MODE_P4_EXTPA</a> | <a class="el" href="#a4139b52f450d2d9efb2d286e7104f1f1">DW1000_GPIO_MODE_P5_EXTTXE</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00081">81</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad8fc39af1151b940b99b941ee117eaec" name="ad8fc39af1151b940b99b941ee117eaec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8fc39af1151b940b99b941ee117eaec">&#9670;&#160;</a></span>DW1000_PRF_16MHz</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_PRF_16MHz&#160;&#160;&#160;0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00155">155</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0de3a6506abf22f7a00aecc725c32b78" name="a0de3a6506abf22f7a00aecc725c32b78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0de3a6506abf22f7a00aecc725c32b78">&#9670;&#160;</a></span>DW1000_PRF_64MHz</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_PRF_64MHz&#160;&#160;&#160;0x02</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00156">156</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6ed91ae6ed78e946558e72fafc72359b" name="a6ed91ae6ed78e946558e72fafc72359b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ed91ae6ed78e946558e72fafc72359b">&#9670;&#160;</a></span>DW1000_TX_FINE_SEQ_CMD_DEFAULT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_TX_FINE_SEQ_CMD_DEFAULT&#160;&#160;&#160;<a class="el" href="#af4d490090afdec3dca4e2487cf2ffd17">DW1000_TX_FINE_SEQ_CMD_ENABLE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00048">48</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad82dc12e67d8f58a8be6bb2d17511ad2" name="ad82dc12e67d8f58a8be6bb2d17511ad2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad82dc12e67d8f58a8be6bb2d17511ad2">&#9670;&#160;</a></span>DW1000_TX_FINE_SEQ_CMD_DISABLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_TX_FINE_SEQ_CMD_DISABLE&#160;&#160;&#160;0x0000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00047">47</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af4d490090afdec3dca4e2487cf2ffd17" name="af4d490090afdec3dca4e2487cf2ffd17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4d490090afdec3dca4e2487cf2ffd17">&#9670;&#160;</a></span>DW1000_TX_FINE_SEQ_CMD_ENABLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_TX_FINE_SEQ_CMD_ENABLE&#160;&#160;&#160;0x0B74</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>定义DW1000 精细粒度的Tx序列控制值 </p>
+<dl class="section note"><dt>注解</dt><dd>默认（复位后）使用 DW1000_TX_FINE_SEQ_ENABLE </dd></dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">DW1000_TX_FINE_SEQ_CMD_ENABLE</td><td>使能精细粒度的Tx序列控制 </td></tr>
+    <tr><td class="paramname">DW1000_TX_FINE_SEQ_CMD_DISABLE</td><td>禁用精细粒度的Tx序列控制 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00046">46</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">类型定义说明</h2>
+<a id="a8e51eab4abbfab18e6c59ac803aae780" name="a8e51eab4abbfab18e6c59ac803aae780"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e51eab4abbfab18e6c59ac803aae780">&#9670;&#160;</a></span>dw1000_handle_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structdw1000__handle__s.html">dw1000_handle_s</a> <a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DW1000 handle 结构体定义 </p>
+
+</div>
+</div>
+<a id="aca1028cbf8f069330cf8c4b762aae9a7" name="aca1028cbf8f069330cf8c4b762aae9a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca1028cbf8f069330cf8c4b762aae9a7">&#9670;&#160;</a></span>dw1000_info_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structdw1000__info__s.html">dw1000_info_s</a> <a class="el" href="driver__dw1000_01copy_8h.html#aca1028cbf8f069330cf8c4b762aae9a7">dw1000_info_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>dw1000 信息 结构体定义 </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

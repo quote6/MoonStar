@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>MoonStar: src/driver_dw1000.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="Quote6_logo_55x110.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">MoonStar<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">Wireless communication, one to many, host calling</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.15.0 -->
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<div id="main-nav">
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
+      <li><a href="topics.html"><span>专题</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li><a href="examples.html"><span>示例</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+      <li><a href="globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+</div><!-- main-nav -->
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">driver_dw1000.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="driver__dw1000_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#ifndef DRIVER_DW1000_H</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#define DRIVER_DW1000_H</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span>{</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;<a class="code" href="driver__dw1000__reg_8h.html">driver_dw1000_reg.h</a>&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">/* 定义类型 */</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#ab18f0a12980c6af2e6bc2e63a45cca5f">   32</a></span><span class="preprocessor">#define DW1000_CMD_ENABLE                   0x01</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a28e3a4c2519d1ea63146a76dc2fc6dab">   33</a></span><span class="preprocessor">#define DW1000_CMD_DISABLE                  0x00</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a1a34934c05c6cabc1a7993cb751958c1">   35</a></span><span class="preprocessor">#define DW1000_CLOCK_CMD_ENABLE_ALL_SEQ    0x01</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a2d95b5f7d8cf9d674b1bebd6423ef285">   36</a></span><span class="preprocessor">#define DW1000_CLOCK_CMD_FORCE_SYS_XTI  0x02</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#ad199613bf3f987a162ad427cb5a19aed">   37</a></span><span class="preprocessor">#define DW1000_CLOCK_CMD_FORCE_SYS_PLL  0x03</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#af4d490090afdec3dca4e2487cf2ffd17">   46</a></span><span class="preprocessor">#define DW1000_TX_FINE_SEQ_CMD_ENABLE           0x0B74</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#ad82dc12e67d8f58a8be6bb2d17511ad2">   47</a></span><span class="preprocessor">#define DW1000_TX_FINE_SEQ_CMD_DISABLE          0x0000</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a6ed91ae6ed78e946558e72fafc72359b">   48</a></span><span class="preprocessor">#define DW1000_TX_FINE_SEQ_CMD_DEFAULT          DW1000_TX_FINE_SEQ_CMD_ENABLE</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a3147091b20fa958189c0bd1a87a4a1e3">   55</a></span><span class="preprocessor">#define DW1000_GPIO_MODE_0                  0x00</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#ad814d93b2f39a69f58e646d51d968b73">   56</a></span><span class="preprocessor">#define DW1000_GPIO_MODE_1                  0x01</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment">// #define DW1000_GPIO_MODE_2                  0x02 /* 保留不应使用 */</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment">// #define DW1000_GPIO_MODE_3                  0x03 /* 保留不应使用 */</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a7c760dff0f5690cc30c2fe43b463b2a8">   59</a></span><span class="preprocessor">#define DW1000_GPIO_MODE_DEFAULT            DW1000_GPIO_MODE_0</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#ac7c324881d253d743a3447087caf1f58">   68</a></span><span class="preprocessor">#define DW1000_GPIO_MODE_SELECT(pin, mode)  ((mode) &lt;&lt; (2 * (pin) + 6))</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">// #define DW1000_LNA_PA_MODE_MASK             (DW1000_SUB_REG_GPIO_MODE_BITS_MSGP4 | DW1000_SUB_REG_GPIO_MODE_BITS_MSGP5 | DW1000_SUB_REG_GPIO_MODE_BITS_MSGP6)</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#aba6a51259f6100c537743582bad9b410">   71</a></span><span class="preprocessor">#define DW1000_LNA_PA_MODE_MASK                 DW1000_REG_BIT_RANGE(19, 14)</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a3be78582d947c5c9d009cf0d5f346e8b">   73</a></span><span class="preprocessor">#define DW1000_GPIO_MODE_P2_RXLED               DW1000_GPIO_MODE_SELECT(2, DW1000_GPIO_MODE_1)</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#aba0fa3c9af46274262ab8e13b0cf497d">   74</a></span><span class="preprocessor">#define DW1000_GPIO_MODE_P3_TXLED               DW1000_GPIO_MODE_SELECT(3, DW1000_GPIO_MODE_1)</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a3442d04328abc02de90285fd0e2ba8d1">   75</a></span><span class="preprocessor">#define DW1000_GPIO_MODE_P4_EXTPA               DW1000_GPIO_MODE_SELECT(4, DW1000_GPIO_MODE_1)</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a4139b52f450d2d9efb2d286e7104f1f1">   76</a></span><span class="preprocessor">#define DW1000_GPIO_MODE_P5_EXTTXE              DW1000_GPIO_MODE_SELECT(5, DW1000_GPIO_MODE_1)</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#acfb85a0144105842d787bd77177bf98e">   77</a></span><span class="preprocessor">#define DW1000_GPIO_MODE_P6_EXTRXE              DW1000_GPIO_MODE_SELECT(6, DW1000_GPIO_MODE_1)</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a678e9d7e3cc9570ab3c0ebb3298afa44">   79</a></span><span class="preprocessor">#define DW1000_LNA_PA_MODE_NONE                 0x00000000</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#ac7635b4e6bc5b8c86314f39d28e40b7c">   80</a></span><span class="preprocessor">#define DW1000_LNA_PA_MODE_LNA                  DW1000_GPIO_MODE_P6_EXTRXE</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a3b26f07c25efcd1ca0439bc4aa0cf03e">   81</a></span><span class="preprocessor">#define DW1000_LNA_PA_MODE_PA                   (DW1000_GPIO_MODE_P4_EXTPA | DW1000_GPIO_MODE_P5_EXTTXE)</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a26a0ed2d3486c56cf7f2796596e901ec">   82</a></span><span class="preprocessor">#define DW1000_LNA_PA_MODE_ALL                  (DW1000_LNA_PA_MODE_LNA | DW1000_LNA_PA_MODE_PA)</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#af3b4fc8f1ef9b0abcbd433072b16c2f9">   83</a></span><span class="preprocessor">#define DW1000_LNA_PA_MODE_DEFAULT              DW1000_LNA_PA_MODE_NONE</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#aae03d40443074694dfeac5a0f1813eb8">   85</a></span><span class="preprocessor">#define DW1000_GPIO_MODE_LNA_ENABLE             0x01</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#af5f584ad1f6900efc04b5ccea5fa0a93">   86</a></span><span class="preprocessor">#define DW1000_GPIO_MODE_PA_ENABLE              0x02</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a8ecb19eb18ad208a2907fe6d91ff1aaa">   94</a></span><span class="preprocessor">#define DW1000_GPIO_DIRECTION_OUTPUT_P0         0x00000010</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a2b9d6cd7bc8661784c04f78460efff35">   95</a></span><span class="preprocessor">#define DW1000_GPIO_DIRECTION_OUTPUT_P1         0x00000020</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#adff02d282c7afac81ad3995fe9df42f4">   96</a></span><span class="preprocessor">#define DW1000_GPIO_DIRECTION_OUTPUT_P2         0x00000040</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#aff098caaf7503718e40a9b26984987b5">   97</a></span><span class="preprocessor">#define DW1000_GPIO_DIRECTION_OUTPUT_P3         0x00000080</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a1674cf31c915c82867f759790e155f75">   98</a></span><span class="preprocessor">#define DW1000_GPIO_DIRECTION_OUTPUT_P4         0x00001000</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a470fdf472c250ef57073b624d015e6d1">   99</a></span><span class="preprocessor">#define DW1000_GPIO_DIRECTION_OUTPUT_P5         0x00002000</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a2bd84433b2a179ca44033cb9004021af">  100</a></span><span class="preprocessor">#define DW1000_GPIO_DIRECTION_OUTPUT_P6         0x00004000</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a841f70c21f6e1831ed857bc44af903bc">  101</a></span><span class="preprocessor">#define DW1000_GPIO_DIRECTION_OUTPUT_P7         0x00008000</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#ac9c573771c52084eedb2241fc63bd2fe">  102</a></span><span class="preprocessor">#define DW1000_GPIO_DIRECTION_OUTPUT_P8         0x00100000</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a27b45f45c3d72d5705ab5cbaa9dd778e">  103</a></span><span class="preprocessor">#define DW1000_GPIO_DIRECTION_INPUT_P0          0x00000011</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#abcd9b412b7352f3140a998ce12cbaaff">  104</a></span><span class="preprocessor">#define DW1000_GPIO_DIRECTION_INPUT_P1          0x00000022</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a6d07ac5a5af649d119bfa822f5a78a4f">  105</a></span><span class="preprocessor">#define DW1000_GPIO_DIRECTION_INPUT_P2          0x00000044</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#ade8fc554b416dd1ed9684f549fb5cbf7">  106</a></span><span class="preprocessor">#define DW1000_GPIO_DIRECTION_INPUT_P3          0x00000088</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#ae384d4ef3157a4d5aa6b675e3eae4799">  107</a></span><span class="preprocessor">#define DW1000_GPIO_DIRECTION_INPUT_P4          0x00001100</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a9a3e263ce7f576b288375dd930911b83">  108</a></span><span class="preprocessor">#define DW1000_GPIO_DIRECTION_INPUT_P5          0x00002200</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#af6461dd3f4d7996e73fd4be3891c8130">  109</a></span><span class="preprocessor">#define DW1000_GPIO_DIRECTION_INPUT_P6          0x00004400</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a952766752f05ab94d98d51d410e518c6">  110</a></span><span class="preprocessor">#define DW1000_GPIO_DIRECTION_INPUT_P7          0x00008800</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a5b7198ff2d1bcf6d84851aceccd269de">  111</a></span><span class="preprocessor">#define DW1000_GPIO_DIRECTION_INPUT_P8          0x00110000</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a474bae2b66a0cd86c8a5507679d50e97">  119</a></span><span class="preprocessor">#define DW1000_GPIO_OUTPUT_STATE_LOW_P0         0x00000010</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#aa1f972a64d6ece929580298b86e90cda">  120</a></span><span class="preprocessor">#define DW1000_GPIO_OUTPUT_STATE_LOW_P1         0x00000020</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a007f48f01de12f55c71fa9995391ee89">  121</a></span><span class="preprocessor">#define DW1000_GPIO_OUTPUT_STATE_LOW_P2         0x00000040</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a3d7e900c39f474d4dfe559cb0aec4623">  122</a></span><span class="preprocessor">#define DW1000_GPIO_OUTPUT_STATE_LOW_P3         0x00000080</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a9eeea68f26643c94fb1f5297c5261062">  123</a></span><span class="preprocessor">#define DW1000_GPIO_OUTPUT_STATE_LOW_P4         0x00001000</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#afeb84ab9fd1f8c9d24d241642b0a8576">  124</a></span><span class="preprocessor">#define DW1000_GPIO_OUTPUT_STATE_LOW_P5         0x00002000</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a86a5c4f6b5e94c33be2ef1f3071cbdf6">  125</a></span><span class="preprocessor">#define DW1000_GPIO_OUTPUT_STATE_LOW_P6         0x00004000</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a0c6b9f2b4e0aa51b1d7beb7bdcb65f8c">  126</a></span><span class="preprocessor">#define DW1000_GPIO_OUTPUT_STATE_LOW_P7         0x00008000</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#ae839fc4be86910729c07a88b9ccc31ce">  127</a></span><span class="preprocessor">#define DW1000_GPIO_OUTPUT_STATE_LOW_P8         0x00100000</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#abac16b3071db531e4ffbb8cdde7eae99">  128</a></span><span class="preprocessor">#define DW1000_GPIO_OUTPUT_STATE_HIGH_P0        0x00000011</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a69d8cc365bb5cb3598bf50ec39d44109">  129</a></span><span class="preprocessor">#define DW1000_GPIO_OUTPUT_STATE_HIGH_P1        0x00000022</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#ab01e44d644abc9c5a80444ce63faa255">  130</a></span><span class="preprocessor">#define DW1000_GPIO_OUTPUT_STATE_HIGH_P2        0x00000044</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a4c04c5b7c9b6e7260fb231881b397979">  131</a></span><span class="preprocessor">#define DW1000_GPIO_OUTPUT_STATE_HIGH_P3        0x00000088</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#acb22131e88fd3494037a659894d697b2">  132</a></span><span class="preprocessor">#define DW1000_GPIO_OUTPUT_STATE_HIGH_P4        0x00001100</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a51d1a66e2492f8584bb2756091d26700">  133</a></span><span class="preprocessor">#define DW1000_GPIO_OUTPUT_STATE_HIGH_P5        0x00002200</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a8747e517a3a1c2cc48802042e8d4e4a2">  134</a></span><span class="preprocessor">#define DW1000_GPIO_OUTPUT_STATE_HIGH_P6        0x00004400</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#ab41969d12647eff909c067303cb8403d">  135</a></span><span class="preprocessor">#define DW1000_GPIO_OUTPUT_STATE_HIGH_P7        0x00008800</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a0ffb433c4345e214be8ef9669eb9c4db">  136</a></span><span class="preprocessor">#define DW1000_GPIO_OUTPUT_STATE_HIGH_P8        0x00110000</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#aa8fa8b98ed981317da09379785cd419f">  145</a></span><span class="preprocessor">#define DW1000_GPIO_RAW_STATE_P0              DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP0</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#af81ec87f2fab71566a80196bedea6004">  146</a></span><span class="preprocessor">#define DW1000_GPIO_RAW_STATE_P1              DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP1</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a35aa3b1c9a25d3359398e6c4bf9cd096">  147</a></span><span class="preprocessor">#define DW1000_GPIO_RAW_STATE_P2              DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP2</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a0fec1b21231b4d38d1e3aea93fdf877e">  148</a></span><span class="preprocessor">#define DW1000_GPIO_RAW_STATE_P3              DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP3</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a47aa16a4307d646afa6902362a3e33e9">  149</a></span><span class="preprocessor">#define DW1000_GPIO_RAW_STATE_P4              DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP4</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a722c2666493c3e96866f74b0157f6a0b">  150</a></span><span class="preprocessor">#define DW1000_GPIO_RAW_STATE_P5              DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP5</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a21689bf501e860bb8867d5796b410f45">  151</a></span><span class="preprocessor">#define DW1000_GPIO_RAW_STATE_P6              DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP6</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a8e43b57f3c032b0771d1fae9925d820c">  152</a></span><span class="preprocessor">#define DW1000_GPIO_RAW_STATE_P7              DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP7</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a0052348d875ef8ef1ef5deb4057b6821">  153</a></span><span class="preprocessor">#define DW1000_GPIO_RAW_STATE_P8              DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP8</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#ad8fc39af1151b940b99b941ee117eaec">  155</a></span><span class="preprocessor">#define DW1000_PRF_16MHz                  0x01</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a0de3a6506abf22f7a00aecc725c32b78">  156</a></span><span class="preprocessor">#define DW1000_PRF_64MHz                  0x02  </span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdw1000__tx__config__s.html">dw1000_tx_config_s</a> {</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    uint8_t <a class="code hl_variable" href="structdw1000__tx__config__s.html#a3119a0cbc14840dab5b9bf57d5782e60">pulse_generator_delay</a>;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    uint32_t <a class="code hl_variable" href="structdw1000__tx__config__s.html#af2c4d27032a30e55031be59147fadfbe">tx_power</a>;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>}<a class="code hl_typedef" href="driver__dw1000_01copy_8h.html#a8f18e25551815d1e7d1262561a89bb7e">dw1000_tx_config_t</a>;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdw1000__config__s.html">dw1000_config_s</a>{</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    uint8_t <a class="code hl_variable" href="structdw1000__config__s.html#a715f5cb061d11eb75981741eda4dafcd">channel</a>;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    uint8_t <a class="code hl_variable" href="structdw1000__config__s.html#a7e026045d64b3c291819af2b480eabb4">pulse_repetion_frequency</a>;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    uint8_t <a class="code hl_variable" href="structdw1000__config__s.html#ac9e1cce194c932164c5c53516cce17a2">tx_preamble_lenght</a>;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    uint8_t <a class="code hl_variable" href="structdw1000__config__s.html#a7875d8bb5099b7075106bf64ccbbbcef">rx_PAC</a>;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    uint8_t <a class="code hl_variable" href="structdw1000__config__s.html#a2b706618494a9445cb473e12da3eb334">tx_preamble_code</a>;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    uint8_t <a class="code hl_variable" href="structdw1000__config__s.html#ab06d7f04d2708c9442640060e3839dd3">rx_preamble_code</a>;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    uint8_t <a class="code hl_variable" href="structdw1000__config__s.html#a8b38e67359dd92805068856f1bd37b25">is_non_standard_SFD</a>;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    uint8_t <a class="code hl_variable" href="structdw1000__config__s.html#a95cd0209f83ab81186d264c1aea72532">data_rate</a>;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    uint8_t <a class="code hl_variable" href="structdw1000__config__s.html#a7113f3870230913d515318f9e7000921">phr_mode</a>;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    uint16_t <a class="code hl_variable" href="structdw1000__config__s.html#aba16607145f7c64f9958d3a520b69dc2">sfd_timeout</a>;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>}<a class="code hl_typedef" href="driver__dw1000_01copy_8h.html#aa83cfb3a17eff0e353669bbdbf041789">dw1000_config_t</a>;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdw1000__handle__s.html">dw1000_handle_s</a>{</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    uint8_t (*<a class="code hl_variable" href="structdw1000__handle__s.html#a1f8d21e5579f76c9e97aacb5bfcacd93">spi_init</a>)(void);                                                         </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    uint8_t (*<a class="code hl_variable" href="structdw1000__handle__s.html#a72e3d386f41c9a29a21a7a2afb8e432c">spi_deinit</a>)(void);                                                       </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    uint8_t (*<a class="code hl_variable" href="structdw1000__handle__s.html#a72d44bd587e75a560e7f11668bb1571e">spi_read</a>)(uint8_t* hdr, uint8_t hdrLen, uint8_t* buf, uint16_t bufLen);  </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    uint8_t (*<a class="code hl_variable" href="structdw1000__handle__s.html#a84dfad02fbb955598bf9f0128deeb09d">spi_write</a>)(uint8_t* hdr, uint8_t hdrLen, uint8_t* buf, uint16_t bufLen); </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    void (*<a class="code hl_variable" href="structdw1000__handle__s.html#a1d5fd080e32688470c35048e45708805">delay_ms</a>)(uint32_t ms);                                                     </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    void (*<a class="code hl_variable" href="structdw1000__handle__s.html#a194b29e5937c301c7011484aa3ae5736">debug_print</a>)(<span class="keyword">const</span> <span class="keywordtype">char</span>* fmt, ...);                                         </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    uint8_t <a class="code hl_variable" href="structdw1000__handle__s.html#a19bedf28d2b9748f6a62d9ae93f4e68f">inited</a>;                                                                    </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#a8e51eab4abbfab18e6c59ac803aae780">  193</a></span>} <a class="code hl_typedef" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a>;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdw1000__info__s.html">dw1000_info_s</a>{</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keywordtype">char</span> <a class="code hl_variable" href="structdw1000__info__s.html#a7f42cd03dc455bcf5912e67b34a1f283">chip_name</a>[32];                </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keywordtype">char</span> <a class="code hl_variable" href="structdw1000__info__s.html#a6405149e44c8ec4b9ab06fae73fea53c">manufacturer_name</a>[32];        </div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keywordtype">char</span> <a class="code hl_variable" href="structdw1000__info__s.html#a60e4ea1472435116b643898e7cc16072">interface</a>[8];                 </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structdw1000__info__s.html#ad8bde6ddadaf43d951e62f3befb9d35a">supply_voltage_min_v</a>;        </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structdw1000__info__s.html#a3d2b12bcac7a85ea8646bff9debe8660">supply_voltage_max_v</a>;        </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structdw1000__info__s.html#a9db82802561bf22d799b03a345f1d1dc">max_current_ma</a>;              </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structdw1000__info__s.html#a8f9dbe66ac0b66ebae0a36fcb4ba368e">temperature_min</a>;             </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structdw1000__info__s.html#a3366a5dce9b829e03c3d321c2b4df3f6">temperature_max</a>;             </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    uint32_t <a class="code hl_variable" href="structdw1000__info__s.html#a41b0bd442708b70d252c50b92c75265a">driver_version</a>;           </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="driver__dw1000_8h.html#aca1028cbf8f069330cf8c4b762aae9a7">  208</a></span>} <a class="code hl_typedef" href="driver__dw1000_01copy_8h.html#aca1028cbf8f069330cf8c4b762aae9a7">dw1000_info_t</a>;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno"><a class="line" href="group__dw1000__link__driver.html#ga1ccb6b5cfe80b62c177816d5572bae0d">  225</a></span><span class="preprocessor">#define DRIVER_DW1000_LINK_INIT(HANDLE, STRUCTURE)         memset(HANDLE, 0, sizeof(STRUCTURE)) </span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="group__dw1000__link__driver.html#ga5987d4731ac124a9e0644870f41bfc08">  233</a></span><span class="preprocessor">#define DRIVER_DW1000_LINK_SPI_INIT(HANDLE, FUC)          (HANDLE)-&gt;spi_init = FUC</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno"><a class="line" href="group__dw1000__link__driver.html#ga11e0d3df1bc80410c47afec0c608ea70">  242</a></span><span class="preprocessor">#define DRIVER_DW1000_LINK_SPI_DEINIT(HANDLE, FUC)        (HANDLE)-&gt;spi_deinit = FUC</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno"><a class="line" href="group__dw1000__link__driver.html#gad6345a3bb9ef86ed392fb502e9c65c82">  250</a></span><span class="preprocessor">#define DRIVER_DW1000_LINK_SPI_READ(HANDLE, FUC)          (HANDLE)-&gt;spi_read = FUC</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno"><a class="line" href="group__dw1000__link__driver.html#ga526b24f41e54bff213315fa886134af7">  258</a></span><span class="preprocessor">#define DRIVER_DW1000_LINK_SPI_WRITE(HANDLE, FUC)         (HANDLE)-&gt;spi_write = FUC</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno"><a class="line" href="group__dw1000__link__driver.html#ga42523356ff5da80ae1fb24feb4bd4ed4">  266</a></span><span class="preprocessor">#define DRIVER_DW1000_LINK_DELAY_MS(HANDLE, FUC)          (HANDLE)-&gt;delay_ms = FUC</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span></div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno"><a class="line" href="group__dw1000__link__driver.html#ga450d304f275f858c0910a363ee92000e">  274</a></span><span class="preprocessor">#define DRIVER_DW1000_LINK_DEBUG_PRINT(HANDLE, FUC)       (HANDLE)-&gt;debug_print = FUC</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno"><a class="line" href="group__dw1000__link__driver.html#ga1bb8090d157b468f89aada3e2e11564a">  282</a></span><span class="preprocessor">#define DRIVER_DW1000_LINK_RECEIVE_CALLBACK(HANDLE, FUC)  (HANDLE)-&gt;receive_callback = FUC</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>}</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="adriver__dw1000_01copy_8h_html_a8e51eab4abbfab18e6c59ac803aae780"><div class="ttname"><a href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a></div><div class="ttdeci">struct dw1000_handle_s dw1000_handle_t</div><div class="ttdoc">DW1000 handle 结构体定义</div></div>
+<div class="ttc" id="adriver__dw1000_01copy_8h_html_a8f18e25551815d1e7d1262561a89bb7e"><div class="ttname"><a href="driver__dw1000_01copy_8h.html#a8f18e25551815d1e7d1262561a89bb7e">dw1000_tx_config_t</a></div><div class="ttdeci">struct dw1000_tx_config_s dw1000_tx_config_t</div></div>
+<div class="ttc" id="adriver__dw1000_01copy_8h_html_aa83cfb3a17eff0e353669bbdbf041789"><div class="ttname"><a href="driver__dw1000_01copy_8h.html#aa83cfb3a17eff0e353669bbdbf041789">dw1000_config_t</a></div><div class="ttdeci">struct dw1000_config_s dw1000_config_t</div></div>
+<div class="ttc" id="adriver__dw1000_01copy_8h_html_aca1028cbf8f069330cf8c4b762aae9a7"><div class="ttname"><a href="driver__dw1000_01copy_8h.html#aca1028cbf8f069330cf8c4b762aae9a7">dw1000_info_t</a></div><div class="ttdeci">struct dw1000_info_s dw1000_info_t</div><div class="ttdoc">dw1000 信息 结构体定义</div></div>
+<div class="ttc" id="adriver__dw1000__reg_8h_html"><div class="ttname"><a href="driver__dw1000__reg_8h.html">driver_dw1000_reg.h</a></div></div>
+<div class="ttc" id="astructdw1000__config__s_html"><div class="ttname"><a href="structdw1000__config__s.html">dw1000_config_s</a></div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00149">driver_dw1000 copy.h:149</a></div></div>
+<div class="ttc" id="astructdw1000__config__s_html_a2b706618494a9445cb473e12da3eb334"><div class="ttname"><a href="structdw1000__config__s.html#a2b706618494a9445cb473e12da3eb334">dw1000_config_s::tx_preamble_code</a></div><div class="ttdeci">uint8_t tx_preamble_code</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00154">driver_dw1000 copy.h:154</a></div></div>
+<div class="ttc" id="astructdw1000__config__s_html_a7113f3870230913d515318f9e7000921"><div class="ttname"><a href="structdw1000__config__s.html#a7113f3870230913d515318f9e7000921">dw1000_config_s::phr_mode</a></div><div class="ttdeci">uint8_t phr_mode</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00158">driver_dw1000 copy.h:158</a></div></div>
+<div class="ttc" id="astructdw1000__config__s_html_a715f5cb061d11eb75981741eda4dafcd"><div class="ttname"><a href="structdw1000__config__s.html#a715f5cb061d11eb75981741eda4dafcd">dw1000_config_s::channel</a></div><div class="ttdeci">uint8_t channel</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00150">driver_dw1000 copy.h:150</a></div></div>
+<div class="ttc" id="astructdw1000__config__s_html_a7875d8bb5099b7075106bf64ccbbbcef"><div class="ttname"><a href="structdw1000__config__s.html#a7875d8bb5099b7075106bf64ccbbbcef">dw1000_config_s::rx_PAC</a></div><div class="ttdeci">uint8_t rx_PAC</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00153">driver_dw1000 copy.h:153</a></div></div>
+<div class="ttc" id="astructdw1000__config__s_html_a7e026045d64b3c291819af2b480eabb4"><div class="ttname"><a href="structdw1000__config__s.html#a7e026045d64b3c291819af2b480eabb4">dw1000_config_s::pulse_repetion_frequency</a></div><div class="ttdeci">uint8_t pulse_repetion_frequency</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00151">driver_dw1000 copy.h:151</a></div></div>
+<div class="ttc" id="astructdw1000__config__s_html_a8b38e67359dd92805068856f1bd37b25"><div class="ttname"><a href="structdw1000__config__s.html#a8b38e67359dd92805068856f1bd37b25">dw1000_config_s::is_non_standard_SFD</a></div><div class="ttdeci">uint8_t is_non_standard_SFD</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00156">driver_dw1000 copy.h:156</a></div></div>
+<div class="ttc" id="astructdw1000__config__s_html_a95cd0209f83ab81186d264c1aea72532"><div class="ttname"><a href="structdw1000__config__s.html#a95cd0209f83ab81186d264c1aea72532">dw1000_config_s::data_rate</a></div><div class="ttdeci">uint8_t data_rate</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00157">driver_dw1000 copy.h:157</a></div></div>
+<div class="ttc" id="astructdw1000__config__s_html_ab06d7f04d2708c9442640060e3839dd3"><div class="ttname"><a href="structdw1000__config__s.html#ab06d7f04d2708c9442640060e3839dd3">dw1000_config_s::rx_preamble_code</a></div><div class="ttdeci">uint8_t rx_preamble_code</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00155">driver_dw1000 copy.h:155</a></div></div>
+<div class="ttc" id="astructdw1000__config__s_html_aba16607145f7c64f9958d3a520b69dc2"><div class="ttname"><a href="structdw1000__config__s.html#aba16607145f7c64f9958d3a520b69dc2">dw1000_config_s::sfd_timeout</a></div><div class="ttdeci">uint16_t sfd_timeout</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00159">driver_dw1000 copy.h:159</a></div></div>
+<div class="ttc" id="astructdw1000__config__s_html_ac9e1cce194c932164c5c53516cce17a2"><div class="ttname"><a href="structdw1000__config__s.html#ac9e1cce194c932164c5c53516cce17a2">dw1000_config_s::tx_preamble_lenght</a></div><div class="ttdeci">uint8_t tx_preamble_lenght</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00152">driver_dw1000 copy.h:152</a></div></div>
+<div class="ttc" id="astructdw1000__handle__s_html"><div class="ttname"><a href="structdw1000__handle__s.html">dw1000_handle_s</a></div><div class="ttdoc">DW1000 handle 结构体定义</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00168">driver_dw1000 copy.h:168</a></div></div>
+<div class="ttc" id="astructdw1000__handle__s_html_a194b29e5937c301c7011484aa3ae5736"><div class="ttname"><a href="structdw1000__handle__s.html#a194b29e5937c301c7011484aa3ae5736">dw1000_handle_s::debug_print</a></div><div class="ttdeci">void(* debug_print)(const char *fmt,...)</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00174">driver_dw1000 copy.h:174</a></div></div>
+<div class="ttc" id="astructdw1000__handle__s_html_a19bedf28d2b9748f6a62d9ae93f4e68f"><div class="ttname"><a href="structdw1000__handle__s.html#a19bedf28d2b9748f6a62d9ae93f4e68f">dw1000_handle_s::inited</a></div><div class="ttdeci">uint8_t inited</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00175">driver_dw1000 copy.h:175</a></div></div>
+<div class="ttc" id="astructdw1000__handle__s_html_a1d5fd080e32688470c35048e45708805"><div class="ttname"><a href="structdw1000__handle__s.html#a1d5fd080e32688470c35048e45708805">dw1000_handle_s::delay_ms</a></div><div class="ttdeci">void(* delay_ms)(uint32_t ms)</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00173">driver_dw1000 copy.h:173</a></div></div>
+<div class="ttc" id="astructdw1000__handle__s_html_a1f8d21e5579f76c9e97aacb5bfcacd93"><div class="ttname"><a href="structdw1000__handle__s.html#a1f8d21e5579f76c9e97aacb5bfcacd93">dw1000_handle_s::spi_init</a></div><div class="ttdeci">uint8_t(* spi_init)(void)</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00169">driver_dw1000 copy.h:169</a></div></div>
+<div class="ttc" id="astructdw1000__handle__s_html_a72d44bd587e75a560e7f11668bb1571e"><div class="ttname"><a href="structdw1000__handle__s.html#a72d44bd587e75a560e7f11668bb1571e">dw1000_handle_s::spi_read</a></div><div class="ttdeci">uint8_t(* spi_read)(uint8_t *hdr, uint8_t hdrLen, uint8_t *buf, uint16_t bufLen)</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00171">driver_dw1000 copy.h:171</a></div></div>
+<div class="ttc" id="astructdw1000__handle__s_html_a72e3d386f41c9a29a21a7a2afb8e432c"><div class="ttname"><a href="structdw1000__handle__s.html#a72e3d386f41c9a29a21a7a2afb8e432c">dw1000_handle_s::spi_deinit</a></div><div class="ttdeci">uint8_t(* spi_deinit)(void)</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00170">driver_dw1000 copy.h:170</a></div></div>
+<div class="ttc" id="astructdw1000__handle__s_html_a84dfad02fbb955598bf9f0128deeb09d"><div class="ttname"><a href="structdw1000__handle__s.html#a84dfad02fbb955598bf9f0128deeb09d">dw1000_handle_s::spi_write</a></div><div class="ttdeci">uint8_t(* spi_write)(uint8_t *hdr, uint8_t hdrLen, uint8_t *buf, uint16_t bufLen)</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00172">driver_dw1000 copy.h:172</a></div></div>
+<div class="ttc" id="astructdw1000__info__s_html"><div class="ttname"><a href="structdw1000__info__s.html">dw1000_info_s</a></div><div class="ttdoc">dw1000 信息 结构体定义</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00181">driver_dw1000 copy.h:181</a></div></div>
+<div class="ttc" id="astructdw1000__info__s_html_a3366a5dce9b829e03c3d321c2b4df3f6"><div class="ttname"><a href="structdw1000__info__s.html#a3366a5dce9b829e03c3d321c2b4df3f6">dw1000_info_s::temperature_max</a></div><div class="ttdeci">float temperature_max</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00189">driver_dw1000 copy.h:189</a></div></div>
+<div class="ttc" id="astructdw1000__info__s_html_a3d2b12bcac7a85ea8646bff9debe8660"><div class="ttname"><a href="structdw1000__info__s.html#a3d2b12bcac7a85ea8646bff9debe8660">dw1000_info_s::supply_voltage_max_v</a></div><div class="ttdeci">float supply_voltage_max_v</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00186">driver_dw1000 copy.h:186</a></div></div>
+<div class="ttc" id="astructdw1000__info__s_html_a41b0bd442708b70d252c50b92c75265a"><div class="ttname"><a href="structdw1000__info__s.html#a41b0bd442708b70d252c50b92c75265a">dw1000_info_s::driver_version</a></div><div class="ttdeci">uint32_t driver_version</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00190">driver_dw1000 copy.h:190</a></div></div>
+<div class="ttc" id="astructdw1000__info__s_html_a60e4ea1472435116b643898e7cc16072"><div class="ttname"><a href="structdw1000__info__s.html#a60e4ea1472435116b643898e7cc16072">dw1000_info_s::interface</a></div><div class="ttdeci">char interface[8]</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00184">driver_dw1000 copy.h:184</a></div></div>
+<div class="ttc" id="astructdw1000__info__s_html_a6405149e44c8ec4b9ab06fae73fea53c"><div class="ttname"><a href="structdw1000__info__s.html#a6405149e44c8ec4b9ab06fae73fea53c">dw1000_info_s::manufacturer_name</a></div><div class="ttdeci">char manufacturer_name[32]</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00183">driver_dw1000 copy.h:183</a></div></div>
+<div class="ttc" id="astructdw1000__info__s_html_a7f42cd03dc455bcf5912e67b34a1f283"><div class="ttname"><a href="structdw1000__info__s.html#a7f42cd03dc455bcf5912e67b34a1f283">dw1000_info_s::chip_name</a></div><div class="ttdeci">char chip_name[32]</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00182">driver_dw1000 copy.h:182</a></div></div>
+<div class="ttc" id="astructdw1000__info__s_html_a8f9dbe66ac0b66ebae0a36fcb4ba368e"><div class="ttname"><a href="structdw1000__info__s.html#a8f9dbe66ac0b66ebae0a36fcb4ba368e">dw1000_info_s::temperature_min</a></div><div class="ttdeci">float temperature_min</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00188">driver_dw1000 copy.h:188</a></div></div>
+<div class="ttc" id="astructdw1000__info__s_html_a9db82802561bf22d799b03a345f1d1dc"><div class="ttname"><a href="structdw1000__info__s.html#a9db82802561bf22d799b03a345f1d1dc">dw1000_info_s::max_current_ma</a></div><div class="ttdeci">float max_current_ma</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00187">driver_dw1000 copy.h:187</a></div></div>
+<div class="ttc" id="astructdw1000__info__s_html_ad8bde6ddadaf43d951e62f3befb9d35a"><div class="ttname"><a href="structdw1000__info__s.html#ad8bde6ddadaf43d951e62f3befb9d35a">dw1000_info_s::supply_voltage_min_v</a></div><div class="ttdeci">float supply_voltage_min_v</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00185">driver_dw1000 copy.h:185</a></div></div>
+<div class="ttc" id="astructdw1000__tx__config__s_html"><div class="ttname"><a href="structdw1000__tx__config__s.html">dw1000_tx_config_s</a></div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00144">driver_dw1000 copy.h:144</a></div></div>
+<div class="ttc" id="astructdw1000__tx__config__s_html_a3119a0cbc14840dab5b9bf57d5782e60"><div class="ttname"><a href="structdw1000__tx__config__s.html#a3119a0cbc14840dab5b9bf57d5782e60">dw1000_tx_config_s::pulse_generator_delay</a></div><div class="ttdeci">uint8_t pulse_generator_delay</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00145">driver_dw1000 copy.h:145</a></div></div>
+<div class="ttc" id="astructdw1000__tx__config__s_html_af2c4d27032a30e55031be59147fadfbe"><div class="ttname"><a href="structdw1000__tx__config__s.html#af2c4d27032a30e55031be59147fadfbe">dw1000_tx_config_s::tx_power</a></div><div class="ttdeci">uint32_t tx_power</div><div class="ttdef"><b>定义</b> <a href="driver__dw1000_01copy_8h_source.html#l00146">driver_dw1000 copy.h:146</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

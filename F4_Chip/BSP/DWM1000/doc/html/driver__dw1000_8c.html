@@ -1,0 +1,1397 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>MoonStar: src/driver_dw1000.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="Quote6_logo_55x110.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">MoonStar<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">Wireless communication, one to many, host calling</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.15.0 -->
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<div id="main-nav">
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
+      <li><a href="topics.html"><span>专题</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li><a href="examples.html"><span>示例</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+      <li><a href="globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+</div><!-- main-nav -->
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">driver_dw1000.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+driver_dw1000.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8c__incl.png" border="0" usemap="#asrc_2driver__dw1000_8c" loading="lazy" alt=""/></div>
+<map name="asrc_2driver__dw1000_8c" id="asrc_2driver__dw1000_8c">
+<area shape="rect" title=" " alt="" coords="98,5,236,32"/>
+<area shape="rect" href="driver__dw1000_8h.html" title=" " alt="" coords="109,80,225,107"/>
+<area shape="poly" title=" " alt="" coords="168,30,169,65,164,63,165,35"/>
+<area shape="rect" title=" " alt="" coords="5,155,70,181"/>
+<area shape="poly" title=" " alt="" coords="146,109,75,149,72,144,142,105"/>
+<area shape="rect" title=" " alt="" coords="94,155,154,181"/>
+<area shape="poly" title=" " alt="" coords="162,106,141,143,137,139,157,109"/>
+<area shape="rect" title=" " alt="" coords="179,155,243,181"/>
+<area shape="poly" title=" " alt="" coords="176,105,198,142,193,141,173,110"/>
+<area shape="rect" href="driver__dw1000__reg_8h.html" title=" " alt="" coords="267,155,408,181"/>
+<area shape="poly" title=" " alt="" coords="197,105,296,147,291,149,196,110"/>
+</map>
+</div>
+</div>
+<p><a href="driver__dw1000_8c_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:adc9da0a24824ca1239b593f6459b3954" id="r_adc9da0a24824ca1239b593f6459b3954"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc9da0a24824ca1239b593f6459b3954">CHIP_NAME</a>&#160;&#160;&#160;&quot;Qorvo DW1000&quot;</td></tr>
+<tr class="memdesc:adc9da0a24824ca1239b593f6459b3954"><td class="mdescLeft">&#160;</td><td class="mdescRight">chip register definition  <br /></td></tr>
+<tr class="memitem:aaa2b8f5b105c3019df0cb346f472e803" id="r_aaa2b8f5b105c3019df0cb346f472e803"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa2b8f5b105c3019df0cb346f472e803">MANUFACTURER_NAME</a>&#160;&#160;&#160;&quot;Qorvo&quot;</td></tr>
+<tr class="memitem:aac8d8cbd899667d609787ef4cf37054d" id="r_aac8d8cbd899667d609787ef4cf37054d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac8d8cbd899667d609787ef4cf37054d">SUPPLY_VOLTAGE_MIN</a>&#160;&#160;&#160;2.0f</td></tr>
+<tr class="memitem:a68eba8b601afe11f1b871d944976c035" id="r_a68eba8b601afe11f1b871d944976c035"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68eba8b601afe11f1b871d944976c035">SUPPLY_VOLTAGE_MAX</a>&#160;&#160;&#160;3.6f</td></tr>
+<tr class="memitem:a2989837a37d6d63b59c6dd541b785435" id="r_a2989837a37d6d63b59c6dd541b785435"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2989837a37d6d63b59c6dd541b785435">MAX_CURRENT</a>&#160;&#160;&#160;0.145f</td></tr>
+<tr class="memitem:aab353db5bf4eb787f86a2080f609a551" id="r_aab353db5bf4eb787f86a2080f609a551"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab353db5bf4eb787f86a2080f609a551">TEMPERATURE_MIN</a>&#160;&#160;&#160;-40.0f</td></tr>
+<tr class="memitem:a90c0b20d54005712fcc8cb01281360e9" id="r_a90c0b20d54005712fcc8cb01281360e9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90c0b20d54005712fcc8cb01281360e9">TEMPERATURE_MAX</a>&#160;&#160;&#160;85.0f</td></tr>
+<tr class="memitem:ae578001fe043b4cca7a0edd801cfe9c4" id="r_ae578001fe043b4cca7a0edd801cfe9c4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae578001fe043b4cca7a0edd801cfe9c4">DRIVER_VERSION</a>&#160;&#160;&#160;1000</td></tr>
+<tr class="memitem:ae8c7ddc527bd386e1efe13f18609b923" id="r_ae8c7ddc527bd386e1efe13f18609b923"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8c7ddc527bd386e1efe13f18609b923">DW1000_SPI_CMD_READ</a>(addr)</td></tr>
+<tr class="memitem:a0f7396a6027116ff302af85699508538" id="r_a0f7396a6027116ff302af85699508538"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f7396a6027116ff302af85699508538">DW1000_SPI_CMD_WRITE</a>(addr)</td></tr>
+<tr class="memitem:aa4b66d30a0e11337bfb137462d574da7" id="r_aa4b66d30a0e11337bfb137462d574da7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4b66d30a0e11337bfb137462d574da7">DW1000_SPI_NOT_SUB_ADDR</a>(addr)</td></tr>
+<tr class="memitem:a100ec6b2fca0b81ab554a3e90c6c9161" id="r_a100ec6b2fca0b81ab554a3e90c6c9161"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a100ec6b2fca0b81ab554a3e90c6c9161">DW1000_SPI_HAS_SUB_ADDR</a>(addr)</td></tr>
+<tr class="memitem:afcab1e0585cecdcddbc8957f6e3cdac3" id="r_afcab1e0585cecdcddbc8957f6e3cdac3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afcab1e0585cecdcddbc8957f6e3cdac3">DW1000_SPI_NOT_EXT_SUB_ADDR</a>(sa)</td></tr>
+<tr class="memitem:a8295ac5bbb8a77f8d79a0e1e650a479e" id="r_a8295ac5bbb8a77f8d79a0e1e650a479e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8295ac5bbb8a77f8d79a0e1e650a479e">DW1000_SPI_HAS_EXT_SUB_ADDR</a>(sa)</td></tr>
+<tr class="memitem:aafe35fd4c1a9f4422f2becd83eeeb6ce" id="r_aafe35fd4c1a9f4422f2becd83eeeb6ce"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aafe35fd4c1a9f4422f2becd83eeeb6ce">DEMOD_GEAR_64L</a>&#160;&#160;&#160;0x47</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:acc4c72e4c5ca663ffc3cfbfb94cba88b" id="r_acc4c72e4c5ca663ffc3cfbfb94cba88b"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc4c72e4c5ca663ffc3cfbfb94cba88b">a_dw1000_spi_read</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint8_t reg, uint16_t offset, uint8_t *buf, uint16_t len)</td></tr>
+<tr class="memdesc:acc4c72e4c5ca663ffc3cfbfb94cba88b"><td class="mdescLeft">&#160;</td><td class="mdescRight">dw1000 spi 头部数据  <br /></td></tr>
+<tr class="memitem:a19fa13cd4744f248438c2605d55d57ea" id="r_a19fa13cd4744f248438c2605d55d57ea"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19fa13cd4744f248438c2605d55d57ea">a_dw1000_spi_write</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint8_t reg, uint16_t offset, uint8_t *buf, uint16_t len)</td></tr>
+<tr class="memitem:ada279978912bf3b025dcdc0e3589df3f" id="r_ada279978912bf3b025dcdc0e3589df3f"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada279978912bf3b025dcdc0e3589df3f">_dw1000_clock_cmd</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint8_t clock_cmd)</td></tr>
+<tr class="memitem:aa81554fdb26f41003312c8514892dfea" id="r_aa81554fdb26f41003312c8514892dfea"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa81554fdb26f41003312c8514892dfea">dw1000_fine_grain_tx_seq_cmd</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint16_t cmd)</td></tr>
+<tr class="memdesc:aa81554fdb26f41003312c8514892dfea"><td class="mdescLeft">&#160;</td><td class="mdescRight">DW1000 精细粒度的Tx序列控制  <br /></td></tr>
+<tr class="memitem:a831dc6bea19ab39d86caf13fc9106c56" id="r_a831dc6bea19ab39d86caf13fc9106c56"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a831dc6bea19ab39d86caf13fc9106c56">dw1000_lna_pa_mode_set</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint32_t mode)</td></tr>
+<tr class="memdesc:a831dc6bea19ab39d86caf13fc9106c56"><td class="mdescLeft">&#160;</td><td class="mdescRight">DW1000 设置 LNA 和 PA 模式  <br /></td></tr>
+<tr class="memitem:a88a75e1369161de51e86c2c88f3705d1" id="r_a88a75e1369161de51e86c2c88f3705d1"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88a75e1369161de51e86c2c88f3705d1">dw1000_gpio_clock_enable</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle)</td></tr>
+<tr class="memdesc:a88a75e1369161de51e86c2c88f3705d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">DW1000 使能GPIO时钟  <br /></td></tr>
+<tr class="memitem:a9af5e76292af58f3baa609ee549c0491" id="r_a9af5e76292af58f3baa609ee549c0491"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9af5e76292af58f3baa609ee549c0491">dw1000_gpio_direction_set</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint32_t dir)</td></tr>
+<tr class="memdesc:a9af5e76292af58f3baa609ee549c0491"><td class="mdescLeft">&#160;</td><td class="mdescRight">DW1000设置GPIO的方向  <br /></td></tr>
+<tr class="memitem:a46e998266dbea2d61873fffe4ad2c8d0" id="r_a46e998266dbea2d61873fffe4ad2c8d0"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46e998266dbea2d61873fffe4ad2c8d0">dw1000_gpio_value_set</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint32_t out)</td></tr>
+<tr class="memdesc:a46e998266dbea2d61873fffe4ad2c8d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">DW1000设置GPIO的输出电平  <br /></td></tr>
+<tr class="memitem:a7b97aa08cb7fc31c371119cd4ae5d512" id="r_a7b97aa08cb7fc31c371119cd4ae5d512"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b97aa08cb7fc31c371119cd4ae5d512">dw1000_gpio_value_get</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint32_t gpio, uint8_t *value)</td></tr>
+<tr class="memdesc:a7b97aa08cb7fc31c371119cd4ae5d512"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取GPIO引脚的当前电平状态  <br /></td></tr>
+<tr class="memitem:a47f752e54aada40d662d529c90300702" id="r_a47f752e54aada40d662d529c90300702"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47f752e54aada40d662d529c90300702">dw1000_get_ic_ref_volt</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint8_t *volt)</td></tr>
+<tr class="memitem:a5e3b49390c41fe3c8f541e31038517e1" id="r_a5e3b49390c41fe3c8f541e31038517e1"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e3b49390c41fe3c8f541e31038517e1">dw1000_get_ic_ref_temp</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint8_t *temp)</td></tr>
+<tr class="memitem:a57d01859cb719ce5c847d317b55cd333" id="r_a57d01859cb719ce5c847d317b55cd333"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57d01859cb719ce5c847d317b55cd333">dw1000_get_part_id</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint32_t *id)</td></tr>
+<tr class="memitem:a9ebf02744beb1ac552a47b92d7c3d1b7" id="r_a9ebf02744beb1ac552a47b92d7c3d1b7"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ebf02744beb1ac552a47b92d7c3d1b7">dw1000_get_lot_id</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint32_t *id)</td></tr>
+<tr class="memitem:a1f25c40231f790ba804c91ca1b6cdf8c" id="r_a1f25c40231f790ba804c91ca1b6cdf8c"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f25c40231f790ba804c91ca1b6cdf8c">dw1000_dev_id_get</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint32_t *id)</td></tr>
+<tr class="memitem:a7e3917e23446d87d49634d0d680057fa" id="r_a7e3917e23446d87d49634d0d680057fa"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e3917e23446d87d49634d0d680057fa">dw1000_tx_rf_config</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, <a class="el" href="driver__dw1000_01copy_8h.html#a8f18e25551815d1e7d1262561a89bb7e">dw1000_tx_config_t</a> *config)</td></tr>
+<tr class="memitem:ad5196eb1d1a6ae760b416108687a2274" id="r_ad5196eb1d1a6ae760b416108687a2274"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5196eb1d1a6ae760b416108687a2274">dw1000_preamble_length_64_config</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint32_t value)</td></tr>
+<tr class="memitem:af02ed13301f24f9033d6c09be9c3f03b" id="r_af02ed13301f24f9033d6c09be9c3f03b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af02ed13301f24f9033d6c09be9c3f03b">dw1000_configure</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, <a class="el" href="driver__dw1000_01copy_8h.html#aa83cfb3a17eff0e353669bbdbf041789">dw1000_config_t</a> *config)</td></tr>
+<tr class="memitem:af383d1c31c828b3028bfeebcb371d9df" id="r_af383d1c31c828b3028bfeebcb371d9df"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af383d1c31c828b3028bfeebcb371d9df">dw1000_rx_antenna_delay_set</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint16_t delay)</td></tr>
+<tr class="memitem:a0e3e518adec3019463ca7bfd58fed39a" id="r_a0e3e518adec3019463ca7bfd58fed39a"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e3e518adec3019463ca7bfd58fed39a">dw1000_tx_antenna_delay_set</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint16_t delay)</td></tr>
+<tr class="memitem:a525b1d185f8176eb7053760dcb66a6a8" id="r_a525b1d185f8176eb7053760dcb66a6a8"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a525b1d185f8176eb7053760dcb66a6a8">dw1000_tx_data_write</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint8_t *data, uint16_t len, uint16_t offset)</td></tr>
+<tr class="memitem:a19eaed2365a07498016ff640fe5c176a" id="r_a19eaed2365a07498016ff640fe5c176a"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19eaed2365a07498016ff640fe5c176a">dw1000_tx_frame_ctrl_write</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint16_t tx_frame_lenght, uint16_t offset, uint8_t is_ranging_frame)</td></tr>
+<tr class="memitem:a12dcdce546c56c0468cbe76f8ec2fccf" id="r_a12dcdce546c56c0468cbe76f8ec2fccf"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12dcdce546c56c0468cbe76f8ec2fccf">dw1000_rx_data_read</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint8_t *data, uint16_t len, uint16_t offset)</td></tr>
+<tr class="memitem:a6b25bbf341a0353d162871f577125420" id="r_a6b25bbf341a0353d162871f577125420"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b25bbf341a0353d162871f577125420">dw1000_acc_data_read</a> (<a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *handle, uint8_t *data, uint16_t len, uint16_t offset)</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><hr  />
+<dl class="section author"><dt>作者</dt><dd>quote6 (<a href="#" onclick="location.href='mai'+'lto:'+'229'+'31'+'274'+'01'+'@qq'+'.c'+'om'; return false;">22931<span class="obfuscator">.nosp@m.</span>2740<span class="obfuscator">.nosp@m.</span>1@qq.<span class="obfuscator">.nosp@m.</span>com</a>) </dd></dl>
+<dl class="section warning"><dt>警告</dt><dd>这里的函数都不是线程安全的，多线程情况下需要进行额外的临界保护 <hr  />
+ </dd></dl>
+<dl class="section copyright"><dt>版权所有</dt><dd>Copyright (c) 2025 quote6 For study and research only, no reprinting <hr  />
+ </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 中定义.</p>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">宏定义说明</h2>
+<a id="adc9da0a24824ca1239b593f6459b3954" name="adc9da0a24824ca1239b593f6459b3954"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc9da0a24824ca1239b593f6459b3954">&#9670;&#160;</a></span>CHIP_NAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHIP_NAME&#160;&#160;&#160;&quot;Qorvo DW1000&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>chip register definition </p>
+<p>chip name </p>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00019">19</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aafe35fd4c1a9f4422f2becd83eeeb6ce" name="aafe35fd4c1a9f4422f2becd83eeeb6ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafe35fd4c1a9f4422f2becd83eeeb6ce">&#9670;&#160;</a></span>DEMOD_GEAR_64L</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEMOD_GEAR_64L&#160;&#160;&#160;0x47</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00453">453</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae578001fe043b4cca7a0edd801cfe9c4" name="ae578001fe043b4cca7a0edd801cfe9c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae578001fe043b4cca7a0edd801cfe9c4">&#9670;&#160;</a></span>DRIVER_VERSION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DRIVER_VERSION&#160;&#160;&#160;1000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00026">26</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae8c7ddc527bd386e1efe13f18609b923" name="ae8c7ddc527bd386e1efe13f18609b923"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8c7ddc527bd386e1efe13f18609b923">&#9670;&#160;</a></span>DW1000_SPI_CMD_READ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_SPI_CMD_READ</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>addr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(addr &amp; 0x7F)</div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00030">30</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0f7396a6027116ff302af85699508538" name="a0f7396a6027116ff302af85699508538"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f7396a6027116ff302af85699508538">&#9670;&#160;</a></span>DW1000_SPI_CMD_WRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_SPI_CMD_WRITE</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>addr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(addr | 0x80)</div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00032">32</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8295ac5bbb8a77f8d79a0e1e650a479e" name="a8295ac5bbb8a77f8d79a0e1e650a479e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8295ac5bbb8a77f8d79a0e1e650a479e">&#9670;&#160;</a></span>DW1000_SPI_HAS_EXT_SUB_ADDR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_SPI_HAS_EXT_SUB_ADDR</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>sa</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(sa | 0x80)</div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00045">45</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a100ec6b2fca0b81ab554a3e90c6c9161" name="a100ec6b2fca0b81ab554a3e90c6c9161"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a100ec6b2fca0b81ab554a3e90c6c9161">&#9670;&#160;</a></span>DW1000_SPI_HAS_SUB_ADDR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_SPI_HAS_SUB_ADDR</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>addr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(addr | 0x40)</div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00038">38</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afcab1e0585cecdcddbc8957f6e3cdac3" name="afcab1e0585cecdcddbc8957f6e3cdac3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcab1e0585cecdcddbc8957f6e3cdac3">&#9670;&#160;</a></span>DW1000_SPI_NOT_EXT_SUB_ADDR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_SPI_NOT_EXT_SUB_ADDR</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>sa</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(sa &amp; 0x7F)</div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00043">43</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa4b66d30a0e11337bfb137462d574da7" name="aa4b66d30a0e11337bfb137462d574da7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4b66d30a0e11337bfb137462d574da7">&#9670;&#160;</a></span>DW1000_SPI_NOT_SUB_ADDR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DW1000_SPI_NOT_SUB_ADDR</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>addr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(addr &amp; 0xBF)</div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00036">36</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aaa2b8f5b105c3019df0cb346f472e803" name="aaa2b8f5b105c3019df0cb346f472e803"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa2b8f5b105c3019df0cb346f472e803">&#9670;&#160;</a></span>MANUFACTURER_NAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MANUFACTURER_NAME&#160;&#160;&#160;&quot;Qorvo&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>manufacturer name </p>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00020">20</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2989837a37d6d63b59c6dd541b785435" name="a2989837a37d6d63b59c6dd541b785435"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2989837a37d6d63b59c6dd541b785435">&#9670;&#160;</a></span>MAX_CURRENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_CURRENT&#160;&#160;&#160;0.145f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>chip max current </p>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00023">23</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a68eba8b601afe11f1b871d944976c035" name="a68eba8b601afe11f1b871d944976c035"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68eba8b601afe11f1b871d944976c035">&#9670;&#160;</a></span>SUPPLY_VOLTAGE_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SUPPLY_VOLTAGE_MAX&#160;&#160;&#160;3.6f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>chip max supply voltage </p>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00022">22</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aac8d8cbd899667d609787ef4cf37054d" name="aac8d8cbd899667d609787ef4cf37054d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac8d8cbd899667d609787ef4cf37054d">&#9670;&#160;</a></span>SUPPLY_VOLTAGE_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SUPPLY_VOLTAGE_MIN&#160;&#160;&#160;2.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>chip min supply voltage </p>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00021">21</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a90c0b20d54005712fcc8cb01281360e9" name="a90c0b20d54005712fcc8cb01281360e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90c0b20d54005712fcc8cb01281360e9">&#9670;&#160;</a></span>TEMPERATURE_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TEMPERATURE_MAX&#160;&#160;&#160;85.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>chip max operating temperature </p>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00025">25</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aab353db5bf4eb787f86a2080f609a551" name="aab353db5bf4eb787f86a2080f609a551"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab353db5bf4eb787f86a2080f609a551">&#9670;&#160;</a></span>TEMPERATURE_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TEMPERATURE_MIN&#160;&#160;&#160;-40.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>chip min operating temperature </p>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00024">24</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">函数说明</h2>
+<a id="ada279978912bf3b025dcdc0e3589df3f" name="ada279978912bf3b025dcdc0e3589df3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada279978912bf3b025dcdc0e3589df3f">&#9670;&#160;</a></span>_dw1000_clock_cmd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t _dw1000_clock_cmd </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>clock_cmd</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00172">172</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8c_ada279978912bf3b025dcdc0e3589df3f_cgraph.png" border="0" usemap="#adriver__dw1000_8c_ada279978912bf3b025dcdc0e3589df3f_cgraph" loading="lazy" alt=""/></div>
+<map name="adriver__dw1000_8c_ada279978912bf3b025dcdc0e3589df3f_cgraph" id="adriver__dw1000_8c_ada279978912bf3b025dcdc0e3589df3f_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,149,32"/>
+<area shape="rect" href="driver__dw1000_8c.html#acc4c72e4c5ca663ffc3cfbfb94cba88b" title="dw1000 spi 头部数据" alt="" coords="197,5,333,32"/>
+<area shape="poly" title=" " alt="" coords="149,16,184,19,179,19,149,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="acc4c72e4c5ca663ffc3cfbfb94cba88b" name="acc4c72e4c5ca663ffc3cfbfb94cba88b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc4c72e4c5ca663ffc3cfbfb94cba88b">&#9670;&#160;</a></span>a_dw1000_spi_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t a_dw1000_spi_read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>reg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>offset</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>buf</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>len</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>dw1000 spi 头部数据 </p>
+<dl class="section note"><dt>注解</dt><dd>对于dw1000通信来说，相比于一般的spi设备较为复杂。 对于一次spi通信，需要先发送一帧头部数据（包含寄存器地址）， 然后才开始发送（接收）相应的数据 </dd>
+<dd>
+头部数据最长为3个字节。 第一个字节为命令。 bit[7]:读/写，0-读，1-写；bit[6]:子地址，0-无子地址，1-有子地址；bit[5:0]:寄存器地址 第二个字节为子地址的低7位（如果存在，即命令字节的bit[6]为1）。 bit[7]: 扩展子地址，0-子地址长度为1字节，1-子地址长度为2字节；bit[6:0] 子地址值（如果长度为2字节，该处为子地址的低7位） 第三个字节为子地址的高7位（如果存在，即第二个字节的bit[7]为1）。 bit[7:0]：为子地址的bit[14:7]的数据 </dd></dl>
+<dl class="section warning"><dt>警告</dt><dd>这里定义的局部数组都是临界资源，在多线程情况下需要进行保护！！！</dd></dl>
+<p>dw1000 spi 数据 </p><dl class="section note"><dt>注解</dt><dd>在一般的寄存器配置过程中，通常数据长度最大4个字节，这里为了方便配置预先分配该长度的数组</dd></dl>
+<p>spi 接口读取数据 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>dw1000 handle 结构体指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">reg</td><td>寄存器地址 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">offset</td><td>基于寄存器的子地址偏移（当寄存器长度大于1字节时） </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buf</td><td>数据缓存指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>读取数据长度 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>uint8_t 函数执行情况 <ul>
+<li>0: 读取成功 </li>
+<li>1: 读取失败 </li>
+</ul>
+</dd></dl>
+<dl class="section note"><dt>注解</dt><dd>因为仅供文件内部调用该函数，所以不对输入参数进行检查（用户不应调用该函数） </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00087">87</a> 行定义.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8c_acc4c72e4c5ca663ffc3cfbfb94cba88b_icgraph.png" border="0" usemap="#adriver__dw1000_8c_acc4c72e4c5ca663ffc3cfbfb94cba88b_icgraph" loading="lazy" alt=""/></div>
+<map name="adriver__dw1000_8c_acc4c72e4c5ca663ffc3cfbfb94cba88b_icgraph" id="adriver__dw1000_8c_acc4c72e4c5ca663ffc3cfbfb94cba88b_icgraph">
+<area shape="rect" title="dw1000 spi 头部数据" alt="" coords="234,157,370,184"/>
+<area shape="rect" href="driver__dw1000_8c.html#ada279978912bf3b025dcdc0e3589df3f" title=" " alt="" coords="24,5,167,32"/>
+<area shape="poly" title=" " alt="" coords="281,144,241,95,214,69,184,46,162,35,161,30,187,42,217,65,245,91,286,144"/>
+<area shape="rect" href="driver__dw1000_8c.html#a6b25bbf341a0353d162871f577125420" title=" " alt="" coords="16,56,175,83"/>
+<area shape="poly" title=" " alt="" coords="269,148,230,123,185,97,156,86,155,81,187,92,233,118,274,147"/>
+<area shape="rect" href="driver__dw1000_8c.html#a1f25c40231f790ba804c91ca1b6cdf8c" title=" " alt="" coords="27,107,164,133"/>
+<area shape="poly" title=" " alt="" coords="227,154,153,137,153,131,232,152"/>
+<area shape="rect" href="driver__dw1000_8c.html#a88a75e1369161de51e86c2c88f3705d1" title="DW1000 使能GPIO时钟" alt="" coords="5,157,186,184"/>
+<area shape="poly" title=" " alt="" coords="216,172,187,173,185,168,221,170"/>
+<area shape="rect" href="driver__dw1000_8c.html#a7b97aa08cb7fc31c371119cd4ae5d512" title="获取GPIO引脚的当前电平状态" alt="" coords="15,208,176,235"/>
+<area shape="poly" title=" " alt="" coords="227,190,154,210,152,205,232,187"/>
+<area shape="rect" href="driver__dw1000_8c.html#a831dc6bea19ab39d86caf13fc9106c56" title="DW1000 设置 LNA 和 PA 模式" alt="" coords="8,259,183,285"/>
+<area shape="poly" title=" " alt="" coords="274,192,233,223,187,249,157,260,155,256,185,244,230,219,269,195"/>
+<area shape="rect" href="driver__dw1000_8c.html#a12dcdce546c56c0468cbe76f8ec2fccf" title=" " alt="" coords="21,309,170,336"/>
+<area shape="poly" title=" " alt="" coords="286,196,245,250,217,277,187,300,163,311,161,306,184,295,214,273,241,246,281,198"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a19fa13cd4744f248438c2605d55d57ea" name="a19fa13cd4744f248438c2605d55d57ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19fa13cd4744f248438c2605d55d57ea">&#9670;&#160;</a></span>a_dw1000_spi_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t a_dw1000_spi_write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>reg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>offset</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>buf</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>len</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00130">130</a> 行定义.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea_icgraph.png" border="0" usemap="#adriver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea_icgraph" loading="lazy" alt=""/></div>
+<map name="adriver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea_icgraph" id="adriver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea_icgraph">
+<area shape="rect" title=" " alt="" coords="254,253,393,280"/>
+<area shape="rect" href="driver__dw1000_8c.html#aa81554fdb26f41003312c8514892dfea" title="DW1000 精细粒度的Tx序列控制" alt="" coords="32,5,179,48"/>
+<area shape="poly" title=" " alt="" coords="311,238,296,200,274,152,243,104,204,62,180,47,179,42,207,58,247,100,278,150,301,198,316,239"/>
+<area shape="rect" href="driver__dw1000_8c.html#a88a75e1369161de51e86c2c88f3705d1" title="DW1000 使能GPIO时钟" alt="" coords="15,72,196,99"/>
+<area shape="poly" title=" " alt="" coords="307,240,267,176,238,142,204,113,184,102,182,97,207,108,242,138,271,173,312,240"/>
+<area shape="rect" href="driver__dw1000_8c.html#a9af5e76292af58f3baa609ee549c0491" title="DW1000设置GPIO的方向" alt="" coords="16,123,195,149"/>
+<area shape="poly" title=" " alt="" coords="298,242,258,202,232,181,204,164,179,153,178,147,207,159,235,177,261,198,303,241"/>
+<area shape="rect" href="driver__dw1000_8c.html#a46e998266dbea2d61873fffe4ad2c8d0" title="DW1000设置GPIO的输出电平" alt="" coords="25,173,186,200"/>
+<area shape="poly" title=" " alt="" coords="280,247,205,214,169,203,168,198,207,210,285,245"/>
+<area shape="rect" href="driver__dw1000_8c.html#a831dc6bea19ab39d86caf13fc9106c56" title="DW1000 设置 LNA 和 PA 模式" alt="" coords="18,224,193,251"/>
+<area shape="poly" title=" " alt="" coords="236,256,195,252,193,247,241,254"/>
+<area shape="rect" href="driver__dw1000_8c.html#ad5196eb1d1a6ae760b416108687a2274" title=" " alt="" coords="21,275,190,317"/>
+<area shape="poly" title=" " alt="" coords="236,280,191,287,189,282,241,277"/>
+<area shape="rect" href="driver__dw1000_8c.html#af383d1c31c828b3028bfeebcb371d9df" title=" " alt="" coords="5,341,206,368"/>
+<area shape="poly" title=" " alt="" coords="285,290,250,312,207,332,172,343,170,338,205,327,247,307,289,287"/>
+<area shape="rect" href="driver__dw1000_8c.html#a0e3e518adec3019463ca7bfd58fed39a" title=" " alt="" coords="5,392,206,419"/>
+<area shape="poly" title=" " alt="" coords="304,291,263,339,236,363,207,382,181,394,178,389,204,378,233,358,259,336,300,294"/>
+<area shape="rect" href="driver__dw1000_8c.html#a525b1d185f8176eb7053760dcb66a6a8" title=" " alt="" coords="30,443,181,469"/>
+<area shape="poly" title=" " alt="" coords="312,292,273,365,243,402,207,433,183,445,180,441,204,428,239,398,268,362,308,296"/>
+<area shape="rect" href="driver__dw1000_8c.html#a7e3917e23446d87d49634d0d680057fa" title=" " alt="" coords="35,493,176,520"/>
+<area shape="poly" title=" " alt="" coords="317,292,303,337,281,388,249,440,230,463,207,484,178,499,176,494,204,479,226,459,245,436,276,386,298,335,313,296"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6b25bbf341a0353d162871f577125420" name="a6b25bbf341a0353d162871f577125420"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b25bbf341a0353d162871f577125420">&#9670;&#160;</a></span>dw1000_acc_data_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_acc_data_read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>len</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>offset</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00552">552</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8c_a6b25bbf341a0353d162871f577125420_cgraph.png" border="0" usemap="#adriver__dw1000_8c_a6b25bbf341a0353d162871f577125420_cgraph" loading="lazy" alt=""/></div>
+<map name="adriver__dw1000_8c_a6b25bbf341a0353d162871f577125420_cgraph" id="adriver__dw1000_8c_a6b25bbf341a0353d162871f577125420_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,164,32"/>
+<area shape="rect" href="driver__dw1000_8c.html#acc4c72e4c5ca663ffc3cfbfb94cba88b" title="dw1000 spi 头部数据" alt="" coords="212,5,348,32"/>
+<area shape="poly" title=" " alt="" coords="164,16,199,19,193,19,164,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af02ed13301f24f9033d6c09be9c3f03b" name="af02ed13301f24f9033d6c09be9c3f03b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af02ed13301f24f9033d6c09be9c3f03b">&#9670;&#160;</a></span>dw1000_configure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_configure </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#aa83cfb3a17eff0e353669bbdbf041789">dw1000_config_t</a> *</td>          <td class="paramname"><span class="paramname"><em>config</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00479">479</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1f25c40231f790ba804c91ca1b6cdf8c" name="a1f25c40231f790ba804c91ca1b6cdf8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f25c40231f790ba804c91ca1b6cdf8c">&#9670;&#160;</a></span>dw1000_dev_id_get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_dev_id_get </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *</td>          <td class="paramname"><span class="paramname"><em>id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00420">420</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8c_a1f25c40231f790ba804c91ca1b6cdf8c_cgraph.png" border="0" usemap="#adriver__dw1000_8c_a1f25c40231f790ba804c91ca1b6cdf8c_cgraph" loading="lazy" alt=""/></div>
+<map name="adriver__dw1000_8c_a1f25c40231f790ba804c91ca1b6cdf8c_cgraph" id="adriver__dw1000_8c_a1f25c40231f790ba804c91ca1b6cdf8c_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,142,32"/>
+<area shape="rect" href="driver__dw1000_8c.html#acc4c72e4c5ca663ffc3cfbfb94cba88b" title="dw1000 spi 头部数据" alt="" coords="190,5,326,32"/>
+<area shape="poly" title=" " alt="" coords="142,16,177,18,171,19,142,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa81554fdb26f41003312c8514892dfea" name="aa81554fdb26f41003312c8514892dfea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa81554fdb26f41003312c8514892dfea">&#9670;&#160;</a></span>dw1000_fine_grain_tx_seq_cmd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_fine_grain_tx_seq_cmd </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>cmd</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DW1000 精细粒度的Tx序列控制 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>dw1000 handle 结构体指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cmd</td><td>配置命令 <ul>
+<li>DW1000_TX_FINE_SEQ_CMD_ENABLE 启用精细粒度的Tx序列 </li>
+<li>DW1000_TX_FINE_SEQ_CMD_DISABLE 禁用精细粒度的Tx序列 </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>uint8_t 函数执行结果 <ul>
+<li>0 配置成功 </li>
+<li>1 配置失败 </li>
+<li>2 handle 为空 </li>
+<li>3 handle 未初始化 </li>
+</ul>
+</dd></dl>
+<dl class="section note"><dt>注解</dt><dd>dw1000默认使能精细粒度的Tx序列 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00194">194</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8c_aa81554fdb26f41003312c8514892dfea_cgraph.png" border="0" usemap="#adriver__dw1000_8c_aa81554fdb26f41003312c8514892dfea_cgraph" loading="lazy" alt=""/></div>
+<map name="adriver__dw1000_8c_aa81554fdb26f41003312c8514892dfea_cgraph" id="adriver__dw1000_8c_aa81554fdb26f41003312c8514892dfea_cgraph">
+<area shape="rect" title="DW1000 精细粒度的Tx序列控制" alt="" coords="5,5,153,48"/>
+<area shape="rect" href="driver__dw1000_8c.html#a19fa13cd4744f248438c2605d55d57ea" title=" " alt="" coords="201,13,340,40"/>
+<area shape="poly" title=" " alt="" coords="153,24,188,26,183,27,153,29"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5e3b49390c41fe3c8f541e31038517e1" name="a5e3b49390c41fe3c8f541e31038517e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e3b49390c41fe3c8f541e31038517e1">&#9670;&#160;</a></span>dw1000_get_ic_ref_temp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_get_ic_ref_temp </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>temp</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00371">371</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a47f752e54aada40d662d529c90300702" name="a47f752e54aada40d662d529c90300702"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47f752e54aada40d662d529c90300702">&#9670;&#160;</a></span>dw1000_get_ic_ref_volt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_get_ic_ref_volt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>volt</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00360">360</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9ebf02744beb1ac552a47b92d7c3d1b7" name="a9ebf02744beb1ac552a47b92d7c3d1b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ebf02744beb1ac552a47b92d7c3d1b7">&#9670;&#160;</a></span>dw1000_get_lot_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_get_lot_id </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *</td>          <td class="paramname"><span class="paramname"><em>id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00394">394</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a57d01859cb719ce5c847d317b55cd333" name="a57d01859cb719ce5c847d317b55cd333"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57d01859cb719ce5c847d317b55cd333">&#9670;&#160;</a></span>dw1000_get_part_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_get_part_id </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *</td>          <td class="paramname"><span class="paramname"><em>id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00382">382</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a88a75e1369161de51e86c2c88f3705d1" name="a88a75e1369161de51e86c2c88f3705d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88a75e1369161de51e86c2c88f3705d1">&#9670;&#160;</a></span>dw1000_gpio_clock_enable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_gpio_clock_enable </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DW1000 使能GPIO时钟 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>dw1000 handle 结构体指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>uint8_t 函数执行结果 <ul>
+<li>0 设置成功 </li>
+<li>1 设置失败 </li>
+<li>2 handle 为空 </li>
+<li>3 handle 未初始化 </li>
+</ul>
+</dd></dl>
+<dl class="section note"><dt>注解</dt><dd>备注 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00255">255</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8c_a88a75e1369161de51e86c2c88f3705d1_cgraph.png" border="0" usemap="#adriver__dw1000_8c_a88a75e1369161de51e86c2c88f3705d1_cgraph" loading="lazy" alt=""/></div>
+<map name="adriver__dw1000_8c_a88a75e1369161de51e86c2c88f3705d1_cgraph" id="adriver__dw1000_8c_a88a75e1369161de51e86c2c88f3705d1_cgraph">
+<area shape="rect" title="DW1000 使能GPIO时钟" alt="" coords="5,31,186,57"/>
+<area shape="rect" href="driver__dw1000_8c.html#acc4c72e4c5ca663ffc3cfbfb94cba88b" title="dw1000 spi 头部数据" alt="" coords="235,5,372,32"/>
+<area shape="poly" title=" " alt="" coords="186,30,222,28,217,29,187,36"/>
+<area shape="rect" href="driver__dw1000_8c.html#a19fa13cd4744f248438c2605d55d57ea" title=" " alt="" coords="234,56,373,83"/>
+<area shape="poly" title=" " alt="" coords="186,52,221,59,215,59,186,58"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9af5e76292af58f3baa609ee549c0491" name="a9af5e76292af58f3baa609ee549c0491"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9af5e76292af58f3baa609ee549c0491">&#9670;&#160;</a></span>dw1000_gpio_direction_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_gpio_direction_set </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>dir</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DW1000设置GPIO的方向 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>dw1000 handle 结构体指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>gpio配置 可以使用 | 运算组合使用以下参数（参数可在 <a class="el" href="driver__dw1000_8h.html">driver_dw1000.h</a> 文件里查询）： <ul>
+<li>DW1000_GPIO_DIRECTION_OUTPUT_Px: 编号x可以取0-8，表示该编号的引脚为输出 </li>
+<li>DW1000_GPIO_DIRECTION_INPUT_Px: 编号x可以取0-8，表示该编号的引脚为输入 </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>uint8_t 函数执行结果 <ul>
+<li>0 设置成功 </li>
+<li>1 设置失败 </li>
+<li>2 handle 为空 </li>
+<li>3 handle 未初始化 </li>
+</ul>
+</dd></dl>
+<dl class="section note"><dt>注解</dt><dd></dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00289">289</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8c_a9af5e76292af58f3baa609ee549c0491_cgraph.png" border="0" usemap="#adriver__dw1000_8c_a9af5e76292af58f3baa609ee549c0491_cgraph" loading="lazy" alt=""/></div>
+<map name="adriver__dw1000_8c_a9af5e76292af58f3baa609ee549c0491_cgraph" id="adriver__dw1000_8c_a9af5e76292af58f3baa609ee549c0491_cgraph">
+<area shape="rect" title="DW1000设置GPIO的方向" alt="" coords="5,5,184,32"/>
+<area shape="rect" href="driver__dw1000_8c.html#a19fa13cd4744f248438c2605d55d57ea" title=" " alt="" coords="232,5,371,32"/>
+<area shape="poly" title=" " alt="" coords="184,16,219,19,213,19,184,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7b97aa08cb7fc31c371119cd4ae5d512" name="a7b97aa08cb7fc31c371119cd4ae5d512"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b97aa08cb7fc31c371119cd4ae5d512">&#9670;&#160;</a></span>dw1000_gpio_value_get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_gpio_value_get </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>gpio</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取GPIO引脚的当前电平状态 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>dw1000 handle 结构体指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>GPIO引脚掩码 <ul>
+<li>DW1000_GPIO_RAW_STATE_Px: x取值0-8 </li>
+</ul>
+</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">value</td><td>GPIO引脚的电平状态，1表示高电平，0表示低电平 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>uint8_t 函数执行结果 <ul>
+<li>0 设置成功 </li>
+<li>1 设置失败 </li>
+<li>2 handle 为空 </li>
+<li>3 handle 未初始化 </li>
+</ul>
+</dd></dl>
+<dl class="section note"><dt>注解</dt><dd>备注 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00345">345</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8c_a7b97aa08cb7fc31c371119cd4ae5d512_cgraph.png" border="0" usemap="#adriver__dw1000_8c_a7b97aa08cb7fc31c371119cd4ae5d512_cgraph" loading="lazy" alt=""/></div>
+<map name="adriver__dw1000_8c_a7b97aa08cb7fc31c371119cd4ae5d512_cgraph" id="adriver__dw1000_8c_a7b97aa08cb7fc31c371119cd4ae5d512_cgraph">
+<area shape="rect" title="获取GPIO引脚的当前电平状态" alt="" coords="5,5,166,32"/>
+<area shape="rect" href="driver__dw1000_8c.html#acc4c72e4c5ca663ffc3cfbfb94cba88b" title="dw1000 spi 头部数据" alt="" coords="214,5,350,32"/>
+<area shape="poly" title=" " alt="" coords="166,16,201,19,195,19,166,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a46e998266dbea2d61873fffe4ad2c8d0" name="a46e998266dbea2d61873fffe4ad2c8d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46e998266dbea2d61873fffe4ad2c8d0">&#9670;&#160;</a></span>dw1000_gpio_value_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_gpio_value_set </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DW1000设置GPIO的输出电平 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>dw1000 handle 结构体指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">out</td><td>输出电平 可以使用 | 运算组合使用以下参数（参数可在 <a class="el" href="driver__dw1000_8h.html">driver_dw1000.h</a> 文件里查询）： <ul>
+<li>DW1000_GPIO_OUTPUT_STATE_LOW_Px: 编号x引脚输出低电平，x取值0-8 </li>
+<li>DW1000_GPIO_OUTPUT_STATE_HIGH_Px: 编号x引脚输出高电平，x取值0-8 </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>uint8_t 函数执行结果 <ul>
+<li>0 设置成功 </li>
+<li>1 设置失败 </li>
+<li>2 handle 为空 </li>
+<li>3 handle 未初始化 </li>
+</ul>
+</dd></dl>
+<dl class="section note"><dt>注解</dt><dd>备注 </dd></dl>
+<dl class="section attention"><dt>注意</dt><dd>只有对应的GPIO引脚配置为输出时，设置才会生效 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00318">318</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8c_a46e998266dbea2d61873fffe4ad2c8d0_cgraph.png" border="0" usemap="#adriver__dw1000_8c_a46e998266dbea2d61873fffe4ad2c8d0_cgraph" loading="lazy" alt=""/></div>
+<map name="adriver__dw1000_8c_a46e998266dbea2d61873fffe4ad2c8d0_cgraph" id="adriver__dw1000_8c_a46e998266dbea2d61873fffe4ad2c8d0_cgraph">
+<area shape="rect" title="DW1000设置GPIO的输出电平" alt="" coords="5,5,166,32"/>
+<area shape="rect" href="driver__dw1000_8c.html#a19fa13cd4744f248438c2605d55d57ea" title=" " alt="" coords="214,5,353,32"/>
+<area shape="poly" title=" " alt="" coords="166,16,201,19,195,19,166,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a831dc6bea19ab39d86caf13fc9106c56" name="a831dc6bea19ab39d86caf13fc9106c56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a831dc6bea19ab39d86caf13fc9106c56">&#9670;&#160;</a></span>dw1000_lna_pa_mode_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_lna_pa_mode_set </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>mode</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DW1000 设置 LNA 和 PA 模式 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>dw1000 handle 结构体指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>模式 <ul>
+<li>DW1000_LNA_PA_MODE_NONE LNA和PA均禁用（默认模式） </li>
+<li>DW1000_LNA_PA_MODE_LNA 启用LNA </li>
+<li>DW1000_LNA_PA_MODE_PA 启用PA </li>
+<li>DW1000_LNA_PA_MODE_ALL 启用LNA和PA </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>uint8_t 函数执行结果 <ul>
+<li>0 设置成功 </li>
+<li>1 设置失败 </li>
+</ul>
+</dd></dl>
+<dl class="section attention"><dt>注意</dt><dd>使能PA功能需要失能精细粒度的Tx序列控制功能 需先调用 dw1000_fine_grain_tx_seq_config 进行配置 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00222">222</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8c_a831dc6bea19ab39d86caf13fc9106c56_cgraph.png" border="0" usemap="#adriver__dw1000_8c_a831dc6bea19ab39d86caf13fc9106c56_cgraph" loading="lazy" alt=""/></div>
+<map name="adriver__dw1000_8c_a831dc6bea19ab39d86caf13fc9106c56_cgraph" id="adriver__dw1000_8c_a831dc6bea19ab39d86caf13fc9106c56_cgraph">
+<area shape="rect" title="DW1000 设置 LNA 和 PA 模式" alt="" coords="5,31,181,57"/>
+<area shape="rect" href="driver__dw1000_8c.html#acc4c72e4c5ca663ffc3cfbfb94cba88b" title="dw1000 spi 头部数据" alt="" coords="230,5,366,32"/>
+<area shape="poly" title=" " alt="" coords="180,31,217,28,212,30,181,36"/>
+<area shape="rect" href="driver__dw1000_8c.html#a19fa13cd4744f248438c2605d55d57ea" title=" " alt="" coords="229,56,368,83"/>
+<area shape="poly" title=" " alt="" coords="181,52,216,59,211,59,181,57"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad5196eb1d1a6ae760b416108687a2274" name="ad5196eb1d1a6ae760b416108687a2274"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5196eb1d1a6ae760b416108687a2274">&#9670;&#160;</a></span>dw1000_preamble_length_64_config()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_preamble_length_64_config </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">待办事项</a></b></dt><dd>需要修改 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00464">464</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8c_ad5196eb1d1a6ae760b416108687a2274_cgraph.png" border="0" usemap="#adriver__dw1000_8c_ad5196eb1d1a6ae760b416108687a2274_cgraph" loading="lazy" alt=""/></div>
+<map name="adriver__dw1000_8c_ad5196eb1d1a6ae760b416108687a2274_cgraph" id="adriver__dw1000_8c_ad5196eb1d1a6ae760b416108687a2274_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,174,48"/>
+<area shape="rect" href="driver__dw1000_8c.html#a19fa13cd4744f248438c2605d55d57ea" title=" " alt="" coords="222,13,361,40"/>
+<area shape="poly" title=" " alt="" coords="174,24,209,26,204,27,174,29"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af383d1c31c828b3028bfeebcb371d9df" name="af383d1c31c828b3028bfeebcb371d9df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af383d1c31c828b3028bfeebcb371d9df">&#9670;&#160;</a></span>dw1000_rx_antenna_delay_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_rx_antenna_delay_set </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>delay</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00485">485</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8c_af383d1c31c828b3028bfeebcb371d9df_cgraph.png" border="0" usemap="#adriver__dw1000_8c_af383d1c31c828b3028bfeebcb371d9df_cgraph" loading="lazy" alt=""/></div>
+<map name="adriver__dw1000_8c_af383d1c31c828b3028bfeebcb371d9df_cgraph" id="adriver__dw1000_8c_af383d1c31c828b3028bfeebcb371d9df_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,206,32"/>
+<area shape="rect" href="driver__dw1000_8c.html#a19fa13cd4744f248438c2605d55d57ea" title=" " alt="" coords="254,5,393,32"/>
+<area shape="poly" title=" " alt="" coords="206,16,241,19,235,19,206,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a12dcdce546c56c0468cbe76f8ec2fccf" name="a12dcdce546c56c0468cbe76f8ec2fccf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12dcdce546c56c0468cbe76f8ec2fccf">&#9670;&#160;</a></span>dw1000_rx_data_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_rx_data_read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>len</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>offset</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00535">535</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8c_a12dcdce546c56c0468cbe76f8ec2fccf_cgraph.png" border="0" usemap="#adriver__dw1000_8c_a12dcdce546c56c0468cbe76f8ec2fccf_cgraph" loading="lazy" alt=""/></div>
+<map name="adriver__dw1000_8c_a12dcdce546c56c0468cbe76f8ec2fccf_cgraph" id="adriver__dw1000_8c_a12dcdce546c56c0468cbe76f8ec2fccf_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,154,32"/>
+<area shape="rect" href="driver__dw1000_8c.html#acc4c72e4c5ca663ffc3cfbfb94cba88b" title="dw1000 spi 头部数据" alt="" coords="202,5,338,32"/>
+<area shape="poly" title=" " alt="" coords="154,16,189,19,184,19,154,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0e3e518adec3019463ca7bfd58fed39a" name="a0e3e518adec3019463ca7bfd58fed39a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e3e518adec3019463ca7bfd58fed39a">&#9670;&#160;</a></span>dw1000_tx_antenna_delay_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_tx_antenna_delay_set </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>delay</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00500">500</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8c_a0e3e518adec3019463ca7bfd58fed39a_cgraph.png" border="0" usemap="#adriver__dw1000_8c_a0e3e518adec3019463ca7bfd58fed39a_cgraph" loading="lazy" alt=""/></div>
+<map name="adriver__dw1000_8c_a0e3e518adec3019463ca7bfd58fed39a_cgraph" id="adriver__dw1000_8c_a0e3e518adec3019463ca7bfd58fed39a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,206,32"/>
+<area shape="rect" href="driver__dw1000_8c.html#a19fa13cd4744f248438c2605d55d57ea" title=" " alt="" coords="254,5,393,32"/>
+<area shape="poly" title=" " alt="" coords="206,16,241,19,235,19,206,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a525b1d185f8176eb7053760dcb66a6a8" name="a525b1d185f8176eb7053760dcb66a6a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a525b1d185f8176eb7053760dcb66a6a8">&#9670;&#160;</a></span>dw1000_tx_data_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_tx_data_write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>len</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>offset</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00514">514</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8c_a525b1d185f8176eb7053760dcb66a6a8_cgraph.png" border="0" usemap="#adriver__dw1000_8c_a525b1d185f8176eb7053760dcb66a6a8_cgraph" loading="lazy" alt=""/></div>
+<map name="adriver__dw1000_8c_a525b1d185f8176eb7053760dcb66a6a8_cgraph" id="adriver__dw1000_8c_a525b1d185f8176eb7053760dcb66a6a8_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,157,32"/>
+<area shape="rect" href="driver__dw1000_8c.html#a19fa13cd4744f248438c2605d55d57ea" title=" " alt="" coords="205,5,344,32"/>
+<area shape="poly" title=" " alt="" coords="157,16,191,19,186,19,157,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a19eaed2365a07498016ff640fe5c176a" name="a19eaed2365a07498016ff640fe5c176a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19eaed2365a07498016ff640fe5c176a">&#9670;&#160;</a></span>dw1000_tx_frame_ctrl_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_tx_frame_ctrl_write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>tx_frame_lenght</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>offset</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>is_ranging_frame</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00531">531</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7e3917e23446d87d49634d0d680057fa" name="a7e3917e23446d87d49634d0d680057fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e3917e23446d87d49634d0d680057fa">&#9670;&#160;</a></span>dw1000_tx_rf_config()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t dw1000_tx_rf_config </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780">dw1000_handle_t</a> *</td>          <td class="paramname"><span class="paramname"><em>handle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="driver__dw1000_01copy_8h.html#a8f18e25551815d1e7d1262561a89bb7e">dw1000_tx_config_t</a> *</td>          <td class="paramname"><span class="paramname"><em>config</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8c_source.html">driver_dw1000.c</a> 第 <a class="el" href="driver__dw1000_8c_source.html#l00434">434</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="driver__dw1000_8c_a7e3917e23446d87d49634d0d680057fa_cgraph.png" border="0" usemap="#adriver__dw1000_8c_a7e3917e23446d87d49634d0d680057fa_cgraph" loading="lazy" alt=""/></div>
+<map name="adriver__dw1000_8c_a7e3917e23446d87d49634d0d680057fa_cgraph" id="adriver__dw1000_8c_a7e3917e23446d87d49634d0d680057fa_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,147,32"/>
+<area shape="rect" href="driver__dw1000_8c.html#a19fa13cd4744f248438c2605d55d57ea" title=" " alt="" coords="195,5,334,32"/>
+<area shape="poly" title=" " alt="" coords="147,16,182,19,176,19,147,21"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

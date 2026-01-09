@@ -1,0 +1,125 @@
+\doxysection{dw1000\+\_\+handle\+\_\+s结构体 参考}
+\hypertarget{structdw1000__handle__s}{}\label{structdw1000__handle__s}\index{dw1000\_handle\_s@{dw1000\_handle\_s}}
+
+
+DW1000 handle 结构体定义  
+
+
+
+
+{\ttfamily \#include $<$driver\+\_\+dw1000 copy.\+h$>$}
+
+
+
+dw1000\+\_\+handle\+\_\+s 的协作图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{structdw1000__handle__s__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{成员变量}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structdw1000__handle__s_a1f8d21e5579f76c9e97aacb5bfcacd93}{spi\+\_\+init}} )(void)
+\item 
+uint8\+\_\+t(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structdw1000__handle__s_a72e3d386f41c9a29a21a7a2afb8e432c}{spi\+\_\+deinit}} )(void)
+\item 
+uint8\+\_\+t(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structdw1000__handle__s_a72d44bd587e75a560e7f11668bb1571e}{spi\+\_\+read}} )(uint8\+\_\+t \texorpdfstring{$\ast$}{*}hdr, uint8\+\_\+t hdr\+Len, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t buf\+Len)
+\item 
+uint8\+\_\+t(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structdw1000__handle__s_a84dfad02fbb955598bf9f0128deeb09d}{spi\+\_\+write}} )(uint8\+\_\+t \texorpdfstring{$\ast$}{*}hdr, uint8\+\_\+t hdr\+Len, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t buf\+Len)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structdw1000__handle__s_a1d5fd080e32688470c35048e45708805}{delay\+\_\+ms}} )(uint32\+\_\+t ms)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structdw1000__handle__s_a194b29e5937c301c7011484aa3ae5736}{debug\+\_\+print}} )(const char \texorpdfstring{$\ast$}{*}fmt,...)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structdw1000__handle__s_a19bedf28d2b9748f6a62d9ae93f4e68f}{inited}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+DW1000 handle 结构体定义 
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00168}{168}} 行定义.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{structdw1000__handle__s_doc-variable-members}
+\doxysubsection{结构体成员变量说明}
+\Hypertarget{structdw1000__handle__s_a194b29e5937c301c7011484aa3ae5736}\index{dw1000\_handle\_s@{dw1000\_handle\_s}!debug\_print@{debug\_print}}
+\index{debug\_print@{debug\_print}!dw1000\_handle\_s@{dw1000\_handle\_s}}
+\doxysubsubsection{\texorpdfstring{debug\_print}{debug\_print}}
+{\footnotesize\ttfamily \label{structdw1000__handle__s_a194b29e5937c301c7011484aa3ae5736} 
+void(\texorpdfstring{$\ast$}{*} debug\+\_\+print)(const char \texorpdfstring{$\ast$}{*}fmt,...)}
+
+point to debug\+\_\+print function address 
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00174}{174}} 行定义.
+
+\Hypertarget{structdw1000__handle__s_a1d5fd080e32688470c35048e45708805}\index{dw1000\_handle\_s@{dw1000\_handle\_s}!delay\_ms@{delay\_ms}}
+\index{delay\_ms@{delay\_ms}!dw1000\_handle\_s@{dw1000\_handle\_s}}
+\doxysubsubsection{\texorpdfstring{delay\_ms}{delay\_ms}}
+{\footnotesize\ttfamily \label{structdw1000__handle__s_a1d5fd080e32688470c35048e45708805} 
+void(\texorpdfstring{$\ast$}{*} delay\+\_\+ms)(uint32\+\_\+t ms)}
+
+point to delay\+\_\+ms function address 
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00173}{173}} 行定义.
+
+\Hypertarget{structdw1000__handle__s_a19bedf28d2b9748f6a62d9ae93f4e68f}\index{dw1000\_handle\_s@{dw1000\_handle\_s}!inited@{inited}}
+\index{inited@{inited}!dw1000\_handle\_s@{dw1000\_handle\_s}}
+\doxysubsubsection{\texorpdfstring{inited}{inited}}
+{\footnotesize\ttfamily \label{structdw1000__handle__s_a19bedf28d2b9748f6a62d9ae93f4e68f} 
+uint8\+\_\+t inited}
+
+inited flag 
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00175}{175}} 行定义.
+
+\Hypertarget{structdw1000__handle__s_a72e3d386f41c9a29a21a7a2afb8e432c}\index{dw1000\_handle\_s@{dw1000\_handle\_s}!spi\_deinit@{spi\_deinit}}
+\index{spi\_deinit@{spi\_deinit}!dw1000\_handle\_s@{dw1000\_handle\_s}}
+\doxysubsubsection{\texorpdfstring{spi\_deinit}{spi\_deinit}}
+{\footnotesize\ttfamily \label{structdw1000__handle__s_a72e3d386f41c9a29a21a7a2afb8e432c} 
+uint8\+\_\+t(\texorpdfstring{$\ast$}{*} spi\+\_\+deinit)(void) (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+point to spi\+\_\+deinit function address 
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00170}{170}} 行定义.
+
+\Hypertarget{structdw1000__handle__s_a1f8d21e5579f76c9e97aacb5bfcacd93}\index{dw1000\_handle\_s@{dw1000\_handle\_s}!spi\_init@{spi\_init}}
+\index{spi\_init@{spi\_init}!dw1000\_handle\_s@{dw1000\_handle\_s}}
+\doxysubsubsection{\texorpdfstring{spi\_init}{spi\_init}}
+{\footnotesize\ttfamily \label{structdw1000__handle__s_a1f8d21e5579f76c9e97aacb5bfcacd93} 
+uint8\+\_\+t(\texorpdfstring{$\ast$}{*} spi\+\_\+init)(void) (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+point to spi\+\_\+init function address 
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00169}{169}} 行定义.
+
+\Hypertarget{structdw1000__handle__s_a72d44bd587e75a560e7f11668bb1571e}\index{dw1000\_handle\_s@{dw1000\_handle\_s}!spi\_read@{spi\_read}}
+\index{spi\_read@{spi\_read}!dw1000\_handle\_s@{dw1000\_handle\_s}}
+\doxysubsubsection{\texorpdfstring{spi\_read}{spi\_read}}
+{\footnotesize\ttfamily \label{structdw1000__handle__s_a72d44bd587e75a560e7f11668bb1571e} 
+uint8\+\_\+t(\texorpdfstring{$\ast$}{*} spi\+\_\+read)(uint8\+\_\+t \texorpdfstring{$\ast$}{*}hdr, uint8\+\_\+t hdr\+Len, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t buf\+Len)}
+
+point to spi\+\_\+read function address 
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00171}{171}} 行定义.
+
+\Hypertarget{structdw1000__handle__s_a84dfad02fbb955598bf9f0128deeb09d}\index{dw1000\_handle\_s@{dw1000\_handle\_s}!spi\_write@{spi\_write}}
+\index{spi\_write@{spi\_write}!dw1000\_handle\_s@{dw1000\_handle\_s}}
+\doxysubsubsection{\texorpdfstring{spi\_write}{spi\_write}}
+{\footnotesize\ttfamily \label{structdw1000__handle__s_a84dfad02fbb955598bf9f0128deeb09d} 
+uint8\+\_\+t(\texorpdfstring{$\ast$}{*} spi\+\_\+write)(uint8\+\_\+t \texorpdfstring{$\ast$}{*}hdr, uint8\+\_\+t hdr\+Len, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t buf\+Len)}
+
+point to spi\+\_\+write function address 
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00172}{172}} 行定义.
+
+
+
+该结构体的文档由以下文件生成\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{driver__dw1000_01copy_8h}{driver\+\_\+dw1000 copy.\+h}}\item 
+src/\mbox{\hyperlink{driver__dw1000_8h}{driver\+\_\+dw1000.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,648 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>MoonStar: dw1000 link driver function</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="Quote6_logo_55x110.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">MoonStar<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">Wireless communication, one to many, host calling</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.15.0 -->
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<div id="main-nav">
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
+      <li class="current"><a href="topics.html"><span>专题</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li><a href="files.html"><span>文件</span></a></li>
+      <li><a href="examples.html"><span>示例</span></a></li>
+    </ul>
+  </div>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a>  </div>
+  <div class="headertitle"><div class="title">dw1000 link driver function </div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>dw1000 link driver modules  
+<a href="#details">更多...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:ga1ccb6b5cfe80b62c177816d5572bae0d" id="r_ga1ccb6b5cfe80b62c177816d5572bae0d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga1ccb6b5cfe80b62c177816d5572bae0d">DRIVER_DW1000_LINK_INIT</a>(HANDLE,  STRUCTURE)</td></tr>
+<tr class="memdesc:ga1ccb6b5cfe80b62c177816d5572bae0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化 <a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体  <br /></td></tr>
+<tr class="memitem:ga5987d4731ac124a9e0644870f41bfc08" id="r_ga5987d4731ac124a9e0644870f41bfc08"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga5987d4731ac124a9e0644870f41bfc08">DRIVER_DW1000_LINK_SPI_INIT</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:ga5987d4731ac124a9e0644870f41bfc08"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 spi_init 函数  <br /></td></tr>
+<tr class="memitem:ga11e0d3df1bc80410c47afec0c608ea70" id="r_ga11e0d3df1bc80410c47afec0c608ea70"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga11e0d3df1bc80410c47afec0c608ea70">DRIVER_DW1000_LINK_SPI_DEINIT</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:ga11e0d3df1bc80410c47afec0c608ea70"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 spi_deinit 函数  <br /></td></tr>
+<tr class="memitem:gad6345a3bb9ef86ed392fb502e9c65c82" id="r_gad6345a3bb9ef86ed392fb502e9c65c82"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gad6345a3bb9ef86ed392fb502e9c65c82">DRIVER_DW1000_LINK_SPI_READ</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:gad6345a3bb9ef86ed392fb502e9c65c82"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 spi_read 函数  <br /></td></tr>
+<tr class="memitem:ga526b24f41e54bff213315fa886134af7" id="r_ga526b24f41e54bff213315fa886134af7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga526b24f41e54bff213315fa886134af7">DRIVER_DW1000_LINK_SPI_WRITE</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:ga526b24f41e54bff213315fa886134af7"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 spi_write 函数  <br /></td></tr>
+<tr class="memitem:ga42523356ff5da80ae1fb24feb4bd4ed4" id="r_ga42523356ff5da80ae1fb24feb4bd4ed4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga42523356ff5da80ae1fb24feb4bd4ed4">DRIVER_DW1000_LINK_DELAY_MS</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:ga42523356ff5da80ae1fb24feb4bd4ed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 delay_ms 函数  <br /></td></tr>
+<tr class="memitem:ga450d304f275f858c0910a363ee92000e" id="r_ga450d304f275f858c0910a363ee92000e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga450d304f275f858c0910a363ee92000e">DRIVER_DW1000_LINK_DEBUG_PRINT</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:ga450d304f275f858c0910a363ee92000e"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 debug_print 函数  <br /></td></tr>
+<tr class="memitem:ga1bb8090d157b468f89aada3e2e11564a" id="r_ga1bb8090d157b468f89aada3e2e11564a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga1bb8090d157b468f89aada3e2e11564a">DRIVER_DW1000_LINK_RECEIVE_CALLBACK</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:ga1bb8090d157b468f89aada3e2e11564a"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 receive_callback 函数  <br /></td></tr>
+<tr class="memitem:ga1ccb6b5cfe80b62c177816d5572bae0d" id="r_ga1ccb6b5cfe80b62c177816d5572bae0d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga1ccb6b5cfe80b62c177816d5572bae0d">DRIVER_DW1000_LINK_INIT</a>(HANDLE,  STRUCTURE)</td></tr>
+<tr class="memdesc:ga1ccb6b5cfe80b62c177816d5572bae0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化 <a class="el" href="driver__dw1000_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体  <br /></td></tr>
+<tr class="memitem:ga5987d4731ac124a9e0644870f41bfc08" id="r_ga5987d4731ac124a9e0644870f41bfc08"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga5987d4731ac124a9e0644870f41bfc08">DRIVER_DW1000_LINK_SPI_INIT</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:ga5987d4731ac124a9e0644870f41bfc08"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 spi_init 函数  <br /></td></tr>
+<tr class="memitem:ga11e0d3df1bc80410c47afec0c608ea70" id="r_ga11e0d3df1bc80410c47afec0c608ea70"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga11e0d3df1bc80410c47afec0c608ea70">DRIVER_DW1000_LINK_SPI_DEINIT</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:ga11e0d3df1bc80410c47afec0c608ea70"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 spi_deinit 函数  <br /></td></tr>
+<tr class="memitem:gad6345a3bb9ef86ed392fb502e9c65c82" id="r_gad6345a3bb9ef86ed392fb502e9c65c82"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gad6345a3bb9ef86ed392fb502e9c65c82">DRIVER_DW1000_LINK_SPI_READ</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:gad6345a3bb9ef86ed392fb502e9c65c82"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 spi_read 函数  <br /></td></tr>
+<tr class="memitem:ga526b24f41e54bff213315fa886134af7" id="r_ga526b24f41e54bff213315fa886134af7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga526b24f41e54bff213315fa886134af7">DRIVER_DW1000_LINK_SPI_WRITE</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:ga526b24f41e54bff213315fa886134af7"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 spi_write 函数  <br /></td></tr>
+<tr class="memitem:ga42523356ff5da80ae1fb24feb4bd4ed4" id="r_ga42523356ff5da80ae1fb24feb4bd4ed4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga42523356ff5da80ae1fb24feb4bd4ed4">DRIVER_DW1000_LINK_DELAY_MS</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:ga42523356ff5da80ae1fb24feb4bd4ed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 delay_ms 函数  <br /></td></tr>
+<tr class="memitem:ga450d304f275f858c0910a363ee92000e" id="r_ga450d304f275f858c0910a363ee92000e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga450d304f275f858c0910a363ee92000e">DRIVER_DW1000_LINK_DEBUG_PRINT</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:ga450d304f275f858c0910a363ee92000e"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 debug_print 函数  <br /></td></tr>
+<tr class="memitem:ga1bb8090d157b468f89aada3e2e11564a" id="r_ga1bb8090d157b468f89aada3e2e11564a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga1bb8090d157b468f89aada3e2e11564a">DRIVER_DW1000_LINK_RECEIVE_CALLBACK</a>(HANDLE,  FUC)</td></tr>
+<tr class="memdesc:ga1bb8090d157b468f89aada3e2e11564a"><td class="mdescLeft">&#160;</td><td class="mdescRight">链接 receive_callback 函数  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<p>dw1000 link driver modules </p>
+<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">宏定义说明</h2>
+<a id="ga450d304f275f858c0910a363ee92000e" name="ga450d304f275f858c0910a363ee92000e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga450d304f275f858c0910a363ee92000e">&#9670;&#160;</a></span>DRIVER_DW1000_LINK_DEBUG_PRINT <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DRIVER_DW1000_LINK_DEBUG_PRINT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>HANDLE</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>FUC</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(HANDLE)-&gt;debug_print = FUC</div>
+</div><!-- fragment -->
+<p>链接 debug_print 函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HANDLE</td><td>指向 <a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体的指针 </td></tr>
+    <tr><td class="paramname">FUC</td><td>指向 debug_print 函数地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>无 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_01copy_8h_source.html">driver_dw1000 copy.h</a> 第 <a class="el" href="driver__dw1000_01copy_8h_source.html#l00257">257</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga450d304f275f858c0910a363ee92000e" name="ga450d304f275f858c0910a363ee92000e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga450d304f275f858c0910a363ee92000e">&#9670;&#160;</a></span>DRIVER_DW1000_LINK_DEBUG_PRINT <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DRIVER_DW1000_LINK_DEBUG_PRINT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>HANDLE</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>FUC</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(HANDLE)-&gt;debug_print = FUC</div>
+</div><!-- fragment -->
+<p>链接 debug_print 函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HANDLE</td><td>指向 <a class="el" href="driver__dw1000_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体的指针 </td></tr>
+    <tr><td class="paramname">FUC</td><td>指向 debug_print 函数地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>无 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00274">274</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga42523356ff5da80ae1fb24feb4bd4ed4" name="ga42523356ff5da80ae1fb24feb4bd4ed4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga42523356ff5da80ae1fb24feb4bd4ed4">&#9670;&#160;</a></span>DRIVER_DW1000_LINK_DELAY_MS <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DRIVER_DW1000_LINK_DELAY_MS</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>HANDLE</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>FUC</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(HANDLE)-&gt;delay_ms = FUC</div>
+</div><!-- fragment -->
+<p>链接 delay_ms 函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HANDLE</td><td>指向 <a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体的指针 </td></tr>
+    <tr><td class="paramname">FUC</td><td>指向 delay_ms 函数地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>无 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_01copy_8h_source.html">driver_dw1000 copy.h</a> 第 <a class="el" href="driver__dw1000_01copy_8h_source.html#l00249">249</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga42523356ff5da80ae1fb24feb4bd4ed4" name="ga42523356ff5da80ae1fb24feb4bd4ed4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga42523356ff5da80ae1fb24feb4bd4ed4">&#9670;&#160;</a></span>DRIVER_DW1000_LINK_DELAY_MS <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DRIVER_DW1000_LINK_DELAY_MS</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>HANDLE</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>FUC</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(HANDLE)-&gt;delay_ms = FUC</div>
+</div><!-- fragment -->
+<p>链接 delay_ms 函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HANDLE</td><td>指向 <a class="el" href="driver__dw1000_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体的指针 </td></tr>
+    <tr><td class="paramname">FUC</td><td>指向 delay_ms 函数地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>无 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00266">266</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga1ccb6b5cfe80b62c177816d5572bae0d" name="ga1ccb6b5cfe80b62c177816d5572bae0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1ccb6b5cfe80b62c177816d5572bae0d">&#9670;&#160;</a></span>DRIVER_DW1000_LINK_INIT <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DRIVER_DW1000_LINK_INIT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>HANDLE</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>STRUCTURE</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">memset(HANDLE, 0, <span class="keyword">sizeof</span>(STRUCTURE))</div>
+</div><!-- fragment -->
+<p>初始化 <a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HANDLE</td><td>指向 <a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体的指针 </td></tr>
+    <tr><td class="paramname">STRUCTURE</td><td><a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>无 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_01copy_8h_source.html">driver_dw1000 copy.h</a> 第 <a class="el" href="driver__dw1000_01copy_8h_source.html#l00208">208</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga1ccb6b5cfe80b62c177816d5572bae0d" name="ga1ccb6b5cfe80b62c177816d5572bae0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1ccb6b5cfe80b62c177816d5572bae0d">&#9670;&#160;</a></span>DRIVER_DW1000_LINK_INIT <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DRIVER_DW1000_LINK_INIT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>HANDLE</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>STRUCTURE</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">memset(HANDLE, 0, <span class="keyword">sizeof</span>(STRUCTURE))</div>
+</div><!-- fragment -->
+<p>初始化 <a class="el" href="driver__dw1000_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HANDLE</td><td>指向 <a class="el" href="driver__dw1000_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体的指针 </td></tr>
+    <tr><td class="paramname">STRUCTURE</td><td><a class="el" href="driver__dw1000_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>无 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00225">225</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga1bb8090d157b468f89aada3e2e11564a" name="ga1bb8090d157b468f89aada3e2e11564a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1bb8090d157b468f89aada3e2e11564a">&#9670;&#160;</a></span>DRIVER_DW1000_LINK_RECEIVE_CALLBACK <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DRIVER_DW1000_LINK_RECEIVE_CALLBACK</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>HANDLE</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>FUC</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(HANDLE)-&gt;receive_callback = FUC</div>
+</div><!-- fragment -->
+<p>链接 receive_callback 函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HANDLE</td><td>指向 <a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体的指针 </td></tr>
+    <tr><td class="paramname">FUC</td><td>指向 receive_callback 函数地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>无 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_01copy_8h_source.html">driver_dw1000 copy.h</a> 第 <a class="el" href="driver__dw1000_01copy_8h_source.html#l00265">265</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga1bb8090d157b468f89aada3e2e11564a" name="ga1bb8090d157b468f89aada3e2e11564a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1bb8090d157b468f89aada3e2e11564a">&#9670;&#160;</a></span>DRIVER_DW1000_LINK_RECEIVE_CALLBACK <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DRIVER_DW1000_LINK_RECEIVE_CALLBACK</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>HANDLE</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>FUC</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(HANDLE)-&gt;receive_callback = FUC</div>
+</div><!-- fragment -->
+<p>链接 receive_callback 函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HANDLE</td><td>指向 <a class="el" href="driver__dw1000_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体的指针 </td></tr>
+    <tr><td class="paramname">FUC</td><td>指向 receive_callback 函数地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>无 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00282">282</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga11e0d3df1bc80410c47afec0c608ea70" name="ga11e0d3df1bc80410c47afec0c608ea70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga11e0d3df1bc80410c47afec0c608ea70">&#9670;&#160;</a></span>DRIVER_DW1000_LINK_SPI_DEINIT <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DRIVER_DW1000_LINK_SPI_DEINIT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>HANDLE</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>FUC</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(HANDLE)-&gt;spi_deinit = FUC</div>
+</div><!-- fragment -->
+<p>链接 spi_deinit 函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HANDLE</td><td>指向 <a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体的指针 </td></tr>
+    <tr><td class="paramname">FUC</td><td>指向 spi_deinit 函数地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>无 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_01copy_8h_source.html">driver_dw1000 copy.h</a> 第 <a class="el" href="driver__dw1000_01copy_8h_source.html#l00225">225</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga11e0d3df1bc80410c47afec0c608ea70" name="ga11e0d3df1bc80410c47afec0c608ea70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga11e0d3df1bc80410c47afec0c608ea70">&#9670;&#160;</a></span>DRIVER_DW1000_LINK_SPI_DEINIT <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DRIVER_DW1000_LINK_SPI_DEINIT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>HANDLE</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>FUC</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(HANDLE)-&gt;spi_deinit = FUC</div>
+</div><!-- fragment -->
+<p>链接 spi_deinit 函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HANDLE</td><td>指向 <a class="el" href="driver__dw1000_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体的指针 </td></tr>
+    <tr><td class="paramname">FUC</td><td>指向 spi_deinit 函数地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>无 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00242">242</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga5987d4731ac124a9e0644870f41bfc08" name="ga5987d4731ac124a9e0644870f41bfc08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5987d4731ac124a9e0644870f41bfc08">&#9670;&#160;</a></span>DRIVER_DW1000_LINK_SPI_INIT <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DRIVER_DW1000_LINK_SPI_INIT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>HANDLE</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>FUC</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(HANDLE)-&gt;spi_init = FUC</div>
+</div><!-- fragment -->
+<p>链接 spi_init 函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HANDLE</td><td>指向 <a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体的指针 </td></tr>
+    <tr><td class="paramname">FUC</td><td>指向 spi_init 函数地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>无 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_01copy_8h_source.html">driver_dw1000 copy.h</a> 第 <a class="el" href="driver__dw1000_01copy_8h_source.html#l00216">216</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga5987d4731ac124a9e0644870f41bfc08" name="ga5987d4731ac124a9e0644870f41bfc08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5987d4731ac124a9e0644870f41bfc08">&#9670;&#160;</a></span>DRIVER_DW1000_LINK_SPI_INIT <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DRIVER_DW1000_LINK_SPI_INIT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>HANDLE</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>FUC</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(HANDLE)-&gt;spi_init = FUC</div>
+</div><!-- fragment -->
+<p>链接 spi_init 函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HANDLE</td><td>指向 <a class="el" href="driver__dw1000_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体的指针 </td></tr>
+    <tr><td class="paramname">FUC</td><td>指向 spi_init 函数地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>无 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00233">233</a> 行定义.</p>
+
+</div>
+</div>
+<a id="gad6345a3bb9ef86ed392fb502e9c65c82" name="gad6345a3bb9ef86ed392fb502e9c65c82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad6345a3bb9ef86ed392fb502e9c65c82">&#9670;&#160;</a></span>DRIVER_DW1000_LINK_SPI_READ <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DRIVER_DW1000_LINK_SPI_READ</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>HANDLE</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>FUC</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(HANDLE)-&gt;spi_read = FUC</div>
+</div><!-- fragment -->
+<p>链接 spi_read 函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HANDLE</td><td>指向 <a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体的指针 </td></tr>
+    <tr><td class="paramname">FUC</td><td>指向 spi_read 函数地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>无 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_01copy_8h_source.html">driver_dw1000 copy.h</a> 第 <a class="el" href="driver__dw1000_01copy_8h_source.html#l00233">233</a> 行定义.</p>
+
+</div>
+</div>
+<a id="gad6345a3bb9ef86ed392fb502e9c65c82" name="gad6345a3bb9ef86ed392fb502e9c65c82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad6345a3bb9ef86ed392fb502e9c65c82">&#9670;&#160;</a></span>DRIVER_DW1000_LINK_SPI_READ <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DRIVER_DW1000_LINK_SPI_READ</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>HANDLE</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>FUC</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(HANDLE)-&gt;spi_read = FUC</div>
+</div><!-- fragment -->
+<p>链接 spi_read 函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HANDLE</td><td>指向 <a class="el" href="driver__dw1000_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体的指针 </td></tr>
+    <tr><td class="paramname">FUC</td><td>指向 spi_read 函数地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>无 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00250">250</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga526b24f41e54bff213315fa886134af7" name="ga526b24f41e54bff213315fa886134af7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga526b24f41e54bff213315fa886134af7">&#9670;&#160;</a></span>DRIVER_DW1000_LINK_SPI_WRITE <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DRIVER_DW1000_LINK_SPI_WRITE</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>HANDLE</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>FUC</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(HANDLE)-&gt;spi_write = FUC</div>
+</div><!-- fragment -->
+<p>链接 spi_write 函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HANDLE</td><td>指向 <a class="el" href="driver__dw1000_01copy_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体的指针 </td></tr>
+    <tr><td class="paramname">FUC</td><td>指向 spi_write 函数地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>无 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_01copy_8h_source.html">driver_dw1000 copy.h</a> 第 <a class="el" href="driver__dw1000_01copy_8h_source.html#l00241">241</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga526b24f41e54bff213315fa886134af7" name="ga526b24f41e54bff213315fa886134af7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga526b24f41e54bff213315fa886134af7">&#9670;&#160;</a></span>DRIVER_DW1000_LINK_SPI_WRITE <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DRIVER_DW1000_LINK_SPI_WRITE</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>HANDLE</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>FUC</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">(HANDLE)-&gt;spi_write = FUC</div>
+</div><!-- fragment -->
+<p>链接 spi_write 函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HANDLE</td><td>指向 <a class="el" href="driver__dw1000_8h.html#a8e51eab4abbfab18e6c59ac803aae780" title="DW1000 handle 结构体定义">dw1000_handle_t</a> 结构体的指针 </td></tr>
+    <tr><td class="paramname">FUC</td><td>指向 spi_write 函数地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>无 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="driver__dw1000_8h_source.html">driver_dw1000.h</a> 第 <a class="el" href="driver__dw1000_8h_source.html#l00258">258</a> 行定义.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,516 @@
+\doxysection{dw1000 link driver function }
+\hypertarget{group__dw1000__link__driver}{}\label{group__dw1000__link__driver}\index{dw1000 link driver function@{dw1000 link driver function}}
+
+
+dw1000 link driver modules  
+
+
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga1ccb6b5cfe80b62c177816d5572bae0d}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+INIT}}(HANDLE,  STRUCTURE)
+\begin{DoxyCompactList}\small\item\em 初始化 \doxylink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga5987d4731ac124a9e0644870f41bfc08}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+INIT}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 spi\+\_\+init 函数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga11e0d3df1bc80410c47afec0c608ea70}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+DEINIT}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 spi\+\_\+deinit 函数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_gad6345a3bb9ef86ed392fb502e9c65c82}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+READ}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 spi\+\_\+read 函数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga526b24f41e54bff213315fa886134af7}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+WRITE}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 spi\+\_\+write 函数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga42523356ff5da80ae1fb24feb4bd4ed4}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+DELAY\+\_\+\+MS}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 delay\+\_\+ms 函数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga450d304f275f858c0910a363ee92000e}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+DEBUG\+\_\+\+PRINT}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 debug\+\_\+print 函数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga1bb8090d157b468f89aada3e2e11564a}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+RECEIVE\+\_\+\+CALLBACK}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 receive\+\_\+callback 函数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga1ccb6b5cfe80b62c177816d5572bae0d}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+INIT}}(HANDLE,  STRUCTURE)
+\begin{DoxyCompactList}\small\item\em 初始化 \doxylink{driver__dw1000_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga5987d4731ac124a9e0644870f41bfc08}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+INIT}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 spi\+\_\+init 函数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga11e0d3df1bc80410c47afec0c608ea70}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+DEINIT}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 spi\+\_\+deinit 函数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_gad6345a3bb9ef86ed392fb502e9c65c82}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+READ}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 spi\+\_\+read 函数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga526b24f41e54bff213315fa886134af7}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+WRITE}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 spi\+\_\+write 函数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga42523356ff5da80ae1fb24feb4bd4ed4}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+DELAY\+\_\+\+MS}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 delay\+\_\+ms 函数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga450d304f275f858c0910a363ee92000e}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+DEBUG\+\_\+\+PRINT}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 debug\+\_\+print 函数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga1bb8090d157b468f89aada3e2e11564a}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+RECEIVE\+\_\+\+CALLBACK}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 receive\+\_\+callback 函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+dw1000 link driver modules 
+
+
+
+\label{doc-define-members}
+\Hypertarget{group__dw1000__link__driver_doc-define-members}
+\doxysubsection{宏定义说明}
+\Hypertarget{group__dw1000__link__driver_ga450d304f275f858c0910a363ee92000e}\index{dw1000 link driver function@{dw1000 link driver function}!DRIVER\_DW1000\_LINK\_DEBUG\_PRINT@{DRIVER\_DW1000\_LINK\_DEBUG\_PRINT}}
+\index{DRIVER\_DW1000\_LINK\_DEBUG\_PRINT@{DRIVER\_DW1000\_LINK\_DEBUG\_PRINT}!dw1000 link driver function@{dw1000 link driver function}}
+\doxysubsubsection{\texorpdfstring{DRIVER\_DW1000\_LINK\_DEBUG\_PRINT}{DRIVER\_DW1000\_LINK\_DEBUG\_PRINT}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{group__dw1000__link__driver_ga450d304f275f858c0910a363ee92000e} 
+\#define DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+DEBUG\+\_\+\+PRINT(\begin{DoxyParamCaption}\item[{}]{HANDLE}{, }\item[{}]{FUC}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(HANDLE)-\/>debug\_print\ =\ FUC}
+
+\end{DoxyCode}
+
+
+链接 debug\+\_\+print 函数 
+
+
+\begin{DoxyParams}{参数}
+{\em HANDLE} & 指向 \doxylink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体的指针 \\
+\hline
+{\em FUC} & 指向 debug\+\_\+print 函数地址 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+无 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00257}{257}} 行定义.
+
+\Hypertarget{group__dw1000__link__driver_ga450d304f275f858c0910a363ee92000e}\index{dw1000 link driver function@{dw1000 link driver function}!DRIVER\_DW1000\_LINK\_DEBUG\_PRINT@{DRIVER\_DW1000\_LINK\_DEBUG\_PRINT}}
+\index{DRIVER\_DW1000\_LINK\_DEBUG\_PRINT@{DRIVER\_DW1000\_LINK\_DEBUG\_PRINT}!dw1000 link driver function@{dw1000 link driver function}}
+\doxysubsubsection{\texorpdfstring{DRIVER\_DW1000\_LINK\_DEBUG\_PRINT}{DRIVER\_DW1000\_LINK\_DEBUG\_PRINT}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{group__dw1000__link__driver_ga450d304f275f858c0910a363ee92000e} 
+\#define DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+DEBUG\+\_\+\+PRINT(\begin{DoxyParamCaption}\item[{}]{HANDLE}{, }\item[{}]{FUC}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(HANDLE)-\/>debug\_print\ =\ FUC}
+
+\end{DoxyCode}
+
+
+链接 debug\+\_\+print 函数 
+
+
+\begin{DoxyParams}{参数}
+{\em HANDLE} & 指向 \doxylink{driver__dw1000_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体的指针 \\
+\hline
+{\em FUC} & 指向 debug\+\_\+print 函数地址 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+无 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8h_source}{driver\+\_\+dw1000.\+h}} 第 \mbox{\hyperlink{driver__dw1000_8h_source_l00274}{274}} 行定义.
+
+\Hypertarget{group__dw1000__link__driver_ga42523356ff5da80ae1fb24feb4bd4ed4}\index{dw1000 link driver function@{dw1000 link driver function}!DRIVER\_DW1000\_LINK\_DELAY\_MS@{DRIVER\_DW1000\_LINK\_DELAY\_MS}}
+\index{DRIVER\_DW1000\_LINK\_DELAY\_MS@{DRIVER\_DW1000\_LINK\_DELAY\_MS}!dw1000 link driver function@{dw1000 link driver function}}
+\doxysubsubsection{\texorpdfstring{DRIVER\_DW1000\_LINK\_DELAY\_MS}{DRIVER\_DW1000\_LINK\_DELAY\_MS}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{group__dw1000__link__driver_ga42523356ff5da80ae1fb24feb4bd4ed4} 
+\#define DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+DELAY\+\_\+\+MS(\begin{DoxyParamCaption}\item[{}]{HANDLE}{, }\item[{}]{FUC}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(HANDLE)-\/>delay\_ms\ =\ FUC}
+
+\end{DoxyCode}
+
+
+链接 delay\+\_\+ms 函数 
+
+
+\begin{DoxyParams}{参数}
+{\em HANDLE} & 指向 \doxylink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体的指针 \\
+\hline
+{\em FUC} & 指向 delay\+\_\+ms 函数地址 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+无 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00249}{249}} 行定义.
+
+\Hypertarget{group__dw1000__link__driver_ga42523356ff5da80ae1fb24feb4bd4ed4}\index{dw1000 link driver function@{dw1000 link driver function}!DRIVER\_DW1000\_LINK\_DELAY\_MS@{DRIVER\_DW1000\_LINK\_DELAY\_MS}}
+\index{DRIVER\_DW1000\_LINK\_DELAY\_MS@{DRIVER\_DW1000\_LINK\_DELAY\_MS}!dw1000 link driver function@{dw1000 link driver function}}
+\doxysubsubsection{\texorpdfstring{DRIVER\_DW1000\_LINK\_DELAY\_MS}{DRIVER\_DW1000\_LINK\_DELAY\_MS}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{group__dw1000__link__driver_ga42523356ff5da80ae1fb24feb4bd4ed4} 
+\#define DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+DELAY\+\_\+\+MS(\begin{DoxyParamCaption}\item[{}]{HANDLE}{, }\item[{}]{FUC}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(HANDLE)-\/>delay\_ms\ =\ FUC}
+
+\end{DoxyCode}
+
+
+链接 delay\+\_\+ms 函数 
+
+
+\begin{DoxyParams}{参数}
+{\em HANDLE} & 指向 \doxylink{driver__dw1000_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体的指针 \\
+\hline
+{\em FUC} & 指向 delay\+\_\+ms 函数地址 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+无 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8h_source}{driver\+\_\+dw1000.\+h}} 第 \mbox{\hyperlink{driver__dw1000_8h_source_l00266}{266}} 行定义.
+
+\Hypertarget{group__dw1000__link__driver_ga1ccb6b5cfe80b62c177816d5572bae0d}\index{dw1000 link driver function@{dw1000 link driver function}!DRIVER\_DW1000\_LINK\_INIT@{DRIVER\_DW1000\_LINK\_INIT}}
+\index{DRIVER\_DW1000\_LINK\_INIT@{DRIVER\_DW1000\_LINK\_INIT}!dw1000 link driver function@{dw1000 link driver function}}
+\doxysubsubsection{\texorpdfstring{DRIVER\_DW1000\_LINK\_INIT}{DRIVER\_DW1000\_LINK\_INIT}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{group__dw1000__link__driver_ga1ccb6b5cfe80b62c177816d5572bae0d} 
+\#define DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+INIT(\begin{DoxyParamCaption}\item[{}]{HANDLE}{, }\item[{}]{STRUCTURE}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{memset(HANDLE,\ 0,\ \textcolor{keyword}{sizeof}(STRUCTURE))}
+
+\end{DoxyCode}
+
+
+初始化 \doxylink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体 
+
+
+\begin{DoxyParams}{参数}
+{\em HANDLE} & 指向 \doxylink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体的指针 \\
+\hline
+{\em STRUCTURE} & \doxylink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+无 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00208}{208}} 行定义.
+
+\Hypertarget{group__dw1000__link__driver_ga1ccb6b5cfe80b62c177816d5572bae0d}\index{dw1000 link driver function@{dw1000 link driver function}!DRIVER\_DW1000\_LINK\_INIT@{DRIVER\_DW1000\_LINK\_INIT}}
+\index{DRIVER\_DW1000\_LINK\_INIT@{DRIVER\_DW1000\_LINK\_INIT}!dw1000 link driver function@{dw1000 link driver function}}
+\doxysubsubsection{\texorpdfstring{DRIVER\_DW1000\_LINK\_INIT}{DRIVER\_DW1000\_LINK\_INIT}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{group__dw1000__link__driver_ga1ccb6b5cfe80b62c177816d5572bae0d} 
+\#define DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+INIT(\begin{DoxyParamCaption}\item[{}]{HANDLE}{, }\item[{}]{STRUCTURE}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{memset(HANDLE,\ 0,\ \textcolor{keyword}{sizeof}(STRUCTURE))}
+
+\end{DoxyCode}
+
+
+初始化 \doxylink{driver__dw1000_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体 
+
+
+\begin{DoxyParams}{参数}
+{\em HANDLE} & 指向 \doxylink{driver__dw1000_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体的指针 \\
+\hline
+{\em STRUCTURE} & \doxylink{driver__dw1000_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+无 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8h_source}{driver\+\_\+dw1000.\+h}} 第 \mbox{\hyperlink{driver__dw1000_8h_source_l00225}{225}} 行定义.
+
+\Hypertarget{group__dw1000__link__driver_ga1bb8090d157b468f89aada3e2e11564a}\index{dw1000 link driver function@{dw1000 link driver function}!DRIVER\_DW1000\_LINK\_RECEIVE\_CALLBACK@{DRIVER\_DW1000\_LINK\_RECEIVE\_CALLBACK}}
+\index{DRIVER\_DW1000\_LINK\_RECEIVE\_CALLBACK@{DRIVER\_DW1000\_LINK\_RECEIVE\_CALLBACK}!dw1000 link driver function@{dw1000 link driver function}}
+\doxysubsubsection{\texorpdfstring{DRIVER\_DW1000\_LINK\_RECEIVE\_CALLBACK}{DRIVER\_DW1000\_LINK\_RECEIVE\_CALLBACK}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{group__dw1000__link__driver_ga1bb8090d157b468f89aada3e2e11564a} 
+\#define DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+RECEIVE\+\_\+\+CALLBACK(\begin{DoxyParamCaption}\item[{}]{HANDLE}{, }\item[{}]{FUC}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(HANDLE)-\/>receive\_callback\ =\ FUC}
+
+\end{DoxyCode}
+
+
+链接 receive\+\_\+callback 函数 
+
+
+\begin{DoxyParams}{参数}
+{\em HANDLE} & 指向 \doxylink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体的指针 \\
+\hline
+{\em FUC} & 指向 receive\+\_\+callback 函数地址 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+无 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00265}{265}} 行定义.
+
+\Hypertarget{group__dw1000__link__driver_ga1bb8090d157b468f89aada3e2e11564a}\index{dw1000 link driver function@{dw1000 link driver function}!DRIVER\_DW1000\_LINK\_RECEIVE\_CALLBACK@{DRIVER\_DW1000\_LINK\_RECEIVE\_CALLBACK}}
+\index{DRIVER\_DW1000\_LINK\_RECEIVE\_CALLBACK@{DRIVER\_DW1000\_LINK\_RECEIVE\_CALLBACK}!dw1000 link driver function@{dw1000 link driver function}}
+\doxysubsubsection{\texorpdfstring{DRIVER\_DW1000\_LINK\_RECEIVE\_CALLBACK}{DRIVER\_DW1000\_LINK\_RECEIVE\_CALLBACK}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{group__dw1000__link__driver_ga1bb8090d157b468f89aada3e2e11564a} 
+\#define DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+RECEIVE\+\_\+\+CALLBACK(\begin{DoxyParamCaption}\item[{}]{HANDLE}{, }\item[{}]{FUC}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(HANDLE)-\/>receive\_callback\ =\ FUC}
+
+\end{DoxyCode}
+
+
+链接 receive\+\_\+callback 函数 
+
+
+\begin{DoxyParams}{参数}
+{\em HANDLE} & 指向 \doxylink{driver__dw1000_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体的指针 \\
+\hline
+{\em FUC} & 指向 receive\+\_\+callback 函数地址 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+无 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8h_source}{driver\+\_\+dw1000.\+h}} 第 \mbox{\hyperlink{driver__dw1000_8h_source_l00282}{282}} 行定义.
+
+\Hypertarget{group__dw1000__link__driver_ga11e0d3df1bc80410c47afec0c608ea70}\index{dw1000 link driver function@{dw1000 link driver function}!DRIVER\_DW1000\_LINK\_SPI\_DEINIT@{DRIVER\_DW1000\_LINK\_SPI\_DEINIT}}
+\index{DRIVER\_DW1000\_LINK\_SPI\_DEINIT@{DRIVER\_DW1000\_LINK\_SPI\_DEINIT}!dw1000 link driver function@{dw1000 link driver function}}
+\doxysubsubsection{\texorpdfstring{DRIVER\_DW1000\_LINK\_SPI\_DEINIT}{DRIVER\_DW1000\_LINK\_SPI\_DEINIT}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{group__dw1000__link__driver_ga11e0d3df1bc80410c47afec0c608ea70} 
+\#define DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+DEINIT(\begin{DoxyParamCaption}\item[{}]{HANDLE}{, }\item[{}]{FUC}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(HANDLE)-\/>spi\_deinit\ =\ FUC}
+
+\end{DoxyCode}
+
+
+链接 spi\+\_\+deinit 函数 
+
+
+\begin{DoxyParams}{参数}
+{\em HANDLE} & 指向 \doxylink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体的指针 \\
+\hline
+{\em FUC} & 指向 spi\+\_\+deinit 函数地址 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+无 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00225}{225}} 行定义.
+
+\Hypertarget{group__dw1000__link__driver_ga11e0d3df1bc80410c47afec0c608ea70}\index{dw1000 link driver function@{dw1000 link driver function}!DRIVER\_DW1000\_LINK\_SPI\_DEINIT@{DRIVER\_DW1000\_LINK\_SPI\_DEINIT}}
+\index{DRIVER\_DW1000\_LINK\_SPI\_DEINIT@{DRIVER\_DW1000\_LINK\_SPI\_DEINIT}!dw1000 link driver function@{dw1000 link driver function}}
+\doxysubsubsection{\texorpdfstring{DRIVER\_DW1000\_LINK\_SPI\_DEINIT}{DRIVER\_DW1000\_LINK\_SPI\_DEINIT}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{group__dw1000__link__driver_ga11e0d3df1bc80410c47afec0c608ea70} 
+\#define DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+DEINIT(\begin{DoxyParamCaption}\item[{}]{HANDLE}{, }\item[{}]{FUC}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(HANDLE)-\/>spi\_deinit\ =\ FUC}
+
+\end{DoxyCode}
+
+
+链接 spi\+\_\+deinit 函数 
+
+
+\begin{DoxyParams}{参数}
+{\em HANDLE} & 指向 \doxylink{driver__dw1000_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体的指针 \\
+\hline
+{\em FUC} & 指向 spi\+\_\+deinit 函数地址 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+无 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8h_source}{driver\+\_\+dw1000.\+h}} 第 \mbox{\hyperlink{driver__dw1000_8h_source_l00242}{242}} 行定义.
+
+\Hypertarget{group__dw1000__link__driver_ga5987d4731ac124a9e0644870f41bfc08}\index{dw1000 link driver function@{dw1000 link driver function}!DRIVER\_DW1000\_LINK\_SPI\_INIT@{DRIVER\_DW1000\_LINK\_SPI\_INIT}}
+\index{DRIVER\_DW1000\_LINK\_SPI\_INIT@{DRIVER\_DW1000\_LINK\_SPI\_INIT}!dw1000 link driver function@{dw1000 link driver function}}
+\doxysubsubsection{\texorpdfstring{DRIVER\_DW1000\_LINK\_SPI\_INIT}{DRIVER\_DW1000\_LINK\_SPI\_INIT}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{group__dw1000__link__driver_ga5987d4731ac124a9e0644870f41bfc08} 
+\#define DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+INIT(\begin{DoxyParamCaption}\item[{}]{HANDLE}{, }\item[{}]{FUC}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(HANDLE)-\/>spi\_init\ =\ FUC}
+
+\end{DoxyCode}
+
+
+链接 spi\+\_\+init 函数 
+
+
+\begin{DoxyParams}{参数}
+{\em HANDLE} & 指向 \doxylink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体的指针 \\
+\hline
+{\em FUC} & 指向 spi\+\_\+init 函数地址 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+无 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00216}{216}} 行定义.
+
+\Hypertarget{group__dw1000__link__driver_ga5987d4731ac124a9e0644870f41bfc08}\index{dw1000 link driver function@{dw1000 link driver function}!DRIVER\_DW1000\_LINK\_SPI\_INIT@{DRIVER\_DW1000\_LINK\_SPI\_INIT}}
+\index{DRIVER\_DW1000\_LINK\_SPI\_INIT@{DRIVER\_DW1000\_LINK\_SPI\_INIT}!dw1000 link driver function@{dw1000 link driver function}}
+\doxysubsubsection{\texorpdfstring{DRIVER\_DW1000\_LINK\_SPI\_INIT}{DRIVER\_DW1000\_LINK\_SPI\_INIT}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{group__dw1000__link__driver_ga5987d4731ac124a9e0644870f41bfc08} 
+\#define DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+INIT(\begin{DoxyParamCaption}\item[{}]{HANDLE}{, }\item[{}]{FUC}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(HANDLE)-\/>spi\_init\ =\ FUC}
+
+\end{DoxyCode}
+
+
+链接 spi\+\_\+init 函数 
+
+
+\begin{DoxyParams}{参数}
+{\em HANDLE} & 指向 \doxylink{driver__dw1000_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体的指针 \\
+\hline
+{\em FUC} & 指向 spi\+\_\+init 函数地址 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+无 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8h_source}{driver\+\_\+dw1000.\+h}} 第 \mbox{\hyperlink{driver__dw1000_8h_source_l00233}{233}} 行定义.
+
+\Hypertarget{group__dw1000__link__driver_gad6345a3bb9ef86ed392fb502e9c65c82}\index{dw1000 link driver function@{dw1000 link driver function}!DRIVER\_DW1000\_LINK\_SPI\_READ@{DRIVER\_DW1000\_LINK\_SPI\_READ}}
+\index{DRIVER\_DW1000\_LINK\_SPI\_READ@{DRIVER\_DW1000\_LINK\_SPI\_READ}!dw1000 link driver function@{dw1000 link driver function}}
+\doxysubsubsection{\texorpdfstring{DRIVER\_DW1000\_LINK\_SPI\_READ}{DRIVER\_DW1000\_LINK\_SPI\_READ}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{group__dw1000__link__driver_gad6345a3bb9ef86ed392fb502e9c65c82} 
+\#define DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+READ(\begin{DoxyParamCaption}\item[{}]{HANDLE}{, }\item[{}]{FUC}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(HANDLE)-\/>spi\_read\ =\ FUC}
+
+\end{DoxyCode}
+
+
+链接 spi\+\_\+read 函数 
+
+
+\begin{DoxyParams}{参数}
+{\em HANDLE} & 指向 \doxylink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体的指针 \\
+\hline
+{\em FUC} & 指向 spi\+\_\+read 函数地址 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+无 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00233}{233}} 行定义.
+
+\Hypertarget{group__dw1000__link__driver_gad6345a3bb9ef86ed392fb502e9c65c82}\index{dw1000 link driver function@{dw1000 link driver function}!DRIVER\_DW1000\_LINK\_SPI\_READ@{DRIVER\_DW1000\_LINK\_SPI\_READ}}
+\index{DRIVER\_DW1000\_LINK\_SPI\_READ@{DRIVER\_DW1000\_LINK\_SPI\_READ}!dw1000 link driver function@{dw1000 link driver function}}
+\doxysubsubsection{\texorpdfstring{DRIVER\_DW1000\_LINK\_SPI\_READ}{DRIVER\_DW1000\_LINK\_SPI\_READ}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{group__dw1000__link__driver_gad6345a3bb9ef86ed392fb502e9c65c82} 
+\#define DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+READ(\begin{DoxyParamCaption}\item[{}]{HANDLE}{, }\item[{}]{FUC}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(HANDLE)-\/>spi\_read\ =\ FUC}
+
+\end{DoxyCode}
+
+
+链接 spi\+\_\+read 函数 
+
+
+\begin{DoxyParams}{参数}
+{\em HANDLE} & 指向 \doxylink{driver__dw1000_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体的指针 \\
+\hline
+{\em FUC} & 指向 spi\+\_\+read 函数地址 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+无 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8h_source}{driver\+\_\+dw1000.\+h}} 第 \mbox{\hyperlink{driver__dw1000_8h_source_l00250}{250}} 行定义.
+
+\Hypertarget{group__dw1000__link__driver_ga526b24f41e54bff213315fa886134af7}\index{dw1000 link driver function@{dw1000 link driver function}!DRIVER\_DW1000\_LINK\_SPI\_WRITE@{DRIVER\_DW1000\_LINK\_SPI\_WRITE}}
+\index{DRIVER\_DW1000\_LINK\_SPI\_WRITE@{DRIVER\_DW1000\_LINK\_SPI\_WRITE}!dw1000 link driver function@{dw1000 link driver function}}
+\doxysubsubsection{\texorpdfstring{DRIVER\_DW1000\_LINK\_SPI\_WRITE}{DRIVER\_DW1000\_LINK\_SPI\_WRITE}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{group__dw1000__link__driver_ga526b24f41e54bff213315fa886134af7} 
+\#define DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+WRITE(\begin{DoxyParamCaption}\item[{}]{HANDLE}{, }\item[{}]{FUC}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(HANDLE)-\/>spi\_write\ =\ FUC}
+
+\end{DoxyCode}
+
+
+链接 spi\+\_\+write 函数 
+
+
+\begin{DoxyParams}{参数}
+{\em HANDLE} & 指向 \doxylink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体的指针 \\
+\hline
+{\em FUC} & 指向 spi\+\_\+write 函数地址 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+无 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00241}{241}} 行定义.
+
+\Hypertarget{group__dw1000__link__driver_ga526b24f41e54bff213315fa886134af7}\index{dw1000 link driver function@{dw1000 link driver function}!DRIVER\_DW1000\_LINK\_SPI\_WRITE@{DRIVER\_DW1000\_LINK\_SPI\_WRITE}}
+\index{DRIVER\_DW1000\_LINK\_SPI\_WRITE@{DRIVER\_DW1000\_LINK\_SPI\_WRITE}!dw1000 link driver function@{dw1000 link driver function}}
+\doxysubsubsection{\texorpdfstring{DRIVER\_DW1000\_LINK\_SPI\_WRITE}{DRIVER\_DW1000\_LINK\_SPI\_WRITE}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{group__dw1000__link__driver_ga526b24f41e54bff213315fa886134af7} 
+\#define DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+WRITE(\begin{DoxyParamCaption}\item[{}]{HANDLE}{, }\item[{}]{FUC}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(HANDLE)-\/>spi\_write\ =\ FUC}
+
+\end{DoxyCode}
+
+
+链接 spi\+\_\+write 函数 
+
+
+\begin{DoxyParams}{参数}
+{\em HANDLE} & 指向 \doxylink{driver__dw1000_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体的指针 \\
+\hline
+{\em FUC} & 指向 spi\+\_\+write 函数地址 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+无 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8h_source}{driver\+\_\+dw1000.\+h}} 第 \mbox{\hyperlink{driver__dw1000_8h_source_l00258}{258}} 行定义.
+

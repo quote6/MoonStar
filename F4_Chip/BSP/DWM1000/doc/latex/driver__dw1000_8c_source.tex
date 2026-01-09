@@ -1,0 +1,444 @@
+\doxysection{driver\+\_\+dw1000.\+c}
+\hypertarget{driver__dw1000_8c_source}{}\label{driver__dw1000_8c_source}\index{src/driver\_dw1000.c@{src/driver\_dw1000.c}}
+\mbox{\hyperlink{driver__dw1000_8c}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00013}00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{driver__dw1000_8h}{driver\_dw1000.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00019}\mbox{\hyperlink{driver__dw1000_8c_adc9da0a24824ca1239b593f6459b3954}{00019}}\ \textcolor{preprocessor}{\#define\ CHIP\_NAME\ \ \ \ \ \ \ \ \ \ "{}Qorvo\ DW1000"{}\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00020}\mbox{\hyperlink{driver__dw1000_8c_aaa2b8f5b105c3019df0cb346f472e803}{00020}}\ \textcolor{preprocessor}{\#define\ MANUFACTURER\_NAME\ \ "{}Qorvo"{}\ \ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00021}\mbox{\hyperlink{driver__dw1000_8c_aac8d8cbd899667d609787ef4cf37054d}{00021}}\ \textcolor{preprocessor}{\#define\ SUPPLY\_VOLTAGE\_MIN\ 2.0f\ \ \ \ \ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00022}\mbox{\hyperlink{driver__dw1000_8c_a68eba8b601afe11f1b871d944976c035}{00022}}\ \textcolor{preprocessor}{\#define\ SUPPLY\_VOLTAGE\_MAX\ 3.6f\ \ \ \ \ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00023}\mbox{\hyperlink{driver__dw1000_8c_a2989837a37d6d63b59c6dd541b785435}{00023}}\ \textcolor{preprocessor}{\#define\ MAX\_CURRENT\ \ \ \ \ \ \ \ 0.145f\ \ \ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00024}\mbox{\hyperlink{driver__dw1000_8c_aab353db5bf4eb787f86a2080f609a551}{00024}}\ \textcolor{preprocessor}{\#define\ TEMPERATURE\_MIN\ \ \ \ -\/40.0f\ \ \ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00025}\mbox{\hyperlink{driver__dw1000_8c_a90c0b20d54005712fcc8cb01281360e9}{00025}}\ \textcolor{preprocessor}{\#define\ TEMPERATURE\_MAX\ \ \ \ 85.0f\ \ \ \ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00026}\mbox{\hyperlink{driver__dw1000_8c_ae578001fe043b4cca7a0edd801cfe9c4}{00026}}\ \textcolor{preprocessor}{\#define\ DRIVER\_VERSION\ \ \ \ \ 1000}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00028}00028\ \textcolor{comment}{/*\ 给寄存器地址添加读/写命令\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00029}00029\ \textcolor{comment}{//\ \#define\ DW1000\_SPI\_CMD\_READ(addr)\ \ DW1000\_CLEAR\_BITS(addr,\ DW1000\_SPI\_CMD\_MASK)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00030}\mbox{\hyperlink{driver__dw1000_8c_ae8c7ddc527bd386e1efe13f18609b923}{00030}}\ \textcolor{preprocessor}{\#define\ DW1000\_SPI\_CMD\_READ(addr)\ \ (addr\ \&\ 0x7F)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00031}00031\ \textcolor{comment}{//\ \#define\ DW1000\_SPI\_CMD\_WRITE(addr)\ DW1000\_SET\_BITS(addr,\ DW1000\_SPI\_CMD\_MASK)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00032}\mbox{\hyperlink{driver__dw1000_8c_a0f7396a6027116ff302af85699508538}{00032}}\ \textcolor{preprocessor}{\#define\ DW1000\_SPI\_CMD\_WRITE(addr)\ (addr\ |\ 0x80)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00034}00034\ \textcolor{comment}{/*\ 给寄存器地址添加是否存在子地址标志\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00035}00035\ \textcolor{comment}{//\ \#define\ DW1000\_SPI\_NOT\_SUB\_ADDR(addr)\ DW1000\_CLEAR\_BITS(addr,\ DW1000\_SPI\_SUB\_ADDR\_MASK)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00036}\mbox{\hyperlink{driver__dw1000_8c_aa4b66d30a0e11337bfb137462d574da7}{00036}}\ \textcolor{preprocessor}{\#define\ DW1000\_SPI\_NOT\_SUB\_ADDR(addr)\ (addr\ \&\ 0xBF)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00037}00037\ \textcolor{comment}{//\ \#define\ DW1000\_SPI\_HAS\_SUB\_ADDR(addr)\ DW1000\_SET\_BITS(addr,\ DW1000\_SPI\_SUB\_ADDR\_MASK)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00038}\mbox{\hyperlink{driver__dw1000_8c_a100ec6b2fca0b81ab554a3e90c6c9161}{00038}}\ \textcolor{preprocessor}{\#define\ DW1000\_SPI\_HAS\_SUB\_ADDR(addr)\ (addr\ |\ 0x40)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00041}00041\ \textcolor{comment}{/*\ 给子地址添加是否为扩展子地址标志\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00042}00042\ \textcolor{comment}{//\ \#define\ DW1000\_SPI\_NOT\_EXT\_SUB\_ADDR(sa)\ DW1000\_CLEAR\_BITS(sa,\ DW1000\_SPI\_EXT\_SUB\_ADDR\_MASK)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00043}\mbox{\hyperlink{driver__dw1000_8c_afcab1e0585cecdcddbc8957f6e3cdac3}{00043}}\ \textcolor{preprocessor}{\#define\ DW1000\_SPI\_NOT\_EXT\_SUB\_ADDR(sa)\ (sa\ \&\ 0x7F)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00044}00044\ \textcolor{comment}{//\ \#define\ DW1000\_SPI\_HAS\_EXT\_SUB\_ADDR(sa)\ DW1000\_SET\_BITS(sa,\ DW1000\_SPI\_EXT\_SUB\_ADDR\_MASK)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00045}\mbox{\hyperlink{driver__dw1000_8c_a8295ac5bbb8a77f8d79a0e1e650a479e}{00045}}\ \textcolor{preprocessor}{\#define\ DW1000\_SPI\_HAS\_EXT\_SUB\_ADDR(sa)\ (sa\ |\ 0x80)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00050}00050\ \textcolor{comment}{//\ /**}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00051}00051\ \textcolor{comment}{//\ \ *\ @brief\ dw1000\ spi\ 头部数据}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00052}00052\ \textcolor{comment}{//\ \ *\ @note\ \ 对于dw1000通信来说，相比于一般的spi设备较为复杂。}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00053}00053\ \textcolor{comment}{//\ \ *\ \ \ \ \ \ \ \ 对于一次spi通信，需要先发送一帧头部数据（包含寄存器地址），}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00054}00054\ \textcolor{comment}{//\ \ *\ \ \ \ \ \ \ \ 然后才开始发送（接收）相应的数据}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00055}00055\ \textcolor{comment}{//\ \ *\ @note\ \ 头部数据最长为3个字节。}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00056}00056\ \textcolor{comment}{//\ \ *\ \ \ \ \ \ \ \ 第一个字节为命令。}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00057}00057\ \textcolor{comment}{//\ \ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ bit[7]:读/写，0-\/读，1-\/写；bit[6]:子地址，0-\/无子地址，1-\/有子地址；bit[5:0]:寄存器地址}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00058}00058\ \textcolor{comment}{//\ \ *\ \ \ \ \ \ \ \ 第二个字节为子地址的低7位（如果存在，即命令字节的bit[6]为1）。}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00059}00059\ \textcolor{comment}{//\ \ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ bit[7]:\ 扩展子地址，0-\/子地址长度为1字节，1-\/子地址长度为2字节；bit[6:0]\ 子地址值（如果长度为2字节，该处为子地址的低7位）}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00060}00060\ \textcolor{comment}{//\ \ *\ \ \ \ \ \ \ \ 第三个字节为子地址的高7位（如果存在，即第二个字节的bit[7]为1）。\ }}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00061}00061\ \textcolor{comment}{//\ \ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ bit[7:0]：为子地址的bit[14:7]的数据}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00062}00062\ \textcolor{comment}{//\ \ *\ @warning\ 这里定义的局部数组都是临界资源，在多线程情况下需要进行保护！！！}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00063}00063\ \textcolor{comment}{//\ \ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00064}00064\ \textcolor{comment}{//\ static\ uint8\_t\ dw1000\_spi\_header[3];}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00065}00065\ \textcolor{comment}{//\ /*\ 用于表示本次spi通信头部数据长度\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00066}00066\ \textcolor{comment}{//\ static\ uint8\_t\ dw1000\_spi\_hdr\_len;}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00067}00067\ \textcolor{comment}{//\ /**}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00068}00068\ \textcolor{comment}{//\ \ *\ @brief\ dw1000\ spi\ 数据}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00069}00069\ \textcolor{comment}{//\ \ *\ @note\ \ 在一般的寄存器配置过程中，通常数据长度最大4个字节，这里为了方便配置预先分配该长度的数组}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00070}00070\ \textcolor{comment}{//\ \ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00071}00071\ \textcolor{comment}{//\ static\ uint8\_t\ dw1000\_spi\_data[4];}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00072}00072\ \textcolor{comment}{//\ /*\ 用于表示本次spi通信数据长度\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00073}00073\ \textcolor{comment}{//\ static\ uint8\_t\ dw1000\_spi\_data\_len;}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00087}\mbox{\hyperlink{driver__dw1000_8c_acc4c72e4c5ca663ffc3cfbfb94cba88b}{00087}}\ \textcolor{keyword}{static}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_acc4c72e4c5ca663ffc3cfbfb94cba88b}{a\_dw1000\_spi\_read}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,\ uint8\_t\ reg,\ uint16\_t\ offset,\ uint8\_t*\ buf,\ uint16\_t\ len)\ \{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00088}00088\ \textcolor{preprocessor}{\ \ \ \ \#if\ (DRIVER\_DW1000\_PARAM\_CHECK\ ==\ 1)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00089}00089\ \ \ \ \ \ \ \ \ assert(reg\ <=\ 0x3F);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00090}00090\ \ \ \ \ \ \ \ \ assert(handle\ !=\ NULL);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00091}00091\ \ \ \ \ \ \ \ \ assert(handle-\/>\mbox{\hyperlink{structdw1000__handle__s_a72d44bd587e75a560e7f11668bb1571e}{spi\_read}}\ !=\ NULL);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00092}00092\ \ \ \ \ \ \ \ \ assert(buf\ !=\ NULL);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00093}00093\ \ \ \ \ \ \ \ \ assert(len\ !=\ 0);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00094}00094\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00095}00095\ \ \ \ \ \textcolor{comment}{/*\ 对输入参数进行检查（这里定义为静态不给外界调用，所以默认调用是正确的，也就省略输入参数检查）\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00096}00096\ \ \ \ \ \textcolor{comment}{//\ if\ (handle\ ==\ NULL\ ||\ handle-\/>spi\_read\ ==\ NULL\ ||\ buf\ ==\ NULL\ ||\ len\ ==\ 0)\ \{}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00097}00097\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ return\ 1;}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00098}00098\ \ \ \ \ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00099}00099\ \ \ \ \ \textcolor{comment}{/*\ 定义头部数组\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00100}00100\ \ \ \ \ uint8\_t\ dw1000\_spi\_header[3];}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00101}00101\ \ \ \ \ \textcolor{comment}{/*\ 定义头部数组长度\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00102}00102\ \ \ \ \ uint8\_t\ dw1000\_spi\_hdr\_len;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00103}00103\ \ \ \ \ \textcolor{comment}{/*\ 如果偏移为0，即只有寄存器地址，头部字段长度为1字节\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00104}00104\ \ \ \ \ \textcolor{keywordflow}{if}(offset\ ==\ 0)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00105}00105\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 设置本次spi为读操作且无子地址\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ dw1000\_spi\_header[0]\ =\ DW1000\_SPI\_NOT\_SUB\_ADDR(DW1000\_SPI\_CMD\_READ(reg));}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00107}00107\ \ \ \ \ \ \ \ \ dw1000\_spi\_header[0]\ =\ reg;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00108}00108\ \ \ \ \ \ \ \ \ dw1000\_spi\_hdr\_len\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00109}00109\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00110}00110\ \ \ \ \ \textcolor{comment}{/*\ 如果偏移不超过127，也就是用7bit可以表示时，说明不需要扩展子地址\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00111}00111\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(offset\ <=\ 0x7F)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 设置本次spi为读操作且有子地址，但无扩展子地址\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ dw1000\_spi\_header[0]\ =\ DW1000\_SPI\_HAS\_SUB\_ADDR(DW1000\_SPI\_CMD\_READ(reg));}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00114}00114\ \ \ \ \ \ \ \ \ dw1000\_spi\_header[0]\ =\ \mbox{\hyperlink{driver__dw1000_8c_a100ec6b2fca0b81ab554a3e90c6c9161}{DW1000\_SPI\_HAS\_SUB\_ADDR}}(reg);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ dw1000\_spi\_header[1]\ =\ DW1000\_SPI\_NOT\_EXT\_SUB\_ADDR(offset);}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00116}00116\ \ \ \ \ \ \ \ \ dw1000\_spi\_header[1]\ =\ offset;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00117}00117\ \ \ \ \ \ \ \ \ dw1000\_spi\_hdr\_len\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00118}00118\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00119}00119\ \ \ \ \ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 设置本次spi为读操作且有子地址，且有扩展子地址\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ dw1000\_spi\_header[0]\ =\ DW1000\_SPI\_HAS\_SUB\_ADDR(DW1000\_SPI\_CMD\_READ(reg));}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00122}00122\ \ \ \ \ \ \ \ \ dw1000\_spi\_header[0]\ =\ \mbox{\hyperlink{driver__dw1000_8c_a100ec6b2fca0b81ab554a3e90c6c9161}{DW1000\_SPI\_HAS\_SUB\_ADDR}}(reg);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00123}00123\ \ \ \ \ \ \ \ \ dw1000\_spi\_header[1]\ =\ \mbox{\hyperlink{driver__dw1000_8c_a8295ac5bbb8a77f8d79a0e1e650a479e}{DW1000\_SPI\_HAS\_EXT\_SUB\_ADDR}}(offset);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00124}00124\ \ \ \ \ \ \ \ \ dw1000\_spi\_header[2]\ =\ (offset\ >>\ 7);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00125}00125\ \ \ \ \ \ \ \ \ dw1000\_spi\_hdr\_len\ =\ 3;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00126}00126\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00127}00127\ \ \ \ \ \textcolor{keywordflow}{return}\ handle-\/>\mbox{\hyperlink{structdw1000__handle__s_a72d44bd587e75a560e7f11668bb1571e}{spi\_read}}(dw1000\_spi\_header,\ dw1000\_spi\_hdr\_len,\ buf,\ len);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00128}00128\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00130}\mbox{\hyperlink{driver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea}{00130}}\ \textcolor{keyword}{static}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea}{a\_dw1000\_spi\_write}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,\ uint8\_t\ reg,\ uint16\_t\ offset,\ uint8\_t*\ buf,\ uint16\_t\ len)\ \{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00131}00131\ \textcolor{preprocessor}{\ \ \ \ \#if\ (DRIVER\_DW1000\_PARAM\_CHECK\ ==\ 1)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00132}00132\ \ \ \ \ \ \ \ \ assert(reg\ <=\ 0x3F);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00133}00133\ \ \ \ \ \ \ \ \ assert(handle\ !=\ NULL);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00134}00134\ \ \ \ \ \ \ \ \ assert(handle-\/>\mbox{\hyperlink{structdw1000__handle__s_a84dfad02fbb955598bf9f0128deeb09d}{spi\_write}}\ !=\ NULL);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00135}00135\ \ \ \ \ \ \ \ \ assert(buf\ !=\ NULL);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00136}00136\ \ \ \ \ \ \ \ \ assert(len\ !=\ 0);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00137}00137\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00138}00138\ \ \ \ \ \textcolor{comment}{/*\ 对输入参数进行检查（这里定义为静态不给外界调用，所以默认调用是正确的，也就省略输入参数检查）\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00139}00139\ \ \ \ \ \textcolor{comment}{//\ if\ (handle\ ==\ NULL\ ||\ handle-\/>spi\_write\ ==\ NULL\ ||\ buf\ ==\ NULL\ ||\ len\ ==\ 0)\ \{}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00140}00140\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ return\ 1;}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00141}00141\ \ \ \ \ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00142}00142\ \ \ \ \ \textcolor{comment}{/*\ 定义头部数组\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00143}00143\ \ \ \ \ uint8\_t\ dw1000\_spi\_header[3];}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00144}00144\ \ \ \ \ \textcolor{comment}{/*\ 定义头部数组长度\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00145}00145\ \ \ \ \ uint8\_t\ dw1000\_spi\_hdr\_len;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00146}00146\ \ \ \ \ \textcolor{comment}{/*\ 如果偏移为0，即只有寄存器地址，头部字段长度为1字节\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00147}00147\ \ \ \ \ \textcolor{keywordflow}{if}(offset\ ==\ 0)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00148}00148\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 设置本次spi为写操作且无子地址\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ dw1000\_spi\_header[0]\ =\ DW1000\_SPI\_NOT\_SUB\_ADDR(DW1000\_SPI\_CMD\_WRITE(reg));}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00150}00150\ \ \ \ \ \ \ \ \ dw1000\_spi\_header[0]\ =\ \mbox{\hyperlink{driver__dw1000_8c_a0f7396a6027116ff302af85699508538}{DW1000\_SPI\_CMD\_WRITE}}(reg);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00151}00151\ \ \ \ \ \ \ \ \ dw1000\_spi\_hdr\_len\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00152}00152\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00153}00153\ \ \ \ \ \textcolor{comment}{/*\ 如果偏移不超过127，也就是用7bit可以表示时，说明不需要扩展子地址\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00154}00154\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(offset\ <=\ 0x7F)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 设置本次spi为写操作且有子地址，但无扩展子地址\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00156}00156\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ dw1000\_spi\_header[0]\ =\ DW1000\_SPI\_HAS\_SUB\_ADDR(DW1000\_SPI\_CMD\_WRITE(reg));}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00157}00157\ \ \ \ \ \ \ \ \ dw1000\_spi\_header[0]\ =\ \mbox{\hyperlink{driver__dw1000_8c_a100ec6b2fca0b81ab554a3e90c6c9161}{DW1000\_SPI\_HAS\_SUB\_ADDR}}(\mbox{\hyperlink{driver__dw1000_8c_a0f7396a6027116ff302af85699508538}{DW1000\_SPI\_CMD\_WRITE}}(reg));}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00158}00158\ \ \ \ \ \ \ \ \ dw1000\_spi\_header[1]\ =\ offset;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00159}00159\ \ \ \ \ \ \ \ \ dw1000\_spi\_hdr\_len\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00160}00160\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00161}00161\ \ \ \ \ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00162}00162\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 设置本次spi为写操作且有子地址，且有扩展子地址\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00163}00163\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ dw1000\_spi\_header[0]\ =\ DW1000\_SPI\_HAS\_SUB\_ADDR(DW1000\_SPI\_CMD\_WRITE(reg));}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00164}00164\ \ \ \ \ \ \ \ \ dw1000\_spi\_header[0]\ =\ \mbox{\hyperlink{driver__dw1000_8c_a100ec6b2fca0b81ab554a3e90c6c9161}{DW1000\_SPI\_HAS\_SUB\_ADDR}}(\mbox{\hyperlink{driver__dw1000_8c_a0f7396a6027116ff302af85699508538}{DW1000\_SPI\_CMD\_WRITE}}(reg));}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00165}00165\ \ \ \ \ \ \ \ \ dw1000\_spi\_header[1]\ =\ \mbox{\hyperlink{driver__dw1000_8c_a8295ac5bbb8a77f8d79a0e1e650a479e}{DW1000\_SPI\_HAS\_EXT\_SUB\_ADDR}}(offset);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00166}00166\ \ \ \ \ \ \ \ \ dw1000\_spi\_header[2]\ =\ (offset\ >>\ 7);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00167}00167\ \ \ \ \ \ \ \ \ dw1000\_spi\_hdr\_len\ =\ 3;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00168}00168\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00169}00169\ \ \ \ \ \textcolor{keywordflow}{return}\ handle-\/>\mbox{\hyperlink{structdw1000__handle__s_a84dfad02fbb955598bf9f0128deeb09d}{spi\_write}}(dw1000\_spi\_header,\ dw1000\_spi\_hdr\_len,\ buf,\ len);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00170}00170\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00172}\mbox{\hyperlink{driver__dw1000_8c_ada279978912bf3b025dcdc0e3589df3f}{00172}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_ada279978912bf3b025dcdc0e3589df3f}{\_dw1000\_clock\_cmd}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,uint8\_t\ clock\_cmd)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00173}00173\ \ \ \ \ uint16\_t\ reg\_value;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00174}00174\ \ \ \ \ \textcolor{comment}{/*\ 关于时钟设置只需要低16位数据，这里就读取这个寄存器的2个字节\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00175}00175\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{driver__dw1000_8c_acc4c72e4c5ca663ffc3cfbfb94cba88b}{a\_dw1000\_spi\_read}}(handle,\ \mbox{\hyperlink{driver__dw1000__reg_8h_a726ea3c5fdbc949b9bd0d63a6b57d4f5}{DW1000\_REG\_PMSC}},\ \mbox{\hyperlink{driver__dw1000__reg_8h_ab8e0a1f5a82e2d618e2ca27576cb5818}{DW1000\_SUB\_REG\_PMSC\_CTRL0\_OFFSET}},\ (uint8\_t*)\ \&reg\_value,\ \textcolor{keyword}{sizeof}(reg\_value)))\ \{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00176}00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00177}00177\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00178}00178\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00194}\mbox{\hyperlink{driver__dw1000_8c_aa81554fdb26f41003312c8514892dfea}{00194}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_aa81554fdb26f41003312c8514892dfea}{dw1000\_fine\_grain\_tx\_seq\_cmd}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,\ uint16\_t\ cmd)\ \{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00195}00195\ \ \ \ \ \textcolor{keywordflow}{if}(handle\ ==\ NULL)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00196}00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00197}00197\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00198}00198\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(handle-\/>\mbox{\hyperlink{structdw1000__handle__s_a19bedf28d2b9748f6a62d9ae93f4e68f}{inited}}\ !=\ 1)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00199}00199\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 3;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00200}00200\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00201}00201\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{driver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea}{a\_dw1000\_spi\_write}}(handle,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_a726ea3c5fdbc949b9bd0d63a6b57d4f5}{DW1000\_REG\_PMSC}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_a78aac39a149e776f9e89387d5ef2ee9f}{DW1000\_SUB\_REG\_PMSC\_TXFSEQ\_OFFSET}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&cmd,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(cmd));}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00206}00206\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00207}00207\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00222}\mbox{\hyperlink{driver__dw1000_8c_a831dc6bea19ab39d86caf13fc9106c56}{00222}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_a831dc6bea19ab39d86caf13fc9106c56}{dw1000\_lna\_pa\_mode\_set}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,\ uint32\_t\ mode)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00223}00223\ \ \ \ \ \textcolor{keywordflow}{if}(handle\ ==\ NULL)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00224}00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00225}00225\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00226}00226\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(handle-\/>\mbox{\hyperlink{structdw1000__handle__s_a19bedf28d2b9748f6a62d9ae93f4e68f}{inited}}\ !=\ 1)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00227}00227\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 3;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00228}00228\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00229}00229\ \ \ \ \ \textcolor{comment}{/*\ 先读取GPIO控制状态寄存器的子寄存器GPIO\ Mode的内容\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00230}00230\ \ \ \ \ uint32\_t\ gpio\_mode;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00231}00231\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{driver__dw1000_8c_acc4c72e4c5ca663ffc3cfbfb94cba88b}{a\_dw1000\_spi\_read}}(handle,\ \mbox{\hyperlink{driver__dw1000__reg_8h_a29a59aa26c257fd6ae0f971fdfb104f1}{DW1000\_REG\_GPIO\_CTRL}},\ \mbox{\hyperlink{driver__dw1000__reg_8h_adc1dceac198169f70f86975bef276436}{DW1000\_SUB\_REG\_GPIO\_MODE\_OFFSET}},\ (uint8\_t*)\ \&gpio\_mode,\ \textcolor{keyword}{sizeof}(gpio\_mode)))\ \{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00232}00232\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00233}00233\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00234}00234\ \ \ \ \ \textcolor{comment}{/*\ 将相应位清零\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00235}00235\ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_a16c32256e1c314f7d6d4954c205c3e12}{DW1000\_CLEAR\_BITS}}(gpio\_mode,\ \mbox{\hyperlink{driver__dw1000_01copy_8h_aba6a51259f6100c537743582bad9b410}{DW1000\_LNA\_PA\_MODE\_MASK}});}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00236}00236\ \ \ \ \ \textcolor{comment}{/*\ 根据\ mode\ 参数进行配置\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00237}00237\ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_aa793f23b99ae58564102fd204c4c37e4}{DW1000\_SET\_BITS}}(gpio\_mode,\ mode);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00238}00238\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{driver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea}{a\_dw1000\_spi\_write}}(handle,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_a29a59aa26c257fd6ae0f971fdfb104f1}{DW1000\_REG\_GPIO\_CTRL}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_adc1dceac198169f70f86975bef276436}{DW1000\_SUB\_REG\_GPIO\_MODE\_OFFSET}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint8\_t*)\ \&gpio\_mode,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(gpio\_mode));}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00243}00243\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00244}00244\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00255}\mbox{\hyperlink{driver__dw1000_8c_a88a75e1369161de51e86c2c88f3705d1}{00255}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_a88a75e1369161de51e86c2c88f3705d1}{dw1000\_gpio\_clock\_enable}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00256}00256\ \ \ \ \ \textcolor{keywordflow}{if}(handle\ ==\ NULL)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00257}00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00258}00258\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00259}00259\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(handle-\/>\mbox{\hyperlink{structdw1000__handle__s_a19bedf28d2b9748f6a62d9ae93f4e68f}{inited}}\ !=\ 1)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00260}00260\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 3;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00261}00261\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00262}00262\ \ \ \ \ uint32\_t\ pmsc\_clock\_ctrl;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00263}00263\ \ \ \ \ \textcolor{comment}{/*\ 先读取PMSC寄存器的子寄存器CTRL0的内容\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00264}00264\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{driver__dw1000_8c_acc4c72e4c5ca663ffc3cfbfb94cba88b}{a\_dw1000\_spi\_read}}(handle,\ \mbox{\hyperlink{driver__dw1000__reg_8h_a726ea3c5fdbc949b9bd0d63a6b57d4f5}{DW1000\_REG\_PMSC}},\ \mbox{\hyperlink{driver__dw1000__reg_8h_ab8e0a1f5a82e2d618e2ca27576cb5818}{DW1000\_SUB\_REG\_PMSC\_CTRL0\_OFFSET}},\ (uint8\_t*)\ \&pmsc\_clock\_ctrl,\ \textcolor{keyword}{sizeof}(pmsc\_clock\_ctrl)))\ \{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00265}00265\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00266}00266\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00267}00267\ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_aa793f23b99ae58564102fd204c4c37e4}{DW1000\_SET\_BITS}}(pmsc\_clock\_ctrl,\ \mbox{\hyperlink{driver__dw1000__reg_8h_a344abc2b08d32ecd60379a36badf8c65}{DW1000\_SUB\_REG\_PMSC\_CTRL0\_BIT\_GPCE}}\ |\ \mbox{\hyperlink{driver__dw1000__reg_8h_a914b27f089daa40d30bf4bc298aa1b00}{DW1000\_SUB\_REG\_PMSC\_CTRL0\_BIT\_GPRN}});}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00268}00268\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{driver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea}{a\_dw1000\_spi\_write}}(handle,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_a726ea3c5fdbc949b9bd0d63a6b57d4f5}{DW1000\_REG\_PMSC}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_ab8e0a1f5a82e2d618e2ca27576cb5818}{DW1000\_SUB\_REG\_PMSC\_CTRL0\_OFFSET}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint8\_t*)\ \&pmsc\_clock\_ctrl,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(pmsc\_clock\_ctrl));}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00273}00273\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00274}00274\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00289}\mbox{\hyperlink{driver__dw1000_8c_a9af5e76292af58f3baa609ee549c0491}{00289}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_a9af5e76292af58f3baa609ee549c0491}{dw1000\_gpio\_direction\_set}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,\ uint32\_t\ dir)\ \{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00290}00290\ \ \ \ \ \textcolor{keywordflow}{if}(handle\ ==\ NULL)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00291}00291\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00292}00292\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00293}00293\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(handle-\/>\mbox{\hyperlink{structdw1000__handle__s_a19bedf28d2b9748f6a62d9ae93f4e68f}{inited}}\ !=\ 1)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00294}00294\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 3;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00295}00295\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00296}00296\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{driver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea}{a\_dw1000\_spi\_write}}(handle,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_a29a59aa26c257fd6ae0f971fdfb104f1}{DW1000\_REG\_GPIO\_CTRL}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_ad1b63eb46a86243a37bd2a03cb71d879}{DW1000\_SUB\_REG\_GPIO\_DIR\_OFFSET}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint8\_t*)\ \&dir,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(dir));}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00301}00301\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00302}00302\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00318}\mbox{\hyperlink{driver__dw1000_8c_a46e998266dbea2d61873fffe4ad2c8d0}{00318}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_a46e998266dbea2d61873fffe4ad2c8d0}{dw1000\_gpio\_value\_set}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,\ uint32\_t\ out)\ \{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00319}00319\ \ \ \ \ \textcolor{keywordflow}{if}(handle\ ==\ NULL)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00320}00320\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00321}00321\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00322}00322\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(handle-\/>\mbox{\hyperlink{structdw1000__handle__s_a19bedf28d2b9748f6a62d9ae93f4e68f}{inited}}\ !=\ 1)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00323}00323\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 3;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00324}00324\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00325}00325\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{driver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea}{a\_dw1000\_spi\_write}}(handle,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_a29a59aa26c257fd6ae0f971fdfb104f1}{DW1000\_REG\_GPIO\_CTRL}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_a1a6c8ef621ba1b55c2fda952725f59ba}{DW1000\_SUB\_REG\_GPIO\_DOUT\_OFFSET}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint8\_t*)\ \&out,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(out));}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00330}00330\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00331}00331\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00345}\mbox{\hyperlink{driver__dw1000_8c_a7b97aa08cb7fc31c371119cd4ae5d512}{00345}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_a7b97aa08cb7fc31c371119cd4ae5d512}{dw1000\_gpio\_value\_get}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,\ uint32\_t\ gpio,\ uint8\_t*\ value)\ \{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00346}00346\ \ \ \ \ \textcolor{keywordflow}{if}(handle\ ==\ NULL)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00347}00347\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00348}00348\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00349}00349\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(handle-\/>\mbox{\hyperlink{structdw1000__handle__s_a19bedf28d2b9748f6a62d9ae93f4e68f}{inited}}\ !=\ 1)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00350}00350\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 3;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00351}00351\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00352}00352\ \ \ \ \ uint32\_t\ gpio\_value;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00353}00353\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{driver__dw1000_8c_acc4c72e4c5ca663ffc3cfbfb94cba88b}{a\_dw1000\_spi\_read}}(handle,\ \mbox{\hyperlink{driver__dw1000__reg_8h_a29a59aa26c257fd6ae0f971fdfb104f1}{DW1000\_REG\_GPIO\_CTRL}},\ \mbox{\hyperlink{driver__dw1000__reg_8h_ae0861cf075d6275c431173b9139333c1}{DW1000\_SUB\_REG\_GPIO\_RAW\_OFFSET}},\ (uint8\_t*)\ \&gpio\_value,\ \textcolor{keyword}{sizeof}(gpio\_value)))\ \{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00354}00354\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00355}00355\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00356}00356\ \ \ \ \ *value\ =\ (gpio\_value\ \&\ gpio)\ ?\ 1\ :\ 0;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00357}00357\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00358}00358\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00359}00359\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00360}\mbox{\hyperlink{driver__dw1000_8c_a47f752e54aada40d662d529c90300702}{00360}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_a47f752e54aada40d662d529c90300702}{dw1000\_get\_ic\_ref\_volt}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,\ uint8\_t*\ volt)\ \{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00361}00361\ \ \ \ \ \textcolor{keywordflow}{if}(handle\ ==\ NULL\ ||\ volt\ ==\ NULL)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00362}00362\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00363}00363\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00364}00364\ \textcolor{preprocessor}{\ \ \ \ \#if\ (DRIVER\_DW1000\_PARAM\_CHECK\ ==\ 1)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00365}00365\ \ \ \ \ assert(pdw1000local-\/>otp\_mask\ \&\ DWT\_READ\_OTP\_BAT);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00366}00366\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00367}00367\ \ \ \ \ pdw1000local-\/>vBatP;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00368}00368\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00369}00369\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00370}00370\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00371}\mbox{\hyperlink{driver__dw1000_8c_a5e3b49390c41fe3c8f541e31038517e1}{00371}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_a5e3b49390c41fe3c8f541e31038517e1}{dw1000\_get\_ic\_ref\_temp}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,\ uint8\_t*\ temp)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00372}00372\ \ \ \ \ \textcolor{keywordflow}{if}(handle\ ==\ NULL\ ||\ temp\ ==\ NULL)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00373}00373\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00374}00374\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00375}00375\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ DWT\_API\_ERROR\_CHECK}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00376}00376\ \ \ \ \ assert(pdw1000local-\/>otp\_mask\ \&\ DWT\_READ\_OTP\_TMP);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00377}00377\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00378}00378\ \ \ \ \ pdw1000local-\/>tempP;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00379}00379\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00380}00380\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00381}00381\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00382}\mbox{\hyperlink{driver__dw1000_8c_a57d01859cb719ce5c847d317b55cd333}{00382}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_a57d01859cb719ce5c847d317b55cd333}{dw1000\_get\_part\_id}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,\ uint32\_t*\ \textcolor{keywordtype}{id})\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00383}00383\ \ \ \ \ \textcolor{keywordflow}{if}(handle\ ==\ NULL\ ||\ \textcolor{keywordtype}{id}\ ==\ NULL)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00384}00384\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00385}00385\ \ \ \ \ \}\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00386}00386\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ DWT\_API\_ERROR\_CHECK}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00387}00387\ \ \ \ \ assert(pdw1000local-\/>otp\_mask\ \&\ DWT\_READ\_OTP\_PID);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00388}00388\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00389}00389\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00390}00390\ \ \ \ \ pdw1000local-\/>partID;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00391}00391\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00392}00392\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00393}00393\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00394}\mbox{\hyperlink{driver__dw1000_8c_a9ebf02744beb1ac552a47b92d7c3d1b7}{00394}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_a9ebf02744beb1ac552a47b92d7c3d1b7}{dw1000\_get\_lot\_id}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,\ uint32\_t*\ \textcolor{keywordtype}{id})\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00395}00395\ \ \ \ \ \textcolor{keywordflow}{if}(handle\ ==\ NULL\ ||\ \textcolor{keywordtype}{id}\ ==\ NULL)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00396}00396\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00397}00397\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00398}00398\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ DWT\_API\_ERROR\_CHECK}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00399}00399\ \ \ \ \ assert(pdw1000local-\/>otp\_mask\ \&\ DWT\_READ\_OTP\_LID);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00400}00400\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00401}00401\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00402}00402\ \ \ \ \ pdw1000local-\/>lotID;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00403}00403\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00404}00404\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00405}00405\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00420}\mbox{\hyperlink{driver__dw1000_8c_a1f25c40231f790ba804c91ca1b6cdf8c}{00420}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_a1f25c40231f790ba804c91ca1b6cdf8c}{dw1000\_dev\_id\_get}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,\ uint32\_t*\ \textcolor{keywordtype}{id})\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00421}00421\ \ \ \ \ \textcolor{keywordflow}{if}(handle\ ==\ NULL\ ||\ \textcolor{keywordtype}{id}\ ==\ NULL)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00422}00422\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00423}00423\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00424}00424\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(handle-\/>\mbox{\hyperlink{structdw1000__handle__s_a19bedf28d2b9748f6a62d9ae93f4e68f}{inited}}\ !=\ 1)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00425}00425\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 3;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00426}00426\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00427}00427\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{driver__dw1000_8c_acc4c72e4c5ca663ffc3cfbfb94cba88b}{a\_dw1000\_spi\_read}}(handle,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_a80a1fafed9d3541731162de8459accf8}{DW1000\_REG\_DEV\_ID}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint8\_t*)\ \textcolor{keywordtype}{id},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(*\textcolor{keywordtype}{id}));}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00432}00432\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00433}00433\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00434}\mbox{\hyperlink{driver__dw1000_8c_a7e3917e23446d87d49634d0d680057fa}{00434}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_a7e3917e23446d87d49634d0d680057fa}{dw1000\_tx\_rf\_config}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,\ \mbox{\hyperlink{driver__dw1000_01copy_8h_a8f18e25551815d1e7d1262561a89bb7e}{dw1000\_tx\_config\_t}}*\ config)\ \{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00435}00435\ \ \ \ \ \textcolor{keywordflow}{if}(handle\ ==\ NULL\ ||\ config\ ==\ NULL)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00436}00436\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00437}00437\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00438}00438\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(handle-\/>\mbox{\hyperlink{structdw1000__handle__s_a19bedf28d2b9748f6a62d9ae93f4e68f}{inited}}\ !=\ 1)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00439}00439\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 3;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00440}00440\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00441}00441\ \ \ \ \ uint8\_t\ ret;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00442}00442\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ =\ \mbox{\hyperlink{driver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea}{a\_dw1000\_spi\_write}}(handle,\ \mbox{\hyperlink{driver__dw1000__reg_8h_a03fc283535e9a6d9944b1abdca4fd6f1}{DW1000\_REG\_TX\_CAL}},\ \mbox{\hyperlink{driver__dw1000__reg_8h_a2f91d35ec538a445d46fca0cf76922d9}{DW1000\_SUB\_REG\_TC\_PGDELAY\_OFFSET}},\ (uint8\_t*)\ \&config-\/>\mbox{\hyperlink{structdw1000__tx__config__s_a3119a0cbc14840dab5b9bf57d5782e60}{pulse\_generator\_delay}},\ \textcolor{keyword}{sizeof}(config-\/>\mbox{\hyperlink{structdw1000__tx__config__s_a3119a0cbc14840dab5b9bf57d5782e60}{pulse\_generator\_delay}}))\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00443}00443\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00444}00444\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00445}00445\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{driver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea}{a\_dw1000\_spi\_write}}(handle,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_a18a7dc8bf7e2c5c39d5a145eb91e892b}{DW1000\_REG\_TX\_POWER}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint8\_t*)\ \&config-\/>\mbox{\hyperlink{structdw1000__tx__config__s_af2c4d27032a30e55031be59147fadfbe}{tx\_power}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(config-\/>\mbox{\hyperlink{structdw1000__tx__config__s_af2c4d27032a30e55031be59147fadfbe}{tx\_power}}));}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00450}00450\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00451}00451\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00452}00452\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00453}\mbox{\hyperlink{driver__dw1000_8c_aafe35fd4c1a9f4422f2becd83eeeb6ce}{00453}}\ \textcolor{preprocessor}{\#define\ DEMOD\_GEAR\_64L\ 0x47}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00464}\mbox{\hyperlink{driver__dw1000_8c_ad5196eb1d1a6ae760b416108687a2274}{00464}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_ad5196eb1d1a6ae760b416108687a2274}{dw1000\_preamble\_length\_64\_config}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,uint32\_t\ value)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00465}00465\ \ \ \ \ uint8\_t\ reg\_value\ =\ \mbox{\hyperlink{driver__dw1000_8c_aafe35fd4c1a9f4422f2becd83eeeb6ce}{DEMOD\_GEAR\_64L}};}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00466}00466\ \ \ \ \ \textcolor{keywordflow}{if}(a\_dw1000\_spi\_writeh(handle,\mbox{\hyperlink{driver__dw1000__reg_8h_a6667ad31dbf65750ba4c48cc7aa47ad1}{DW1000\_REG\_CRTR}},\mbox{\hyperlink{driver__dw1000__reg_8h_a193c3635f10823dd700de506a37f2bc4}{DW1000\_SUB\_REG\_CRTR\_GEAR\_OFFSET}},\&reg\_value,1))\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00467}00467\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00468}00468\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00470}00470\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{driver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea}{a\_dw1000\_spi\_write}}(handle,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00471}00471\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_a9914c60814349e2d7dbc93bb61df6d91}{DW1000\_REG\_DRX\_CONF}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00472}00472\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_ab8ed1e300ad44059b5391daf553853c0}{DW1000\_SUB\_REG\_DRX\_TUNE2\_OFFSET}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00473}00473\ \ \ \ \ \ \ \ \ (uint8\_t*)\&value,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00474}00474\ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(value)}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00475}00475\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00476}00476\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00477}00477\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00478}00478\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00479}\mbox{\hyperlink{driver__dw1000_8c_af02ed13301f24f9033d6c09be9c3f03b}{00479}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_af02ed13301f24f9033d6c09be9c3f03b}{dw1000\_configure}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*handle,\ \mbox{\hyperlink{driver__dw1000_01copy_8h_aa83cfb3a17eff0e353669bbdbf041789}{dw1000\_config\_t}}*\ config)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00480}00480\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00481}00481\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00482}00482\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00483}00483\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00484}00484\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00485}\mbox{\hyperlink{driver__dw1000_8c_af383d1c31c828b3028bfeebcb371d9df}{00485}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_af383d1c31c828b3028bfeebcb371d9df}{dw1000\_rx\_antenna\_delay\_set}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,\ uint16\_t\ delay)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00486}00486\ \ \ \ \ \textcolor{keywordflow}{if}(handle\ ==\ NULL)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00487}00487\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00488}00488\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00489}00489\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(handle-\/>\mbox{\hyperlink{structdw1000__handle__s_a19bedf28d2b9748f6a62d9ae93f4e68f}{inited}}\ !=\ 1)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00490}00490\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 3;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00491}00491\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00492}00492\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{driver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea}{a\_dw1000\_spi\_write}}(handle,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00493}00493\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_ac5ee336cbed96f2dfa8c4bcf98fc4f06}{DW1000\_REG\_LDE\_IF}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00494}00494\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_af8e64f11da1150aaea00f963c7296693}{DW1000\_SUB\_REG\_LDE\_RXANTD\_OFFSET}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00495}00495\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint8\_t*)\ \&delay,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00496}00496\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(delay));}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00497}00497\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00498}00498\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00499}00499\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00500}\mbox{\hyperlink{driver__dw1000_8c_a0e3e518adec3019463ca7bfd58fed39a}{00500}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_a0e3e518adec3019463ca7bfd58fed39a}{dw1000\_tx\_antenna\_delay\_set}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,\ uint16\_t\ delay)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00501}00501\ \ \ \ \ \textcolor{keywordflow}{if}(handle\ ==\ NULL)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00502}00502\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00503}00503\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00504}00504\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(handle-\/>\mbox{\hyperlink{structdw1000__handle__s_a19bedf28d2b9748f6a62d9ae93f4e68f}{inited}}\ !=\ 1)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00505}00505\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 3;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00506}00506\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00507}00507\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{driver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea}{a\_dw1000\_spi\_write}}(handle,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00508}00508\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_ae373814ed06b7fa37a342f3475292e55}{DW1000\_REG\_TX\_ANTD}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00509}00509\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00510}00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint8\_t*)\ \&delay,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00511}00511\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(delay));}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00512}00512\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00513}00513\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00514}\mbox{\hyperlink{driver__dw1000_8c_a525b1d185f8176eb7053760dcb66a6a8}{00514}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_a525b1d185f8176eb7053760dcb66a6a8}{dw1000\_tx\_data\_write}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,\ uint8\_t*\ data,\ uint16\_t\ len,\ uint16\_t\ offset)\ \{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00515}00515\ \ \ \ \ \textcolor{keywordflow}{if}(handle\ ==\ NULL\ ||\ data\ ==\ NULL)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00516}00516\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00517}00517\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00518}00518\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(handle-\/>\mbox{\hyperlink{structdw1000__handle__s_a19bedf28d2b9748f6a62d9ae93f4e68f}{inited}}\ !=\ 1)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00519}00519\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 3;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00520}00520\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00521}00521\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(len\ +\ offset\ >\ 1024)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00522}00522\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 4;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00523}00523\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00524}00524\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{driver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea}{a\_dw1000\_spi\_write}}(handle,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00525}00525\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_ae88795545a3e35f0850af18ec0e1f472}{DW1000\_REG\_TX\_BUFFER}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00526}00526\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ offset,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00527}00527\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00528}00528\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ len);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00529}00529\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00530}00530\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00531}\mbox{\hyperlink{driver__dw1000_8c_a19eaed2365a07498016ff640fe5c176a}{00531}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_a19eaed2365a07498016ff640fe5c176a}{dw1000\_tx\_frame\_ctrl\_write}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,\ uint16\_t\ tx\_frame\_lenght,\ uint16\_t\ offset,\ uint8\_t\ is\_ranging\_frame)\ \{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00532}00532\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00533}00533\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00534}00534\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00535}\mbox{\hyperlink{driver__dw1000_8c_a12dcdce546c56c0468cbe76f8ec2fccf}{00535}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_a12dcdce546c56c0468cbe76f8ec2fccf}{dw1000\_rx\_data\_read}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,\ uint8\_t*\ data,\ uint16\_t\ len,\ uint16\_t\ offset)\ \{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00536}00536\ \ \ \ \ \textcolor{keywordflow}{if}(handle\ ==\ NULL\ ||\ data\ ==\ NULL)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00537}00537\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00538}00538\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00539}00539\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(handle-\/>\mbox{\hyperlink{structdw1000__handle__s_a19bedf28d2b9748f6a62d9ae93f4e68f}{inited}}\ !=\ 1)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00540}00540\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 3;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00541}00541\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00542}00542\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(len\ +\ offset\ >\ 1024)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00543}00543\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 4;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00544}00544\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00545}00545\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{driver__dw1000_8c_acc4c72e4c5ca663ffc3cfbfb94cba88b}{a\_dw1000\_spi\_read}}(handle,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00546}00546\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_ac200401ee26b8b13325c7ecaeb4c725c}{DW1000\_REG\_RX\_BUFFER}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00547}00547\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ offset,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00548}00548\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00549}00549\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ len);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00550}00550\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00551}00551\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00552}\mbox{\hyperlink{driver__dw1000_8c_a6b25bbf341a0353d162871f577125420}{00552}}\ uint8\_t\ \mbox{\hyperlink{driver__dw1000_8c_a6b25bbf341a0353d162871f577125420}{dw1000\_acc\_data\_read}}(\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}}*\ handle,\ uint8\_t*\ data,\ uint16\_t\ len,\ uint16\_t\ offset)\ \{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00553}00553\ \ \ \ \ \textcolor{keywordflow}{if}(handle\ ==\ NULL\ ||\ data\ ==\ NULL)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00554}00554\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00555}00555\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00556}00556\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(handle-\/>\mbox{\hyperlink{structdw1000__handle__s_a19bedf28d2b9748f6a62d9ae93f4e68f}{inited}}\ !=\ 1)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00557}00557\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 3;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00558}00558\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00559}00559\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(len\ +\ offset\ >\ 1024)\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00560}00560\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 4;}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00561}00561\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00562}00562\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{driver__dw1000_8c_acc4c72e4c5ca663ffc3cfbfb94cba88b}{a\_dw1000\_spi\_read}}(handle,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00563}00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{driver__dw1000__reg_8h_a9c8966432701b172cccf1e47637abcd4}{DW1000\_REG\_ACC\_MEM}},}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00564}00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ offset,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00565}00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data,}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00566}00566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ len);}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00567}00567\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8c_source_l00568}00568\ \}}
+
+\end{DoxyCode}

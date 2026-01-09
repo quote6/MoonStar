@@ -1,0 +1,14 @@
+---
+BasedOnStyle: Google
+AlignConsecutiveMacros:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: true
+# BreakBeforeBinaryOperators: NonAssignment
+BreakBeforeBinaryOperators: None
+ColumnLimit: 0
+IndentWidth: 4
+MaxEmptyLinesToKeep: 2
+NamespaceIndentation: All
+SpaceAfterCStyleCast: true
+

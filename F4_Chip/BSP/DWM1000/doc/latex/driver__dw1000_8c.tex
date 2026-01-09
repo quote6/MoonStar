@@ -1,0 +1,821 @@
+\doxysection{src/driver\+\_\+dw1000.c 文件参考}
+\hypertarget{driver__dw1000_8c}{}\label{driver__dw1000_8c}\index{src/driver\_dw1000.c@{src/driver\_dw1000.c}}
+{\ttfamily \#include "{}driver\+\_\+dw1000.\+h"{}}\newline
+driver\+\_\+dw1000.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{driver__dw1000_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_8c_adc9da0a24824ca1239b593f6459b3954}{CHIP\+\_\+\+NAME}}~"{}Qorvo DW1000"{}
+\begin{DoxyCompactList}\small\item\em chip register definition \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{driver__dw1000_8c_aaa2b8f5b105c3019df0cb346f472e803}{MANUFACTURER\+\_\+\+NAME}}~"{}Qorvo"{}
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_8c_aac8d8cbd899667d609787ef4cf37054d}{SUPPLY\+\_\+\+VOLTAGE\+\_\+\+MIN}}~2.\+0f
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_8c_a68eba8b601afe11f1b871d944976c035}{SUPPLY\+\_\+\+VOLTAGE\+\_\+\+MAX}}~3.\+6f
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_8c_a2989837a37d6d63b59c6dd541b785435}{MAX\+\_\+\+CURRENT}}~0.\+145f
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_8c_aab353db5bf4eb787f86a2080f609a551}{TEMPERATURE\+\_\+\+MIN}}~-\/40.\+0f
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_8c_a90c0b20d54005712fcc8cb01281360e9}{TEMPERATURE\+\_\+\+MAX}}~85.\+0f
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_8c_ae578001fe043b4cca7a0edd801cfe9c4}{DRIVER\+\_\+\+VERSION}}~1000
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_8c_ae8c7ddc527bd386e1efe13f18609b923}{DW1000\+\_\+\+SPI\+\_\+\+CMD\+\_\+\+READ}}(addr)
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_8c_a0f7396a6027116ff302af85699508538}{DW1000\+\_\+\+SPI\+\_\+\+CMD\+\_\+\+WRITE}}(addr)
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_8c_aa4b66d30a0e11337bfb137462d574da7}{DW1000\+\_\+\+SPI\+\_\+\+NOT\+\_\+\+SUB\+\_\+\+ADDR}}(addr)
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_8c_a100ec6b2fca0b81ab554a3e90c6c9161}{DW1000\+\_\+\+SPI\+\_\+\+HAS\+\_\+\+SUB\+\_\+\+ADDR}}(addr)
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_8c_afcab1e0585cecdcddbc8957f6e3cdac3}{DW1000\+\_\+\+SPI\+\_\+\+NOT\+\_\+\+EXT\+\_\+\+SUB\+\_\+\+ADDR}}(sa)
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_8c_a8295ac5bbb8a77f8d79a0e1e650a479e}{DW1000\+\_\+\+SPI\+\_\+\+HAS\+\_\+\+EXT\+\_\+\+SUB\+\_\+\+ADDR}}(sa)
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_8c_aafe35fd4c1a9f4422f2becd83eeeb6ce}{DEMOD\+\_\+\+GEAR\+\_\+64L}}~0x47
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_acc4c72e4c5ca663ffc3cfbfb94cba88b}{a\+\_\+dw1000\+\_\+spi\+\_\+read}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint8\+\_\+t reg, uint16\+\_\+t offset, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em dw1000 spi 头部数据 \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea}{a\+\_\+dw1000\+\_\+spi\+\_\+write}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint8\+\_\+t reg, uint16\+\_\+t offset, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t len)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_ada279978912bf3b025dcdc0e3589df3f}{\+\_\+dw1000\+\_\+clock\+\_\+cmd}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint8\+\_\+t clock\+\_\+cmd)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_aa81554fdb26f41003312c8514892dfea}{dw1000\+\_\+fine\+\_\+grain\+\_\+tx\+\_\+seq\+\_\+cmd}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint16\+\_\+t cmd)
+\begin{DoxyCompactList}\small\item\em DW1000 精细粒度的\+Tx序列控制 \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_a831dc6bea19ab39d86caf13fc9106c56}{dw1000\+\_\+lna\+\_\+pa\+\_\+mode\+\_\+set}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint32\+\_\+t mode)
+\begin{DoxyCompactList}\small\item\em DW1000 设置 LNA 和 PA 模式 \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_a88a75e1369161de51e86c2c88f3705d1}{dw1000\+\_\+gpio\+\_\+clock\+\_\+enable}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle)
+\begin{DoxyCompactList}\small\item\em DW1000 使能\+GPIO时钟 \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_a9af5e76292af58f3baa609ee549c0491}{dw1000\+\_\+gpio\+\_\+direction\+\_\+set}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint32\+\_\+t dir)
+\begin{DoxyCompactList}\small\item\em DW1000设置\+GPIO的方向 \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_a46e998266dbea2d61873fffe4ad2c8d0}{dw1000\+\_\+gpio\+\_\+value\+\_\+set}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint32\+\_\+t out)
+\begin{DoxyCompactList}\small\item\em DW1000设置\+GPIO的输出电平 \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_a7b97aa08cb7fc31c371119cd4ae5d512}{dw1000\+\_\+gpio\+\_\+value\+\_\+get}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint32\+\_\+t gpio, uint8\+\_\+t \texorpdfstring{$\ast$}{*}value)
+\begin{DoxyCompactList}\small\item\em 获取\+GPIO引脚的当前电平状态 \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_a47f752e54aada40d662d529c90300702}{dw1000\+\_\+get\+\_\+ic\+\_\+ref\+\_\+volt}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint8\+\_\+t \texorpdfstring{$\ast$}{*}volt)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_a5e3b49390c41fe3c8f541e31038517e1}{dw1000\+\_\+get\+\_\+ic\+\_\+ref\+\_\+temp}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint8\+\_\+t \texorpdfstring{$\ast$}{*}temp)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_a57d01859cb719ce5c847d317b55cd333}{dw1000\+\_\+get\+\_\+part\+\_\+id}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint32\+\_\+t \texorpdfstring{$\ast$}{*}id)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_a9ebf02744beb1ac552a47b92d7c3d1b7}{dw1000\+\_\+get\+\_\+lot\+\_\+id}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint32\+\_\+t \texorpdfstring{$\ast$}{*}id)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_a1f25c40231f790ba804c91ca1b6cdf8c}{dw1000\+\_\+dev\+\_\+id\+\_\+get}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint32\+\_\+t \texorpdfstring{$\ast$}{*}id)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_a7e3917e23446d87d49634d0d680057fa}{dw1000\+\_\+tx\+\_\+rf\+\_\+config}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, \mbox{\hyperlink{driver__dw1000_01copy_8h_a8f18e25551815d1e7d1262561a89bb7e}{dw1000\+\_\+tx\+\_\+config\+\_\+t}} \texorpdfstring{$\ast$}{*}config)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_ad5196eb1d1a6ae760b416108687a2274}{dw1000\+\_\+preamble\+\_\+length\+\_\+64\+\_\+config}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint32\+\_\+t value)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_af02ed13301f24f9033d6c09be9c3f03b}{dw1000\+\_\+configure}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, \mbox{\hyperlink{driver__dw1000_01copy_8h_aa83cfb3a17eff0e353669bbdbf041789}{dw1000\+\_\+config\+\_\+t}} \texorpdfstring{$\ast$}{*}config)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_af383d1c31c828b3028bfeebcb371d9df}{dw1000\+\_\+rx\+\_\+antenna\+\_\+delay\+\_\+set}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint16\+\_\+t delay)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_a0e3e518adec3019463ca7bfd58fed39a}{dw1000\+\_\+tx\+\_\+antenna\+\_\+delay\+\_\+set}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint16\+\_\+t delay)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_a525b1d185f8176eb7053760dcb66a6a8}{dw1000\+\_\+tx\+\_\+data\+\_\+write}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t len, uint16\+\_\+t offset)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_a19eaed2365a07498016ff640fe5c176a}{dw1000\+\_\+tx\+\_\+frame\+\_\+ctrl\+\_\+write}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint16\+\_\+t tx\+\_\+frame\+\_\+lenght, uint16\+\_\+t offset, uint8\+\_\+t is\+\_\+ranging\+\_\+frame)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_a12dcdce546c56c0468cbe76f8ec2fccf}{dw1000\+\_\+rx\+\_\+data\+\_\+read}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t len, uint16\+\_\+t offset)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{driver__dw1000_8c_a6b25bbf341a0353d162871f577125420}{dw1000\+\_\+acc\+\_\+data\+\_\+read}} (\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}handle, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t len, uint16\+\_\+t offset)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\DoxyHorRuler{0}
+
+
+\begin{DoxyAuthor}{作者}
+quote6 (\href{mailto:2293127401@qq.com}{\texttt{2293127401@qq.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyWarning}{警告}
+这里的函数都不是线程安全的，多线程情况下需要进行额外的临界保护 \DoxyHorRuler{0}
+ 
+\end{DoxyWarning}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2025 quote6 For study and research only, no reprinting \DoxyHorRuler{0}
+ 
+\end{DoxyCopyright}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 中定义.
+
+
+
+\label{doc-define-members}
+\Hypertarget{driver__dw1000_8c_doc-define-members}
+\doxysubsection{宏定义说明}
+\Hypertarget{driver__dw1000_8c_adc9da0a24824ca1239b593f6459b3954}\index{driver\_dw1000.c@{driver\_dw1000.c}!CHIP\_NAME@{CHIP\_NAME}}
+\index{CHIP\_NAME@{CHIP\_NAME}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{CHIP\_NAME}{CHIP\_NAME}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_adc9da0a24824ca1239b593f6459b3954} 
+\#define CHIP\+\_\+\+NAME~"{}Qorvo DW1000"{}}
+
+
+
+chip register definition 
+
+chip name 
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00019}{19}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_aafe35fd4c1a9f4422f2becd83eeeb6ce}\index{driver\_dw1000.c@{driver\_dw1000.c}!DEMOD\_GEAR\_64L@{DEMOD\_GEAR\_64L}}
+\index{DEMOD\_GEAR\_64L@{DEMOD\_GEAR\_64L}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{DEMOD\_GEAR\_64L}{DEMOD\_GEAR\_64L}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_aafe35fd4c1a9f4422f2becd83eeeb6ce} 
+\#define DEMOD\+\_\+\+GEAR\+\_\+64L~0x47}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00453}{453}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_ae578001fe043b4cca7a0edd801cfe9c4}\index{driver\_dw1000.c@{driver\_dw1000.c}!DRIVER\_VERSION@{DRIVER\_VERSION}}
+\index{DRIVER\_VERSION@{DRIVER\_VERSION}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{DRIVER\_VERSION}{DRIVER\_VERSION}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_ae578001fe043b4cca7a0edd801cfe9c4} 
+\#define DRIVER\+\_\+\+VERSION~1000}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00026}{26}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_ae8c7ddc527bd386e1efe13f18609b923}\index{driver\_dw1000.c@{driver\_dw1000.c}!DW1000\_SPI\_CMD\_READ@{DW1000\_SPI\_CMD\_READ}}
+\index{DW1000\_SPI\_CMD\_READ@{DW1000\_SPI\_CMD\_READ}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{DW1000\_SPI\_CMD\_READ}{DW1000\_SPI\_CMD\_READ}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_ae8c7ddc527bd386e1efe13f18609b923} 
+\#define DW1000\+\_\+\+SPI\+\_\+\+CMD\+\_\+\+READ(\begin{DoxyParamCaption}\item[{}]{addr}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(addr\ \&\ 0x7F)}
+
+\end{DoxyCode}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00030}{30}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_a0f7396a6027116ff302af85699508538}\index{driver\_dw1000.c@{driver\_dw1000.c}!DW1000\_SPI\_CMD\_WRITE@{DW1000\_SPI\_CMD\_WRITE}}
+\index{DW1000\_SPI\_CMD\_WRITE@{DW1000\_SPI\_CMD\_WRITE}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{DW1000\_SPI\_CMD\_WRITE}{DW1000\_SPI\_CMD\_WRITE}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a0f7396a6027116ff302af85699508538} 
+\#define DW1000\+\_\+\+SPI\+\_\+\+CMD\+\_\+\+WRITE(\begin{DoxyParamCaption}\item[{}]{addr}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(addr\ |\ 0x80)}
+
+\end{DoxyCode}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00032}{32}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_a8295ac5bbb8a77f8d79a0e1e650a479e}\index{driver\_dw1000.c@{driver\_dw1000.c}!DW1000\_SPI\_HAS\_EXT\_SUB\_ADDR@{DW1000\_SPI\_HAS\_EXT\_SUB\_ADDR}}
+\index{DW1000\_SPI\_HAS\_EXT\_SUB\_ADDR@{DW1000\_SPI\_HAS\_EXT\_SUB\_ADDR}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{DW1000\_SPI\_HAS\_EXT\_SUB\_ADDR}{DW1000\_SPI\_HAS\_EXT\_SUB\_ADDR}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a8295ac5bbb8a77f8d79a0e1e650a479e} 
+\#define DW1000\+\_\+\+SPI\+\_\+\+HAS\+\_\+\+EXT\+\_\+\+SUB\+\_\+\+ADDR(\begin{DoxyParamCaption}\item[{}]{sa}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(sa\ |\ 0x80)}
+
+\end{DoxyCode}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00045}{45}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_a100ec6b2fca0b81ab554a3e90c6c9161}\index{driver\_dw1000.c@{driver\_dw1000.c}!DW1000\_SPI\_HAS\_SUB\_ADDR@{DW1000\_SPI\_HAS\_SUB\_ADDR}}
+\index{DW1000\_SPI\_HAS\_SUB\_ADDR@{DW1000\_SPI\_HAS\_SUB\_ADDR}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{DW1000\_SPI\_HAS\_SUB\_ADDR}{DW1000\_SPI\_HAS\_SUB\_ADDR}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a100ec6b2fca0b81ab554a3e90c6c9161} 
+\#define DW1000\+\_\+\+SPI\+\_\+\+HAS\+\_\+\+SUB\+\_\+\+ADDR(\begin{DoxyParamCaption}\item[{}]{addr}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(addr\ |\ 0x40)}
+
+\end{DoxyCode}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00038}{38}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_afcab1e0585cecdcddbc8957f6e3cdac3}\index{driver\_dw1000.c@{driver\_dw1000.c}!DW1000\_SPI\_NOT\_EXT\_SUB\_ADDR@{DW1000\_SPI\_NOT\_EXT\_SUB\_ADDR}}
+\index{DW1000\_SPI\_NOT\_EXT\_SUB\_ADDR@{DW1000\_SPI\_NOT\_EXT\_SUB\_ADDR}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{DW1000\_SPI\_NOT\_EXT\_SUB\_ADDR}{DW1000\_SPI\_NOT\_EXT\_SUB\_ADDR}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_afcab1e0585cecdcddbc8957f6e3cdac3} 
+\#define DW1000\+\_\+\+SPI\+\_\+\+NOT\+\_\+\+EXT\+\_\+\+SUB\+\_\+\+ADDR(\begin{DoxyParamCaption}\item[{}]{sa}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(sa\ \&\ 0x7F)}
+
+\end{DoxyCode}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00043}{43}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_aa4b66d30a0e11337bfb137462d574da7}\index{driver\_dw1000.c@{driver\_dw1000.c}!DW1000\_SPI\_NOT\_SUB\_ADDR@{DW1000\_SPI\_NOT\_SUB\_ADDR}}
+\index{DW1000\_SPI\_NOT\_SUB\_ADDR@{DW1000\_SPI\_NOT\_SUB\_ADDR}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{DW1000\_SPI\_NOT\_SUB\_ADDR}{DW1000\_SPI\_NOT\_SUB\_ADDR}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_aa4b66d30a0e11337bfb137462d574da7} 
+\#define DW1000\+\_\+\+SPI\+\_\+\+NOT\+\_\+\+SUB\+\_\+\+ADDR(\begin{DoxyParamCaption}\item[{}]{addr}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(addr\ \&\ 0xBF)}
+
+\end{DoxyCode}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00036}{36}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_aaa2b8f5b105c3019df0cb346f472e803}\index{driver\_dw1000.c@{driver\_dw1000.c}!MANUFACTURER\_NAME@{MANUFACTURER\_NAME}}
+\index{MANUFACTURER\_NAME@{MANUFACTURER\_NAME}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{MANUFACTURER\_NAME}{MANUFACTURER\_NAME}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_aaa2b8f5b105c3019df0cb346f472e803} 
+\#define MANUFACTURER\+\_\+\+NAME~"{}Qorvo"{}}
+
+manufacturer name 
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00020}{20}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_a2989837a37d6d63b59c6dd541b785435}\index{driver\_dw1000.c@{driver\_dw1000.c}!MAX\_CURRENT@{MAX\_CURRENT}}
+\index{MAX\_CURRENT@{MAX\_CURRENT}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_CURRENT}{MAX\_CURRENT}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a2989837a37d6d63b59c6dd541b785435} 
+\#define MAX\+\_\+\+CURRENT~0.\+145f}
+
+chip max current 
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00023}{23}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_a68eba8b601afe11f1b871d944976c035}\index{driver\_dw1000.c@{driver\_dw1000.c}!SUPPLY\_VOLTAGE\_MAX@{SUPPLY\_VOLTAGE\_MAX}}
+\index{SUPPLY\_VOLTAGE\_MAX@{SUPPLY\_VOLTAGE\_MAX}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{SUPPLY\_VOLTAGE\_MAX}{SUPPLY\_VOLTAGE\_MAX}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a68eba8b601afe11f1b871d944976c035} 
+\#define SUPPLY\+\_\+\+VOLTAGE\+\_\+\+MAX~3.\+6f}
+
+chip max supply voltage 
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00022}{22}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_aac8d8cbd899667d609787ef4cf37054d}\index{driver\_dw1000.c@{driver\_dw1000.c}!SUPPLY\_VOLTAGE\_MIN@{SUPPLY\_VOLTAGE\_MIN}}
+\index{SUPPLY\_VOLTAGE\_MIN@{SUPPLY\_VOLTAGE\_MIN}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{SUPPLY\_VOLTAGE\_MIN}{SUPPLY\_VOLTAGE\_MIN}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_aac8d8cbd899667d609787ef4cf37054d} 
+\#define SUPPLY\+\_\+\+VOLTAGE\+\_\+\+MIN~2.\+0f}
+
+chip min supply voltage 
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00021}{21}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_a90c0b20d54005712fcc8cb01281360e9}\index{driver\_dw1000.c@{driver\_dw1000.c}!TEMPERATURE\_MAX@{TEMPERATURE\_MAX}}
+\index{TEMPERATURE\_MAX@{TEMPERATURE\_MAX}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{TEMPERATURE\_MAX}{TEMPERATURE\_MAX}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a90c0b20d54005712fcc8cb01281360e9} 
+\#define TEMPERATURE\+\_\+\+MAX~85.\+0f}
+
+chip max operating temperature 
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00025}{25}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_aab353db5bf4eb787f86a2080f609a551}\index{driver\_dw1000.c@{driver\_dw1000.c}!TEMPERATURE\_MIN@{TEMPERATURE\_MIN}}
+\index{TEMPERATURE\_MIN@{TEMPERATURE\_MIN}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{TEMPERATURE\_MIN}{TEMPERATURE\_MIN}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_aab353db5bf4eb787f86a2080f609a551} 
+\#define TEMPERATURE\+\_\+\+MIN~-\/40.\+0f}
+
+chip min operating temperature 
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00024}{24}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{driver__dw1000_8c_doc-func-members}
+\doxysubsection{函数说明}
+\Hypertarget{driver__dw1000_8c_ada279978912bf3b025dcdc0e3589df3f}\index{driver\_dw1000.c@{driver\_dw1000.c}!\_dw1000\_clock\_cmd@{\_dw1000\_clock\_cmd}}
+\index{\_dw1000\_clock\_cmd@{\_dw1000\_clock\_cmd}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{\_dw1000\_clock\_cmd()}{\_dw1000\_clock\_cmd()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_ada279978912bf3b025dcdc0e3589df3f} 
+uint8\+\_\+t \+\_\+dw1000\+\_\+clock\+\_\+cmd (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint8\+\_\+t}]{clock\+\_\+cmd}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00172}{172}} 行定义.
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{driver__dw1000_8c_ada279978912bf3b025dcdc0e3589df3f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{driver__dw1000_8c_acc4c72e4c5ca663ffc3cfbfb94cba88b}\index{driver\_dw1000.c@{driver\_dw1000.c}!a\_dw1000\_spi\_read@{a\_dw1000\_spi\_read}}
+\index{a\_dw1000\_spi\_read@{a\_dw1000\_spi\_read}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{a\_dw1000\_spi\_read()}{a\_dw1000\_spi\_read()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_acc4c72e4c5ca663ffc3cfbfb94cba88b} 
+uint8\+\_\+t a\+\_\+dw1000\+\_\+spi\+\_\+read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint8\+\_\+t}]{reg}{, }\item[{uint16\+\_\+t}]{offset}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint16\+\_\+t}]{len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+dw1000 spi 头部数据 
+
+\begin{DoxyNote}{注解}
+对于dw1000通信来说，相比于一般的spi设备较为复杂。 对于一次spi通信，需要先发送一帧头部数据（包含寄存器地址）， 然后才开始发送（接收）相应的数据 
+
+头部数据最长为3个字节。 第一个字节为命令。 bit\mbox{[}7\mbox{]}\+:读/写，0-\/读，1-\/写；bit\mbox{[}6\mbox{]}\+:子地址，0-\/无子地址，1-\/有子地址；bit\mbox{[}5\+:0\mbox{]}\+:寄存器地址 第二个字节为子地址的低7位（如果存在，即命令字节的bit\mbox{[}6\mbox{]}为1）。 bit\mbox{[}7\mbox{]}\+: 扩展子地址，0-\/子地址长度为1字节，1-\/子地址长度为2字节；bit\mbox{[}6\+:0\mbox{]} 子地址值（如果长度为2字节，该处为子地址的低7位） 第三个字节为子地址的高7位（如果存在，即第二个字节的bit\mbox{[}7\mbox{]}为1）。 bit\mbox{[}7\+:0\mbox{]}：为子地址的bit\mbox{[}14\+:7\mbox{]}的数据 
+\end{DoxyNote}
+\begin{DoxyWarning}{警告}
+这里定义的局部数组都是临界资源，在多线程情况下需要进行保护！！！
+\end{DoxyWarning}
+dw1000 spi 数据 \begin{DoxyNote}{注解}
+在一般的寄存器配置过程中，通常数据长度最大4个字节，这里为了方便配置预先分配该长度的数组
+\end{DoxyNote}
+spi 接口读取数据 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{in}}  & {\em handle} & dw1000 handle 结构体指针 \\
+\hline
+\mbox{\texttt{in}}  & {\em reg} & 寄存器地址 \\
+\hline
+\mbox{\texttt{in}}  & {\em offset} & 基于寄存器的子地址偏移（当寄存器长度大于1字节时） \\
+\hline
+\mbox{\texttt{in}}  & {\em buf} & 数据缓存指针 \\
+\hline
+\mbox{\texttt{in}}  & {\em len} & 读取数据长度 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+uint8\+\_\+t 函数执行情况 \begin{DoxyItemize}
+\item 0\+: 读取成功 \item 1\+: 读取失败 \end{DoxyItemize}
+
+\end{DoxyReturn}
+\begin{DoxyNote}{注解}
+因为仅供文件内部调用该函数，所以不对输入参数进行检查（用户不应调用该函数） 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00087}{87}} 行定义.
+
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{driver__dw1000_8c_acc4c72e4c5ca663ffc3cfbfb94cba88b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{driver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea}\index{driver\_dw1000.c@{driver\_dw1000.c}!a\_dw1000\_spi\_write@{a\_dw1000\_spi\_write}}
+\index{a\_dw1000\_spi\_write@{a\_dw1000\_spi\_write}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{a\_dw1000\_spi\_write()}{a\_dw1000\_spi\_write()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea} 
+uint8\+\_\+t a\+\_\+dw1000\+\_\+spi\+\_\+write (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint8\+\_\+t}]{reg}{, }\item[{uint16\+\_\+t}]{offset}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint16\+\_\+t}]{len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00130}{130}} 行定义.
+
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{driver__dw1000_8c_a19fa13cd4744f248438c2605d55d57ea_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{driver__dw1000_8c_a6b25bbf341a0353d162871f577125420}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_acc\_data\_read@{dw1000\_acc\_data\_read}}
+\index{dw1000\_acc\_data\_read@{dw1000\_acc\_data\_read}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_acc\_data\_read()}{dw1000\_acc\_data\_read()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a6b25bbf341a0353d162871f577125420} 
+uint8\+\_\+t dw1000\+\_\+acc\+\_\+data\+\_\+read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{uint16\+\_\+t}]{len}{, }\item[{uint16\+\_\+t}]{offset}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00552}{552}} 行定义.
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{driver__dw1000_8c_a6b25bbf341a0353d162871f577125420_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{driver__dw1000_8c_af02ed13301f24f9033d6c09be9c3f03b}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_configure@{dw1000\_configure}}
+\index{dw1000\_configure@{dw1000\_configure}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_configure()}{dw1000\_configure()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_af02ed13301f24f9033d6c09be9c3f03b} 
+uint8\+\_\+t dw1000\+\_\+configure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_aa83cfb3a17eff0e353669bbdbf041789}{dw1000\+\_\+config\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{config}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00479}{479}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_a1f25c40231f790ba804c91ca1b6cdf8c}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_dev\_id\_get@{dw1000\_dev\_id\_get}}
+\index{dw1000\_dev\_id\_get@{dw1000\_dev\_id\_get}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_dev\_id\_get()}{dw1000\_dev\_id\_get()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a1f25c40231f790ba804c91ca1b6cdf8c} 
+uint8\+\_\+t dw1000\+\_\+dev\+\_\+id\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{id}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00420}{420}} 行定义.
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=321pt]{driver__dw1000_8c_a1f25c40231f790ba804c91ca1b6cdf8c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{driver__dw1000_8c_aa81554fdb26f41003312c8514892dfea}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_fine\_grain\_tx\_seq\_cmd@{dw1000\_fine\_grain\_tx\_seq\_cmd}}
+\index{dw1000\_fine\_grain\_tx\_seq\_cmd@{dw1000\_fine\_grain\_tx\_seq\_cmd}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_fine\_grain\_tx\_seq\_cmd()}{dw1000\_fine\_grain\_tx\_seq\_cmd()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_aa81554fdb26f41003312c8514892dfea} 
+uint8\+\_\+t dw1000\+\_\+fine\+\_\+grain\+\_\+tx\+\_\+seq\+\_\+cmd (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint16\+\_\+t}]{cmd}{}\end{DoxyParamCaption})}
+
+
+
+DW1000 精细粒度的\+Tx序列控制 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{in}}  & {\em handle} & dw1000 handle 结构体指针 \\
+\hline
+\mbox{\texttt{in}}  & {\em cmd} & 配置命令 \begin{DoxyItemize}
+\item DW1000\+\_\+\+TX\+\_\+\+FINE\+\_\+\+SEQ\+\_\+\+CMD\+\_\+\+ENABLE 启用精细粒度的\+Tx序列 \item DW1000\+\_\+\+TX\+\_\+\+FINE\+\_\+\+SEQ\+\_\+\+CMD\+\_\+\+DISABLE 禁用精细粒度的\+Tx序列 \end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+uint8\+\_\+t 函数执行结果 \begin{DoxyItemize}
+\item 0 配置成功 \item 1 配置失败 \item 2 handle 为空 \item 3 handle 未初始化 \end{DoxyItemize}
+
+\end{DoxyReturn}
+\begin{DoxyNote}{注解}
+dw1000默认使能精细粒度的\+Tx序列 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00194}{194}} 行定义.
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=331pt]{driver__dw1000_8c_aa81554fdb26f41003312c8514892dfea_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{driver__dw1000_8c_a5e3b49390c41fe3c8f541e31038517e1}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_get\_ic\_ref\_temp@{dw1000\_get\_ic\_ref\_temp}}
+\index{dw1000\_get\_ic\_ref\_temp@{dw1000\_get\_ic\_ref\_temp}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_get\_ic\_ref\_temp()}{dw1000\_get\_ic\_ref\_temp()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a5e3b49390c41fe3c8f541e31038517e1} 
+uint8\+\_\+t dw1000\+\_\+get\+\_\+ic\+\_\+ref\+\_\+temp (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{temp}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00371}{371}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_a47f752e54aada40d662d529c90300702}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_get\_ic\_ref\_volt@{dw1000\_get\_ic\_ref\_volt}}
+\index{dw1000\_get\_ic\_ref\_volt@{dw1000\_get\_ic\_ref\_volt}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_get\_ic\_ref\_volt()}{dw1000\_get\_ic\_ref\_volt()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a47f752e54aada40d662d529c90300702} 
+uint8\+\_\+t dw1000\+\_\+get\+\_\+ic\+\_\+ref\+\_\+volt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{volt}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00360}{360}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_a9ebf02744beb1ac552a47b92d7c3d1b7}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_get\_lot\_id@{dw1000\_get\_lot\_id}}
+\index{dw1000\_get\_lot\_id@{dw1000\_get\_lot\_id}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_get\_lot\_id()}{dw1000\_get\_lot\_id()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a9ebf02744beb1ac552a47b92d7c3d1b7} 
+uint8\+\_\+t dw1000\+\_\+get\+\_\+lot\+\_\+id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{id}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00394}{394}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_a57d01859cb719ce5c847d317b55cd333}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_get\_part\_id@{dw1000\_get\_part\_id}}
+\index{dw1000\_get\_part\_id@{dw1000\_get\_part\_id}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_get\_part\_id()}{dw1000\_get\_part\_id()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a57d01859cb719ce5c847d317b55cd333} 
+uint8\+\_\+t dw1000\+\_\+get\+\_\+part\+\_\+id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{id}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00382}{382}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_a88a75e1369161de51e86c2c88f3705d1}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_gpio\_clock\_enable@{dw1000\_gpio\_clock\_enable}}
+\index{dw1000\_gpio\_clock\_enable@{dw1000\_gpio\_clock\_enable}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_gpio\_clock\_enable()}{dw1000\_gpio\_clock\_enable()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a88a75e1369161de51e86c2c88f3705d1} 
+uint8\+\_\+t dw1000\+\_\+gpio\+\_\+clock\+\_\+enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{}\end{DoxyParamCaption})}
+
+
+
+DW1000 使能\+GPIO时钟 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{in}}  & {\em handle} & dw1000 handle 结构体指针 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+uint8\+\_\+t 函数执行结果 \begin{DoxyItemize}
+\item 0 设置成功 \item 1 设置失败 \item 2 handle 为空 \item 3 handle 未初始化 \end{DoxyItemize}
+
+\end{DoxyReturn}
+\begin{DoxyNote}{注解}
+备注 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00255}{255}} 行定义.
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{driver__dw1000_8c_a88a75e1369161de51e86c2c88f3705d1_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{driver__dw1000_8c_a9af5e76292af58f3baa609ee549c0491}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_gpio\_direction\_set@{dw1000\_gpio\_direction\_set}}
+\index{dw1000\_gpio\_direction\_set@{dw1000\_gpio\_direction\_set}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_gpio\_direction\_set()}{dw1000\_gpio\_direction\_set()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a9af5e76292af58f3baa609ee549c0491} 
+uint8\+\_\+t dw1000\+\_\+gpio\+\_\+direction\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint32\+\_\+t}]{dir}{}\end{DoxyParamCaption})}
+
+
+
+DW1000设置\+GPIO的方向 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{in}}  & {\em handle} & dw1000 handle 结构体指针 \\
+\hline
+\mbox{\texttt{in}}  & {\em gpio} & gpio配置 可以使用 \texorpdfstring{$\vert$}{|} 运算组合使用以下参数（参数可在 \doxylink{driver__dw1000_8h}{driver\+\_\+dw1000.\+h} 文件里查询）： \begin{DoxyItemize}
+\item DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+Px\+: 编号x可以取0-\/8，表示该编号的引脚为输出 \item DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+Px\+: 编号x可以取0-\/8，表示该编号的引脚为输入 \end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+uint8\+\_\+t 函数执行结果 \begin{DoxyItemize}
+\item 0 设置成功 \item 1 设置失败 \item 2 handle 为空 \item 3 handle 未初始化 \end{DoxyItemize}
+
+\end{DoxyReturn}
+\begin{DoxyNote}{注解}
+
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00289}{289}} 行定义.
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{driver__dw1000_8c_a9af5e76292af58f3baa609ee549c0491_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{driver__dw1000_8c_a7b97aa08cb7fc31c371119cd4ae5d512}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_gpio\_value\_get@{dw1000\_gpio\_value\_get}}
+\index{dw1000\_gpio\_value\_get@{dw1000\_gpio\_value\_get}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_gpio\_value\_get()}{dw1000\_gpio\_value\_get()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a7b97aa08cb7fc31c371119cd4ae5d512} 
+uint8\+\_\+t dw1000\+\_\+gpio\+\_\+value\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint32\+\_\+t}]{gpio}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{value}{}\end{DoxyParamCaption})}
+
+
+
+获取\+GPIO引脚的当前电平状态 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{in}}  & {\em handle} & dw1000 handle 结构体指针 \\
+\hline
+\mbox{\texttt{in}}  & {\em gpio} & GPIO引脚掩码 \begin{DoxyItemize}
+\item DW1000\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+STATE\+\_\+\+Px\+: x取值0-\/8 \end{DoxyItemize}
+\\
+\hline
+\mbox{\texttt{out}}  & {\em value} & GPIO引脚的电平状态，1表示高电平，0表示低电平 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+uint8\+\_\+t 函数执行结果 \begin{DoxyItemize}
+\item 0 设置成功 \item 1 设置失败 \item 2 handle 为空 \item 3 handle 未初始化 \end{DoxyItemize}
+
+\end{DoxyReturn}
+\begin{DoxyNote}{注解}
+备注 
+\end{DoxyNote}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00345}{345}} 行定义.
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=339pt]{driver__dw1000_8c_a7b97aa08cb7fc31c371119cd4ae5d512_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{driver__dw1000_8c_a46e998266dbea2d61873fffe4ad2c8d0}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_gpio\_value\_set@{dw1000\_gpio\_value\_set}}
+\index{dw1000\_gpio\_value\_set@{dw1000\_gpio\_value\_set}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_gpio\_value\_set()}{dw1000\_gpio\_value\_set()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a46e998266dbea2d61873fffe4ad2c8d0} 
+uint8\+\_\+t dw1000\+\_\+gpio\+\_\+value\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint32\+\_\+t}]{out}{}\end{DoxyParamCaption})}
+
+
+
+DW1000设置\+GPIO的输出电平 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{in}}  & {\em handle} & dw1000 handle 结构体指针 \\
+\hline
+\mbox{\texttt{in}}  & {\em out} & 输出电平 可以使用 \texorpdfstring{$\vert$}{|} 运算组合使用以下参数（参数可在 \doxylink{driver__dw1000_8h}{driver\+\_\+dw1000.\+h} 文件里查询）： \begin{DoxyItemize}
+\item DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+Px\+: 编号x引脚输出低电平，x取值0-\/8 \item DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+Px\+: 编号x引脚输出高电平，x取值0-\/8 \end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+uint8\+\_\+t 函数执行结果 \begin{DoxyItemize}
+\item 0 设置成功 \item 1 设置失败 \item 2 handle 为空 \item 3 handle 未初始化 \end{DoxyItemize}
+
+\end{DoxyReturn}
+\begin{DoxyNote}{注解}
+备注 
+\end{DoxyNote}
+\begin{DoxyAttention}{注意}
+只有对应的\+GPIO引脚配置为输出时，设置才会生效 
+\end{DoxyAttention}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00318}{318}} 行定义.
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=341pt]{driver__dw1000_8c_a46e998266dbea2d61873fffe4ad2c8d0_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{driver__dw1000_8c_a831dc6bea19ab39d86caf13fc9106c56}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_lna\_pa\_mode\_set@{dw1000\_lna\_pa\_mode\_set}}
+\index{dw1000\_lna\_pa\_mode\_set@{dw1000\_lna\_pa\_mode\_set}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_lna\_pa\_mode\_set()}{dw1000\_lna\_pa\_mode\_set()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a831dc6bea19ab39d86caf13fc9106c56} 
+uint8\+\_\+t dw1000\+\_\+lna\+\_\+pa\+\_\+mode\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint32\+\_\+t}]{mode}{}\end{DoxyParamCaption})}
+
+
+
+DW1000 设置 LNA 和 PA 模式 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{in}}  & {\em handle} & dw1000 handle 结构体指针 \\
+\hline
+\mbox{\texttt{in}}  & {\em mode} & 模式 \begin{DoxyItemize}
+\item DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+NONE LNA和\+PA均禁用（默认模式） \item DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+LNA 启用\+LNA \item DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+PA 启用\+PA \item DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+ALL 启用\+LNA和\+PA \end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+uint8\+\_\+t 函数执行结果 \begin{DoxyItemize}
+\item 0 设置成功 \item 1 设置失败 \end{DoxyItemize}
+
+\end{DoxyReturn}
+\begin{DoxyAttention}{注意}
+使能\+PA功能需要失能精细粒度的\+Tx序列控制功能 需先调用 dw1000\+\_\+fine\+\_\+grain\+\_\+tx\+\_\+seq\+\_\+config 进行配置 
+\end{DoxyAttention}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00222}{222}} 行定义.
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{driver__dw1000_8c_a831dc6bea19ab39d86caf13fc9106c56_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{driver__dw1000_8c_ad5196eb1d1a6ae760b416108687a2274}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_preamble\_length\_64\_config@{dw1000\_preamble\_length\_64\_config}}
+\index{dw1000\_preamble\_length\_64\_config@{dw1000\_preamble\_length\_64\_config}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_preamble\_length\_64\_config()}{dw1000\_preamble\_length\_64\_config()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_ad5196eb1d1a6ae760b416108687a2274} 
+uint8\+\_\+t dw1000\+\_\+preamble\+\_\+length\+\_\+64\+\_\+config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint32\+\_\+t}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{待办事项}
+\item[\mbox{\hyperlink{todo__todo000001}{待办事项}}]需要修改 \end{DoxyRefDesc}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00464}{464}} 行定义.
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=347pt]{driver__dw1000_8c_ad5196eb1d1a6ae760b416108687a2274_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{driver__dw1000_8c_af383d1c31c828b3028bfeebcb371d9df}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_rx\_antenna\_delay\_set@{dw1000\_rx\_antenna\_delay\_set}}
+\index{dw1000\_rx\_antenna\_delay\_set@{dw1000\_rx\_antenna\_delay\_set}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_rx\_antenna\_delay\_set()}{dw1000\_rx\_antenna\_delay\_set()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_af383d1c31c828b3028bfeebcb371d9df} 
+uint8\+\_\+t dw1000\+\_\+rx\+\_\+antenna\+\_\+delay\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint16\+\_\+t}]{delay}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00485}{485}} 行定义.
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{driver__dw1000_8c_af383d1c31c828b3028bfeebcb371d9df_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{driver__dw1000_8c_a12dcdce546c56c0468cbe76f8ec2fccf}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_rx\_data\_read@{dw1000\_rx\_data\_read}}
+\index{dw1000\_rx\_data\_read@{dw1000\_rx\_data\_read}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_rx\_data\_read()}{dw1000\_rx\_data\_read()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a12dcdce546c56c0468cbe76f8ec2fccf} 
+uint8\+\_\+t dw1000\+\_\+rx\+\_\+data\+\_\+read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{uint16\+\_\+t}]{len}{, }\item[{uint16\+\_\+t}]{offset}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00535}{535}} 行定义.
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{driver__dw1000_8c_a12dcdce546c56c0468cbe76f8ec2fccf_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{driver__dw1000_8c_a0e3e518adec3019463ca7bfd58fed39a}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_tx\_antenna\_delay\_set@{dw1000\_tx\_antenna\_delay\_set}}
+\index{dw1000\_tx\_antenna\_delay\_set@{dw1000\_tx\_antenna\_delay\_set}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_tx\_antenna\_delay\_set()}{dw1000\_tx\_antenna\_delay\_set()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a0e3e518adec3019463ca7bfd58fed39a} 
+uint8\+\_\+t dw1000\+\_\+tx\+\_\+antenna\+\_\+delay\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint16\+\_\+t}]{delay}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00500}{500}} 行定义.
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{driver__dw1000_8c_a0e3e518adec3019463ca7bfd58fed39a_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{driver__dw1000_8c_a525b1d185f8176eb7053760dcb66a6a8}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_tx\_data\_write@{dw1000\_tx\_data\_write}}
+\index{dw1000\_tx\_data\_write@{dw1000\_tx\_data\_write}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_tx\_data\_write()}{dw1000\_tx\_data\_write()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a525b1d185f8176eb7053760dcb66a6a8} 
+uint8\+\_\+t dw1000\+\_\+tx\+\_\+data\+\_\+write (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{uint16\+\_\+t}]{len}{, }\item[{uint16\+\_\+t}]{offset}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00514}{514}} 行定义.
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{driver__dw1000_8c_a525b1d185f8176eb7053760dcb66a6a8_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{driver__dw1000_8c_a19eaed2365a07498016ff640fe5c176a}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_tx\_frame\_ctrl\_write@{dw1000\_tx\_frame\_ctrl\_write}}
+\index{dw1000\_tx\_frame\_ctrl\_write@{dw1000\_tx\_frame\_ctrl\_write}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_tx\_frame\_ctrl\_write()}{dw1000\_tx\_frame\_ctrl\_write()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a19eaed2365a07498016ff640fe5c176a} 
+uint8\+\_\+t dw1000\+\_\+tx\+\_\+frame\+\_\+ctrl\+\_\+write (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{uint16\+\_\+t}]{tx\+\_\+frame\+\_\+lenght}{, }\item[{uint16\+\_\+t}]{offset}{, }\item[{uint8\+\_\+t}]{is\+\_\+ranging\+\_\+frame}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00531}{531}} 行定义.
+
+\Hypertarget{driver__dw1000_8c_a7e3917e23446d87d49634d0d680057fa}\index{driver\_dw1000.c@{driver\_dw1000.c}!dw1000\_tx\_rf\_config@{dw1000\_tx\_rf\_config}}
+\index{dw1000\_tx\_rf\_config@{dw1000\_tx\_rf\_config}!driver\_dw1000.c@{driver\_dw1000.c}}
+\doxysubsubsection{\texorpdfstring{dw1000\_tx\_rf\_config()}{dw1000\_tx\_rf\_config()}}
+{\footnotesize\ttfamily \label{driver__dw1000_8c_a7e3917e23446d87d49634d0d680057fa} 
+uint8\+\_\+t dw1000\+\_\+tx\+\_\+rf\+\_\+config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{\mbox{\hyperlink{driver__dw1000_01copy_8h_a8f18e25551815d1e7d1262561a89bb7e}{dw1000\+\_\+tx\+\_\+config\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{config}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_8c_source}{driver\+\_\+dw1000.\+c}} 第 \mbox{\hyperlink{driver__dw1000_8c_source_l00434}{434}} 行定义.
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{driver__dw1000_8c_a7e3917e23446d87d49634d0d680057fa_cgraph}
+\end{center}
+\end{figure}

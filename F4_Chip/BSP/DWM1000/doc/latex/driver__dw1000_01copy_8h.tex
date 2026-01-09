@@ -1,0 +1,1033 @@
+\doxysection{src/driver\+\_\+dw1000 copy.\+h 文件参考}
+\hypertarget{driver__dw1000_01copy_8h}{}\label{driver__dw1000_01copy_8h}\index{src/driver\_dw1000 copy.h@{src/driver\_dw1000 copy.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include "{}driver\+\_\+dw1000\+\_\+reg.\+h"{}}\newline
+driver\+\_\+dw1000 copy.\+h 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{driver__dw1000_01copy_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structdw1000__tx__config__s}{dw1000\+\_\+tx\+\_\+config\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structdw1000__config__s}{dw1000\+\_\+config\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structdw1000__handle__s}{dw1000\+\_\+handle\+\_\+s}}
+\begin{DoxyCompactList}\small\item\em DW1000 handle 结构体定义 \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structdw1000__info__s}{dw1000\+\_\+info\+\_\+s}}
+\begin{DoxyCompactList}\small\item\em dw1000 信息 结构体定义 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_ab18f0a12980c6af2e6bc2e63a45cca5f}{DW1000\+\_\+\+CMD\+\_\+\+ENABLE}}~0x01
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a28e3a4c2519d1ea63146a76dc2fc6dab}{DW1000\+\_\+\+CMD\+\_\+\+DISABLE}}~0x00
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a1a34934c05c6cabc1a7993cb751958c1}{DW1000\+\_\+\+CLOCK\+\_\+\+CMD\+\_\+\+ENABLE\+\_\+\+ALL\+\_\+\+SEQ}}~0x01
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a2d95b5f7d8cf9d674b1bebd6423ef285}{DW1000\+\_\+\+CLOCK\+\_\+\+CMD\+\_\+\+FORCE\+\_\+\+SYS\+\_\+\+XTI}}~0x02
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_ad199613bf3f987a162ad427cb5a19aed}{DW1000\+\_\+\+CLOCK\+\_\+\+CMD\+\_\+\+FORCE\+\_\+\+SYS\+\_\+\+PLL}}~0x03
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_af4d490090afdec3dca4e2487cf2ffd17}{DW1000\+\_\+\+TX\+\_\+\+FINE\+\_\+\+SEQ\+\_\+\+CMD\+\_\+\+ENABLE}}~0x0\+B74
+\begin{DoxyCompactList}\small\item\em 定义\+DW1000 精细粒度的\+Tx序列控制值 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_ad82dc12e67d8f58a8be6bb2d17511ad2}{DW1000\+\_\+\+TX\+\_\+\+FINE\+\_\+\+SEQ\+\_\+\+CMD\+\_\+\+DISABLE}}~0x0000
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a6ed91ae6ed78e946558e72fafc72359b}{DW1000\+\_\+\+TX\+\_\+\+FINE\+\_\+\+SEQ\+\_\+\+CMD\+\_\+\+DEFAULT}}~\mbox{\hyperlink{driver__dw1000_01copy_8h_af4d490090afdec3dca4e2487cf2ffd17}{DW1000\+\_\+\+TX\+\_\+\+FINE\+\_\+\+SEQ\+\_\+\+CMD\+\_\+\+ENABLE}}
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a3147091b20fa958189c0bd1a87a4a1e3}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+0}}~0x00
+\begin{DoxyCompactList}\small\item\em 定义\+GPIO模式 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_ad814d93b2f39a69f58e646d51d968b73}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+1}}~0x01
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a7c760dff0f5690cc30c2fe43b463b2a8}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+DEFAULT}}~\mbox{\hyperlink{driver__dw1000_01copy_8h_a3147091b20fa958189c0bd1a87a4a1e3}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+0}}
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_ac7c324881d253d743a3447087caf1f58}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+SELECT}}(pin,  mode)
+\begin{DoxyCompactList}\small\item\em 配置\+GPIO引脚的模式 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_aba6a51259f6100c537743582bad9b410}{DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+MASK}}~\mbox{\hyperlink{driver__dw1000__reg_8h_a3c1a0485978fc27c04b725fcdc008c00}{DW1000\+\_\+\+REG\+\_\+\+BIT\+\_\+\+RANGE}}(19, 14)
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a3be78582d947c5c9d009cf0d5f346e8b}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+P2\+\_\+\+RXLED}}~\mbox{\hyperlink{driver__dw1000_01copy_8h_ac7c324881d253d743a3447087caf1f58}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+SELECT}}(2, \mbox{\hyperlink{driver__dw1000_01copy_8h_ad814d93b2f39a69f58e646d51d968b73}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+1}})
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_aba0fa3c9af46274262ab8e13b0cf497d}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+P3\+\_\+\+TXLED}}~\mbox{\hyperlink{driver__dw1000_01copy_8h_ac7c324881d253d743a3447087caf1f58}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+SELECT}}(3, \mbox{\hyperlink{driver__dw1000_01copy_8h_ad814d93b2f39a69f58e646d51d968b73}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+1}})
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a3442d04328abc02de90285fd0e2ba8d1}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+P4\+\_\+\+EXTPA}}~\mbox{\hyperlink{driver__dw1000_01copy_8h_ac7c324881d253d743a3447087caf1f58}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+SELECT}}(4, \mbox{\hyperlink{driver__dw1000_01copy_8h_ad814d93b2f39a69f58e646d51d968b73}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+1}})
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a4139b52f450d2d9efb2d286e7104f1f1}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+P5\+\_\+\+EXTTXE}}~\mbox{\hyperlink{driver__dw1000_01copy_8h_ac7c324881d253d743a3447087caf1f58}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+SELECT}}(5, \mbox{\hyperlink{driver__dw1000_01copy_8h_ad814d93b2f39a69f58e646d51d968b73}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+1}})
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_acfb85a0144105842d787bd77177bf98e}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+P6\+\_\+\+EXTRXE}}~\mbox{\hyperlink{driver__dw1000_01copy_8h_ac7c324881d253d743a3447087caf1f58}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+SELECT}}(6, \mbox{\hyperlink{driver__dw1000_01copy_8h_ad814d93b2f39a69f58e646d51d968b73}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+1}})
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a678e9d7e3cc9570ab3c0ebb3298afa44}{DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+NONE}}~0x00000000
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_ac7635b4e6bc5b8c86314f39d28e40b7c}{DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+LNA}}~\mbox{\hyperlink{driver__dw1000_01copy_8h_acfb85a0144105842d787bd77177bf98e}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+P6\+\_\+\+EXTRXE}}
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a3b26f07c25efcd1ca0439bc4aa0cf03e}{DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+PA}}~(\mbox{\hyperlink{driver__dw1000_01copy_8h_a3442d04328abc02de90285fd0e2ba8d1}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+P4\+\_\+\+EXTPA}} \texorpdfstring{$\vert$}{|} \mbox{\hyperlink{driver__dw1000_01copy_8h_a4139b52f450d2d9efb2d286e7104f1f1}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+P5\+\_\+\+EXTTXE}})
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a26a0ed2d3486c56cf7f2796596e901ec}{DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+ALL}}~(\mbox{\hyperlink{driver__dw1000_01copy_8h_ac7635b4e6bc5b8c86314f39d28e40b7c}{DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+LNA}} \texorpdfstring{$\vert$}{|} \mbox{\hyperlink{driver__dw1000_01copy_8h_a3b26f07c25efcd1ca0439bc4aa0cf03e}{DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+PA}})
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_af3b4fc8f1ef9b0abcbd433072b16c2f9}{DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+DEFAULT}}~\mbox{\hyperlink{driver__dw1000_01copy_8h_a678e9d7e3cc9570ab3c0ebb3298afa44}{DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+NONE}}
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_aae03d40443074694dfeac5a0f1813eb8}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+LNA\+\_\+\+ENABLE}}~0x01
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_af5f584ad1f6900efc04b5ccea5fa0a93}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+PA\+\_\+\+ENABLE}}~0x02
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a8ecb19eb18ad208a2907fe6d91ff1aaa}{DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+P0}}~0x00000010
+\begin{DoxyCompactList}\small\item\em 定义\+GPIO方向 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a2b9d6cd7bc8661784c04f78460efff35}{DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+P1}}~0x00000020
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_adff02d282c7afac81ad3995fe9df42f4}{DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+P2}}~0x00000040
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_aff098caaf7503718e40a9b26984987b5}{DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+P3}}~0x00000080
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a1674cf31c915c82867f759790e155f75}{DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+P4}}~0x00001000
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a470fdf472c250ef57073b624d015e6d1}{DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+P5}}~0x00002000
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a2bd84433b2a179ca44033cb9004021af}{DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+P6}}~0x00004000
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a841f70c21f6e1831ed857bc44af903bc}{DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+P7}}~0x00008000
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_ac9c573771c52084eedb2241fc63bd2fe}{DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+P8}}~0x00100000
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a27b45f45c3d72d5705ab5cbaa9dd778e}{DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+P0}}~0x00000011
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_abcd9b412b7352f3140a998ce12cbaaff}{DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+P1}}~0x00000022
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a6d07ac5a5af649d119bfa822f5a78a4f}{DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+P2}}~0x00000044
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_ade8fc554b416dd1ed9684f549fb5cbf7}{DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+P3}}~0x00000088
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_ae384d4ef3157a4d5aa6b675e3eae4799}{DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+P4}}~0x00001100
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a9a3e263ce7f576b288375dd930911b83}{DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+P5}}~0x00002200
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_af6461dd3f4d7996e73fd4be3891c8130}{DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+P6}}~0x00004400
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a952766752f05ab94d98d51d410e518c6}{DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+P7}}~0x00008800
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a5b7198ff2d1bcf6d84851aceccd269de}{DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+P8}}~0x00110000
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a474bae2b66a0cd86c8a5507679d50e97}{DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+P0}}~0x00000010
+\begin{DoxyCompactList}\small\item\em 定义\+GPIO方向 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_aa1f972a64d6ece929580298b86e90cda}{DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+P1}}~0x00000020
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a007f48f01de12f55c71fa9995391ee89}{DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+P2}}~0x00000040
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a3d7e900c39f474d4dfe559cb0aec4623}{DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+P3}}~0x00000080
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a9eeea68f26643c94fb1f5297c5261062}{DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+P4}}~0x00001000
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_afeb84ab9fd1f8c9d24d241642b0a8576}{DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+P5}}~0x00002000
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a86a5c4f6b5e94c33be2ef1f3071cbdf6}{DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+P6}}~0x00004000
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a0c6b9f2b4e0aa51b1d7beb7bdcb65f8c}{DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+P7}}~0x00008000
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_ae839fc4be86910729c07a88b9ccc31ce}{DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+P8}}~0x00100000
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_abac16b3071db531e4ffbb8cdde7eae99}{DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+P0}}~0x00000011
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a69d8cc365bb5cb3598bf50ec39d44109}{DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+P1}}~0x00000022
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_ab01e44d644abc9c5a80444ce63faa255}{DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+P2}}~0x00000044
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a4c04c5b7c9b6e7260fb231881b397979}{DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+P3}}~0x00000088
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_acb22131e88fd3494037a659894d697b2}{DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+P4}}~0x00001100
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a51d1a66e2492f8584bb2756091d26700}{DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+P5}}~0x00002200
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a8747e517a3a1c2cc48802042e8d4e4a2}{DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+P6}}~0x00004400
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_ab41969d12647eff909c067303cb8403d}{DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+P7}}~0x00008800
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a0ffb433c4345e214be8ef9669eb9c4db}{DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+P8}}~0x00110000
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_aa8fa8b98ed981317da09379785cd419f}{DW1000\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+STATE\+\_\+\+P0}}~\mbox{\hyperlink{driver__dw1000__reg_8h_ac388ae2fd8495316ee470b6824c8b55f}{DW1000\+\_\+\+SUB\+\_\+\+REG\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+BIT\+\_\+\+GRAWP0}}
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_af81ec87f2fab71566a80196bedea6004}{DW1000\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+STATE\+\_\+\+P1}}~\mbox{\hyperlink{driver__dw1000__reg_8h_a5fc26b8e1bf4c6d34d1d23290db2c184}{DW1000\+\_\+\+SUB\+\_\+\+REG\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+BIT\+\_\+\+GRAWP1}}
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a35aa3b1c9a25d3359398e6c4bf9cd096}{DW1000\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+STATE\+\_\+\+P2}}~\mbox{\hyperlink{driver__dw1000__reg_8h_a35a9d6286f8bc2432289c540b942d369}{DW1000\+\_\+\+SUB\+\_\+\+REG\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+BIT\+\_\+\+GRAWP2}}
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a0fec1b21231b4d38d1e3aea93fdf877e}{DW1000\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+STATE\+\_\+\+P3}}~\mbox{\hyperlink{driver__dw1000__reg_8h_ac97bb33e424525339b121a4679565850}{DW1000\+\_\+\+SUB\+\_\+\+REG\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+BIT\+\_\+\+GRAWP3}}
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a47aa16a4307d646afa6902362a3e33e9}{DW1000\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+STATE\+\_\+\+P4}}~\mbox{\hyperlink{driver__dw1000__reg_8h_a7ddfad7e2a22dd8b79799b29a14faddc}{DW1000\+\_\+\+SUB\+\_\+\+REG\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+BIT\+\_\+\+GRAWP4}}
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a722c2666493c3e96866f74b0157f6a0b}{DW1000\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+STATE\+\_\+\+P5}}~\mbox{\hyperlink{driver__dw1000__reg_8h_ab45282cdf0f02cd957a7f1bb1cee1a08}{DW1000\+\_\+\+SUB\+\_\+\+REG\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+BIT\+\_\+\+GRAWP5}}
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a21689bf501e860bb8867d5796b410f45}{DW1000\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+STATE\+\_\+\+P6}}~\mbox{\hyperlink{driver__dw1000__reg_8h_ae4e3ecd4a95602dc4996a5396d263acd}{DW1000\+\_\+\+SUB\+\_\+\+REG\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+BIT\+\_\+\+GRAWP6}}
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a8e43b57f3c032b0771d1fae9925d820c}{DW1000\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+STATE\+\_\+\+P7}}~\mbox{\hyperlink{driver__dw1000__reg_8h_a9cfcc279aac31780dc3166681dcb1866}{DW1000\+\_\+\+SUB\+\_\+\+REG\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+BIT\+\_\+\+GRAWP7}}
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a0052348d875ef8ef1ef5deb4057b6821}{DW1000\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+STATE\+\_\+\+P8}}~\mbox{\hyperlink{driver__dw1000__reg_8h_a2a49c9555f1930d8dab3198b19bed92f}{DW1000\+\_\+\+SUB\+\_\+\+REG\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+BIT\+\_\+\+GRAWP8}}
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_ad8fc39af1151b940b99b941ee117eaec}{DW1000\+\_\+\+PRF\+\_\+16\+MHz}}~0x01
+\item 
+\#define \mbox{\hyperlink{driver__dw1000_01copy_8h_a0de3a6506abf22f7a00aecc725c32b78}{DW1000\+\_\+\+PRF\+\_\+64\+MHz}}~0x02
+\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga1ccb6b5cfe80b62c177816d5572bae0d}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+INIT}}(HANDLE,  STRUCTURE)
+\begin{DoxyCompactList}\small\item\em 初始化 \doxylink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t} 结构体 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga5987d4731ac124a9e0644870f41bfc08}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+INIT}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 spi\+\_\+init 函数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga11e0d3df1bc80410c47afec0c608ea70}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+DEINIT}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 spi\+\_\+deinit 函数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_gad6345a3bb9ef86ed392fb502e9c65c82}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+READ}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 spi\+\_\+read 函数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga526b24f41e54bff213315fa886134af7}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+SPI\+\_\+\+WRITE}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 spi\+\_\+write 函数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga42523356ff5da80ae1fb24feb4bd4ed4}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+DELAY\+\_\+\+MS}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 delay\+\_\+ms 函数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga450d304f275f858c0910a363ee92000e}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+DEBUG\+\_\+\+PRINT}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 debug\+\_\+print 函数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__dw1000__link__driver_ga1bb8090d157b468f89aada3e2e11564a}{DRIVER\+\_\+\+DW1000\+\_\+\+LINK\+\_\+\+RECEIVE\+\_\+\+CALLBACK}}(HANDLE,  FUC)
+\begin{DoxyCompactList}\small\item\em 链接 receive\+\_\+callback 函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{类型定义}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structdw1000__tx__config__s}{dw1000\+\_\+tx\+\_\+config\+\_\+s}} \mbox{\hyperlink{driver__dw1000_01copy_8h_a8f18e25551815d1e7d1262561a89bb7e}{dw1000\+\_\+tx\+\_\+config\+\_\+t}}
+\item 
+typedef struct \mbox{\hyperlink{structdw1000__config__s}{dw1000\+\_\+config\+\_\+s}} \mbox{\hyperlink{driver__dw1000_01copy_8h_aa83cfb3a17eff0e353669bbdbf041789}{dw1000\+\_\+config\+\_\+t}}
+\item 
+typedef struct \mbox{\hyperlink{structdw1000__handle__s}{dw1000\+\_\+handle\+\_\+s}} \mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em DW1000 handle 结构体定义 \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structdw1000__info__s}{dw1000\+\_\+info\+\_\+s}} \mbox{\hyperlink{driver__dw1000_01copy_8h_aca1028cbf8f069330cf8c4b762aae9a7}{dw1000\+\_\+info\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em dw1000 信息 结构体定义 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{driver__dw1000_01copy_8h_doc-define-members}
+\doxysubsection{宏定义说明}
+\Hypertarget{driver__dw1000_01copy_8h_a1a34934c05c6cabc1a7993cb751958c1}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_CLOCK\_CMD\_ENABLE\_ALL\_SEQ@{DW1000\_CLOCK\_CMD\_ENABLE\_ALL\_SEQ}}
+\index{DW1000\_CLOCK\_CMD\_ENABLE\_ALL\_SEQ@{DW1000\_CLOCK\_CMD\_ENABLE\_ALL\_SEQ}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_CLOCK\_CMD\_ENABLE\_ALL\_SEQ}{DW1000\_CLOCK\_CMD\_ENABLE\_ALL\_SEQ}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a1a34934c05c6cabc1a7993cb751958c1} 
+\#define DW1000\+\_\+\+CLOCK\+\_\+\+CMD\+\_\+\+ENABLE\+\_\+\+ALL\+\_\+\+SEQ~0x01}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00018}{18}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_ad199613bf3f987a162ad427cb5a19aed}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_CLOCK\_CMD\_FORCE\_SYS\_PLL@{DW1000\_CLOCK\_CMD\_FORCE\_SYS\_PLL}}
+\index{DW1000\_CLOCK\_CMD\_FORCE\_SYS\_PLL@{DW1000\_CLOCK\_CMD\_FORCE\_SYS\_PLL}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_CLOCK\_CMD\_FORCE\_SYS\_PLL}{DW1000\_CLOCK\_CMD\_FORCE\_SYS\_PLL}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_ad199613bf3f987a162ad427cb5a19aed} 
+\#define DW1000\+\_\+\+CLOCK\+\_\+\+CMD\+\_\+\+FORCE\+\_\+\+SYS\+\_\+\+PLL~0x03}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00020}{20}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a2d95b5f7d8cf9d674b1bebd6423ef285}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_CLOCK\_CMD\_FORCE\_SYS\_XTI@{DW1000\_CLOCK\_CMD\_FORCE\_SYS\_XTI}}
+\index{DW1000\_CLOCK\_CMD\_FORCE\_SYS\_XTI@{DW1000\_CLOCK\_CMD\_FORCE\_SYS\_XTI}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_CLOCK\_CMD\_FORCE\_SYS\_XTI}{DW1000\_CLOCK\_CMD\_FORCE\_SYS\_XTI}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a2d95b5f7d8cf9d674b1bebd6423ef285} 
+\#define DW1000\+\_\+\+CLOCK\+\_\+\+CMD\+\_\+\+FORCE\+\_\+\+SYS\+\_\+\+XTI~0x02}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00019}{19}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a28e3a4c2519d1ea63146a76dc2fc6dab}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_CMD\_DISABLE@{DW1000\_CMD\_DISABLE}}
+\index{DW1000\_CMD\_DISABLE@{DW1000\_CMD\_DISABLE}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_CMD\_DISABLE}{DW1000\_CMD\_DISABLE}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a28e3a4c2519d1ea63146a76dc2fc6dab} 
+\#define DW1000\+\_\+\+CMD\+\_\+\+DISABLE~0x00}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00016}{16}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_ab18f0a12980c6af2e6bc2e63a45cca5f}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_CMD\_ENABLE@{DW1000\_CMD\_ENABLE}}
+\index{DW1000\_CMD\_ENABLE@{DW1000\_CMD\_ENABLE}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_CMD\_ENABLE}{DW1000\_CMD\_ENABLE}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_ab18f0a12980c6af2e6bc2e63a45cca5f} 
+\#define DW1000\+\_\+\+CMD\+\_\+\+ENABLE~0x01}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00015}{15}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a27b45f45c3d72d5705ab5cbaa9dd778e}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_DIRECTION\_INPUT\_P0@{DW1000\_GPIO\_DIRECTION\_INPUT\_P0}}
+\index{DW1000\_GPIO\_DIRECTION\_INPUT\_P0@{DW1000\_GPIO\_DIRECTION\_INPUT\_P0}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_DIRECTION\_INPUT\_P0}{DW1000\_GPIO\_DIRECTION\_INPUT\_P0}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a27b45f45c3d72d5705ab5cbaa9dd778e} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+P0~0x00000011}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00086}{86}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_abcd9b412b7352f3140a998ce12cbaaff}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_DIRECTION\_INPUT\_P1@{DW1000\_GPIO\_DIRECTION\_INPUT\_P1}}
+\index{DW1000\_GPIO\_DIRECTION\_INPUT\_P1@{DW1000\_GPIO\_DIRECTION\_INPUT\_P1}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_DIRECTION\_INPUT\_P1}{DW1000\_GPIO\_DIRECTION\_INPUT\_P1}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_abcd9b412b7352f3140a998ce12cbaaff} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+P1~0x00000022}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00087}{87}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a6d07ac5a5af649d119bfa822f5a78a4f}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_DIRECTION\_INPUT\_P2@{DW1000\_GPIO\_DIRECTION\_INPUT\_P2}}
+\index{DW1000\_GPIO\_DIRECTION\_INPUT\_P2@{DW1000\_GPIO\_DIRECTION\_INPUT\_P2}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_DIRECTION\_INPUT\_P2}{DW1000\_GPIO\_DIRECTION\_INPUT\_P2}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a6d07ac5a5af649d119bfa822f5a78a4f} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+P2~0x00000044}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00088}{88}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_ade8fc554b416dd1ed9684f549fb5cbf7}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_DIRECTION\_INPUT\_P3@{DW1000\_GPIO\_DIRECTION\_INPUT\_P3}}
+\index{DW1000\_GPIO\_DIRECTION\_INPUT\_P3@{DW1000\_GPIO\_DIRECTION\_INPUT\_P3}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_DIRECTION\_INPUT\_P3}{DW1000\_GPIO\_DIRECTION\_INPUT\_P3}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_ade8fc554b416dd1ed9684f549fb5cbf7} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+P3~0x00000088}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00089}{89}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_ae384d4ef3157a4d5aa6b675e3eae4799}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_DIRECTION\_INPUT\_P4@{DW1000\_GPIO\_DIRECTION\_INPUT\_P4}}
+\index{DW1000\_GPIO\_DIRECTION\_INPUT\_P4@{DW1000\_GPIO\_DIRECTION\_INPUT\_P4}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_DIRECTION\_INPUT\_P4}{DW1000\_GPIO\_DIRECTION\_INPUT\_P4}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_ae384d4ef3157a4d5aa6b675e3eae4799} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+P4~0x00001100}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00090}{90}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a9a3e263ce7f576b288375dd930911b83}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_DIRECTION\_INPUT\_P5@{DW1000\_GPIO\_DIRECTION\_INPUT\_P5}}
+\index{DW1000\_GPIO\_DIRECTION\_INPUT\_P5@{DW1000\_GPIO\_DIRECTION\_INPUT\_P5}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_DIRECTION\_INPUT\_P5}{DW1000\_GPIO\_DIRECTION\_INPUT\_P5}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a9a3e263ce7f576b288375dd930911b83} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+P5~0x00002200}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00091}{91}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_af6461dd3f4d7996e73fd4be3891c8130}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_DIRECTION\_INPUT\_P6@{DW1000\_GPIO\_DIRECTION\_INPUT\_P6}}
+\index{DW1000\_GPIO\_DIRECTION\_INPUT\_P6@{DW1000\_GPIO\_DIRECTION\_INPUT\_P6}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_DIRECTION\_INPUT\_P6}{DW1000\_GPIO\_DIRECTION\_INPUT\_P6}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_af6461dd3f4d7996e73fd4be3891c8130} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+P6~0x00004400}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00092}{92}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a952766752f05ab94d98d51d410e518c6}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_DIRECTION\_INPUT\_P7@{DW1000\_GPIO\_DIRECTION\_INPUT\_P7}}
+\index{DW1000\_GPIO\_DIRECTION\_INPUT\_P7@{DW1000\_GPIO\_DIRECTION\_INPUT\_P7}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_DIRECTION\_INPUT\_P7}{DW1000\_GPIO\_DIRECTION\_INPUT\_P7}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a952766752f05ab94d98d51d410e518c6} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+P7~0x00008800}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00093}{93}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a5b7198ff2d1bcf6d84851aceccd269de}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_DIRECTION\_INPUT\_P8@{DW1000\_GPIO\_DIRECTION\_INPUT\_P8}}
+\index{DW1000\_GPIO\_DIRECTION\_INPUT\_P8@{DW1000\_GPIO\_DIRECTION\_INPUT\_P8}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_DIRECTION\_INPUT\_P8}{DW1000\_GPIO\_DIRECTION\_INPUT\_P8}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a5b7198ff2d1bcf6d84851aceccd269de} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+P8~0x00110000}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00094}{94}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a8ecb19eb18ad208a2907fe6d91ff1aaa}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_DIRECTION\_OUTPUT\_P0@{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P0}}
+\index{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P0@{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P0}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P0}{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P0}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a8ecb19eb18ad208a2907fe6d91ff1aaa} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+P0~0x00000010}
+
+
+
+定义\+GPIO方向 
+
+\begin{DoxyNote}{注解}
+备注 
+\end{DoxyNote}
+
+\begin{DoxyParams}{参数}
+{\em DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+Px} & 编号x引脚为输出，x取值0-\/8 \\
+\hline
+{\em DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+INPUT\+\_\+\+Px} & 编号x引脚为输入，x取值0-\/8 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00077}{77}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a2b9d6cd7bc8661784c04f78460efff35}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_DIRECTION\_OUTPUT\_P1@{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P1}}
+\index{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P1@{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P1}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P1}{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P1}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a2b9d6cd7bc8661784c04f78460efff35} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+P1~0x00000020}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00078}{78}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_adff02d282c7afac81ad3995fe9df42f4}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_DIRECTION\_OUTPUT\_P2@{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P2}}
+\index{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P2@{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P2}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P2}{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P2}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_adff02d282c7afac81ad3995fe9df42f4} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+P2~0x00000040}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00079}{79}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_aff098caaf7503718e40a9b26984987b5}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_DIRECTION\_OUTPUT\_P3@{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P3}}
+\index{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P3@{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P3}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P3}{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P3}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_aff098caaf7503718e40a9b26984987b5} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+P3~0x00000080}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00080}{80}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a1674cf31c915c82867f759790e155f75}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_DIRECTION\_OUTPUT\_P4@{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P4}}
+\index{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P4@{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P4}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P4}{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P4}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a1674cf31c915c82867f759790e155f75} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+P4~0x00001000}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00081}{81}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a470fdf472c250ef57073b624d015e6d1}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_DIRECTION\_OUTPUT\_P5@{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P5}}
+\index{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P5@{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P5}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P5}{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P5}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a470fdf472c250ef57073b624d015e6d1} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+P5~0x00002000}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00082}{82}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a2bd84433b2a179ca44033cb9004021af}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_DIRECTION\_OUTPUT\_P6@{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P6}}
+\index{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P6@{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P6}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P6}{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P6}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a2bd84433b2a179ca44033cb9004021af} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+P6~0x00004000}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00083}{83}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a841f70c21f6e1831ed857bc44af903bc}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_DIRECTION\_OUTPUT\_P7@{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P7}}
+\index{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P7@{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P7}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P7}{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P7}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a841f70c21f6e1831ed857bc44af903bc} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+P7~0x00008000}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00084}{84}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_ac9c573771c52084eedb2241fc63bd2fe}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_DIRECTION\_OUTPUT\_P8@{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P8}}
+\index{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P8@{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P8}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P8}{DW1000\_GPIO\_DIRECTION\_OUTPUT\_P8}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_ac9c573771c52084eedb2241fc63bd2fe} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+DIRECTION\+\_\+\+OUTPUT\+\_\+\+P8~0x00100000}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00085}{85}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a3147091b20fa958189c0bd1a87a4a1e3}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_MODE\_0@{DW1000\_GPIO\_MODE\_0}}
+\index{DW1000\_GPIO\_MODE\_0@{DW1000\_GPIO\_MODE\_0}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_MODE\_0}{DW1000\_GPIO\_MODE\_0}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a3147091b20fa958189c0bd1a87a4a1e3} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+0~0x00}
+
+
+
+定义\+GPIO模式 
+
+\begin{DoxyNote}{注解}
+默认为\+DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+DEFAULT 
+\end{DoxyNote}
+\begin{DoxyAttention}{注意}
+根据用户手册，\+GPIO模式2和模式3保留不应使用 
+\end{DoxyAttention}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00038}{38}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_ad814d93b2f39a69f58e646d51d968b73}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_MODE\_1@{DW1000\_GPIO\_MODE\_1}}
+\index{DW1000\_GPIO\_MODE\_1@{DW1000\_GPIO\_MODE\_1}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_MODE\_1}{DW1000\_GPIO\_MODE\_1}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_ad814d93b2f39a69f58e646d51d968b73} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+1~0x01}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00039}{39}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a7c760dff0f5690cc30c2fe43b463b2a8}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_MODE\_DEFAULT@{DW1000\_GPIO\_MODE\_DEFAULT}}
+\index{DW1000\_GPIO\_MODE\_DEFAULT@{DW1000\_GPIO\_MODE\_DEFAULT}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_MODE\_DEFAULT}{DW1000\_GPIO\_MODE\_DEFAULT}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a7c760dff0f5690cc30c2fe43b463b2a8} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+DEFAULT~\mbox{\hyperlink{driver__dw1000_01copy_8h_a3147091b20fa958189c0bd1a87a4a1e3}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+0}}}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00042}{42}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_aae03d40443074694dfeac5a0f1813eb8}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_MODE\_LNA\_ENABLE@{DW1000\_GPIO\_MODE\_LNA\_ENABLE}}
+\index{DW1000\_GPIO\_MODE\_LNA\_ENABLE@{DW1000\_GPIO\_MODE\_LNA\_ENABLE}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_MODE\_LNA\_ENABLE}{DW1000\_GPIO\_MODE\_LNA\_ENABLE}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_aae03d40443074694dfeac5a0f1813eb8} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+LNA\+\_\+\+ENABLE~0x01}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00068}{68}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a3be78582d947c5c9d009cf0d5f346e8b}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_MODE\_P2\_RXLED@{DW1000\_GPIO\_MODE\_P2\_RXLED}}
+\index{DW1000\_GPIO\_MODE\_P2\_RXLED@{DW1000\_GPIO\_MODE\_P2\_RXLED}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_MODE\_P2\_RXLED}{DW1000\_GPIO\_MODE\_P2\_RXLED}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a3be78582d947c5c9d009cf0d5f346e8b} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+P2\+\_\+\+RXLED~\mbox{\hyperlink{driver__dw1000_01copy_8h_ac7c324881d253d743a3447087caf1f58}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+SELECT}}(2, \mbox{\hyperlink{driver__dw1000_01copy_8h_ad814d93b2f39a69f58e646d51d968b73}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+1}})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00056}{56}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_aba0fa3c9af46274262ab8e13b0cf497d}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_MODE\_P3\_TXLED@{DW1000\_GPIO\_MODE\_P3\_TXLED}}
+\index{DW1000\_GPIO\_MODE\_P3\_TXLED@{DW1000\_GPIO\_MODE\_P3\_TXLED}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_MODE\_P3\_TXLED}{DW1000\_GPIO\_MODE\_P3\_TXLED}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_aba0fa3c9af46274262ab8e13b0cf497d} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+P3\+\_\+\+TXLED~\mbox{\hyperlink{driver__dw1000_01copy_8h_ac7c324881d253d743a3447087caf1f58}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+SELECT}}(3, \mbox{\hyperlink{driver__dw1000_01copy_8h_ad814d93b2f39a69f58e646d51d968b73}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+1}})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00057}{57}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a3442d04328abc02de90285fd0e2ba8d1}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_MODE\_P4\_EXTPA@{DW1000\_GPIO\_MODE\_P4\_EXTPA}}
+\index{DW1000\_GPIO\_MODE\_P4\_EXTPA@{DW1000\_GPIO\_MODE\_P4\_EXTPA}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_MODE\_P4\_EXTPA}{DW1000\_GPIO\_MODE\_P4\_EXTPA}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a3442d04328abc02de90285fd0e2ba8d1} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+P4\+\_\+\+EXTPA~\mbox{\hyperlink{driver__dw1000_01copy_8h_ac7c324881d253d743a3447087caf1f58}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+SELECT}}(4, \mbox{\hyperlink{driver__dw1000_01copy_8h_ad814d93b2f39a69f58e646d51d968b73}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+1}})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00058}{58}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a4139b52f450d2d9efb2d286e7104f1f1}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_MODE\_P5\_EXTTXE@{DW1000\_GPIO\_MODE\_P5\_EXTTXE}}
+\index{DW1000\_GPIO\_MODE\_P5\_EXTTXE@{DW1000\_GPIO\_MODE\_P5\_EXTTXE}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_MODE\_P5\_EXTTXE}{DW1000\_GPIO\_MODE\_P5\_EXTTXE}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a4139b52f450d2d9efb2d286e7104f1f1} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+P5\+\_\+\+EXTTXE~\mbox{\hyperlink{driver__dw1000_01copy_8h_ac7c324881d253d743a3447087caf1f58}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+SELECT}}(5, \mbox{\hyperlink{driver__dw1000_01copy_8h_ad814d93b2f39a69f58e646d51d968b73}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+1}})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00059}{59}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_acfb85a0144105842d787bd77177bf98e}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_MODE\_P6\_EXTRXE@{DW1000\_GPIO\_MODE\_P6\_EXTRXE}}
+\index{DW1000\_GPIO\_MODE\_P6\_EXTRXE@{DW1000\_GPIO\_MODE\_P6\_EXTRXE}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_MODE\_P6\_EXTRXE}{DW1000\_GPIO\_MODE\_P6\_EXTRXE}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_acfb85a0144105842d787bd77177bf98e} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+P6\+\_\+\+EXTRXE~\mbox{\hyperlink{driver__dw1000_01copy_8h_ac7c324881d253d743a3447087caf1f58}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+SELECT}}(6, \mbox{\hyperlink{driver__dw1000_01copy_8h_ad814d93b2f39a69f58e646d51d968b73}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+1}})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00060}{60}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_af5f584ad1f6900efc04b5ccea5fa0a93}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_MODE\_PA\_ENABLE@{DW1000\_GPIO\_MODE\_PA\_ENABLE}}
+\index{DW1000\_GPIO\_MODE\_PA\_ENABLE@{DW1000\_GPIO\_MODE\_PA\_ENABLE}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_MODE\_PA\_ENABLE}{DW1000\_GPIO\_MODE\_PA\_ENABLE}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_af5f584ad1f6900efc04b5ccea5fa0a93} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+PA\+\_\+\+ENABLE~0x02}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00069}{69}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_ac7c324881d253d743a3447087caf1f58}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_MODE\_SELECT@{DW1000\_GPIO\_MODE\_SELECT}}
+\index{DW1000\_GPIO\_MODE\_SELECT@{DW1000\_GPIO\_MODE\_SELECT}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_MODE\_SELECT}{DW1000\_GPIO\_MODE\_SELECT}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_ac7c324881d253d743a3447087caf1f58} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+SELECT(\begin{DoxyParamCaption}\item[{}]{pin}{, }\item[{}]{mode}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((mode)\ <<\ (2\ *\ (pin)\ +\ 6))}
+
+\end{DoxyCode}
+
+
+配置\+GPIO引脚的模式 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{in}}  & {\em pin} & 引脚编号，取值0-\/8 \\
+\hline
+\mbox{\texttt{in}}  & {\em mode} & 模式 \begin{DoxyItemize}
+\item DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+x： 模式x，x取值0-\/3 \end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{警告}
+目前只能使用模式0-\/1，模式2-\/3保留不应使用 
+\end{DoxyWarning}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00051}{51}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_abac16b3071db531e4ffbb8cdde7eae99}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P0@{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P0}}
+\index{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P0@{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P0}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P0}{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P0}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_abac16b3071db531e4ffbb8cdde7eae99} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+P0~0x00000011}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00111}{111}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a69d8cc365bb5cb3598bf50ec39d44109}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P1@{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P1}}
+\index{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P1@{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P1}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P1}{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P1}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a69d8cc365bb5cb3598bf50ec39d44109} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+P1~0x00000022}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00112}{112}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_ab01e44d644abc9c5a80444ce63faa255}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P2@{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P2}}
+\index{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P2@{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P2}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P2}{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P2}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_ab01e44d644abc9c5a80444ce63faa255} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+P2~0x00000044}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00113}{113}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a4c04c5b7c9b6e7260fb231881b397979}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P3@{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P3}}
+\index{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P3@{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P3}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P3}{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P3}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a4c04c5b7c9b6e7260fb231881b397979} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+P3~0x00000088}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00114}{114}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_acb22131e88fd3494037a659894d697b2}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P4@{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P4}}
+\index{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P4@{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P4}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P4}{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P4}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_acb22131e88fd3494037a659894d697b2} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+P4~0x00001100}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00115}{115}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a51d1a66e2492f8584bb2756091d26700}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P5@{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P5}}
+\index{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P5@{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P5}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P5}{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P5}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a51d1a66e2492f8584bb2756091d26700} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+P5~0x00002200}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00116}{116}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a8747e517a3a1c2cc48802042e8d4e4a2}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P6@{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P6}}
+\index{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P6@{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P6}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P6}{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P6}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a8747e517a3a1c2cc48802042e8d4e4a2} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+P6~0x00004400}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00117}{117}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_ab41969d12647eff909c067303cb8403d}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P7@{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P7}}
+\index{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P7@{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P7}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P7}{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P7}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_ab41969d12647eff909c067303cb8403d} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+P7~0x00008800}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00118}{118}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a0ffb433c4345e214be8ef9669eb9c4db}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P8@{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P8}}
+\index{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P8@{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P8}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P8}{DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P8}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a0ffb433c4345e214be8ef9669eb9c4db} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+P8~0x00110000}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00119}{119}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a474bae2b66a0cd86c8a5507679d50e97}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P0@{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P0}}
+\index{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P0@{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P0}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P0}{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P0}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a474bae2b66a0cd86c8a5507679d50e97} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+P0~0x00000010}
+
+
+
+定义\+GPIO方向 
+
+\begin{DoxyNote}{注解}
+备注 
+\end{DoxyNote}
+
+\begin{DoxyParams}{参数}
+{\em DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+Px} & 编号x引脚输出低电平，x取值0-\/8 \\
+\hline
+{\em DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+HIGH\+\_\+\+Px} & 编号x引脚输出高电平，x取值0-\/8 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00102}{102}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_aa1f972a64d6ece929580298b86e90cda}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P1@{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P1}}
+\index{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P1@{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P1}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P1}{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P1}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_aa1f972a64d6ece929580298b86e90cda} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+P1~0x00000020}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00103}{103}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a007f48f01de12f55c71fa9995391ee89}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P2@{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P2}}
+\index{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P2@{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P2}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P2}{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P2}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a007f48f01de12f55c71fa9995391ee89} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+P2~0x00000040}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00104}{104}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a3d7e900c39f474d4dfe559cb0aec4623}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P3@{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P3}}
+\index{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P3@{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P3}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P3}{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P3}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a3d7e900c39f474d4dfe559cb0aec4623} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+P3~0x00000080}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00105}{105}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a9eeea68f26643c94fb1f5297c5261062}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P4@{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P4}}
+\index{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P4@{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P4}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P4}{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P4}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a9eeea68f26643c94fb1f5297c5261062} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+P4~0x00001000}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00106}{106}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_afeb84ab9fd1f8c9d24d241642b0a8576}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P5@{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P5}}
+\index{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P5@{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P5}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P5}{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P5}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_afeb84ab9fd1f8c9d24d241642b0a8576} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+P5~0x00002000}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00107}{107}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a86a5c4f6b5e94c33be2ef1f3071cbdf6}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P6@{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P6}}
+\index{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P6@{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P6}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P6}{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P6}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a86a5c4f6b5e94c33be2ef1f3071cbdf6} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+P6~0x00004000}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00108}{108}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a0c6b9f2b4e0aa51b1d7beb7bdcb65f8c}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P7@{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P7}}
+\index{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P7@{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P7}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P7}{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P7}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a0c6b9f2b4e0aa51b1d7beb7bdcb65f8c} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+P7~0x00008000}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00109}{109}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_ae839fc4be86910729c07a88b9ccc31ce}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P8@{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P8}}
+\index{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P8@{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P8}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P8}{DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P8}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_ae839fc4be86910729c07a88b9ccc31ce} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+OUTPUT\+\_\+\+STATE\+\_\+\+LOW\+\_\+\+P8~0x00100000}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00110}{110}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_aa8fa8b98ed981317da09379785cd419f}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_RAW\_STATE\_P0@{DW1000\_GPIO\_RAW\_STATE\_P0}}
+\index{DW1000\_GPIO\_RAW\_STATE\_P0@{DW1000\_GPIO\_RAW\_STATE\_P0}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_RAW\_STATE\_P0}{DW1000\_GPIO\_RAW\_STATE\_P0}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_aa8fa8b98ed981317da09379785cd419f} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+STATE\+\_\+\+P0~\mbox{\hyperlink{driver__dw1000__reg_8h_ac388ae2fd8495316ee470b6824c8b55f}{DW1000\+\_\+\+SUB\+\_\+\+REG\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+BIT\+\_\+\+GRAWP0}}}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00128}{128}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_af81ec87f2fab71566a80196bedea6004}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_RAW\_STATE\_P1@{DW1000\_GPIO\_RAW\_STATE\_P1}}
+\index{DW1000\_GPIO\_RAW\_STATE\_P1@{DW1000\_GPIO\_RAW\_STATE\_P1}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_RAW\_STATE\_P1}{DW1000\_GPIO\_RAW\_STATE\_P1}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_af81ec87f2fab71566a80196bedea6004} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+STATE\+\_\+\+P1~\mbox{\hyperlink{driver__dw1000__reg_8h_a5fc26b8e1bf4c6d34d1d23290db2c184}{DW1000\+\_\+\+SUB\+\_\+\+REG\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+BIT\+\_\+\+GRAWP1}}}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00129}{129}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a35aa3b1c9a25d3359398e6c4bf9cd096}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_RAW\_STATE\_P2@{DW1000\_GPIO\_RAW\_STATE\_P2}}
+\index{DW1000\_GPIO\_RAW\_STATE\_P2@{DW1000\_GPIO\_RAW\_STATE\_P2}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_RAW\_STATE\_P2}{DW1000\_GPIO\_RAW\_STATE\_P2}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a35aa3b1c9a25d3359398e6c4bf9cd096} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+STATE\+\_\+\+P2~\mbox{\hyperlink{driver__dw1000__reg_8h_a35a9d6286f8bc2432289c540b942d369}{DW1000\+\_\+\+SUB\+\_\+\+REG\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+BIT\+\_\+\+GRAWP2}}}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00130}{130}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a0fec1b21231b4d38d1e3aea93fdf877e}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_RAW\_STATE\_P3@{DW1000\_GPIO\_RAW\_STATE\_P3}}
+\index{DW1000\_GPIO\_RAW\_STATE\_P3@{DW1000\_GPIO\_RAW\_STATE\_P3}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_RAW\_STATE\_P3}{DW1000\_GPIO\_RAW\_STATE\_P3}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a0fec1b21231b4d38d1e3aea93fdf877e} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+STATE\+\_\+\+P3~\mbox{\hyperlink{driver__dw1000__reg_8h_ac97bb33e424525339b121a4679565850}{DW1000\+\_\+\+SUB\+\_\+\+REG\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+BIT\+\_\+\+GRAWP3}}}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00131}{131}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a47aa16a4307d646afa6902362a3e33e9}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_RAW\_STATE\_P4@{DW1000\_GPIO\_RAW\_STATE\_P4}}
+\index{DW1000\_GPIO\_RAW\_STATE\_P4@{DW1000\_GPIO\_RAW\_STATE\_P4}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_RAW\_STATE\_P4}{DW1000\_GPIO\_RAW\_STATE\_P4}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a47aa16a4307d646afa6902362a3e33e9} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+STATE\+\_\+\+P4~\mbox{\hyperlink{driver__dw1000__reg_8h_a7ddfad7e2a22dd8b79799b29a14faddc}{DW1000\+\_\+\+SUB\+\_\+\+REG\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+BIT\+\_\+\+GRAWP4}}}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00132}{132}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a722c2666493c3e96866f74b0157f6a0b}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_RAW\_STATE\_P5@{DW1000\_GPIO\_RAW\_STATE\_P5}}
+\index{DW1000\_GPIO\_RAW\_STATE\_P5@{DW1000\_GPIO\_RAW\_STATE\_P5}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_RAW\_STATE\_P5}{DW1000\_GPIO\_RAW\_STATE\_P5}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a722c2666493c3e96866f74b0157f6a0b} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+STATE\+\_\+\+P5~\mbox{\hyperlink{driver__dw1000__reg_8h_ab45282cdf0f02cd957a7f1bb1cee1a08}{DW1000\+\_\+\+SUB\+\_\+\+REG\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+BIT\+\_\+\+GRAWP5}}}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00133}{133}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a21689bf501e860bb8867d5796b410f45}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_RAW\_STATE\_P6@{DW1000\_GPIO\_RAW\_STATE\_P6}}
+\index{DW1000\_GPIO\_RAW\_STATE\_P6@{DW1000\_GPIO\_RAW\_STATE\_P6}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_RAW\_STATE\_P6}{DW1000\_GPIO\_RAW\_STATE\_P6}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a21689bf501e860bb8867d5796b410f45} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+STATE\+\_\+\+P6~\mbox{\hyperlink{driver__dw1000__reg_8h_ae4e3ecd4a95602dc4996a5396d263acd}{DW1000\+\_\+\+SUB\+\_\+\+REG\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+BIT\+\_\+\+GRAWP6}}}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00134}{134}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a8e43b57f3c032b0771d1fae9925d820c}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_RAW\_STATE\_P7@{DW1000\_GPIO\_RAW\_STATE\_P7}}
+\index{DW1000\_GPIO\_RAW\_STATE\_P7@{DW1000\_GPIO\_RAW\_STATE\_P7}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_RAW\_STATE\_P7}{DW1000\_GPIO\_RAW\_STATE\_P7}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a8e43b57f3c032b0771d1fae9925d820c} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+STATE\+\_\+\+P7~\mbox{\hyperlink{driver__dw1000__reg_8h_a9cfcc279aac31780dc3166681dcb1866}{DW1000\+\_\+\+SUB\+\_\+\+REG\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+BIT\+\_\+\+GRAWP7}}}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00135}{135}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a0052348d875ef8ef1ef5deb4057b6821}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_GPIO\_RAW\_STATE\_P8@{DW1000\_GPIO\_RAW\_STATE\_P8}}
+\index{DW1000\_GPIO\_RAW\_STATE\_P8@{DW1000\_GPIO\_RAW\_STATE\_P8}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_GPIO\_RAW\_STATE\_P8}{DW1000\_GPIO\_RAW\_STATE\_P8}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a0052348d875ef8ef1ef5deb4057b6821} 
+\#define DW1000\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+STATE\+\_\+\+P8~\mbox{\hyperlink{driver__dw1000__reg_8h_a2a49c9555f1930d8dab3198b19bed92f}{DW1000\+\_\+\+SUB\+\_\+\+REG\+\_\+\+GPIO\+\_\+\+RAW\+\_\+\+BIT\+\_\+\+GRAWP8}}}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00136}{136}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a26a0ed2d3486c56cf7f2796596e901ec}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_LNA\_PA\_MODE\_ALL@{DW1000\_LNA\_PA\_MODE\_ALL}}
+\index{DW1000\_LNA\_PA\_MODE\_ALL@{DW1000\_LNA\_PA\_MODE\_ALL}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_LNA\_PA\_MODE\_ALL}{DW1000\_LNA\_PA\_MODE\_ALL}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a26a0ed2d3486c56cf7f2796596e901ec} 
+\#define DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+ALL~(\mbox{\hyperlink{driver__dw1000_01copy_8h_ac7635b4e6bc5b8c86314f39d28e40b7c}{DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+LNA}} \texorpdfstring{$\vert$}{|} \mbox{\hyperlink{driver__dw1000_01copy_8h_a3b26f07c25efcd1ca0439bc4aa0cf03e}{DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+PA}})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00065}{65}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_af3b4fc8f1ef9b0abcbd433072b16c2f9}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_LNA\_PA\_MODE\_DEFAULT@{DW1000\_LNA\_PA\_MODE\_DEFAULT}}
+\index{DW1000\_LNA\_PA\_MODE\_DEFAULT@{DW1000\_LNA\_PA\_MODE\_DEFAULT}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_LNA\_PA\_MODE\_DEFAULT}{DW1000\_LNA\_PA\_MODE\_DEFAULT}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_af3b4fc8f1ef9b0abcbd433072b16c2f9} 
+\#define DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+DEFAULT~\mbox{\hyperlink{driver__dw1000_01copy_8h_a678e9d7e3cc9570ab3c0ebb3298afa44}{DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+NONE}}}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00066}{66}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_ac7635b4e6bc5b8c86314f39d28e40b7c}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_LNA\_PA\_MODE\_LNA@{DW1000\_LNA\_PA\_MODE\_LNA}}
+\index{DW1000\_LNA\_PA\_MODE\_LNA@{DW1000\_LNA\_PA\_MODE\_LNA}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_LNA\_PA\_MODE\_LNA}{DW1000\_LNA\_PA\_MODE\_LNA}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_ac7635b4e6bc5b8c86314f39d28e40b7c} 
+\#define DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+LNA~\mbox{\hyperlink{driver__dw1000_01copy_8h_acfb85a0144105842d787bd77177bf98e}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+P6\+\_\+\+EXTRXE}}}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00063}{63}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_aba6a51259f6100c537743582bad9b410}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_LNA\_PA\_MODE\_MASK@{DW1000\_LNA\_PA\_MODE\_MASK}}
+\index{DW1000\_LNA\_PA\_MODE\_MASK@{DW1000\_LNA\_PA\_MODE\_MASK}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_LNA\_PA\_MODE\_MASK}{DW1000\_LNA\_PA\_MODE\_MASK}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_aba6a51259f6100c537743582bad9b410} 
+\#define DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+MASK~\mbox{\hyperlink{driver__dw1000__reg_8h_a3c1a0485978fc27c04b725fcdc008c00}{DW1000\+\_\+\+REG\+\_\+\+BIT\+\_\+\+RANGE}}(19, 14)}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00054}{54}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a678e9d7e3cc9570ab3c0ebb3298afa44}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_LNA\_PA\_MODE\_NONE@{DW1000\_LNA\_PA\_MODE\_NONE}}
+\index{DW1000\_LNA\_PA\_MODE\_NONE@{DW1000\_LNA\_PA\_MODE\_NONE}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_LNA\_PA\_MODE\_NONE}{DW1000\_LNA\_PA\_MODE\_NONE}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a678e9d7e3cc9570ab3c0ebb3298afa44} 
+\#define DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+NONE~0x00000000}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00062}{62}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a3b26f07c25efcd1ca0439bc4aa0cf03e}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_LNA\_PA\_MODE\_PA@{DW1000\_LNA\_PA\_MODE\_PA}}
+\index{DW1000\_LNA\_PA\_MODE\_PA@{DW1000\_LNA\_PA\_MODE\_PA}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_LNA\_PA\_MODE\_PA}{DW1000\_LNA\_PA\_MODE\_PA}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a3b26f07c25efcd1ca0439bc4aa0cf03e} 
+\#define DW1000\+\_\+\+LNA\+\_\+\+PA\+\_\+\+MODE\+\_\+\+PA~(\mbox{\hyperlink{driver__dw1000_01copy_8h_a3442d04328abc02de90285fd0e2ba8d1}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+P4\+\_\+\+EXTPA}} \texorpdfstring{$\vert$}{|} \mbox{\hyperlink{driver__dw1000_01copy_8h_a4139b52f450d2d9efb2d286e7104f1f1}{DW1000\+\_\+\+GPIO\+\_\+\+MODE\+\_\+\+P5\+\_\+\+EXTTXE}})}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00064}{64}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_ad8fc39af1151b940b99b941ee117eaec}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_PRF\_16MHz@{DW1000\_PRF\_16MHz}}
+\index{DW1000\_PRF\_16MHz@{DW1000\_PRF\_16MHz}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_PRF\_16MHz}{DW1000\_PRF\_16MHz}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_ad8fc39af1151b940b99b941ee117eaec} 
+\#define DW1000\+\_\+\+PRF\+\_\+16\+MHz~0x01}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00138}{138}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a0de3a6506abf22f7a00aecc725c32b78}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_PRF\_64MHz@{DW1000\_PRF\_64MHz}}
+\index{DW1000\_PRF\_64MHz@{DW1000\_PRF\_64MHz}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_PRF\_64MHz}{DW1000\_PRF\_64MHz}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a0de3a6506abf22f7a00aecc725c32b78} 
+\#define DW1000\+\_\+\+PRF\+\_\+64\+MHz~0x02}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00139}{139}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_a6ed91ae6ed78e946558e72fafc72359b}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_TX\_FINE\_SEQ\_CMD\_DEFAULT@{DW1000\_TX\_FINE\_SEQ\_CMD\_DEFAULT}}
+\index{DW1000\_TX\_FINE\_SEQ\_CMD\_DEFAULT@{DW1000\_TX\_FINE\_SEQ\_CMD\_DEFAULT}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_TX\_FINE\_SEQ\_CMD\_DEFAULT}{DW1000\_TX\_FINE\_SEQ\_CMD\_DEFAULT}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a6ed91ae6ed78e946558e72fafc72359b} 
+\#define DW1000\+\_\+\+TX\+\_\+\+FINE\+\_\+\+SEQ\+\_\+\+CMD\+\_\+\+DEFAULT~\mbox{\hyperlink{driver__dw1000_01copy_8h_af4d490090afdec3dca4e2487cf2ffd17}{DW1000\+\_\+\+TX\+\_\+\+FINE\+\_\+\+SEQ\+\_\+\+CMD\+\_\+\+ENABLE}}}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00031}{31}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_ad82dc12e67d8f58a8be6bb2d17511ad2}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_TX\_FINE\_SEQ\_CMD\_DISABLE@{DW1000\_TX\_FINE\_SEQ\_CMD\_DISABLE}}
+\index{DW1000\_TX\_FINE\_SEQ\_CMD\_DISABLE@{DW1000\_TX\_FINE\_SEQ\_CMD\_DISABLE}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_TX\_FINE\_SEQ\_CMD\_DISABLE}{DW1000\_TX\_FINE\_SEQ\_CMD\_DISABLE}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_ad82dc12e67d8f58a8be6bb2d17511ad2} 
+\#define DW1000\+\_\+\+TX\+\_\+\+FINE\+\_\+\+SEQ\+\_\+\+CMD\+\_\+\+DISABLE~0x0000}
+
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00030}{30}} 行定义.
+
+\Hypertarget{driver__dw1000_01copy_8h_af4d490090afdec3dca4e2487cf2ffd17}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!DW1000\_TX\_FINE\_SEQ\_CMD\_ENABLE@{DW1000\_TX\_FINE\_SEQ\_CMD\_ENABLE}}
+\index{DW1000\_TX\_FINE\_SEQ\_CMD\_ENABLE@{DW1000\_TX\_FINE\_SEQ\_CMD\_ENABLE}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{DW1000\_TX\_FINE\_SEQ\_CMD\_ENABLE}{DW1000\_TX\_FINE\_SEQ\_CMD\_ENABLE}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_af4d490090afdec3dca4e2487cf2ffd17} 
+\#define DW1000\+\_\+\+TX\+\_\+\+FINE\+\_\+\+SEQ\+\_\+\+CMD\+\_\+\+ENABLE~0x0\+B74}
+
+
+
+定义\+DW1000 精细粒度的\+Tx序列控制值 
+
+\begin{DoxyNote}{注解}
+默认（复位后）使用 DW1000\+\_\+\+TX\+\_\+\+FINE\+\_\+\+SEQ\+\_\+\+ENABLE 
+\end{DoxyNote}
+
+\begin{DoxyParams}{参数}
+{\em DW1000\+\_\+\+TX\+\_\+\+FINE\+\_\+\+SEQ\+\_\+\+CMD\+\_\+\+ENABLE} & 使能精细粒度的\+Tx序列控制 \\
+\hline
+{\em DW1000\+\_\+\+TX\+\_\+\+FINE\+\_\+\+SEQ\+\_\+\+CMD\+\_\+\+DISABLE} & 禁用精细粒度的\+Tx序列控制 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 \mbox{\hyperlink{driver__dw1000_01copy_8h_source}{driver\+\_\+dw1000 copy.\+h}} 第 \mbox{\hyperlink{driver__dw1000_01copy_8h_source_l00029}{29}} 行定义.
+
+
+
+\label{doc-typedef-members}
+\Hypertarget{driver__dw1000_01copy_8h_doc-typedef-members}
+\doxysubsection{类型定义说明}
+\Hypertarget{driver__dw1000_01copy_8h_aa83cfb3a17eff0e353669bbdbf041789}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!dw1000\_config\_t@{dw1000\_config\_t}}
+\index{dw1000\_config\_t@{dw1000\_config\_t}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{dw1000\_config\_t}{dw1000\_config\_t}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_aa83cfb3a17eff0e353669bbdbf041789} 
+typedef struct \mbox{\hyperlink{structdw1000__config__s}{dw1000\+\_\+config\+\_\+s}} \mbox{\hyperlink{driver__dw1000_01copy_8h_aa83cfb3a17eff0e353669bbdbf041789}{dw1000\+\_\+config\+\_\+t}}}
+
+\Hypertarget{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!dw1000\_handle\_t@{dw1000\_handle\_t}}
+\index{dw1000\_handle\_t@{dw1000\_handle\_t}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{dw1000\_handle\_t}{dw1000\_handle\_t}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780} 
+typedef struct \mbox{\hyperlink{structdw1000__handle__s}{dw1000\+\_\+handle\+\_\+s}} \mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\+\_\+handle\+\_\+t}}}
+
+
+
+DW1000 handle 结构体定义 
+
+\Hypertarget{driver__dw1000_01copy_8h_aca1028cbf8f069330cf8c4b762aae9a7}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!dw1000\_info\_t@{dw1000\_info\_t}}
+\index{dw1000\_info\_t@{dw1000\_info\_t}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{dw1000\_info\_t}{dw1000\_info\_t}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_aca1028cbf8f069330cf8c4b762aae9a7} 
+typedef struct \mbox{\hyperlink{structdw1000__info__s}{dw1000\+\_\+info\+\_\+s}} \mbox{\hyperlink{driver__dw1000_01copy_8h_aca1028cbf8f069330cf8c4b762aae9a7}{dw1000\+\_\+info\+\_\+t}}}
+
+
+
+dw1000 信息 结构体定义 
+
+\Hypertarget{driver__dw1000_01copy_8h_a8f18e25551815d1e7d1262561a89bb7e}\index{driver\_dw1000 copy.h@{driver\_dw1000 copy.h}!dw1000\_tx\_config\_t@{dw1000\_tx\_config\_t}}
+\index{dw1000\_tx\_config\_t@{dw1000\_tx\_config\_t}!driver\_dw1000 copy.h@{driver\_dw1000 copy.h}}
+\doxysubsubsection{\texorpdfstring{dw1000\_tx\_config\_t}{dw1000\_tx\_config\_t}}
+{\footnotesize\ttfamily \label{driver__dw1000_01copy_8h_a8f18e25551815d1e7d1262561a89bb7e} 
+typedef struct \mbox{\hyperlink{structdw1000__tx__config__s}{dw1000\+\_\+tx\+\_\+config\+\_\+s}} \mbox{\hyperlink{driver__dw1000_01copy_8h_a8f18e25551815d1e7d1262561a89bb7e}{dw1000\+\_\+tx\+\_\+config\+\_\+t}}}
+

@@ -1,0 +1,190 @@
+\doxysection{driver\+\_\+dw1000.\+h}
+\hypertarget{driver__dw1000_8h_source}{}\label{driver__dw1000_8h_source}\index{src/driver\_dw1000.h@{src/driver\_dw1000.h}}
+\mbox{\hyperlink{driver__dw1000_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ DRIVER\_DW1000\_H}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00018}00018\ \textcolor{preprocessor}{\#define\ DRIVER\_DW1000\_H}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00020}00020\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00021}00021\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00022}00022\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00025}00025\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00026}00026\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00028}00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{driver__dw1000__reg_8h}{driver\_dw1000\_reg.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00031}00031\ \textcolor{comment}{/*\ 定义类型\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00032}\mbox{\hyperlink{driver__dw1000_8h_ab18f0a12980c6af2e6bc2e63a45cca5f}{00032}}\ \textcolor{preprocessor}{\#define\ DW1000\_CMD\_ENABLE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00033}\mbox{\hyperlink{driver__dw1000_8h_a28e3a4c2519d1ea63146a76dc2fc6dab}{00033}}\ \textcolor{preprocessor}{\#define\ DW1000\_CMD\_DISABLE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00035}\mbox{\hyperlink{driver__dw1000_8h_a1a34934c05c6cabc1a7993cb751958c1}{00035}}\ \textcolor{preprocessor}{\#define\ DW1000\_CLOCK\_CMD\_ENABLE\_ALL\_SEQ\ \ \ \ 0x01}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00036}\mbox{\hyperlink{driver__dw1000_8h_a2d95b5f7d8cf9d674b1bebd6423ef285}{00036}}\ \textcolor{preprocessor}{\#define\ DW1000\_CLOCK\_CMD\_FORCE\_SYS\_XTI\ \ 0x02}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00037}\mbox{\hyperlink{driver__dw1000_8h_ad199613bf3f987a162ad427cb5a19aed}{00037}}\ \textcolor{preprocessor}{\#define\ DW1000\_CLOCK\_CMD\_FORCE\_SYS\_PLL\ \ 0x03}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00046}\mbox{\hyperlink{driver__dw1000_8h_af4d490090afdec3dca4e2487cf2ffd17}{00046}}\ \textcolor{preprocessor}{\#define\ DW1000\_TX\_FINE\_SEQ\_CMD\_ENABLE\ \ \ \ \ \ \ \ \ \ \ 0x0B74}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00047}\mbox{\hyperlink{driver__dw1000_8h_ad82dc12e67d8f58a8be6bb2d17511ad2}{00047}}\ \textcolor{preprocessor}{\#define\ DW1000\_TX\_FINE\_SEQ\_CMD\_DISABLE\ \ \ \ \ \ \ \ \ \ 0x0000}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00048}\mbox{\hyperlink{driver__dw1000_8h_a6ed91ae6ed78e946558e72fafc72359b}{00048}}\ \textcolor{preprocessor}{\#define\ DW1000\_TX\_FINE\_SEQ\_CMD\_DEFAULT\ \ \ \ \ \ \ \ \ \ DW1000\_TX\_FINE\_SEQ\_CMD\_ENABLE}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00055}\mbox{\hyperlink{driver__dw1000_8h_a3147091b20fa958189c0bd1a87a4a1e3}{00055}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_MODE\_0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00056}\mbox{\hyperlink{driver__dw1000_8h_ad814d93b2f39a69f58e646d51d968b73}{00056}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_MODE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00057}00057\ \textcolor{comment}{//\ \#define\ DW1000\_GPIO\_MODE\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x02\ /*\ 保留不应使用\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00058}00058\ \textcolor{comment}{//\ \#define\ DW1000\_GPIO\_MODE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x03\ /*\ 保留不应使用\ */}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00059}\mbox{\hyperlink{driver__dw1000_8h_a7c760dff0f5690cc30c2fe43b463b2a8}{00059}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_MODE\_DEFAULT\ \ \ \ \ \ \ \ \ \ \ \ DW1000\_GPIO\_MODE\_0}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00068}\mbox{\hyperlink{driver__dw1000_8h_ac7c324881d253d743a3447087caf1f58}{00068}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_MODE\_SELECT(pin,\ mode)\ \ ((mode)\ <<\ (2\ *\ (pin)\ +\ 6))}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00070}00070\ \textcolor{comment}{//\ \#define\ DW1000\_LNA\_PA\_MODE\_MASK\ \ \ \ \ \ \ \ \ \ \ \ \ (DW1000\_SUB\_REG\_GPIO\_MODE\_BITS\_MSGP4\ |\ DW1000\_SUB\_REG\_GPIO\_MODE\_BITS\_MSGP5\ |\ DW1000\_SUB\_REG\_GPIO\_MODE\_BITS\_MSGP6)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00071}\mbox{\hyperlink{driver__dw1000_8h_aba6a51259f6100c537743582bad9b410}{00071}}\ \textcolor{preprocessor}{\#define\ DW1000\_LNA\_PA\_MODE\_MASK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DW1000\_REG\_BIT\_RANGE(19,\ 14)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00073}\mbox{\hyperlink{driver__dw1000_8h_a3be78582d947c5c9d009cf0d5f346e8b}{00073}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_MODE\_P2\_RXLED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DW1000\_GPIO\_MODE\_SELECT(2,\ DW1000\_GPIO\_MODE\_1)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00074}\mbox{\hyperlink{driver__dw1000_8h_aba0fa3c9af46274262ab8e13b0cf497d}{00074}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_MODE\_P3\_TXLED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DW1000\_GPIO\_MODE\_SELECT(3,\ DW1000\_GPIO\_MODE\_1)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00075}\mbox{\hyperlink{driver__dw1000_8h_a3442d04328abc02de90285fd0e2ba8d1}{00075}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_MODE\_P4\_EXTPA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DW1000\_GPIO\_MODE\_SELECT(4,\ DW1000\_GPIO\_MODE\_1)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00076}\mbox{\hyperlink{driver__dw1000_8h_a4139b52f450d2d9efb2d286e7104f1f1}{00076}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_MODE\_P5\_EXTTXE\ \ \ \ \ \ \ \ \ \ \ \ \ \ DW1000\_GPIO\_MODE\_SELECT(5,\ DW1000\_GPIO\_MODE\_1)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00077}\mbox{\hyperlink{driver__dw1000_8h_acfb85a0144105842d787bd77177bf98e}{00077}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_MODE\_P6\_EXTRXE\ \ \ \ \ \ \ \ \ \ \ \ \ \ DW1000\_GPIO\_MODE\_SELECT(6,\ DW1000\_GPIO\_MODE\_1)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00079}\mbox{\hyperlink{driver__dw1000_8h_a678e9d7e3cc9570ab3c0ebb3298afa44}{00079}}\ \textcolor{preprocessor}{\#define\ DW1000\_LNA\_PA\_MODE\_NONE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000000}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00080}\mbox{\hyperlink{driver__dw1000_8h_ac7635b4e6bc5b8c86314f39d28e40b7c}{00080}}\ \textcolor{preprocessor}{\#define\ DW1000\_LNA\_PA\_MODE\_LNA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DW1000\_GPIO\_MODE\_P6\_EXTRXE}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00081}\mbox{\hyperlink{driver__dw1000_8h_a3b26f07c25efcd1ca0439bc4aa0cf03e}{00081}}\ \textcolor{preprocessor}{\#define\ DW1000\_LNA\_PA\_MODE\_PA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (DW1000\_GPIO\_MODE\_P4\_EXTPA\ |\ DW1000\_GPIO\_MODE\_P5\_EXTTXE)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00082}\mbox{\hyperlink{driver__dw1000_8h_a26a0ed2d3486c56cf7f2796596e901ec}{00082}}\ \textcolor{preprocessor}{\#define\ DW1000\_LNA\_PA\_MODE\_ALL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (DW1000\_LNA\_PA\_MODE\_LNA\ |\ DW1000\_LNA\_PA\_MODE\_PA)}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00083}\mbox{\hyperlink{driver__dw1000_8h_af3b4fc8f1ef9b0abcbd433072b16c2f9}{00083}}\ \textcolor{preprocessor}{\#define\ DW1000\_LNA\_PA\_MODE\_DEFAULT\ \ \ \ \ \ \ \ \ \ \ \ \ \ DW1000\_LNA\_PA\_MODE\_NONE}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00085}\mbox{\hyperlink{driver__dw1000_8h_aae03d40443074694dfeac5a0f1813eb8}{00085}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_MODE\_LNA\_ENABLE\ \ \ \ \ \ \ \ \ \ \ \ \ 0x01}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00086}\mbox{\hyperlink{driver__dw1000_8h_af5f584ad1f6900efc04b5ccea5fa0a93}{00086}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_MODE\_PA\_ENABLE\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x02}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00094}\mbox{\hyperlink{driver__dw1000_8h_a8ecb19eb18ad208a2907fe6d91ff1aaa}{00094}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_DIRECTION\_OUTPUT\_P0\ \ \ \ \ \ \ \ \ 0x00000010}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00095}\mbox{\hyperlink{driver__dw1000_8h_a2b9d6cd7bc8661784c04f78460efff35}{00095}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_DIRECTION\_OUTPUT\_P1\ \ \ \ \ \ \ \ \ 0x00000020}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00096}\mbox{\hyperlink{driver__dw1000_8h_adff02d282c7afac81ad3995fe9df42f4}{00096}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_DIRECTION\_OUTPUT\_P2\ \ \ \ \ \ \ \ \ 0x00000040}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00097}\mbox{\hyperlink{driver__dw1000_8h_aff098caaf7503718e40a9b26984987b5}{00097}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_DIRECTION\_OUTPUT\_P3\ \ \ \ \ \ \ \ \ 0x00000080}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00098}\mbox{\hyperlink{driver__dw1000_8h_a1674cf31c915c82867f759790e155f75}{00098}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_DIRECTION\_OUTPUT\_P4\ \ \ \ \ \ \ \ \ 0x00001000}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00099}\mbox{\hyperlink{driver__dw1000_8h_a470fdf472c250ef57073b624d015e6d1}{00099}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_DIRECTION\_OUTPUT\_P5\ \ \ \ \ \ \ \ \ 0x00002000}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00100}\mbox{\hyperlink{driver__dw1000_8h_a2bd84433b2a179ca44033cb9004021af}{00100}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_DIRECTION\_OUTPUT\_P6\ \ \ \ \ \ \ \ \ 0x00004000}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00101}\mbox{\hyperlink{driver__dw1000_8h_a841f70c21f6e1831ed857bc44af903bc}{00101}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_DIRECTION\_OUTPUT\_P7\ \ \ \ \ \ \ \ \ 0x00008000}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00102}\mbox{\hyperlink{driver__dw1000_8h_ac9c573771c52084eedb2241fc63bd2fe}{00102}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_DIRECTION\_OUTPUT\_P8\ \ \ \ \ \ \ \ \ 0x00100000}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00103}\mbox{\hyperlink{driver__dw1000_8h_a27b45f45c3d72d5705ab5cbaa9dd778e}{00103}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_DIRECTION\_INPUT\_P0\ \ \ \ \ \ \ \ \ \ 0x00000011}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00104}\mbox{\hyperlink{driver__dw1000_8h_abcd9b412b7352f3140a998ce12cbaaff}{00104}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_DIRECTION\_INPUT\_P1\ \ \ \ \ \ \ \ \ \ 0x00000022}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00105}\mbox{\hyperlink{driver__dw1000_8h_a6d07ac5a5af649d119bfa822f5a78a4f}{00105}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_DIRECTION\_INPUT\_P2\ \ \ \ \ \ \ \ \ \ 0x00000044}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00106}\mbox{\hyperlink{driver__dw1000_8h_ade8fc554b416dd1ed9684f549fb5cbf7}{00106}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_DIRECTION\_INPUT\_P3\ \ \ \ \ \ \ \ \ \ 0x00000088}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00107}\mbox{\hyperlink{driver__dw1000_8h_ae384d4ef3157a4d5aa6b675e3eae4799}{00107}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_DIRECTION\_INPUT\_P4\ \ \ \ \ \ \ \ \ \ 0x00001100}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00108}\mbox{\hyperlink{driver__dw1000_8h_a9a3e263ce7f576b288375dd930911b83}{00108}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_DIRECTION\_INPUT\_P5\ \ \ \ \ \ \ \ \ \ 0x00002200}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00109}\mbox{\hyperlink{driver__dw1000_8h_af6461dd3f4d7996e73fd4be3891c8130}{00109}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_DIRECTION\_INPUT\_P6\ \ \ \ \ \ \ \ \ \ 0x00004400}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00110}\mbox{\hyperlink{driver__dw1000_8h_a952766752f05ab94d98d51d410e518c6}{00110}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_DIRECTION\_INPUT\_P7\ \ \ \ \ \ \ \ \ \ 0x00008800}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00111}\mbox{\hyperlink{driver__dw1000_8h_a5b7198ff2d1bcf6d84851aceccd269de}{00111}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_DIRECTION\_INPUT\_P8\ \ \ \ \ \ \ \ \ \ 0x00110000}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00119}\mbox{\hyperlink{driver__dw1000_8h_a474bae2b66a0cd86c8a5507679d50e97}{00119}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P0\ \ \ \ \ \ \ \ \ 0x00000010}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00120}\mbox{\hyperlink{driver__dw1000_8h_aa1f972a64d6ece929580298b86e90cda}{00120}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P1\ \ \ \ \ \ \ \ \ 0x00000020}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00121}\mbox{\hyperlink{driver__dw1000_8h_a007f48f01de12f55c71fa9995391ee89}{00121}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P2\ \ \ \ \ \ \ \ \ 0x00000040}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00122}\mbox{\hyperlink{driver__dw1000_8h_a3d7e900c39f474d4dfe559cb0aec4623}{00122}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P3\ \ \ \ \ \ \ \ \ 0x00000080}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00123}\mbox{\hyperlink{driver__dw1000_8h_a9eeea68f26643c94fb1f5297c5261062}{00123}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P4\ \ \ \ \ \ \ \ \ 0x00001000}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00124}\mbox{\hyperlink{driver__dw1000_8h_afeb84ab9fd1f8c9d24d241642b0a8576}{00124}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P5\ \ \ \ \ \ \ \ \ 0x00002000}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00125}\mbox{\hyperlink{driver__dw1000_8h_a86a5c4f6b5e94c33be2ef1f3071cbdf6}{00125}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P6\ \ \ \ \ \ \ \ \ 0x00004000}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00126}\mbox{\hyperlink{driver__dw1000_8h_a0c6b9f2b4e0aa51b1d7beb7bdcb65f8c}{00126}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P7\ \ \ \ \ \ \ \ \ 0x00008000}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00127}\mbox{\hyperlink{driver__dw1000_8h_ae839fc4be86910729c07a88b9ccc31ce}{00127}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_OUTPUT\_STATE\_LOW\_P8\ \ \ \ \ \ \ \ \ 0x00100000}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00128}\mbox{\hyperlink{driver__dw1000_8h_abac16b3071db531e4ffbb8cdde7eae99}{00128}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P0\ \ \ \ \ \ \ \ 0x00000011}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00129}\mbox{\hyperlink{driver__dw1000_8h_a69d8cc365bb5cb3598bf50ec39d44109}{00129}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P1\ \ \ \ \ \ \ \ 0x00000022}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00130}\mbox{\hyperlink{driver__dw1000_8h_ab01e44d644abc9c5a80444ce63faa255}{00130}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P2\ \ \ \ \ \ \ \ 0x00000044}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00131}\mbox{\hyperlink{driver__dw1000_8h_a4c04c5b7c9b6e7260fb231881b397979}{00131}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P3\ \ \ \ \ \ \ \ 0x00000088}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00132}\mbox{\hyperlink{driver__dw1000_8h_acb22131e88fd3494037a659894d697b2}{00132}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P4\ \ \ \ \ \ \ \ 0x00001100}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00133}\mbox{\hyperlink{driver__dw1000_8h_a51d1a66e2492f8584bb2756091d26700}{00133}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P5\ \ \ \ \ \ \ \ 0x00002200}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00134}\mbox{\hyperlink{driver__dw1000_8h_a8747e517a3a1c2cc48802042e8d4e4a2}{00134}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P6\ \ \ \ \ \ \ \ 0x00004400}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00135}\mbox{\hyperlink{driver__dw1000_8h_ab41969d12647eff909c067303cb8403d}{00135}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P7\ \ \ \ \ \ \ \ 0x00008800}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00136}\mbox{\hyperlink{driver__dw1000_8h_a0ffb433c4345e214be8ef9669eb9c4db}{00136}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_OUTPUT\_STATE\_HIGH\_P8\ \ \ \ \ \ \ \ 0x00110000}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00145}\mbox{\hyperlink{driver__dw1000_8h_aa8fa8b98ed981317da09379785cd419f}{00145}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_RAW\_STATE\_P0\ \ \ \ \ \ \ \ \ \ \ \ \ \ DW1000\_SUB\_REG\_GPIO\_RAW\_BIT\_GRAWP0}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00146}\mbox{\hyperlink{driver__dw1000_8h_af81ec87f2fab71566a80196bedea6004}{00146}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_RAW\_STATE\_P1\ \ \ \ \ \ \ \ \ \ \ \ \ \ DW1000\_SUB\_REG\_GPIO\_RAW\_BIT\_GRAWP1}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00147}\mbox{\hyperlink{driver__dw1000_8h_a35aa3b1c9a25d3359398e6c4bf9cd096}{00147}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_RAW\_STATE\_P2\ \ \ \ \ \ \ \ \ \ \ \ \ \ DW1000\_SUB\_REG\_GPIO\_RAW\_BIT\_GRAWP2}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00148}\mbox{\hyperlink{driver__dw1000_8h_a0fec1b21231b4d38d1e3aea93fdf877e}{00148}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_RAW\_STATE\_P3\ \ \ \ \ \ \ \ \ \ \ \ \ \ DW1000\_SUB\_REG\_GPIO\_RAW\_BIT\_GRAWP3}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00149}\mbox{\hyperlink{driver__dw1000_8h_a47aa16a4307d646afa6902362a3e33e9}{00149}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_RAW\_STATE\_P4\ \ \ \ \ \ \ \ \ \ \ \ \ \ DW1000\_SUB\_REG\_GPIO\_RAW\_BIT\_GRAWP4}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00150}\mbox{\hyperlink{driver__dw1000_8h_a722c2666493c3e96866f74b0157f6a0b}{00150}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_RAW\_STATE\_P5\ \ \ \ \ \ \ \ \ \ \ \ \ \ DW1000\_SUB\_REG\_GPIO\_RAW\_BIT\_GRAWP5}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00151}\mbox{\hyperlink{driver__dw1000_8h_a21689bf501e860bb8867d5796b410f45}{00151}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_RAW\_STATE\_P6\ \ \ \ \ \ \ \ \ \ \ \ \ \ DW1000\_SUB\_REG\_GPIO\_RAW\_BIT\_GRAWP6}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00152}\mbox{\hyperlink{driver__dw1000_8h_a8e43b57f3c032b0771d1fae9925d820c}{00152}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_RAW\_STATE\_P7\ \ \ \ \ \ \ \ \ \ \ \ \ \ DW1000\_SUB\_REG\_GPIO\_RAW\_BIT\_GRAWP7}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00153}\mbox{\hyperlink{driver__dw1000_8h_a0052348d875ef8ef1ef5deb4057b6821}{00153}}\ \textcolor{preprocessor}{\#define\ DW1000\_GPIO\_RAW\_STATE\_P8\ \ \ \ \ \ \ \ \ \ \ \ \ \ DW1000\_SUB\_REG\_GPIO\_RAW\_BIT\_GRAWP8}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00155}\mbox{\hyperlink{driver__dw1000_8h_ad8fc39af1151b940b99b941ee117eaec}{00155}}\ \textcolor{preprocessor}{\#define\ DW1000\_PRF\_16MHz\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00156}\mbox{\hyperlink{driver__dw1000_8h_a0de3a6506abf22f7a00aecc725c32b78}{00156}}\ \textcolor{preprocessor}{\#define\ DW1000\_PRF\_64MHz\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x02\ \ }}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00161}00161\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structdw1000__tx__config__s}{dw1000\_tx\_config\_s}}\ \{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00162}00162\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structdw1000__tx__config__s_a3119a0cbc14840dab5b9bf57d5782e60}{pulse\_generator\_delay}};}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00163}00163\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structdw1000__tx__config__s_af2c4d27032a30e55031be59147fadfbe}{tx\_power}};}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00164}00164\ \}\mbox{\hyperlink{driver__dw1000_01copy_8h_a8f18e25551815d1e7d1262561a89bb7e}{dw1000\_tx\_config\_t}};}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00166}00166\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structdw1000__config__s}{dw1000\_config\_s}}\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00167}00167\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structdw1000__config__s_a715f5cb061d11eb75981741eda4dafcd}{channel}};}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00168}00168\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structdw1000__config__s_a7e026045d64b3c291819af2b480eabb4}{pulse\_repetion\_frequency}};}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00169}00169\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structdw1000__config__s_ac9e1cce194c932164c5c53516cce17a2}{tx\_preamble\_lenght}};}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00170}00170\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structdw1000__config__s_a7875d8bb5099b7075106bf64ccbbbcef}{rx\_PAC}};}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00171}00171\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structdw1000__config__s_a2b706618494a9445cb473e12da3eb334}{tx\_preamble\_code}};}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00172}00172\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structdw1000__config__s_ab06d7f04d2708c9442640060e3839dd3}{rx\_preamble\_code}};}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00173}00173\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structdw1000__config__s_a8b38e67359dd92805068856f1bd37b25}{is\_non\_standard\_SFD}};}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00174}00174\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structdw1000__config__s_a95cd0209f83ab81186d264c1aea72532}{data\_rate}};}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00175}00175\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structdw1000__config__s_a7113f3870230913d515318f9e7000921}{phr\_mode}};}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00176}00176\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structdw1000__config__s_aba16607145f7c64f9958d3a520b69dc2}{sfd\_timeout}};}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00177}00177\ \}\mbox{\hyperlink{driver__dw1000_01copy_8h_aa83cfb3a17eff0e353669bbdbf041789}{dw1000\_config\_t}};}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00185}00185\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structdw1000__handle__s}{dw1000\_handle\_s}}\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00186}00186\ \ \ \ \ uint8\_t\ (*\mbox{\hyperlink{structdw1000__handle__s_a1f8d21e5579f76c9e97aacb5bfcacd93}{spi\_init}})(void);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00187}00187\ \ \ \ \ uint8\_t\ (*\mbox{\hyperlink{structdw1000__handle__s_a72e3d386f41c9a29a21a7a2afb8e432c}{spi\_deinit}})(void);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00188}00188\ \ \ \ \ uint8\_t\ (*\mbox{\hyperlink{structdw1000__handle__s_a72d44bd587e75a560e7f11668bb1571e}{spi\_read}})(uint8\_t*\ hdr,\ uint8\_t\ hdrLen,\ uint8\_t*\ buf,\ uint16\_t\ bufLen);\ \ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00189}00189\ \ \ \ \ uint8\_t\ (*\mbox{\hyperlink{structdw1000__handle__s_a84dfad02fbb955598bf9f0128deeb09d}{spi\_write}})(uint8\_t*\ hdr,\ uint8\_t\ hdrLen,\ uint8\_t*\ buf,\ uint16\_t\ bufLen);\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00190}00190\ \ \ \ \ void\ (*\mbox{\hyperlink{structdw1000__handle__s_a1d5fd080e32688470c35048e45708805}{delay\_ms}})(uint32\_t\ ms);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00191}00191\ \ \ \ \ void\ (*\mbox{\hyperlink{structdw1000__handle__s_a194b29e5937c301c7011484aa3ae5736}{debug\_print}})(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fmt,\ ...);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00192}00192\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structdw1000__handle__s_a19bedf28d2b9748f6a62d9ae93f4e68f}{inited}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00193}\mbox{\hyperlink{driver__dw1000_8h_a8e51eab4abbfab18e6c59ac803aae780}{00193}}\ \}\ \mbox{\hyperlink{driver__dw1000_01copy_8h_a8e51eab4abbfab18e6c59ac803aae780}{dw1000\_handle\_t}};}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00198}00198\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structdw1000__info__s}{dw1000\_info\_s}}\{}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00199}00199\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structdw1000__info__s_a7f42cd03dc455bcf5912e67b34a1f283}{chip\_name}}[32];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00200}00200\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structdw1000__info__s_a6405149e44c8ec4b9ab06fae73fea53c}{manufacturer\_name}}[32];\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00201}00201\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structdw1000__info__s_a60e4ea1472435116b643898e7cc16072}{interface}}[8];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00202}00202\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structdw1000__info__s_ad8bde6ddadaf43d951e62f3befb9d35a}{supply\_voltage\_min\_v}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00203}00203\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structdw1000__info__s_a3d2b12bcac7a85ea8646bff9debe8660}{supply\_voltage\_max\_v}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00204}00204\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structdw1000__info__s_a9db82802561bf22d799b03a345f1d1dc}{max\_current\_ma}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00205}00205\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structdw1000__info__s_a8f9dbe66ac0b66ebae0a36fcb4ba368e}{temperature\_min}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00206}00206\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structdw1000__info__s_a3366a5dce9b829e03c3d321c2b4df3f6}{temperature\_max}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00207}00207\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structdw1000__info__s_a41b0bd442708b70d252c50b92c75265a}{driver\_version}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00208}\mbox{\hyperlink{driver__dw1000_8h_aca1028cbf8f069330cf8c4b762aae9a7}{00208}}\ \}\ \mbox{\hyperlink{driver__dw1000_01copy_8h_aca1028cbf8f069330cf8c4b762aae9a7}{dw1000\_info\_t}};}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00209}00209\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00218}00218\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00225}\mbox{\hyperlink{group__dw1000__link__driver_ga1ccb6b5cfe80b62c177816d5572bae0d}{00225}}\ \textcolor{preprocessor}{\#define\ DRIVER\_DW1000\_LINK\_INIT(HANDLE,\ STRUCTURE)\ \ \ \ \ \ \ \ \ memset(HANDLE,\ 0,\ sizeof(STRUCTURE))\ }}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00226}00226\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00233}\mbox{\hyperlink{group__dw1000__link__driver_ga5987d4731ac124a9e0644870f41bfc08}{00233}}\ \textcolor{preprocessor}{\#define\ DRIVER\_DW1000\_LINK\_SPI\_INIT(HANDLE,\ FUC)\ \ \ \ \ \ \ \ \ \ (HANDLE)-\/>spi\_init\ =\ FUC}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00235}00235\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00242}\mbox{\hyperlink{group__dw1000__link__driver_ga11e0d3df1bc80410c47afec0c608ea70}{00242}}\ \textcolor{preprocessor}{\#define\ DRIVER\_DW1000\_LINK\_SPI\_DEINIT(HANDLE,\ FUC)\ \ \ \ \ \ \ \ (HANDLE)-\/>spi\_deinit\ =\ FUC}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00243}00243\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00250}\mbox{\hyperlink{group__dw1000__link__driver_gad6345a3bb9ef86ed392fb502e9c65c82}{00250}}\ \textcolor{preprocessor}{\#define\ DRIVER\_DW1000\_LINK\_SPI\_READ(HANDLE,\ FUC)\ \ \ \ \ \ \ \ \ \ (HANDLE)-\/>spi\_read\ =\ FUC}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00251}00251\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00258}\mbox{\hyperlink{group__dw1000__link__driver_ga526b24f41e54bff213315fa886134af7}{00258}}\ \textcolor{preprocessor}{\#define\ DRIVER\_DW1000\_LINK\_SPI\_WRITE(HANDLE,\ FUC)\ \ \ \ \ \ \ \ \ (HANDLE)-\/>spi\_write\ =\ FUC}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00259}00259\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00266}\mbox{\hyperlink{group__dw1000__link__driver_ga42523356ff5da80ae1fb24feb4bd4ed4}{00266}}\ \textcolor{preprocessor}{\#define\ DRIVER\_DW1000\_LINK\_DELAY\_MS(HANDLE,\ FUC)\ \ \ \ \ \ \ \ \ \ (HANDLE)-\/>delay\_ms\ =\ FUC}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00267}00267\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00274}\mbox{\hyperlink{group__dw1000__link__driver_ga450d304f275f858c0910a363ee92000e}{00274}}\ \textcolor{preprocessor}{\#define\ DRIVER\_DW1000\_LINK\_DEBUG\_PRINT(HANDLE,\ FUC)\ \ \ \ \ \ \ (HANDLE)-\/>debug\_print\ =\ FUC}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00275}00275\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00282}\mbox{\hyperlink{group__dw1000__link__driver_ga1bb8090d157b468f89aada3e2e11564a}{00282}}\ \textcolor{preprocessor}{\#define\ DRIVER\_DW1000\_LINK\_RECEIVE\_CALLBACK(HANDLE,\ FUC)\ \ (HANDLE)-\/>receive\_callback\ =\ FUC}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00283}00283\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00287}00287\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00288}00288\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00289}00289\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00296}00296\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00297}00297\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00298}00298\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00302}00302\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00303}00303\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00304}00304\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00305}00305\ \}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00306}00306\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00307}00307\ }
+\DoxyCodeLine{\Hypertarget{driver__dw1000_8h_source_l00308}00308\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
