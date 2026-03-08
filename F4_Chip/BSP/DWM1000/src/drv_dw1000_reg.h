@@ -1,11 +1,15 @@
 #ifndef __DRV_DW1000_REG_H
 #define __DRV_DW1000_REG_H
 
-// 宏函数 产生指定bit位为1的数值
-#define DW1000_REG_BIT(bit)                             (1UL << bit)
-// 宏函数 产生指定bit范围内全1的数值
-#define DW1000_REG_BIT_RANGE(end, start)                (((1UL << ((end) - (start) + 1)) - 1) << (start))
+// #define OFFSET_OF(type, member)                         ((size_t) &((type*) 0)->member)
 
+// 宏函数 产生指定bit位为1的数值
+#define DW1000_REG_BIT(bit)                             (0x1UL << (bit))
+// 宏函数 产生指定bit范围内全1的数值
+#define DW1000_REG_BIT_RANGE(end, start)                (((0x1UL << ((end) - (start) + 1)) - 1) << (start))
+
+/* 调用该宏函数需要自行确保该宏函数不会返回负值 */
+// #define DW1000_REG_BIT_TRANSFORM(oldAdd, oldpos, newAdd) ((oldAdd) * 8 + (oldpos) - (newAdd) * 8)
 
 #define DW1000_SPI_CMD_POS                              (7U)
 #define DW1000_SPI_CMD_MASK                             (0x1UL << DW1000_SPI_CMD_POS)
@@ -21,7 +25,6 @@
 #define DW1000_SPI_EXT_SUB_ADDR_MASK                    (0x1UL << DW1000_SPI_EXT_SUB_ADDR_POS)
 // #define DW1000_SPI_EXT_SUB_ADDR_MASK                   DW1000_REG_BIT(7)
 #define DW1000_SPI_EXT_SUB_ADDR                         DW1000_SPI_EXT_SUB_ADDR_MASK
-
 
 /***********************************************************************************************
  * @brief 寄存器文件 0x00 - DEV_ID 设备标识符 [只读]
@@ -1120,11 +1123,11 @@
 // #define DW1000_REG_CHAN_CTRL_BITS_RX_CHAN             DW1000_REG_BIT_RANGE(7, 4)
 #define DW1000_REG_CHAN_CTRL_BITS_RX_CHAN               DW1000_REG_CHAN_CTRL_BITS_RX_CHAN_MSK
 
-#define DW1000_REG_CHAN_CTRL_BITS_RX_CHAN_POS           (0U)
-#define DW1000_REG_CHAN_CTRL_BITS_RX_CHAN_LEN           (4U) /* 位 */
-#define DW1000_REG_CHAN_CTRL_BITS_RX_CHAN_MSK           (0xFUL << DW1000_REG_CHAN_CTRL_BITS_RX_CHAN_POS)
-// #define DW1000_REG_CHAN_CTRL_BITS_RX_CHAN             DW1000_REG_BIT_RANGE(3, 0)
-#define DW1000_REG_CHAN_CTRL_BITS_RX_CHAN               DW1000_REG_CHAN_CTRL_BITS_RX_CHAN_MSK
+#define DW1000_REG_CHAN_CTRL_BITS_TX_CHAN_POS           (0U)
+#define DW1000_REG_CHAN_CTRL_BITS_TX_CHAN_LEN           (4U) /* 位 */
+#define DW1000_REG_CHAN_CTRL_BITS_TX_CHAN_MSK           (0xFUL << DW1000_REG_CHAN_CTRL_BITS_TX_CHAN_POS)
+// #define DW1000_REG_CHAN_CTRL_BITS_TX_CHAN             DW1000_REG_BIT_RANGE(3, 0)
+#define DW1000_REG_CHAN_CTRL_BITS_TX_CHAN               DW1000_REG_CHAN_CTRL_BITS_TX_CHAN_MSK
 
 /***********************************************************************************************
  * @brief 寄存器文件 0x20 - 保留
@@ -2259,10 +2262,10 @@
 
 /*+++++++++++++++++++++++++++++++++++++++ 子寄存器位定义 +++++++++++++++++++++++++++++++++++++++*/
 
-#define DW1000_SUB_REG_AON_WCFG_BIT_ONW_LLD_POS         (12U)
-#define DW1000_SUB_REG_AON_WCFG_BIT_ONW_LLD_MSK         (0x1UL << DW1000_SUB_REG_AON_WCFG_BIT_ONW_LLD_POS)
-// #define DW1000_SUB_REG_AON_WCFG_BIT_ONW_LLD_MSK          DW1000_REG_BIT(12)
-#define DW1000_SUB_REG_AON_WCFG_BIT_ONW_LLD             DW1000_SUB_REG_AON_WCFG_BIT_ONW_LLD_MSK
+#define DW1000_SUB_REG_AON_WCFG_BIT_ONW_LLDO_POS        (12U)
+#define DW1000_SUB_REG_AON_WCFG_BIT_ONW_LLDO_MSK        (0x1UL << DW1000_SUB_REG_AON_WCFG_BIT_ONW_LLDO_POS)
+// #define DW1000_SUB_REG_AON_WCFG_BIT_ONW_LLDO_MSK          DW1000_REG_BIT(12)
+#define DW1000_SUB_REG_AON_WCFG_BIT_ONW_LLDO            DW1000_SUB_REG_AON_WCFG_BIT_ONW_LLDO_MSK
 
 #define DW1000_SUB_REG_AON_WCFG_BIT_ONW_LLDE_POS        (11U)
 #define DW1000_SUB_REG_AON_WCFG_BIT_ONW_LLDE_MSK        (0x1UL << DW1000_SUB_REG_AON_WCFG_BIT_ONW_LLDE_POS)
@@ -2723,6 +2726,8 @@
 #define DW1000_SUB_REG_PMSC_CTRL1_OFFSET                0x04
 #define DW1000_SUB_REG_PMSC_CTRL1_LEN                   (4) /* 字节 */
 
+#define DW1000_SUB_REG_PMSC_CTRL1_2_OFFSET              0x02
+
 /* 偏移地址 0x08 保留 */
 
 #define DW1000_SUB_REG_PMSC_SNOZT_OFFSET                0x0C
@@ -2743,6 +2748,12 @@
 #define DW1000_SUB_REG_PMSC_CTRL0_3_BITS_SOFTRESET_MSK  (0xFUL << DW1000_SUB_REG_PMSC_CTRL0_3_BITS_SOFTRESET_POS)
 // #define DW1000_SUB_REG_PMSC_CTRL0_3_BITS_SOFTRESET_MSK   DW1000_REG_BIT_RANGE(7, 4)
 #define DW1000_SUB_REG_PMSC_CTRL0_3_BITS_SOFTRESET      DW1000_SUB_REG_PMSC_CTRL0_3_BITS_SOFTRESET_MSK
+
+#define DW1000_SUB_REG_PMSC_CTRL1_2_BIT_LDERUNE_POS     (1U)
+#define DW1000_SUB_REG_PMSC_CTRL1_2_BIT_LDERUNE_MSK     (0x2UL << DW1000_SUB_REG_PMSC_CTRL1_2_BIT_LDERUNE_POS)
+#define DW1000_SUB_REG_PMSC_CTRL1_2_BIT_LDERUNE_MSK     DW1000_REG_BIT(1)
+#define DW1000_SUB_REG_PMSC_CTRL1_2_BIT_LDERUNE         DW1000_SUB_REG_PMSC_CTRL1_2_BIT_LDERUNE_MSK
+
 
 #define DW1000_SUB_REG_PMSC_CTRL0_BITS_SOFTRESET_POS    (28U)
 #define DW1000_SUB_REG_PMSC_CTRL0_BITS_SOFTRESET_LEN    (4U) /* 位 */
