@@ -237,8 +237,8 @@
  * @warning  对函数的警告说明
  * @example  函数使用示例
  */
-#define DW1000_PHR_MODE_STANDARD                   (0x0 << DW1000_REG_SYS_CFG_BITS_PHR_MODE_POS)
-#define DW1000_PHR_MODE_EXTENDED                   (0x3 << DW1000_REG_SYS_CFG_BITS_PHR_MODE_POS)
+#define DW1000_PHR_MODE_STANDARD                   (0x0U << DW1000_REG_SYS_CFG_BITS_PHR_MODE_POS)
+#define DW1000_PHR_MODE_EXTENDED                   (0x3U << DW1000_REG_SYS_CFG_BITS_PHR_MODE_POS)
 #define DW1000_PHR_MODE_DEFAULT                    DW1000_PHR_MODE_STANDARD
 
 /**
@@ -314,7 +314,7 @@
  * @warning  对函数的警告说明
  * @example  函数使用示例
  */
-#define DW1000_SYS_CTRL_TX_START                   0x01
+#define DW1000_SYS_CTRL_TX_START                   0x01U
 
 /**
  * @brief 收发器关闭，DW1000立刻返回空闲状态
@@ -323,7 +323,7 @@
  * @warning  对函数的警告说明
  * @example  函数使用示例
  */
-#define DW1000_SYS_CTRL_TRX_OFF                    0x01
+#define DW1000_SYS_CTRL_TRX_OFF                    0x01U
 
 
 /**
@@ -333,6 +333,8 @@
  * @warning  对函数的警告说明
  * @example  函数使用示例
  */
+#define DW1000_SYS_STATUS_VAL_DEFAULT              0x00000000U
+
 #define DW1000_SYS_STATUS_ALL_RX_GOOD_MSK          ( \
     DW1000_REG_SYS_STATUS_BIT_RXDFR |                \
     DW1000_REG_SYS_STATUS_BIT_RXFCG |                \
@@ -364,18 +366,20 @@
     DW1000_REG_SYS_STATUS_BIT_TXPHS |  \
     DW1000_REG_SYS_STATUS_BIT_TXFRS)
 
+
+#define DW1000_RX_FINFO_RXFL_127_MSK                 (0x00000007UL)
 #define DW1000_RX_FINFO_RXFL_1023_MSK                (0x000003FFUL)
 
 
-#define DW1000_SYS_STATUS_O3_L16_TXERR_MSK           (0x0408)
+#define DW1000_SYS_STATUS_O3_L16_TXERR_MSK           (0x0408U)
 
 /**
  * @brief 定义DW1000的USR_SFD寄存器在不同速率下的非标SFD长度
  * @note  位于寄存器 USR_SFD - 0x21
  */
-#define DW1000_USR_SFD_NSTD_110K_LEN                 64
-#define DW1000_USR_SFD_NSTD_850K_LEN                 16
-#define DW1000_USR_SFD_NSTD_6M8_LEN                  8
+#define DW1000_USR_SFD_NSTD_110K_LEN                 64U
+#define DW1000_USR_SFD_NSTD_850K_LEN                 16U
+#define DW1000_USR_SFD_NSTD_6M8_LEN                  8U
 
 
 /**
@@ -383,15 +387,15 @@
  * @note  位于寄存器 AGC_CTRL - 0x23
  *        子寄存器 AGC_TUNE1 - 0x04
  */
-#define DW1000_AGC_TUNE1_PRF16M                      0x8870
-#define DW1000_AGC_TUNE1_PRF64M                      0x889B
+#define DW1000_AGC_TUNE1_PRF16M                      0x8870U
+#define DW1000_AGC_TUNE1_PRF64M                      0x889BU
 
 /**
  * @brief 定义DW1000的AGC调谐寄存器2的默认值
  * @note  位于寄存器 AGC_CTRL - 0x23
  *        子寄存器 AGC_TUNE2 - 0x0C
  */
-#define DW1000_AGC_TUNE2_DEFAULT                     0x2502A907
+#define DW1000_AGC_TUNE2_DEFAULT                     0x2502A907U
 
 
 /**
@@ -410,8 +414,8 @@
  * @note  默认为DW1000_GPIO_MODE_DEFAULT
  * @attention  根据用户手册，GPIO模式2和模式3保留不应使用
  */
-#define DW1000_GPIO_MODE_0                           0x00
-#define DW1000_GPIO_MODE_1                           0x01
+#define DW1000_GPIO_MODE_0                           0x00U
+#define DW1000_GPIO_MODE_1                           0x01U
 // #define DW1000_GPIO_MODE_2                  0x02 /* 保留不应使用 */
 // #define DW1000_GPIO_MODE_3                  0x03 /* 保留不应使用 */
 #define DW1000_GPIO_MODE_DEFAULT                     DW1000_GPIO_MODE_0
@@ -425,8 +429,8 @@
  *  @arg DW1000_GPIO_MODE_x： 模式x，x取值0-3
  * @warning  目前只能使用模式0-1，模式2-3保留不应使用
  */
-#define DW1000_GPIO_MODE_SELECT(pin, mode)           ((mode) << (2 * (pin) + 6UL))
-#define DW1000_GPIO_MODE_PIN_MASK(pin)               (0x03 << (2 * (pin) + 6UL))
+#define DW1000_GPIO_MODE_SELECT(pin, mode)           ((mode) << (2U * (pin) + 6UL))
+#define DW1000_GPIO_MODE_PIN_MASK(pin)               (0x03U << (2U * (pin) + 6UL))
 
 
 #define DW1000_LNA_PA_MODE_MASK                      (DW1000_SUB_REG_GPIO_MODE_BITS_MSGP4 | DW1000_SUB_REG_GPIO_MODE_BITS_MSGP5 | DW1000_SUB_REG_GPIO_MODE_BITS_MSGP6)
@@ -446,24 +450,24 @@
  * @param DW1000_GPIO_DIRECTION_OUTPUT_Px: 编号x引脚为输出，x取值0-8
  * @param DW1000_GPIO_DIRECTION_INPUT_Px: 编号x引脚为输入，x取值0-8
  */
-#define DW1000_GPIO_DIRECTION_OUTPUT_P0              0x00000010
-#define DW1000_GPIO_DIRECTION_OUTPUT_P1              0x00000020
-#define DW1000_GPIO_DIRECTION_OUTPUT_P2              0x00000040
-#define DW1000_GPIO_DIRECTION_OUTPUT_P3              0x00000080
-#define DW1000_GPIO_DIRECTION_OUTPUT_P4              0x00001000
-#define DW1000_GPIO_DIRECTION_OUTPUT_P5              0x00002000
-#define DW1000_GPIO_DIRECTION_OUTPUT_P6              0x00004000
-#define DW1000_GPIO_DIRECTION_OUTPUT_P7              0x00008000
-#define DW1000_GPIO_DIRECTION_OUTPUT_P8              0x00100000
-#define DW1000_GPIO_DIRECTION_INPUT_P0               0x00000011
-#define DW1000_GPIO_DIRECTION_INPUT_P1               0x00000022
-#define DW1000_GPIO_DIRECTION_INPUT_P2               0x00000044
-#define DW1000_GPIO_DIRECTION_INPUT_P3               0x00000088
-#define DW1000_GPIO_DIRECTION_INPUT_P4               0x00001100
-#define DW1000_GPIO_DIRECTION_INPUT_P5               0x00002200
-#define DW1000_GPIO_DIRECTION_INPUT_P6               0x00004400
-#define DW1000_GPIO_DIRECTION_INPUT_P7               0x00008800
-#define DW1000_GPIO_DIRECTION_INPUT_P8               0x00110000
+#define DW1000_GPIO_DIRECTION_OUTPUT_P0              0x00000010U
+#define DW1000_GPIO_DIRECTION_OUTPUT_P1              0x00000020U
+#define DW1000_GPIO_DIRECTION_OUTPUT_P2              0x00000040U
+#define DW1000_GPIO_DIRECTION_OUTPUT_P3              0x00000080U
+#define DW1000_GPIO_DIRECTION_OUTPUT_P4              0x00001000U
+#define DW1000_GPIO_DIRECTION_OUTPUT_P5              0x00002000U
+#define DW1000_GPIO_DIRECTION_OUTPUT_P6              0x00004000U
+#define DW1000_GPIO_DIRECTION_OUTPUT_P7              0x00008000U
+#define DW1000_GPIO_DIRECTION_OUTPUT_P8              0x00100000U
+#define DW1000_GPIO_DIRECTION_INPUT_P0               0x00000011U
+#define DW1000_GPIO_DIRECTION_INPUT_P1               0x00000022U
+#define DW1000_GPIO_DIRECTION_INPUT_P2               0x00000044U
+#define DW1000_GPIO_DIRECTION_INPUT_P3               0x00000088U
+#define DW1000_GPIO_DIRECTION_INPUT_P4               0x00001100U
+#define DW1000_GPIO_DIRECTION_INPUT_P5               0x00002200U
+#define DW1000_GPIO_DIRECTION_INPUT_P6               0x00004400U
+#define DW1000_GPIO_DIRECTION_INPUT_P7               0x00008800U
+#define DW1000_GPIO_DIRECTION_INPUT_P8               0x00110000U
 
 /**
  * @brief 定义GPIO方向
@@ -472,24 +476,24 @@
  * @param DW1000_GPIO_OUTPUT_STATE_LOW_Px: 编号x引脚输出低电平，x取值0-8
  * @param DW1000_GPIO_OUTPUT_STATE_HIGH_Px: 编号x引脚输出高电平，x取值0-8
  */
-#define DW1000_GPIO_OUTPUT_STATE_LOW_P0              0x00000010
-#define DW1000_GPIO_OUTPUT_STATE_LOW_P1              0x00000020
-#define DW1000_GPIO_OUTPUT_STATE_LOW_P2              0x00000040
-#define DW1000_GPIO_OUTPUT_STATE_LOW_P3              0x00000080
-#define DW1000_GPIO_OUTPUT_STATE_LOW_P4              0x00001000
-#define DW1000_GPIO_OUTPUT_STATE_LOW_P5              0x00002000
-#define DW1000_GPIO_OUTPUT_STATE_LOW_P6              0x00004000
-#define DW1000_GPIO_OUTPUT_STATE_LOW_P7              0x00008000
-#define DW1000_GPIO_OUTPUT_STATE_LOW_P8              0x00100000
-#define DW1000_GPIO_OUTPUT_STATE_HIGH_P0             0x00000011
-#define DW1000_GPIO_OUTPUT_STATE_HIGH_P1             0x00000022
-#define DW1000_GPIO_OUTPUT_STATE_HIGH_P2             0x00000044
-#define DW1000_GPIO_OUTPUT_STATE_HIGH_P3             0x00000088
-#define DW1000_GPIO_OUTPUT_STATE_HIGH_P4             0x00001100
-#define DW1000_GPIO_OUTPUT_STATE_HIGH_P5             0x00002200
-#define DW1000_GPIO_OUTPUT_STATE_HIGH_P6             0x00004400
-#define DW1000_GPIO_OUTPUT_STATE_HIGH_P7             0x00008800
-#define DW1000_GPIO_OUTPUT_STATE_HIGH_P8             0x00110000
+#define DW1000_GPIO_OUTPUT_STATE_LOW_P0              0x00000010U
+#define DW1000_GPIO_OUTPUT_STATE_LOW_P1              0x00000020U
+#define DW1000_GPIO_OUTPUT_STATE_LOW_P2              0x00000040U
+#define DW1000_GPIO_OUTPUT_STATE_LOW_P3              0x00000080U
+#define DW1000_GPIO_OUTPUT_STATE_LOW_P4              0x00001000U
+#define DW1000_GPIO_OUTPUT_STATE_LOW_P5              0x00002000U
+#define DW1000_GPIO_OUTPUT_STATE_LOW_P6              0x00004000U
+#define DW1000_GPIO_OUTPUT_STATE_LOW_P7              0x00008000U
+#define DW1000_GPIO_OUTPUT_STATE_LOW_P8              0x00100000U
+#define DW1000_GPIO_OUTPUT_STATE_HIGH_P0             0x00000011U
+#define DW1000_GPIO_OUTPUT_STATE_HIGH_P1             0x00000022U
+#define DW1000_GPIO_OUTPUT_STATE_HIGH_P2             0x00000044U
+#define DW1000_GPIO_OUTPUT_STATE_HIGH_P3             0x00000088U
+#define DW1000_GPIO_OUTPUT_STATE_HIGH_P4             0x00001100U
+#define DW1000_GPIO_OUTPUT_STATE_HIGH_P5             0x00002200U
+#define DW1000_GPIO_OUTPUT_STATE_HIGH_P6             0x00004400U
+#define DW1000_GPIO_OUTPUT_STATE_HIGH_P7             0x00008800U
+#define DW1000_GPIO_OUTPUT_STATE_HIGH_P8             0x00110000U
 
 /**
  * @brief 定义GPIO原始状态原始值
@@ -510,6 +514,26 @@
 #define DW1000_GPIO_RAW_STATE_P8                     DW1000_SUB_REG_GPIO_RAW_BIT_GRAWP8
 
 /**
+ * @brief 定义DW1000 数字调谐寄存器0b的值
+ * @note  位于寄存器 DRX_CONF - 0x27
+ *        子寄存器 DRX_TUNE0b - 0x02
+ */
+#define DW1000_DRX_TUNE0B_110K_STD                   0x000AU
+#define DW1000_DRX_TUNE0B_110K_NSTD                  0x0016U
+#define DW1000_DRX_TUNE0B_850K_STD                   0x0001U
+#define DW1000_DRX_TUNE0B_850K_NSTD                  0x0006U
+#define DW1000_DRX_TUNE0B_6M8_STD                    0x0001U
+#define DW1000_DRX_TUNE0B_6M8_NSTD                   0x0002U
+
+/**
+ * @brief 定义DW1000 数字调谐寄存器1a的值
+ * @note  位于寄存器 DRX_CONF - 0x27
+ *        子寄存器 DRX_TUNE1a - 0x04
+ */
+#define DW1000_DRX_TUNE1A_PRF16M                     0x0087U
+#define DW1000_DRX_TUNE1A_PRF64M                     0x008DU
+
+/**
  * @brief 定义DW1000数字调谐寄存器不同数据速率和前导码长度下的值
  * @note  位于寄存器 DRX_CONF - 0x27
  *        子寄存器 DRX_TUNE1b - 0x06
@@ -517,9 +541,9 @@
  *       后缀PM表示前导码长度处于128到1024个符号
  *       后缀PS表示前导码长度处为64个符号
  */
-#define DW1000_DRX_TUNE1B_110K_PL                    0x0064
-#define DW1000_DRX_TUNE1B_850K_6M8_PM                0x0020
-#define DW1000_DRX_TUNE1B_6M8_PS                     0x0010
+#define DW1000_DRX_TUNE1B_110K_PL                    0x0064U
+#define DW1000_DRX_TUNE1B_850K_6M8_PM                0x0020U
+#define DW1000_DRX_TUNE1B_6M8_PS                     0x0010U
 
 
 /**
@@ -541,8 +565,8 @@
 #define DW1000_DRX_TUNE2_PAC64_PRF64M                0x373B0296UL
 
 /* 这两个值跟优化有关，暂时不修改 */
-#define DW1000_DRX_TUN2_UNCONF_SFD_TH_PRF16          0x0E
-#define DW1000_DRX_TUN2_UNCONF_SFD_TH_PRF64          0x20
+#define DW1000_DRX_TUN2_UNCONF_SFD_TH_PRF16          0x0EU
+#define DW1000_DRX_TUN2_UNCONF_SFD_TH_PRF64          0x20U
 
 /**
  * @brief 定义DW1000 DRX_SFDTOC寄存器默认值
@@ -552,7 +576,7 @@
  * @warning  对函数的警告说明
  * @example  函数使用示例
  */
-#define DW1000_DRX_SFDTOC_DEFAULT                    0x1041
+#define DW1000_DRX_SFDTOC_DEFAULT                    0x1041U
 #define DW1000_SFD_TIMEOUT_DEFAULT                   DW1000_DRX_SFDTOC_DEFAULT
 
 /**
@@ -561,17 +585,14 @@
  * @note  位于寄存器 DRX_CONF - 0x27
  *        子寄存器 DRX_TUNE4H - 0x26
  */
-#define DW1000_DRX_TUNE4H_PLEN64                     0x0010
-#define DW1000_DRX_TUNE4H_PLEN128_PLUS               0x0028
+#define DW1000_DRX_TUNE4H_PLEN64                     0x0010U
+#define DW1000_DRX_TUNE4H_PLEN128_PLUS               0x0028U
 
 
 /**
  * @brief
  * @note  位于寄存器 RF_CONF - 0x28
  *        子寄存器 RF_CONF - 0x00
- * @attention  特别需要注意的地方进行说明
- * @warning  对函数的警告说明
- * @example  函数使用示例
  */
 #define DW1000_RF_CFG_SWITCH_TX                      (0x02UL << DW1000_SUB_REG_RF_CONF_BITS_TXRXSW_POS)
 #define DW1000_RF_CFG_SWITCH_RX                      (0x01UL << DW1000_SUB_REG_RF_CONF_BITS_TXRXSW_POS)
@@ -588,6 +609,33 @@
 #define DW1000_RF_CFG_TXB_ALL_ENABLE                 (0x1FUL << DW1000_SUB_REG_RF_CONF_BITS_TXFEN_POS)
 #define DW1000_RF_CFG_TXB_MIXER_BIAS_ENABLE          (0x7UL << DW1000_SUB_REG_RF_CONF_BITS_TXFEN_POS)
 #define DW1000_RF_CFG_TXB_DISABLE                    (0x0UL << DW1000_SUB_REG_RF_CONF_BITS_TXFEN_POS)
+
+/**
+ * @brief 定义DW1000模拟接收控制寄存器的值
+ * @note  位于寄存器 RF_CONF - 0x28
+ *        子寄存器 RF_RXCTRLH - 0x0B
+ */
+#define DW1000_RF_RX_CTRLH_CH1                       0xD8U
+#define DW1000_RF_RX_CTRLH_CH2                       0xD8U
+#define DW1000_RF_RX_CTRLH_CH3                       0xD8U
+#define DW1000_RF_RX_CTRLH_CH4                       0xBCU
+#define DW1000_RF_RX_CTRLH_CH5                       0xD8U
+// #define DW1000_RF_RX_CTRLH_CH6 /* 频道6不支持 */
+#define DW1000_RF_RX_CTRLH_CH7                       0xBCU
+
+/**
+ * @brief 定义DW1000 模拟发送控制寄存器的值
+ * @note  位于寄存器 RF_CONF - 0x28
+ *        子寄存器 RF_TXCTRL - 0x0C
+ */
+#define DW1000_RF_TXCTRL_CH1                         0x00005C40U
+#define DW1000_RF_TXCTRL_CH2                         0x00045CA0U
+#define DW1000_RF_TXCTRL_CH3                         0x00086CC0U
+#define DW1000_RF_TXCTRL_CH4                         0x00045C80U
+#define DW1000_RF_TXCTRL_CH5                         0x001E3FE3U
+// #define DW1000_RF_TXCTRL_CH6 /* 频道6不支持 */
+#define DW1000_RF_TXCTRL_CH7                         0x001E7DE0U
+
 
 /**
  * @brief LDO调谐寄存器默认值
@@ -617,12 +665,35 @@
  * @note  位于寄存器 TX_CAL - 0x2A
  *        子寄存器 TC_PGTEST - 0x0C
  * @note  备注
- * @attention  特别需要注意的地方进行说明
- * @warning  对函数的警告说明
- * @example  函数使用示例
  */
-#define DW1000_TC_PGTEST_MODE_CW                     0x13
-#define DW1000_TC_PGTEST_MODE_NORMAL                 0x00
+#define DW1000_TC_PGTEST_MODE_CW                     0x13U
+#define DW1000_TC_PGTEST_MODE_NORMAL                 0x00U
+
+/**
+ * @brief 定义DW1000 频率合成器 PLL相关参数
+ * @note  位于寄存器 FS_CTRL - 0x2B
+ *        子寄存器 FS_PLLCFG - 0x07
+ */
+#define DW1000_FS_PLL_CFG_CH1                        0x09000407UL
+#define DW1000_FS_PLL_CFG_CH2                        0x08400508UL
+#define DW1000_FS_PLL_CFG_CH3                        0x08401009UL
+#define DW1000_FS_PLL_CFG_CH4                        0x08400508UL
+#define DW1000_FS_PLL_CFG_CH5                        0x0800041DUL
+// #define DW1000_FS_PLL_CFG_CH6 /* 频道6不支持 */
+#define DW1000_FS_PLL_CFG_CH7                        0x0800041DUL
+
+/**
+ * @brief 定义DW1000  频率合成器 PLL调谐
+ * @note  位于寄存器 FS_CTRL - 0x2B
+ *        子寄存器 FS_PLLTUNE - 0x0B
+ */
+#define DW1000_FS_PLL_TUNE_CH1                       0x1EU
+#define DW1000_FS_PLL_TUNE_CH2                       0x26U
+#define DW1000_FS_PLL_TUNE_CH3                       0x56U
+#define DW1000_FS_PLL_TUNE_CH4                       0x26U
+#define DW1000_FS_PLL_TUNE_CH5                       0xBEU
+// #define DW1000_FS_PLL_TUNE_CH6 /* 频道6不支持 */
+#define DW1000_FS_PLL_TUNE_CH7                       0xBEU
 
 
 /**
@@ -634,9 +705,6 @@
  *        如果配置了保持睡眠，则DW1000会在从睡眠模式中唤醒后保持
  *        之前的接收和（或）发送完成之后进入睡眠模式的配置状态。
  *        实现从唤醒后完成接收和（或）发送再次进入睡眠模式的效果。
- * @attention  特别需要注意的地方进行说明
- * @warning  对函数的警告说明
- * @example  函数使用示例
  */
 #define DW1000_PRESERVE_SLEEP                        (0x1UL << DW1000_SUB_REG_AON_WCFG_BIT_PRES_SLEEP_POS)
 #define DW1000_PRESERVE_SLEEP_NOT                    (0x0UL << DW1000_SUB_REG_AON_WCFG_BIT_PRES_SLEEP_POS)
@@ -763,8 +831,8 @@
  * @warning  对函数的警告说明
  * @example  函数使用示例
  */
-#define DW1000_AON_ADDR_LPOSC_CAL_LOWER              (0x75)
-#define DW1000_AON_ADDR_LPOSC_CAL_UPPER              (0x76)
+#define DW1000_AON_ADDR_LPOSC_CAL_LOWER              (0x75U)
+#define DW1000_AON_ADDR_LPOSC_CAL_UPPER              (0x76U)
 
 
 /**
@@ -858,14 +926,14 @@
  * @note  位于寄存器 OTP_IF - 0x2D
  *        子寄存器 OTP_ADDR - 0x04
  */
-#define DW1000_OTP_ADDRESS_LDO_TUNE                  0x04
-#define DW1000_OTP_ADDRESS_PART_ID                   0x06
-#define DW1000_OTP_ADDRESS_LOT_ID                    0x07
-#define DW1000_OTP_ADDRESS_REF_VOLT                  0x08
-#define DW1000_OTP_ADDRESS_REF_TEMP                  0x09
-#define DW1000_OTP_ADDRESS_OTP_REV                   0x1E
-#define DW1000_OTP_ADDRESS_XTAL_TRIM                 0x1E
-#define DW1000_OTP_ADDRESS_OTP_REV_XTAL_TRIM         0x1E
+#define DW1000_OTP_ADDRESS_LDO_TUNE                  0x04U
+#define DW1000_OTP_ADDRESS_PART_ID                   0x06U
+#define DW1000_OTP_ADDRESS_LOT_ID                    0x07U
+#define DW1000_OTP_ADDRESS_REF_VOLT                  0x08U
+#define DW1000_OTP_ADDRESS_REF_TEMP                  0x09U
+#define DW1000_OTP_ADDRESS_OTP_REV                   0x1EU
+#define DW1000_OTP_ADDRESS_XTAL_TRIM                 0x1EU
+#define DW1000_OTP_ADDRESS_OTP_REV_XTAL_TRIM         0x1EU
 
 
 /**
@@ -1010,7 +1078,7 @@
  */
 #define DW1000_PEAK_MULTIPLIER_DEFAULT               (0x3UL << DW1000_SUB_REG_LDE_CFG1_BITS_PMULT_POS)
 #define DW1000_NOISE_THRES_MULTIPLIER_DEFAULT        (0xCUL << DW1000_SUB_REG_LDE_CFG1_BITS_NT_MULT_POS)
-#define DW1000_LDE_PARAM1                            (0x6D)
+#define DW1000_LDE_PARAM1                            (0x6DU)
 
 /**
  * @brief 定义DW1000 LDE调谐参数配置
@@ -1021,8 +1089,39 @@
  * @warning  对函数的警告说明
  * @example  函数使用示例
  */
-#define DW1000_LDE_TUNE_PARAM_IN_PRF16MHz            (0x1607)
-#define DW1000_LDE_TUNE_PARAM_IN_PRF64MHz            (0x0607)
+#define DW1000_LDE_TUNE_PARAM_IN_PRF16MHz            (0x1607U)
+#define DW1000_LDE_TUNE_PARAM_IN_PRF64MHz            (0x0607U)
+
+/**
+ * @brief 定义 DW1000 LDE副本系数配置寄存器值
+ *        根据接收前导码的不同设置不同的值
+ * @note  位于寄存器 LDE_IF - 0x2E
+ *        子寄存器 LDE_REPC - 0x2804
+ */
+#define DW1000_LDE_REPC_PCODE_1                      0x5998U
+#define DW1000_LDE_REPC_PCODE_2                      0x5998U
+#define DW1000_LDE_REPC_PCODE_3                      0x51EAU
+#define DW1000_LDE_REPC_PCODE_4                      0x428EU
+#define DW1000_LDE_REPC_PCODE_5                      0x451EU
+#define DW1000_LDE_REPC_PCODE_6                      0x2E14U
+#define DW1000_LDE_REPC_PCODE_7                      0x8000U
+#define DW1000_LDE_REPC_PCODE_8                      0x51EAU
+#define DW1000_LDE_REPC_PCODE_9                      0x28F4U
+#define DW1000_LDE_REPC_PCODE_10                     0x3332U
+#define DW1000_LDE_REPC_PCODE_11                     0x3AE0U
+#define DW1000_LDE_REPC_PCODE_12                     0x3D70U
+#define DW1000_LDE_REPC_PCODE_13                     0x3AE0U
+#define DW1000_LDE_REPC_PCODE_14                     0x35C2U
+#define DW1000_LDE_REPC_PCODE_15                     0x2B84U
+#define DW1000_LDE_REPC_PCODE_16                     0x35C2U
+#define DW1000_LDE_REPC_PCODE_17                     0x3332U
+#define DW1000_LDE_REPC_PCODE_18                     0x35C2U
+#define DW1000_LDE_REPC_PCODE_19                     0x35C2U
+#define DW1000_LDE_REPC_PCODE_20                     0x47AEU
+#define DW1000_LDE_REPC_PCODE_21                     0x3AE0U
+#define DW1000_LDE_REPC_PCODE_22                     0x3850U
+#define DW1000_LDE_REPC_PCODE_23                     0x30A2U
+#define DW1000_LDE_REPC_PCODE_24                     0x3850U
 
 /**
  * @brief
@@ -1325,9 +1424,9 @@
  * @warning  对函数的警告说明
  * @example  函数使用示例
  */
-#define DW1000_TX_MODE_IMMEDIATE                     0x00
-#define DW1000_TX_MODE_DELAYED                       0x01
-#define DW1000_TX_MODE_EXPECT_RESPONSE               0x02
+#define DW1000_TX_MODE_IMMEDIATE                     0x00U
+#define DW1000_TX_MODE_DELAYED                       0x01U
+#define DW1000_TX_MODE_EXPECT_RESPONSE               0x02U
 
 
 #define DW1000_INT_EVENT_FRAME_SENT                  DW1000_REG_SYS_MASK_BIT_MTXFRB

@@ -44,6 +44,7 @@ typedef struct DW1000_Backup_s {
     uint8_t refTemp;
     uint32_t txFctrl;
     uint32_t systemConfig;
+    uint32_t systemStatus;
     uint16_t sleepMode;
 } DW1000_Backup_t;
 
@@ -92,10 +93,11 @@ typedef struct DW1000_EVT_CNT_s {
 } DW1000_EVT_CNT_t;
 
 typedef struct DW1000_CB_Data_t {
-    uint32_t status;
+    // uint32_t status;
     uint16_t frameLen;
-    uint8_t frameCtrl[2];
-    uint8_t RxFlag;
+    uint16_t frameCtrl;
+    uint8_t isRxRangingFrame : 1; // 是否接收到测距帧
+    uint8_t reserced : 7;
 } DW1000_CB_Data_t;
 
 
@@ -115,42 +117,41 @@ typedef struct
 typedef struct
 {
     /* data */
-    uint8_t isRxOnAfterTx;                 // 在发送完成后是否自动开启接收（通常用于接收应答信息）
-    uint8_t shouldOtpPartIdRead;           // 是否从OTP中加载partID
-    uint8_t shouldOtpLotIdRead;            // 是否从OTP中加载LOT ID
-    uint8_t shouldOtpRefVoltRead;          // 是否从OTP中加载参考电压值
-    uint8_t shouldOtpRefTempRead;          // 是否从OTP中加载参考温度值
-    uint8_t shouldOtpUcodeRead;            // 是否从OTP中加载微码
-    uint8_t shouldOtpUcodeReadAfterWakeUp; // 是否在唤醒后从OTP中加载微码
-    uint8_t shouldOtpRevReadAfterWakeUp;   // 是否在唤醒后从OTP中加载OTP修订号
-    uint8_t reserved;
-    uint8_t sleepMode;              // 睡眠模式
-    uint8_t phrType;                // PHR模式： StdFrameMode 和 LongFrameMode
-    uint8_t channel;                // 频道号（取值1-7，不包含6）
-    uint8_t pulseRepetionFrequency; // 脉冲重复频率 16MHz 和 64MHz
-    uint8_t txPreambleLength;       // 发送前导码长度 64 128 256 512 1024 2048 4096
-    uint8_t rxPac;                  // 前导码查询块大小（与接收前导码长度相关）
-    uint8_t txPreambleCode;         // 发送前导码
-    uint8_t rxPreambleCode;         // 接收前导码
-    uint8_t useSfdNstd;             // 是否使用非标 SFD 以获得更好的性能
-    uint8_t dataRate;               // 数据速率 110kbps 850kbps 6.8Mbps
-    uint16_t sfdTimeout;            // SFD超时值（单位 符号）
-    uint8_t useDoubleBuff;          // 是否为双缓冲模式
+    uint8_t isRxOnAfterTx : 1;                 // 在发送完成后是否自动开启接收（通常用于接收应答信息）
+    uint8_t shouldOtpPartIdRead : 1;           // 是否从OTP中加载partID
+    uint8_t shouldOtpLotIdRead : 1;            // 是否从OTP中加载LOT ID
+    uint8_t shouldOtpRefVoltRead : 1;          // 是否从OTP中加载参考电压值
+    uint8_t shouldOtpRefTempRead : 1;          // 是否从OTP中加载参考温度值
+    uint8_t shouldOtpUcodeRead : 1;            // 是否从OTP中加载微码
+    uint8_t shouldOtpUcodeReadAfterWakeUp : 1; // 是否在唤醒后从OTP中加载微码
+    uint8_t shouldOtpRevReadAfterWakeUp : 1;   // 是否在唤醒后从OTP中加载OTP修订号
+    uint8_t useSfdNstd : 1;                    // 是否使用非标 SFD 以获得更好的性能
+    uint8_t useDoubleBuff : 1;                 // 是否为双缓冲模式
+    uint8_t useLowPowListen : 1;               // 是否使用低功耗监听
+    uint8_t channel : 3;                       // 频道号: DW1000_CHANNEL_x（x取值1-7，不包含6）
+    uint8_t dataRate : 2;                      // 数据速率: 110kbps 850kbps 6.8Mbps
+    uint8_t prf : 2;                           // 脉冲重复频率: 16MHz 和 64MHz
+    uint8_t phrType : 1;                       // PHR模式： StdFrameMode 和 LongFrameMode
+    uint8_t reserved : 5;                      // 保留位
+    uint8_t txPreambleLength;                  // 发送前导码长度: 64 128 256 512 1024 2048 4096
+    uint8_t rxPac;                             // 前导码查询块大小（与接收前导码长度相关）
+    uint8_t sleepMode;                         // 睡眠模式
+    uint8_t txPreambleCode;                    // 发送前导码
+    uint8_t rxPreambleCode;                    // 接收前导码
+    uint16_t sfdTimeout;                       // SFD超时值（单位 符号）
 } DW1000_InitTypeDef;
-
 
 /**
  * @brief  DW1000 State structure definition
  */
 typedef enum {
-    DW1000_STATE_RESET = 0x00U,      /*!< Peripheral not Initialized                         */
-    DW1000_STATE_READY = 0x01U,      /*!< Peripheral Initialized and ready for use           */
-    DW1000_STATE_BUSY = 0x02U,       /*!< an internal process is ongoing                     */
-    DW1000_STATE_BUSY_TX = 0x03U,    /*!< Data Transmission process is ongoing               */
-    DW1000_STATE_BUSY_RX = 0x04U,    /*!< Data Reception process is ongoing                  */
-    DW1000_STATE_BUSY_TX_RX = 0x05U, /*!< Data Transmission and Reception process is ongoing */
-    DW1000_STATE_ERROR = 0x06U,      /*!< SPI error state                                    */
-    DW1000_STATE_ABORT = 0x07U       /*!< SPI abort is ongoing                               */
+    DW1000_STATE_RESET = 0x00U,   /*!< Peripheral not Initialized                         */
+    DW1000_STATE_READY = 0x01U,   /*!< Peripheral Initialized and ready for use           */
+    DW1000_STATE_BUSY = 0x02U,    /*!< an internal process is ongoing                     */
+    DW1000_STATE_BUSY_TX = 0x03U, /*!< Data Transmission process is ongoing               */
+    DW1000_STATE_BUSY_RX = 0x04U, /*!< Data Reception process is ongoing                  */
+    DW1000_STATE_ERROR = 0x05U,   /*!< SPI error state                                    */
+    DW1000_STATE_ABORT = 0x06U    /*!< SPI abort is ongoing                               */
 } DW1000_StateTypeDef;
 
 typedef struct {
@@ -192,14 +193,14 @@ typedef struct DW1000_Handle_s {
     DW1000_IF_IQR_TypeDef host_irq;
     DW1000_Backup_t backup;
     DW1000_CB_Data_t cbData;
-    // void (*IRQ_cmd)(uint8_t cmd);
+    volatile uint32_t errorCode; // 错误码，用于在中断函数里记录发生的错误，当退出中断时由外部进行处理
     void (*delay_ms)(uint32_t ms);
     void (*debugPrint)(const char* fmt, ...);
 #if (USE_DW1000_REGISTER_CALLBACKS == 1U)
-    void (*DW1000_txCompleteCallback)(struct DW1000_Handle_s* hdw1000);
-    void (*DW1000_rxCompleteCallback)(struct DW1000_Handle_s* hdw1000);
-    void (*DW1000_rxErrorCallback)(struct DW1000_Handle_s* hdw1000);
-    void (*DW1000_rxTimeoutCallback)(struct DW1000_Handle_s* hdw1000);
+    void (*TxCompleteCallback)(DW1000_Handle_t* handle);
+    void (*RxCompleteCallback)(DW1000_Handle_t* handle);
+    void (*RxErrorCallback)(DW1000_Handle_t* handle);
+    void (*RxTimeoutCallback)(DW1000_Handle_t* handle);
 #endif /* USE_DW1000_REGISTER_CALLBACKS */
 } DW1000_Handle_t;
 
@@ -209,10 +210,9 @@ typedef enum {
     DW1000_RX_COMPLETE_CB_ID = 0x01U, /*!< DW1000 Rx Completed callback ID         */
     DW1000_RX_ERROR_CB_ID = 0x02U,    /*!< DW1000 Rx Error callback ID             */
     DW1000_RX_TIMEOUT_CB_ID = 0x03U   /*!< DW1000 Rx Timeout callback ID           */
-
 } DW1000_CallbackIdTypeDef;
 
-typedef void (*pDW1000_CallbackTypeDef)(DW1000_Handle_t* hdw1000);
+typedef void (*DW1000_CallbackTypeDef)(DW1000_Handle_t* hdw1000);
 
 #endif /* USE_DW1000_REGISTER_CALLBACKS */
 
@@ -232,6 +232,19 @@ typedef struct DW1000_Info_s {
     uint32_t driverVersion;    /**< driver version */
 } DW1000_Info_t;
 /* Exported constants --------------------------------------------------------*/
+/** @defgroup DW1000_Error_Code DW1000 Error Code
+ * @{
+ */
+#define DW1000_ERR_CODE_NONE         (0x00000000U) /* 无错误 */
+#define DW1000_ERR_CODE_READ         (0x1U << 1)   /* 读取失败（通过SPI读取） */
+#define DW1000_ERR_CODE_WRITE        (0x1U << 2)   /* 写入失败（通过SPI写入） */
+#define DW1000_ERR_CODE_TRX_OFF      (0x1U << 3)   /* 收发器关闭失败 */
+#define DW1000_ERR_CODE_RX_RESET     (0x1U << 4)   /* 接收器复位失败 */
+#define DW1000_ERR_CODE_RX_OFF       (0x1U << 5)   /* 接收器关闭失败 */
+
+/**
+ * @}
+ */
 
 /* DW1000支持的频道数 */
 #define DW1000_SUPPORT_CHANNEL_NUM   6
@@ -269,17 +282,17 @@ typedef struct DW1000_Info_s {
 #define DW1000_PRF_16M               1
 #define DW1000_PRF_64M               2
 
-#define DW1000_PLEN_4096             0x0C
-#define DW1000_PLEN_2048             0x28
-#define DW1000_PLEN_1536             0x18
-#define DW1000_PLEN_1024             0x08
-#define DW1000_PLEN_512              0x34
-#define DW1000_PLEN_256              0x24
-#define DW1000_PLEN_128              0x14
-#define DW1000_PLEN_64               0x04
+#define DW1000_PLEN_4096             0x0CU
+#define DW1000_PLEN_2048             0x28U
+#define DW1000_PLEN_1536             0x18U
+#define DW1000_PLEN_1024             0x08U
+#define DW1000_PLEN_512              0x34U
+#define DW1000_PLEN_256              0x24U
+#define DW1000_PLEN_128              0x14U
+#define DW1000_PLEN_64               0x04U
 
-#define DW1000_PHR_TYPE_STD          0x0
-#define DW1000_PHR_TYPE_EXT          0x1
+#define DW1000_PHR_TYPE_STD          0x0U
+#define DW1000_PHR_TYPE_EXT          0x1U
 
 /* Exported macro ------------------------------------------------------------*/
 
@@ -328,18 +341,17 @@ typedef struct DW1000_Info_s {
  * @brief 带错误处理的宏函数
  * @note  主要用途就是减少代码行数，使代码简洁
  *         宏函数内部会判断fun函数返回值是否为0
- *          不为0则立即将结果返回给上层调用函数
+ *          不为0则执行handle
  * @param[in] fun 要执行的函数，必须有返回值
  *                 返回值0表示正常
  *                 其他值表示有误
- * @param[in] res 返回结果，fun函数执行结果赋值给
- *                 该变量
+ * @param[in] handle 错误处理，返回非0时将执行handle
  */
-#define DW1000_EXEC_WITH_ERR_HANDLE(fun, res) \
-    do {                                      \
-        if (res = fun) {                      \
-            return res;                       \
-        }                                     \
+#define DW1000_EXEC_WITH_ERR_HANDLE(fun, handle) \
+    do {                                         \
+        if (fun) {                               \
+            handle;                              \
+        }                                        \
     } while (0)
 
 /**
@@ -422,6 +434,10 @@ typedef struct DW1000_Info_s {
 
 /* Exported functions --------------------------------------------------------*/
 
+#if (USE_DW1000_REGISTER_CALLBACKS == 1U)
+uint8_t DW1000_RegisterCallback(DW1000_Handle_t* handle, DW1000_CallbackIdTypeDef callbackId, DW1000_CallbackTypeDef callback);
+uint8_t DW1000_UnregisterCallback(DW1000_Handle_t* handle, DW1000_CallbackIdTypeDef callbackId);
+#endif /* USE_HAL_SPI_REGISTER_CALLBACKS */
 uint8_t DW1000_API_VersionGet(uint32_t* version);
 uint8_t DW1000_LocalDataPtrSet(DW1000_Handle_t* handle, uint8_t* ptr);
 uint8_t DW1000_IC_RefVoltGet(DW1000_Handle_t* handle, uint8_t* volt);
