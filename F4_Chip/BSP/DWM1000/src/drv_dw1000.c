@@ -68,6 +68,9 @@ typedef struct {
 /* Private variables ---------------------------------------------------------*/
 /* Private constants ---------------------------------------------------------*/
 
+/**
+ * @brief 频率合成器 PLL配置（根据频道不同设置不同参数）
+ */
 const static uint32_t DW1000_FS_PLL_CFG[DW1000_SUPPORT_CHANNEL_NUM + 1] = {
     DW1000_FS_PLL_CFG_CH1,
     DW1000_FS_PLL_CFG_CH2,
@@ -78,6 +81,9 @@ const static uint32_t DW1000_FS_PLL_CFG[DW1000_SUPPORT_CHANNEL_NUM + 1] = {
     DW1000_FS_PLL_CFG_CH7
 };
 
+/**
+ * @brief 频率合成器 PLL调谐（根据频道不同设置不同参数）
+ */
 const static uint8_t DW1000_FS_PLL_TUNE[DW1000_SUPPORT_CHANNEL_NUM + 1] = {
     DW1000_FS_PLL_TUNE_CH1,
     DW1000_FS_PLL_TUNE_CH2,
@@ -88,6 +94,9 @@ const static uint8_t DW1000_FS_PLL_TUNE[DW1000_SUPPORT_CHANNEL_NUM + 1] = {
     DW1000_FS_PLL_TUNE_CH7
 };
 
+/**
+ * @brief 接收器配置（根据频道不同设置不同参数）
+ */
 const static uint8_t DW1000_RX_CONFIG[DW1000_SUPPORT_CHANNEL_NUM + 1] = {
     DW1000_RF_RX_CTRLH_CH1,
     DW1000_RF_RX_CTRLH_CH2,
@@ -98,6 +107,9 @@ const static uint8_t DW1000_RX_CONFIG[DW1000_SUPPORT_CHANNEL_NUM + 1] = {
     DW1000_RF_RX_CTRLH_CH7
 };
 
+/**
+ * @brief 发送器配置（根据频道不同设置不同参数）
+ */
 const static uint32_t DW1000_TX_CONFIG[DW1000_SUPPORT_CHANNEL_NUM + 1] = {
     DW1000_RF_TXCTRL_CH1,
     DW1000_RF_TXCTRL_CH2,
@@ -108,6 +120,9 @@ const static uint32_t DW1000_TX_CONFIG[DW1000_SUPPORT_CHANNEL_NUM + 1] = {
     DW1000_RF_TXCTRL_CH7,
 };
 
+/**
+ * @brief 调谐寄存器0b配置（根据数据速率和SFD类型设置不同参数）
+ */
 const static uint16_t DW1000_SFD_THRESHOLD[DW1000_SUPPORT_DATA_RATE_NUM][DW1000_SUPPORT_SFD_TYPE_NUM] = {
     { DW1000_DRX_TUNE0B_110K_STD,
       DW1000_DRX_TUNE0B_110K_NSTD },
@@ -117,11 +132,17 @@ const static uint16_t DW1000_SFD_THRESHOLD[DW1000_SUPPORT_DATA_RATE_NUM][DW1000_
       DW1000_DRX_TUNE0B_6M8_NSTD }
 };
 
+/**
+ * @brief 调谐寄存器1a配置（根据PRF频率设置不同参数）
+ */
 const static uint16_t DW1000_DRX_TUNE1A[DW1000_SUPPORT_PRF_NUM] = {
     DW1000_DRX_TUNE1A_PRF16M,
     DW1000_DRX_TUNE1A_PRF64M
 };
 
+/**
+ * @brief 调谐寄存器2配置（根据PAC尺寸和PRF频率设置不同参数）
+ */
 const static uint32_t DW1000_DRX_TUNE2[DW1000_SUPPORT_PRF_NUM][DW1000_SUPPORT_PAC_NUM] = {
     { DW1000_DRX_TUNE2_PAC8_PRF16M,
       DW1000_DRX_TUNE2_PAC16_PRF16M,
@@ -133,6 +154,9 @@ const static uint32_t DW1000_DRX_TUNE2[DW1000_SUPPORT_PRF_NUM][DW1000_SUPPORT_PA
       DW1000_DRX_TUNE2_PAC64_PRF64M },
 };
 
+/**
+ * @brief LDE副本系数配置（根据接收前导码的不同设置不同参数）
+ */
 const static uint16_t DW1000_LDE_REPLICA_COEFF[DW1000_SUPPORT_PCODE_NUM] = {
     0, // 无前导码
     DW1000_LDE_REPC_PCODE_1,
@@ -161,11 +185,19 @@ const static uint16_t DW1000_LDE_REPLICA_COEFF[DW1000_SUPPORT_PCODE_NUM] = {
     DW1000_LDE_REPC_PCODE_24
 };
 
+/**
+ * @brief AGC调谐寄存器配置
+ * @note 对于AGC_TUNE1寄存器的值根据PRF频率不同设置不同的值
+ *       对于AGC_TUNE2寄存器的值为固定值
+ */
 const static DW1000_AGC_CFG_t DW1000_AGC_CFG = {
     DW1000_AGC_TUNE2_DEFAULT,
     { DW1000_AGC_TUNE1_PRF16M, DW1000_AGC_TUNE1_PRF64M }
 };
 
+/**
+ * @brief DW1000非标SFD长度配置（根据数据速率设置不同值）
+ */
 const static uint8_t DW1000_NSTD_SFD_LEN[DW1000_SUPPORT_DATA_RATE_NUM] = {
     DW1000_USR_SFD_NSTD_110K_LEN,
     DW1000_USR_SFD_NSTD_850K_LEN,
@@ -185,8 +217,8 @@ const static uint8_t DW1000_NSTD_SFD_LEN[DW1000_SUPPORT_DATA_RATE_NUM] = {
  * @param[in] buf  数据缓存指针
  * @param[in] len  读取数据长度
  * @return uint8_t 函数执行情况
- *  @arg 0: 读取成功
- *  @arg 1: 读取失败
+ *  @arg 0: SPI接口读操作成功
+ *  @arg 1: SPI接口读操作失败
  * @note  因为仅供文件内部调用该函数，所以不对输入参数进行检查（用户不应调用该函数）
  */
 static uint8_t _DW1000_SPI_Read(DW1000_Handle_t* handle, uint8_t reg, uint16_t offset, uint8_t* buf, uint16_t len) {
@@ -231,8 +263,8 @@ static uint8_t _DW1000_SPI_Read(DW1000_Handle_t* handle, uint8_t reg, uint16_t o
  * @param[in] buf  数据缓存指针
  * @param[in] len  写入数据长度
  * @return uint8_t 函数执行情况
- *  @arg 0: 读取成功
- *  @arg 1: 读取失败
+ *  @arg 0: SPI接口写操作成功
+ *  @arg 2: SPI接口写操作失败
  * @note  因为仅供文件内部调用该函数，所以不对输入参数进行检查（用户不应调用该函数）
  */
 static uint8_t _DW1000_SPI_Write(DW1000_Handle_t* handle, uint8_t reg, uint16_t offset, uint8_t* buf, uint16_t len) {
@@ -376,11 +408,9 @@ static void _DW1000_CriticalExit(DW1000_Handle_t* handle) {
  *  @arg DW1000_CLOCK_CMD_FORCE_LDE: 强制LED时钟
  * @return uint8_t 函数执行情况
  *  @arg 0: 配置成功
- *  @arg 其他: 配置失败
- * @note  【原本打算将该函数替换掉，分成几个设置对应时钟的函数，目前仍保留该函数】
- * @attention  特别需要注意的地方进行说明
- * @warning  对函数的警告说明
- * @example  函数使用示例
+ *  @arg 1: SPI接口读操作失败
+ *  @arg 2: SPI接口写操作失败
+ * @todo  【原本打算将该函数替换掉，分成几个设置对应时钟的函数，目前仍保留该函数】
  */
 uint8_t _DW1000_ClockCmd(DW1000_Handle_t* handle, uint8_t clockCmd) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
@@ -395,12 +425,11 @@ uint8_t _DW1000_ClockCmd(DW1000_Handle_t* handle, uint8_t clockCmd) {
                         clockCmd == DW1000_CLOCK_CMD_FORCE_TX_PLL ||
                         clockCmd == DW1000_CLOCK_CMD_FORCE_LDE);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint16_t value;
     /* 关于时钟设置只需要低16位数据，这里就读取这个寄存器的2个字节 */
-    if (_DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, &value, sizeof(value))) {
-        return 1;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, &value, sizeof(value)),
+        return 1);
     switch (clockCmd) {
         case DW1000_CLOCK_CMD_ENABLE_ALL_SEQ:
             DW1000_CLEAR_BITS(value,
@@ -452,41 +481,43 @@ uint8_t _DW1000_ClockCmd(DW1000_Handle_t* handle, uint8_t clockCmd) {
             break;
     }
     /* 16位数据需要分两次写入，先写入低字节，再写入高字节 */
-    if (result = _DW1000_SPI_Write(handle,
-                                   DW1000_REG_PMSC,
-                                   DW1000_SUB_REG_PMSC_CTRL0_OFFSET,
-                                   (uint8_t*) &value,
-                                   1)) {
-        return result;
-    }
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_PMSC,
-                             DW1000_SUB_REG_PMSC_CTRL0_OFFSET + 1,
-                             ((uint8_t*) &value) + 1,
-                             1);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &value, sizeof(uint8_t)),
+        return 2);
+    return _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET + 1, ((uint8_t*) &value) + 1, sizeof(uint8_t));
 }
 
+/**
+ * @brief DW1000读取OTP内存
+ * @param[in] handle  DW1000句柄
+ * @param[in] address  OTP中的数据地址
+ * @param[in] data  待读出数据存放的指针
+ * @return uint8_t 执行结果
+ *  @arg 0: 执行成功
+ *  @arg 1: SPI接口读操作失败
+ *  @arg 2: SPI接口写操作失败
+ * @note  确保 MR,MRa,MRb 被复位为0
+ */
 uint8_t _DW1000_OTP_Read(DW1000_Handle_t* handle, uint16_t address, uint32_t* data) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
     DW1000_ASSERT_PARAM(data != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     /* 写入地址 */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_ADDR_OFFSET, (uint8_t*) &address, sizeof(address))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_ADDR_OFFSET, (uint8_t*) &address, sizeof(address)),
+        return 2);
     uint8_t value;
     /* 设置 OTPREAD 和 OTPRDEN 标志位 */
     DW1000_WRITE_REG(value, DW1000_SUB_REG_OTP_CTRL_BIT_OTPREAD | DW1000_SUB_REG_OTP_CTRL_BIT_OTPRDEN);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &value, sizeof(value))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &value, sizeof(value)),
+        return 2);
     /* 清除 OTPREAD 和 OTPRDEN 标志位，OTPREAD实际上会被自动清零，但是OTPRDEN需要手动清零，这里就一块清除 */
     DW1000_WRITE_REG(value, 0x00);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &value, sizeof(value))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &value, sizeof(value)),
+        return 2);
     /* 从OTP_RDAT子寄存器中读取前面设定OTP对应地址里的数据 */
     return _DW1000_SPI_Read(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_RDAT_OFFSET, (uint8_t*) data, sizeof(*data));
 }
@@ -501,7 +532,7 @@ uint8_t _DW1000_OTP_Read(DW1000_Handle_t* handle, uint16_t address, uint32_t* da
 
 
 /**
- * @brief
+ * @brief DW1000配置 MR寄存器以进行
  * @param[in] handle  Comment
  * @param[in] mode  模式选择，取值如下
  *              DW1000_OTP_MODE_RESET_ALL
@@ -511,8 +542,15 @@ uint8_t _DW1000_OTP_Read(DW1000_Handle_t* handle, uint16_t address, uint32_t* da
  *              DW1000_OTP_MODE_LOW_READ_MARGIN
  *              DW1000_OTP_MODE_ARRAY_CLEAN
  *              DW1000_OTP_MODE_VERY_LOW_READ_MARGIN
- * @return uint8_t
- * @note  具体说明可以参考 用户手册 的 6.3.2节
+ * @return uint8_t 执行结果
+ *  @arg 0: 执行成功
+ *  @arg 1: SPI接口读操作失败
+ *  @arg 2: SPI接口写操作失败
+ *  @arg 3: 输入参数 mode 有误
+ * @note  配置MR寄存器以进行初始编程（启用电荷泵）。
+ *        读取裕量用于强调从已编程位回读的读取操作。
+ *        在正常操作中，这一要求会放宽。
+ *        具体说明可以参考 用户手册 的 6.3.2节
  * @attention  特别需要注意的地方进行说明
  * @warning  对函数的警告说明
  * @example  函数使用示例
@@ -572,126 +610,124 @@ uint8_t _DW1000_OTP_MR_RegSet(DW1000_Handle_t* handle, uint8_t mode) {
             mrb = 0x0003;
             break;
         default:
-            return 4;
+            return 3;
             break;
     }
     /* 编程 MRA, */
     /* MODE_SEL 设置 MRA */
     // OTP_ctrl = 0x0300;
     DW1000_WRITE_REG(OTP_ctrl, DW1000_OTP_MODE_REGISTER_MRA | DW1000_OTP_MODE_SELECT_SET);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET + 1, ((uint8_t*) &OTP_ctrl) + 1, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET + 1, ((uint8_t*) &OTP_ctrl) + 1, 1),
+        return 2);
     /* 将mra值写入 */
     // OTP_data = mra;
     DW1000_WRITE_REG(OTP_data, mra);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_WDAT_OFFSET, (uint8_t*) &OTP_data, sizeof(OTP_data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_WDAT_OFFSET, (uint8_t*) &OTP_data, sizeof(OTP_data)),
+        return 2);
     /* 设置 OTPMRWR 位，以将前面的配置写入OTP Mode寄存器中 */
     // OTP_ctrl |= 0x08; //OTP_ctrl = 0x0308
     DW1000_SET_BITS(OTP_ctrl, DW1000_SUB_REG_OTP_CTRL_BIT_OTPMRWR_MSK);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1),
+        return 2);
     /* 等待2ms (手册上写的是1ms，但官方的库代码是2ms) */
     handle->delay_ms(2);
     /* 清除 MODE_SEL 位 */
     // OTP_ctrl &= ~0x0100; // OTP_ctrl = 0x0208
     DW1000_CLEAR_BITS(OTP_ctrl, DW1000_SUB_REG_OTP_CTRL_BIT_MODESEL_MSK);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET + 1, ((uint8_t*) &OTP_ctrl) + 1, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET + 1, ((uint8_t*) &OTP_ctrl) + 1, 1),
+        return 2);
     /* 设置 AUX Update 位 和 OTPMRWR 位 */
     // OPT_ctrl |= 0x88; // OTP_ctrl = 0x0288;
     DW1000_SET_BITS(OTP_ctrl, DW1000_SUB_REG_OTP_CTRL_BIT_AUXUPD_MSK | DW1000_SUB_REG_OTP_CTRL_BIT_OTPMRWR_MSK);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1),
+        return 2);
     /* 清除 OTPMRWR 位 */
     // OTP_ctrl &= ~0x08; // OTP_ctrl = 0x0280;
     DW1000_CLEAR_BITS(OTP_ctrl, DW1000_SUB_REG_OTP_CTRL_BIT_OTPMRWR_MSK);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1),
+        return 2);
     /* 清除 AUX Update 位 */
     // OTP_ctrl &= ~0x80; // OTP_ctrl = 0x0200;
     DW1000_CLEAR_BITS(OTP_ctrl, DW1000_SUB_REG_OTP_CTRL_BIT_AUXUPD_MSK);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1)) {
-        return result;
-    }
-
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1),
+        return 2);
     /* 编程 MRB */
     /* MODE_SEL 设置 SLOW MRB  */
     // OTP_ctrl = 0x0500;
     DW1000_WRITE_REG(OTP_ctrl, DW1000_OTP_MODE_REGISTER_MRB | DW1000_OTP_MODE_SELECT_SET);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET + 1, ((uint8_t*) &OTP_ctrl) + 1, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET + 1, ((uint8_t*) &OTP_ctrl) + 1, 1),
+        return 2);
     // OTP_data = mrb;
     DW1000_WRITE_REG(OTP_data, mrb);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_WDAT_OFFSET, (uint8_t*) &OTP_data, sizeof(OTP_data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_WDAT_OFFSET, (uint8_t*) &OTP_data, sizeof(OTP_data)),
+        return 2);
     /* 设置 OTPMRWR 位 */
     // OTP_ctrl |= 0x08; // OTP_ctrl = 0x0508
     DW1000_SET_BITS(OTP_ctrl, DW1000_SUB_REG_OTP_CTRL_BIT_OTPMRWR_MSK);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1),
+        return 2);
     /* 等待2ms (手册上写的是1ms，但官方的库代码是2ms) */
     handle->delay_ms(2);
     /* 清除 MODE_SEL 位 */
     // OTP_ctrl &= ~0x0100; // OTP_ctrl = 0x0408
     DW1000_CLEAR_BITS(OTP_ctrl, DW1000_SUB_REG_OTP_CTRL_BIT_MODESEL_MSK);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET + 1, ((uint8_t*) &OTP_ctrl) + 1, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET + 1, ((uint8_t*) &OTP_ctrl) + 1, 1),
+        return 2);
     /* 设置AUX Update 位 和 OTPMRWR 位 */
     // OPT_ctrl |= 0x88; // OTP_ctrl = 0x0488;
     DW1000_SET_BITS(OTP_ctrl, DW1000_SUB_REG_OTP_CTRL_BIT_AUXUPD_MSK | DW1000_SUB_REG_OTP_CTRL_BIT_OTPMRWR_MSK);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1),
+        return 2);
     /* 清除 OTPMRWR 位 */
     // OTP_ctrl &= ~0x08; // OTP_ctrl = 0x0480;
     DW1000_CLEAR_BITS(OTP_ctrl, DW1000_SUB_REG_OTP_CTRL_BIT_OTPMRWR_MSK);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1),
+        return 2);
     /* 清除 AUX Update 位 */
     // OTP_ctrl &= ~0x80; // OTP_ctrl = 0x0400;
     DW1000_CLEAR_BITS(OTP_ctrl, DW1000_SUB_REG_OTP_CTRL_BIT_AUXUPD_MSK);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1)) {
-        return result;
-    }
-
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1),
+        return 2);
     /* 编程 MR */
     /* MODE_SEL 设置 SLOW MR */
     // OTP_ctrl = 0x0100;
     DW1000_WRITE_REG(OTP_ctrl, DW1000_OTP_MODE_REGISTER_MR | DW1000_OTP_MODE_SELECT_SET);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET + 1, ((uint8_t*) &OTP_ctrl) + 1, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET + 1, ((uint8_t*) &OTP_ctrl) + 1, 1),
+        return 2);
     // OTP_data = mr;
     DW1000_WRITE_REG(OTP_data, mr);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_WDAT_OFFSET, (uint8_t*) &OTP_data, sizeof(OTP_data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_WDAT_OFFSET, (uint8_t*) &OTP_data, sizeof(OTP_data)),
+        return 2);
     /* 设置 OTPMRWR 位 */
     // OTP_ctrl |= 0x08; // OTP_ctrl = 0x0108
     DW1000_SET_BITS(OTP_ctrl, DW1000_SUB_REG_OTP_CTRL_BIT_OTPMRWR_MSK);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1),
+        return 2);
     /* 等待2ms (手册上写的是1ms，但官方的库代码是2ms) */
     handle->delay_ms(2);
     /* 清除 MODE_SEL 位 */
     // OTP_ctrl &= ~0x0100; // OTP_ctrl = 0x0008
     DW1000_CLEAR_BITS(OTP_ctrl, DW1000_SUB_REG_OTP_CTRL_BIT_MODESEL_MSK);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET + 1, ((uint8_t*) &OTP_ctrl) + 1, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET + 1, ((uint8_t*) &OTP_ctrl) + 1, 1),
+        return 2);
     return 0;
 }
 
@@ -699,30 +735,29 @@ uint8_t _DW1000_OTP_Word32Program(DW1000_Handle_t* handle, uint32_t data, uint16
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_WDAT_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &address, sizeof(address))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_WDAT_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &address, sizeof(address)),
+        return 2);
     uint16_t OTP_ctrl;
     /* 设置 OTPPROG 位 */
     DW1000_WRITE_REG(OTP_ctrl, DW1000_OTP_PROGRAM_SET);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1),
+        return 2);
     /* 清除 OTPPROG 位 */
     DW1000_WRITE_REG(OTP_ctrl, DW1000_OTP_PROGRAM_CLEAR);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &OTP_ctrl, 1),
+        return 2);
     uint8_t OTP_stat;
     do {
         handle->delay_ms(1);
-        if (result = _DW1000_SPI_Read(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_STAT_OFFSET, &OTP_stat, sizeof(OTP_stat))) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Read(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_STAT_OFFSET, &OTP_stat, sizeof(OTP_stat)),
+            return 1);
     } while (DW1000_IS_OTP_PROGRAMMING_DONE(OTP_stat) == 0);
     return 0;
 }
@@ -731,17 +766,16 @@ uint8_t _DW1000_AON_ConfigurationUpload(DW1000_Handle_t* handle) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint8_t data;
     DW1000_WRITE_REG(data, DW1000_AON_CTRL_UPLOAD_CONFIGURATION_SET);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CTRL_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CTRL_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     /* 清空寄存器的值 */
     DW1000_WRITE_REG(data, 0x00);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CTRL_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CTRL_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     return 0;
 }
 
@@ -749,17 +783,16 @@ uint8_t _DW1000_AON_ArrayUpload(DW1000_Handle_t* handle) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint8_t data;
     /* 清空寄存器的值 */
     DW1000_WRITE_REG(data, 0x00);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CTRL_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CTRL_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     DW1000_WRITE_REG(data, DW1000_AON_CTRL_SAVE_SET);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CTRL_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CTRL_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     return 0;
 }
 
@@ -782,18 +815,17 @@ uint8_t _DW1000_LDE_Config(DW1000_Handle_t* handle, uint16_t config) {
     DW1000_ASSERT_PARAM(config == DW1000_LDE_TUNE_PARAM_IN_PRF16MHz ||
                         config == DW1000_LDE_TUNE_PARAM_IN_PRF64MHz);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint16_t data = 0x00;
     /* 配置DW1000 LDE配置 */
     DW1000_WRITE_REG(data, DW1000_LDE_PARAM1);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_LDE_IF, DW1000_SUB_REG_LDE_CFG1_OFFSET, (uint8_t*) &data, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_LDE_IF, DW1000_SUB_REG_LDE_CFG1_OFFSET, (uint8_t*) &data, 1),
+        return 2);
     /* 按照config设置LDE调谐配置 */
     DW1000_WRITE_REG(data, config);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_LDE_IF, DW1000_SUB_REG_LDE_CFG2_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_LDE_IF, DW1000_SUB_REG_LDE_CFG2_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     return 0;
 }
 
@@ -801,23 +833,22 @@ uint8_t _DW1000_LoadUcodeFromROM(DW1000_Handle_t* handle) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint16_t data;
     /* 强制使能LDE时钟 */
-    if (result = _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_LDE)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_LDE),
+        return 3);
     /* 设置LDE微码加载 */
     DW1000_WRITE_REG(data, DW1000_LDE_LOAD_UCODE_ENABLE);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_LDE_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_LDE_IF, DW1000_SUB_REG_OTP_CTRL_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     /* 等待微码加载到内存（大概需要120us） */
     handle->delay_ms(1);
     /* 恢复默认时钟（ENABLE_ALL_SEQ） */
-    if (result = _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_ENABLE_ALL_SEQ)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_ENABLE_ALL_SEQ),
+        return 3);
     return 0;
 }
 
@@ -827,18 +858,13 @@ uint8_t _DW1000_SequeningDisable(DW1000_Handle_t* handle) {
     DW1000_ASSERT_PARAM(handle != NULL);
 /* 设置系统时钟为XTI */
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint16_t data;
-    if (result = _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_SYS_XTI)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_SYS_XTI),
+        return 3);
     /* 禁用PMSC控制里的RF 和 RX时钟块 */
     DW1000_WRITE_REG(data, DW1000_PMSC_CTRL_RF_SUB_SYS_DISABLE);
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_PMSC,
-                             DW1000_SUB_REG_PMSC_CTRL1_OFFSET,
-                             (uint8_t*) &data,
-                             sizeof(data));
+    return _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL1_OFFSET, (uint8_t*) &data, sizeof(data));
 }
 
 #define DW1000_SYSTEM_CLOCK_SELECTION_AUTO 0x00
@@ -865,15 +891,11 @@ uint8_t _DW1000_SystemClockSelect(DW1000_Handle_t* handle, uint8_t clock) {
                         clock == DW1000_SYSTEM_CLOCK_SELECT_FORCE_PLL);
 #endif /* USE_DW1000_FULL_ASSERT */
     uint8_t value;
-    if (_DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, &value, sizeof(value))) {
-        return 1;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, &value, sizeof(value)),
+        return 1);
     DW1000_MODIFY_REG(value, DW1000_SUB_REG_PMSC_CTRL0_BITS_SYSCLKS_MSK, clock);
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_PMSC,
-                             DW1000_SUB_REG_PMSC_CTRL0_OFFSET,
-                             &value,
-                             sizeof(value));
+    return _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, &value, sizeof(value));
 }
 
 #define DW1000_RX_CLOCK_SELECTION_AUTO 0x00
@@ -900,15 +922,11 @@ uint8_t _DW1000_RxClockSelect(DW1000_Handle_t* handle, uint8_t clock) {
                         clock == DW1000_RX_CLOCK_SELECTION_OFF);
 #endif /* USE_DW1000_FULL_ASSERT */
     uint8_t value;
-    if (_DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, &value, sizeof(value))) {
-        return 1;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, &value, sizeof(value)),
+        return 1);
     DW1000_MODIFY_REG(value, DW1000_SUB_REG_PMSC_CTRL0_BITS_RXCLKS_MSK, clock);
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_PMSC,
-                             DW1000_SUB_REG_PMSC_CTRL0_OFFSET,
-                             &value,
-                             sizeof(value));
+    return _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, &value, sizeof(value));
 }
 
 #define DW1000_TX_CLOCK_SELECTION_AUTO 0x00
@@ -935,15 +953,11 @@ uint8_t _DW1000_TxClockSelect(DW1000_Handle_t* handle, uint8_t clock) {
                         clock == DW1000_TX_CLOCK_SELECTION_OFF);
 #endif /* USE_DW1000_FULL_ASSERT */
     uint8_t value;
-    if (_DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, &value, sizeof(value))) {
-        return 1;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, &value, sizeof(value)),
+        return 1);
     DW1000_MODIFY_REG(value, DW1000_SUB_REG_PMSC_CTRL0_BITS_TXCLKS_MSK, clock);
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_PMSC,
-                             DW1000_SUB_REG_PMSC_CTRL0_OFFSET,
-                             &value,
-                             sizeof(value));
+    return _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, &value, sizeof(value));
 }
 
 #define DW1000_ADC_CLOCK_ENABLE  0x01
@@ -956,15 +970,11 @@ uint8_t _DW1000_ADC_ClockCmd(DW1000_Handle_t* handle, uint8_t cmd) {
 #endif /* USE_DW1000_FULL_ASSERT */
     uint8_t value;
     /* 这里为了方便只读取8位数据，并只对ADC时钟使能位进行操作 */
-    if (_DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET + 1, &value, sizeof(value))) {
-        return 1;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET + 1, &value, sizeof(value)),
+        return 1);
     DW1000_MODIFY_REG(value, (0x1 << (DW1000_SUB_REG_PMSC_CTRL0_BIT_ADCCE_POS - 8)), cmd);
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_PMSC,
-                             DW1000_SUB_REG_PMSC_CTRL0_OFFSET + 1,
-                             &value,
-                             sizeof(value));
+    return _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET + 1, &value, sizeof(value));
 }
 
 #define DW1000_ACC_CLOCK_ENABLE  0x01
@@ -977,15 +987,11 @@ uint8_t _DW1000_ACC_ClockCmd(DW1000_Handle_t* handle, uint8_t cmd) {
 #endif /* USE_DW1000_FULL_ASSERT */
     uint8_t value;
     /* 这里为了方便只读取8位数据，并只对ACC时钟使能位进行操作 */
-    if (_DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, &value, sizeof(value))) {
-        return 1;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, &value, sizeof(value)),
+        return 1);
     DW1000_MODIFY_REG(value, DW1000_SUB_REG_PMSC_CTRL0_BIT_FACE_MSK, cmd);
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_PMSC,
-                             DW1000_SUB_REG_PMSC_CTRL0_OFFSET,
-                             &value,
-                             sizeof(value));
+    return _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, &value, sizeof(value));
 }
 
 #define DW1000_ACC_MEM_CLOCK_ENABLE  0x01
@@ -998,15 +1004,11 @@ uint8_t _DW1000_ACC_MEM_ClockCmd(DW1000_Handle_t* handle, uint8_t cmd) {
 #endif /* USE_DW1000_FULL_ASSERT */
     uint8_t value;
     /* 这里为了方便只读取8位数据，并只对ACC MEM时钟使能位进行操作 */
-    if (_DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET + 1, &value, sizeof(value))) {
-        return 1;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET + 1, &value, sizeof(value)),
+        return 1);
     DW1000_MODIFY_REG(value, (0x1 << (DW1000_SUB_REG_PMSC_CTRL0_BIT_AMCE_POS - 8)), cmd);
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_PMSC,
-                             DW1000_SUB_REG_PMSC_CTRL0_OFFSET + 1,
-                             &value,
-                             sizeof(value));
+    return _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET + 1, &value, sizeof(value));
 }
 
 
@@ -1020,15 +1022,11 @@ uint8_t _DW1000_OTP_ClockCmd(DW1000_Handle_t* handle, uint8_t cmd) {
 #endif /* USE_DW1000_FULL_ASSERT */
     uint8_t value;
     /* 这里为了方便只读取8位数据，并只对ACC MEM时钟使能位进行操作 */
-    if (_DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET + 1, &value, sizeof(value))) {
-        return 1;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET + 1, &value, sizeof(value)),
+        return 1);
     DW1000_MODIFY_REG(value, (0x1 << (DW1000_SUB_REG_PMSC_CTRL0_BIT_FOTPCE_POS - 8)), cmd);
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_PMSC,
-                             DW1000_SUB_REG_PMSC_CTRL0_OFFSET + 1,
-                             &value,
-                             sizeof(value));
+    return _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET + 1, &value, sizeof(value));
 }
 
 /* 该函数由于《用户手册》没有详细说明该位，暂时留下该函数占位 */
@@ -1079,11 +1077,7 @@ inline uint8_t DW1000_FineGrainTxSeqCmd(DW1000_Handle_t* handle, uint16_t cmd) {
     DW1000_ASSERT_PARAM(handle != NULL);
     DW1000_ASSERT_PARAM(cmd == DW1000_TX_FINE_GRAIN_SEQ_ENABLE || cmd == DW1000_TX_FINE_GRAIN_SEQ_DISABLE);
 #endif /* USE_DW1000_FULL_ASSERT */
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_PMSC,
-                             DW1000_SUB_REG_PMSC_TXFSEQ_OFFSET,
-                             &cmd,
-                             sizeof(cmd));
+    return _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_TXFSEQ_OFFSET, &cmd, sizeof(cmd));
 }
 
 
@@ -1116,19 +1110,14 @@ uint8_t DW1000_LNA_PA_ModeSet(DW1000_Handle_t* handle, uint32_t mode) {
         mode == DW1000_LNA_PA_MODE_PA ||
         mode == DW1000_LNA_PA_MODE_ALL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     /* 先读取GPIO控制状态寄存器的子寄存器GPIO Mode的内容 */
     uint32_t GPIO_mode;
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_GPIO_CTRL, DW1000_SUB_REG_GPIO_MODE_OFFSET, (uint8_t*) &GPIO_mode, sizeof(GPIO_mode))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_GPIO_CTRL, DW1000_SUB_REG_GPIO_MODE_OFFSET, (uint8_t*) &GPIO_mode, sizeof(GPIO_mode)),
+        return 1);
     /* 根据 mode 参数进行配置 */
     DW1000_MODIFY_REG(GPIO_mode, DW1000_LNA_PA_MODE_MASK, mode);
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_GPIO_CTRL,
-                             DW1000_SUB_REG_GPIO_MODE_OFFSET,
-                             (uint8_t*) &GPIO_mode,
-                             sizeof(GPIO_mode));
+    return _DW1000_SPI_Write(handle, DW1000_REG_GPIO_CTRL, DW1000_SUB_REG_GPIO_MODE_OFFSET, (uint8_t*) &GPIO_mode, sizeof(GPIO_mode));
 }
 
 
@@ -1149,19 +1138,14 @@ uint8_t DW1000_GPIO_PinModeSelect(DW1000_Handle_t* handle, uint8_t pin, uint8_t 
     DW1000_ASSERT_PARAM(pin >= 0 && pin <= 7);
     DW1000_ASSERT_PARAM(mode >= 0 && mode <= 3);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     /* 先读取GPIO控制状态寄存器的子寄存器GPIO Mode的内容 */
     uint32_t GPIO_mode;
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_GPIO_CTRL, DW1000_SUB_REG_GPIO_MODE_OFFSET, (uint8_t*) &GPIO_mode, sizeof(GPIO_mode))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_GPIO_CTRL, DW1000_SUB_REG_GPIO_MODE_OFFSET, (uint8_t*) &GPIO_mode, sizeof(GPIO_mode)),
+        return 1);
     /* 根据 mode 参数进行配置 */
     DW1000_MODIFY_REG(GPIO_mode, DW1000_GPIO_MODE_PIN_MASK(pin), DW1000_GPIO_MODE_SELECT(pin, mode));
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_GPIO_CTRL,
-                             DW1000_SUB_REG_GPIO_MODE_OFFSET,
-                             (uint8_t*) &GPIO_mode,
-                             sizeof(GPIO_mode));
+    return _DW1000_SPI_Write(handle, DW1000_REG_GPIO_CTRL, DW1000_SUB_REG_GPIO_MODE_OFFSET, (uint8_t*) &GPIO_mode, sizeof(GPIO_mode));
 }
 
 /**
@@ -1178,19 +1162,14 @@ uint8_t DW1000_GPIO_ClockEnable(DW1000_Handle_t* handle) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t PMSC_clockCtrl;
     /* 先读取PMSC寄存器的子寄存器CTRL0的内容 */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &PMSC_clockCtrl, sizeof(PMSC_clockCtrl))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &PMSC_clockCtrl, sizeof(PMSC_clockCtrl)),
+        return 1);
     /* GPRN置位使GPIO端口退出复位状态，然后GPCE置位开启GPIO时钟 */
     DW1000_SET_BITS(PMSC_clockCtrl, DW1000_SUB_REG_PMSC_CTRL0_BIT_GPCE | DW1000_SUB_REG_PMSC_CTRL0_BIT_GPRN);
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_PMSC,
-                             DW1000_SUB_REG_PMSC_CTRL0_OFFSET,
-                             (uint8_t*) &PMSC_clockCtrl,
-                             sizeof(PMSC_clockCtrl));
+    return _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &PMSC_clockCtrl, sizeof(PMSC_clockCtrl));
 }
 
 /**
@@ -1211,11 +1190,7 @@ inline uint8_t DW1000_GPIO_DirectionSet(DW1000_Handle_t* handle, uint32_t direct
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_GPIO_CTRL,
-                             DW1000_SUB_REG_GPIO_DIR_OFFSET,
-                             (uint8_t*) &direction,
-                             sizeof(direction));
+    return _DW1000_SPI_Write(handle, DW1000_REG_GPIO_CTRL, DW1000_SUB_REG_GPIO_DIR_OFFSET, (uint8_t*) &direction, sizeof(direction));
 }
 
 /**
@@ -1237,11 +1212,7 @@ inline uint8_t DW1000_GPIO_ValueSet(DW1000_Handle_t* handle, uint32_t out) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_GPIO_CTRL,
-                             DW1000_SUB_REG_GPIO_DOUT_OFFSET,
-                             (uint8_t*) &out,
-                             sizeof(out));
+    return _DW1000_SPI_Write(handle, DW1000_REG_GPIO_CTRL, DW1000_SUB_REG_GPIO_DOUT_OFFSET, (uint8_t*) &out, sizeof(out));
 }
 
 /**
@@ -1261,11 +1232,10 @@ uint8_t DW1000_GPIO_ValueGet(DW1000_Handle_t* handle, uint32_t gpio, uint8_t* va
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t GPIO_value;
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_GPIO_CTRL, DW1000_SUB_REG_GPIO_RAW_OFFSET, (uint8_t*) &GPIO_value, sizeof(GPIO_value))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_GPIO_CTRL, DW1000_SUB_REG_GPIO_RAW_OFFSET, (uint8_t*) &GPIO_value, sizeof(GPIO_value)),
+        return 1);
     *value = (GPIO_value & gpio) ? 1 : 0;
     return 0;
 }
@@ -1336,11 +1306,7 @@ inline uint8_t DW1000_DEV_ID_Get(DW1000_Handle_t* handle, uint32_t* id) {
     DW1000_ASSERT_PARAM(handle != NULL);
     DW1000_ASSERT_PARAM(id != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    return _DW1000_SPI_Read(handle,
-                            DW1000_REG_DEV_ID,
-                            0,
-                            (uint8_t*) id,
-                            sizeof(*id));
+    return _DW1000_SPI_Read(handle, DW1000_REG_DEV_ID, 0, (uint8_t*) id, sizeof(*id));
 }
 
 uint8_t DW1000_TX_RF_Config(DW1000_Handle_t* handle, DW1000_TX_Config_t* config) {
@@ -1348,19 +1314,11 @@ uint8_t DW1000_TX_RF_Config(DW1000_Handle_t* handle, DW1000_TX_Config_t* config)
     DW1000_ASSERT_PARAM(handle != NULL);
     DW1000_ASSERT_PARAM(config != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
-    if (result = _DW1000_SPI_Write(handle,
-                                   DW1000_REG_TX_CAL,
-                                   DW1000_SUB_REG_TC_PGDELAY_OFFSET,
-                                   (uint8_t*) &config->pulseGeneratorDelay,
-                                   sizeof(config->pulseGeneratorDelay))) {
-        return result;
-    }
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_TX_POWER,
-                             0,
-                             (uint8_t*) &config->TX_power,
-                             sizeof(config->TX_power));
+    /** @todo 将结构体的变量名缩短 */
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_PGDELAY_OFFSET, (uint8_t*) &config->pulseGeneratorDelay, sizeof(config->pulseGeneratorDelay)),
+        return 2);
+    return _DW1000_SPI_Write(handle, DW1000_REG_TX_POWER, 0, (uint8_t*) &config->TX_power, sizeof(config->TX_power));
 }
 
 
@@ -1381,40 +1339,21 @@ uint8_t DW1000_PreambleLength64Config(DW1000_Handle_t* handle, uint32_t value) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint8_t reg_value = DEMOD_GEAR_64L;
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_CRTR, DW1000_SUB_REG_CRTR_GEAR_OFFSET, &reg_value, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_CRTR, DW1000_SUB_REG_CRTR_GEAR_OFFSET, &reg_value, 1),
+        return 2);
     /** @todo 需要修改*/
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_DRX_CONF,
+    return _DW1000_SPI_Write(handle, DW1000_REG_DRX_CONF,
                              DW1000_SUB_REG_DRX_TUNE2_OFFSET + 2, /* 只修改子寄存器的第3个字节数据 */
-                             (uint8_t*) &value,
-                             sizeof(value));
+                             (uint8_t*) &value, sizeof(value));
 }
-
-
-uint8_t dw1000_configure(DW1000_Handle_t* handle, DW1000_Config_t* config) {
-#if (USE_DW1000_FULL_ASSERT == 1U)
-    DW1000_ASSERT_PARAM(handle != NULL);
-    DW1000_ASSERT_PARAM(config != NULL);
-#endif /* USE_DW1000_FULL_ASSERT */
-
-    /** @todo 以后完善，挖个坑*/
-    return 0;
-}
-
 
 inline uint8_t DW1000_RX_AntennaDelaySet(DW1000_Handle_t* handle, uint16_t delay) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_LDE_IF,
-                             DW1000_SUB_REG_LDE_RXANTD_OFFSET,
-                             (uint8_t*) &delay,
-                             sizeof(delay));
+    return _DW1000_SPI_Write(handle, DW1000_REG_LDE_IF, DW1000_SUB_REG_LDE_RXANTD_OFFSET, (uint8_t*) &delay, sizeof(delay));
 }
 
 
@@ -1422,11 +1361,7 @@ inline uint8_t DW1000_TX_AntennaDelaySet(DW1000_Handle_t* handle, uint16_t delay
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_TX_ANTD,
-                             0,
-                             (uint8_t*) &delay,
-                             sizeof(delay));
+    return _DW1000_SPI_Write(handle, DW1000_REG_TX_ANTD, 0, (uint8_t*) &delay, sizeof(delay));
 }
 
 /**
@@ -1451,12 +1386,8 @@ inline uint8_t DW1000_TX_DataWrite(DW1000_Handle_t* handle, uint8_t* data, uint1
     DW1000_ASSERT_PARAM(handle != NULL);
     DW1000_ASSERT_PARAM(data != NULL);
     DW1000_ASSERT_PARAM(len + offset <= 1024);
-#endif /* USE_DW1000_FULL_ASSERT */
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_TX_BUFFER,
-                             offset,
-                             data,
-                             len - 2); // 减去2字节的CRC
+#endif                                                                             /* USE_DW1000_FULL_ASSERT */
+    return _DW1000_SPI_Write(handle, DW1000_REG_TX_BUFFER, offset, data, len - 2); // 减去2字节的CRC
 }
 
 /**
@@ -1490,11 +1421,7 @@ uint8_t DW1000_TX_FrameCtrlWrite(DW1000_Handle_t* handle, uint16_t len, uint16_t
     // } else {
     //     DW1000_CLEAR_BITS(txFctrl, DW1000_REG_TX_FCTRL_BIT_TR_MSK);
     // }
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_TX_FCTRL,
-                             0,
-                             (uint8_t*) &txFctrl,
-                             sizeof(txFctrl));
+    return _DW1000_SPI_Write(handle, DW1000_REG_TX_FCTRL, 0, (uint8_t*) &txFctrl, sizeof(txFctrl));
 }
 
 
@@ -1504,11 +1431,7 @@ inline uint8_t DW1000_RX_DataRead(DW1000_Handle_t* handle, uint8_t* data, uint16
     DW1000_ASSERT_PARAM(data != NULL);
     DW1000_ASSERT_PARAM(len + offset <= 1024);
 #endif /* USE_DW1000_FULL_ASSERT */
-    return _DW1000_SPI_Read(handle,
-                            DW1000_REG_RX_BUFFER,
-                            offset,
-                            data,
-                            len);
+    return _DW1000_SPI_Read(handle, DW1000_REG_RX_BUFFER, offset, data, len);
 }
 
 uint8_t DW1000_ACC_DataRead(DW1000_Handle_t* handle, uint8_t* data, uint16_t len, uint16_t offset) {
@@ -1517,11 +1440,10 @@ uint8_t DW1000_ACC_DataRead(DW1000_Handle_t* handle, uint8_t* data, uint16_t len
     DW1000_ASSERT_PARAM(data != NULL);
     DW1000_ASSERT_PARAM(len + offset <= 1024));
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     /* 强制开启ACC时钟如果我们正在sequenced */
-    if (result = _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_READ_ACC_ON)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_READ_ACC_ON),
+        return 3);
     /** @todo 以后打算替换成这些代码，前提需要验证，可能有损坏芯片的风险【谨慎】 */
     // if (result = _DW1000_ACC_ClockCmd(handle, DW1000_ACC_CLOCK_ENABLE)){
     //     return result;
@@ -1532,9 +1454,9 @@ uint8_t DW1000_ACC_DataRead(DW1000_Handle_t* handle, uint8_t* data, uint16_t len
     // if (result = _DW1000_RxClockSelect(handle, DW1000_RX_CLOCK_SELECTION_PLL)){
     //     return result;
     // }
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_ACC_MEM, offset, data, len)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_ACC_MEM, offset, data, len),
+        return 1);
     /* 恢复之前ACC的时钟 */
     return _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_READ_ACC_OFF);
     /** @todo 以后打算替换成这些代码，前提需要验证，可能有损坏芯片的风险【谨慎】 */
@@ -1566,14 +1488,13 @@ uint8_t DW1000_CarrierIntegratorRead(DW1000_Handle_t* handle, int32_t* carrierIn
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle !-NULL);
     DW1000_ASSERT_PARAM(carrierIntegrator != NULL);
-#endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
+#endif                       /* USE_DW1000_FULL_ASSERT */
     uint8_t buff[4] = { 0 }; /* 初始化为0，避免干扰后续判断 */
     uint32_t* value = (uint32_t*) buff;
     /* 将 DRX_CAR_INT 寄存器数据读入buff中（共3个字节） */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_DRX_CONF, DW1000_SUB_REG_DRX_CAR_INT_OFFSET, buff, DW1000_SUB_REG_DRX_CAR_INT_LEN)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_DRX_CONF, DW1000_SUB_REG_DRX_CAR_INT_OFFSET, buff, DW1000_SUB_REG_DRX_CAR_INT_LEN),
+        return 1);
     /* 根据第20位（符号位）进行扩展，将21位数据扩展为32位数据 */
     /* 如果是负数，将21位以上的高位都设置为1 */
     if (*value & B20_SIGN_EXTEND_TEST) {
@@ -1583,7 +1504,6 @@ uint8_t DW1000_CarrierIntegratorRead(DW1000_Handle_t* handle, int32_t* carrierIn
     else {
         DW1000_CLEAR_BITS(*value, B20_SIGN_EXTEND_MASK);
     }
-
     /* 将处理后的结果赋值给carrierIntegrator */
     *carrierIntegrator = (int32_t) (*value);
     return 0;
@@ -1591,7 +1511,7 @@ uint8_t DW1000_CarrierIntegratorRead(DW1000_Handle_t* handle, int32_t* carrierIn
 
 /**
  * @brief
- * @param[in] handle  Comment
+ * @param[in] handle  DW1000句柄
  * @param[in] diag  Comment
  * @return uint8_t
  * @note  备注
@@ -1599,42 +1519,40 @@ uint8_t DW1000_CarrierIntegratorRead(DW1000_Handle_t* handle, int32_t* carrierIn
  * @warning  对函数的警告说明
  * @example  函数使用示例
  * @todo 可以直接开一个 DW1000_RX_DIAG_t 就不需要进行指针的转换了
+ *        把这个结构体集中到DW1000句柄里
  */
 uint8_t DW1000_DiagnosticsRead(DW1000_Handle_t* handle, DW1000_RX_DIAG_t* diag) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
-    DW1000_ASSERT_PARAM(diag != NULL):
+    DW1000_ASSERT_PARAM(diag != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-                                       uint8_t result;
     uint8_t buff[8] = { 0 };
     void* ptr = buff;
     /* 读取 FP 索引 */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_RX_TIME, DW1000_SUB_REG_FP_INDEX_OFFSET, buff, DW1000_SUB_REG_FP_INDEX_LEN)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_RX_TIME, DW1000_SUB_REG_FP_INDEX_OFFSET, buff, DW1000_SUB_REG_FP_INDEX_LEN),
+        return 1);
     diag->firstPathIndex = (uint16_t) (*((uint16_t*) ptr));
     /* LED 诊断信息 */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_LDE_IF, DW1000_SUB_REG_LDE_THRESH_OFFSET, buff, DW1000_SUB_REG_LDE_THRESH_LEN)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_LDE_IF, DW1000_SUB_REG_LDE_THRESH_OFFSET, buff, DW1000_SUB_REG_LDE_THRESH_LEN),
+        return 1);
     diag->maxNoise = (uint16_t) (*((uint16_t*) ptr));
     /* 一次性读取8个字节数据 */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_RX_TIME, 0, buff, sizeof(buff))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_RX_TIME, 0, buff, sizeof(buff)),
+        return 1);
     diag->standardDeviationNoise = (uint16_t) (*((uint16_t*) ptr));
     diag->firstPathAmplitude2 = (uint16_t) (*((uint16_t*) ptr + 1));
     diag->firstPathAmplitude3 = (uint16_t) (*((uint16_t*) ptr + 2));
     diag->CIR_maxGrowth = (uint16_t) (*((uint16_t*) ptr + 3));
-
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_RX_TIME, DW1000_SUB_REG_FP_AMPL1_OFFSET, buff, DW1000_SUB_REG_FP_AMPL1_LEN)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_RX_TIME, DW1000_SUB_REG_FP_AMPL1_OFFSET, buff, DW1000_SUB_REG_FP_AMPL1_LEN),
+        return 1);
     diag->firstPathAmplitude1 = (uint16_t) (*((uint16_t*) ptr));
-
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_RX_FINFO, 0, buff, DW1000_REG_RX_FINFO_LEN)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_RX_FINFO, 0, buff, DW1000_REG_RX_FINFO_LEN),
+        return 1);
     diag->RX_preambleCount = ((*((uint32_t*) ptr)) & DW1000_REG_RX_FINFO_BITS_RXPACC_MSK) >> DW1000_REG_RX_FINFO_BITS_RXPACC_POS;
     return 0;
 }
@@ -1678,9 +1596,9 @@ inline uint8_t DW1000_TX_TimeStamp_H32_Read(DW1000_Handle_t* handle, uint32_t* t
 inline uint8_t DW1000_TX_TimeStamp_L32_Read(DW1000_Handle_t* handle, uint32_t* timeStamp_l32) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
-    DW1000_ASSERT_PARAM(timeStamp_l32 != NULL):
+    DW1000_ASSERT_PARAM(timeStamp_l32 != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-                                                return _DW1000_SPI_Read(handle, DW1000_REG_TX_TIME, DW1000_SUB_REG_TX_STAMP_OFFSET, (uint8_t*) timeStamp_l32, sizeof(*timeStamp_l32));
+    return _DW1000_SPI_Read(handle, DW1000_REG_TX_TIME, DW1000_SUB_REG_TX_STAMP_OFFSET, (uint8_t*) timeStamp_l32, sizeof(*timeStamp_l32));
 }
 
 
@@ -1808,12 +1726,11 @@ uint8_t DW1000_FrameFilterConfig(DW1000_Handle_t* handle, uint8_t config) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     /* 读取系统配置 */
     uint32_t systemConfig;
-    if (result = res_DW1000_SPI_Read(handle, DW1000_REG_SYS_CFG, 0, (uint8_t*) &systemConfig, sizeof(systemConfig))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_SYS_CFG, 0, (uint8_t*) &systemConfig, sizeof(systemConfig)),
+        return 1);
     /* 如果没有拒绝所有帧，说明使能了帧过滤 */
     if (config != DW1000_FF_ALL_TYPE_REJECT) {
         DW1000_SET_BITS(systemConfig, DW1000_REG_SYS_CFG_BIT_FFEN_MSK);
@@ -1826,11 +1743,7 @@ uint8_t DW1000_FrameFilterConfig(DW1000_Handle_t* handle, uint8_t config) {
     DW1000_SET_BITS(systemConfig, config);
     /* 备份systemConfig寄存器值【其实应当写入后再读取以进行准确备份】 */
     handle->backup.systemConfig = systemConfig;
-    return _DW1000_SPI_Write(handle,
-                             DW1000_REG_SYS_CFG,
-                             0,
-                             &systemConfig,
-                             sizeof(systemConfig));
+    return _DW1000_SPI_Write(handle, DW1000_REG_SYS_CFG, 0, &systemConfig, sizeof(systemConfig));
 }
 
 inline uint8_t DW1000_PAN_ID_Set(DW1000_Handle_t* handle, uint16_t PAN_id) {
@@ -1870,26 +1783,25 @@ uint8_t DW1000_OTP_Read(DW1000_Handle_t* handle, uint16_t address, uint32_t* buf
     DW1000_ASSERT_PARAM(handle != NULL);
     DW1000_ASSERT_PARAM(buff !-NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     /* 设置系统时钟为 XTI 以确保OTP读取流程正常 */
-    if (result = _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_SYS_XTI)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_SYS_XTI),
+        return 3);
     /** @todo 打算将上面的函数更换下方的函数，需要进行测试【谨慎】 */
     // if (result = _DW1000_SystemClockSelect(handle, DW1000_SYSTEM_CLOCK_SELECT_FORCE_XTI)) {
     //     return result;
     // }
 
     for (uint16_t i = 0; i < len; i++) {
-        if (_DW1000_OTP_Read(handle, address + i, &buff[i])) {
-            return 1;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_OTP_Read(handle, address + i, &buff[i]),
+            return 4);
     }
     /* 恢复系统时钟为 PLL */
     // _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_SYS_PLL);
-    if (result = _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_ENABLE_ALL_SEQ)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_ENABLE_ALL_SEQ),
+        return 3);
     /** @todo 打算将上面的函数替换掉，但是原来的函数功能并不了解，暂时搁置 */
     return 0;
 }
@@ -1900,26 +1812,25 @@ uint8_t DW1000_OTP_WriteWord32WithVerify(DW1000_Handle_t* handle, uint32_t data,
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     /* 对编程失败的值重新尝试写入并计入重试次数，超过最大值不再尝试 */
     uint8_t retryCount = 0;
     /* 设置系统时钟为 XTI */
-    if (result = _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_SYS_XTI)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_SYS_XTI),
+        return 3);
     /* 注意：电源供电要求为 3.7V ！！！！！ */
     /* 设置为编程模式 */
-    if (result = _DW1000_OTP_MR_RegSet(handle, DW1000_OTP_MODE_INIT_PROGRAMMING)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_OTP_MR_RegSet(handle, DW1000_OTP_MODE_INIT_PROGRAMMING),
+        return 4);
     uint32_t value;
     while (1) {
-        if (result = _DW1000_OTP_Word32Program(handle, data, address)) {
-            return result;
-        }
-        if (result = _DW1000_OTP_Read(handle, address, &value)) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_OTP_Word32Program(handle, data, address),
+            return 5);
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_OTP_Read(handle, address, &value),
+            return 6);
         if (value == data) {
             break;
         } else if (retryCount++ >= DW1000_OTP_WRITE_RETRY_COUNT_MAX) {
@@ -1928,25 +1839,25 @@ uint8_t DW1000_OTP_WriteWord32WithVerify(DW1000_Handle_t* handle, uint32_t data,
     }
     /* 在上面的写入过程中，虽然达到最大重试次数才退出，但也有可能写入成功 */
     /* 设置为读取模式 */
-    if (result = _DW1000_OTP_MR_RegSet(handle, DW1000_OTP_MODE_LOW_READ_MARGIN)) {
-        return result;
-    }
-    if (result = _DW1000_OTP_Read(handle, address, &value)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_OTP_MR_RegSet(handle, DW1000_OTP_MODE_LOW_READ_MARGIN),
+        return 4);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_OTP_Read(handle, address, &value),
+        return 6);
     /* 设置OTP模式为复位所有 */
-    if (result = _DW1000_OTP_MR_RegSet(handle, DW1000_OTP_MODE_RESET_ALL)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_OTP_MR_RegSet(handle, DW1000_OTP_MODE_RESET_ALL),
+        return 4);
     if (value != data) {
-        return 4;
+        return 7;
     }
     return 0;
 }
 
 /**
  * @brief DW1000进入睡眠
- * @param[in] handle  Comment
+ * @param[in] handle  DW1000句柄
  * @return uint8_t
  * @note 该函数使DW1000进入睡眠或深睡眠模式，
  *       在调用该函数前需先调用 DW1000_SleepConfig 函数
@@ -1976,46 +1887,44 @@ uint8_t DW1000_SleepCountConfig(DW1000_Handle_t* handle, uint16_t sleepCount) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint8_t data;
     /* 强制系统时钟为 XTI */
-    if (result = _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_SYS_XTI)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_SYS_XTI),
+        return 3);
     /* 复位睡眠配置确保我们不会意外进入睡眠模式 */
     DW1000_WRITE_REG(data, 0x00);
     /* 往子寄存器 AON_CFG0 的低8位写0x00会改变 默认的LPCLKDIVA值，不过因为通常不会使用到，所以不考虑 */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CFG0_OFFSET, &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CFG0_OFFSET, &data, sizeof(data)),
+        return 2);
     /* 这里同样将子寄存器 AON_CFG1 的低8位写0x00 */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CFG1_OFFSET, &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CFG1_OFFSET, &data, sizeof(data)),
+        return 2);
     /* 禁用睡眠计数器 */
-    if (result = _DW1000_AON_ConfigurationUpload(handle)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_AON_ConfigurationUpload(handle),
+        return 4);
     /* 设置睡眠计数器 */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_SLEEP_TIM_OFFSET, (uint8_t*) &sleepCount, sizeof(sleepCount))) {
-        return result;
-    }
-    if (result = _DW1000_AON_ConfigurationUpload(handle)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_SLEEP_TIM_OFFSET, (uint8_t*) &sleepCount, sizeof(sleepCount)),
+        return 2);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_AON_ConfigurationUpload(handle),
+        return 4);
     /* 使能睡眠计数器 */
     DW1000_WRITE_REG(data, DW1000_SLEEP_COUNTER_ENABLE);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CFG1_OFFSET, &data, sizeof(data))) {
-        return result;
-    }
-    if (result = _DW1000_AON_ConfigurationUpload(handle)) {
-        return result;
-    }
-
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CFG1_OFFSET, &data, sizeof(data)),
+        return 2);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_AON_ConfigurationUpload(handle),
+        return 4);
     /* 恢复系统时钟为 PLL */
-    if (result = _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_ENABLE_ALL_SEQ)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_ENABLE_ALL_SEQ),
+        return 3);
     return 0;
 }
 
@@ -2034,81 +1943,77 @@ uint8_t DW1000_SleepCountCalibrate(DW1000_Handle_t* handle, uint16_t* tick) {
     DW1000_ASSERT_PARAM(handle != NULL);
     DW1000_ASSERT_PARAM(tick != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint8_t data;
     /* 使能睡眠计数器校准 */
     DW1000_WRITE_REG(data, DW1000_LOW_POWER_OSC_CALIBRATE_ENABLE);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CFG1_OFFSET, &data, sizeof(data))) {
-        return result;
-    }
-    if (result = _DW1000_AON_ConfigurationUpload(handle)) {
-        return result;
-    }
-
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CFG1_OFFSET, &data, sizeof(data)),
+        return 2);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_AON_ConfigurationUpload(handle),
+        return 3);
     /* 禁用睡眠计数器校准 */
     DW1000_WRITE_REG(data, DW1000_LOW_POWER_OSC_CALIBRATE_DISABLE);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CFG1_OFFSET, &data, sizeof(data))) {
-        return result;
-    }
-    if (result = _DW1000_AON_ConfigurationUpload(handle)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CFG1_OFFSET, &data, sizeof(data)),
+        return 2);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_AON_ConfigurationUpload(handle),
+        return 3);
     /* 强制系统时钟为XTI */
-    if (result = _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_SYS_XTI)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_SYS_XTI),
+        return 4);
     handle->delay_ms(1);
-
     /* 读取一个LP振荡器周期所用的XTAL/2周期数 */
     /* 设置地址 先读取高位地址 */
     DW1000_WRITE_REG(data, DW1000_AON_ADDR_LPOSC_CAL_UPPER);
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_ADDR_OFFSET, &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_ADDR_OFFSET, &data, sizeof(data)),
+        return 1);
     /* 使能手动覆盖 */
     DW1000_WRITE_REG(data, DW1000_DIRECT_AON_MEM_ACCESS_ENABLE_SET);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CTRL_OFFSET, &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CTRL_OFFSET, &data, sizeof(data)),
+        return 2);
     /* 读取已写入的确认信息 */
     DW1000_SET_BITS(data, DW1000_SUB_REG_AON_CTRL_BIT_DCA_READ_MSK);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CTRL_OFFSET, &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CTRL_OFFSET, &data, sizeof(data)),
+        return 2);
     /* 从AON中读回字节 */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_RDAT_OFFSET, (uint8_t*) tick, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_RDAT_OFFSET, (uint8_t*) tick, 1),
+        return 1);
     *tick <<= 8; // 因为读取的是高8位，所以左移8位
-
     /* 设置地址 读取低位地址 */
     DW1000_WRITE_REG(data, DW1000_AON_ADDR_LPOSC_CAL_LOWER);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_ADDR_OFFSET, &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_ADDR_OFFSET, &data, sizeof(data)),
+        return 2);
     /* 使能手动覆盖 */
     DW1000_WRITE_REG(data, DW1000_DIRECT_AON_MEM_ACCESS_ENABLE_SET);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CTRL_OFFSET, &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CTRL_OFFSET, &data, sizeof(data)),
+        return 2);
     /* 读取已写入的确认信息 */
     DW1000_SET_BITS(data, DW1000_SUB_REG_AON_CTRL_BIT_DCA_READ_MSK);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CTRL_OFFSET, &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CTRL_OFFSET, &data, sizeof(data)),
+        return 2);
     /* 从AON中读回字节 */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_RDAT_OFFSET, (uint8_t*) tick, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_RDAT_OFFSET, (uint8_t*) tick, 1),
+        return 1);
     /* 禁用手动覆盖 */
     DW1000_CLEAR_BITS(data, 0x00);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CTRL_OFFSET, &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CTRL_OFFSET, &data, sizeof(data)),
+        return 2);
     /* 设置系统时钟为PLL */
-    if (result = _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_ENABLE_ALL_SEQ)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_ENABLE_ALL_SEQ),
+        return 4);
     return 0;
 }
 
@@ -2171,11 +2076,10 @@ uint8_t DW1000_SleepConfig(DW1000_Handle_t* handle, uint16_t mode, uint8_t wake)
                         wake == DW1000_LOW_POWER_DIVIDER_ENABLE ||
                         wake == DW1000_LOW_POWER_DIVIDER_DISABLE);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     mode != handle->backup.sleepMode;
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_WCFG_OFFSET, (uint8_t*) &mode, sizeof(mode))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_WCFG_OFFSET, (uint8_t*) &mode, sizeof(mode)),
+        return 2);
     return _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_CFG0_OFFSET, &wake, sizeof(wake));
 }
 
@@ -2196,12 +2100,11 @@ uint8_t DW1000_EnterSleepAfterTxSet(DW1000_Handle_t* handle, uint8_t enable) {
     DW1000_ASSERT_PARAM(enable == DW1000_STATE_AFTER_TX_AUTO_TO_SLEEP ||
                         enable == DW1000_STATE_AFTER_TX_NOT_TO_SLEEP);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t PMSC_ctrl1;
     /* 读取寄存器内容 */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL1_OFFSET, (uint8_t*) &PMSC_ctrl1, sizeof(PMSC_ctrl1))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL1_OFFSET, (uint8_t*) &PMSC_ctrl1, sizeof(PMSC_ctrl1)),
+        return 1);
     /* 设置对应位 */
     DW1000_MODIFY_REG(PMSC_ctrl1, DW1000_SUB_REG_PMSC_CTRL1_BIT_ATXSLP_MSK, (uint32_t) enable);
     return _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL1_OFFSET, (uint8_t*) &PMSC_ctrl1, sizeof(PMSC_ctrl1));
@@ -2228,27 +2131,26 @@ uint8_t DW1000_WakeUpBySpiRead(DW1000_Handle_t* handle, uint8_t* buff, uint16_t 
     DW1000_ASSERT_PARAM(handle != NULL);
     DW1000_ASSERT_PARAM(buff != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t devId;
     /* 读取设备ID以确认芯片是否处于深睡眠 */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_DEV_ID, 0, (uint8_t*) &devId, sizeof(devId))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_DEV_ID, 0, (uint8_t*) &devId, sizeof(devId)),
+        return 1);
     /* 芯片处于深睡眠，第一次读取失败 */
     if (devId != DW1000_DEV_ID) {
         /* 需要保持芯片片选线拉低至少500us */
         /* 通过进行一次大数据的读取操作实现持续拉低信号 */
-        if (result = _DW1000_SPI_Read(handle, DW1000_REG_DEV_ID, 0, buff, len)) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Read(handle, DW1000_REG_DEV_ID, 0, buff, len),
+            return 1);
         /* 需要5ms等待外部晶振起振与稳定 */
         /* 注意：除非频率小于3MHz，否则无法轮询状态寄存器 */
         handle->delay_ms(5);
     }
     /* 调试 - 检查芯片是否还处于睡眠模式 */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_DEV_ID, 0, (uint8_t*) &devId, sizeof(devId))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_DEV_ID, 0, (uint8_t*) &devId, sizeof(devId)),
+        return 1);
     if (devId != DW1000_DEV_ID) {
         return 4;
     }
@@ -2275,20 +2177,19 @@ uint8_t DW1000_LoadOperParamSetFromOTP(DW1000_Handle_t* handle, uint16_t param) 
                         param == DW1000_OPER_PARAM_SET_SELECT_TIGHT ||
                         param == DW1000_OPER_PARAM_SET_SELECT_DEFAULT);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint16_t data;
     /* 设置加载操作参数集表 */
     DW1000_WRITE_REG(data, param);
     /* 设置运行参数集加载 */
     DW1000_SET_BITS(data, DW1000_SUB_REG_OTP_SF_BIT_OPS_KICK_MSK);
     /* 强制使能LDE时钟 */
-    if (result = _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_LDE)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_LDE),
+        return 3);
     /* 写入配置 */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_SF_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF, DW1000_SUB_REG_OTP_SF_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     /* 恢复默认时钟（ENABLE_ALL_SEQ） */
     return _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_ENABLE_ALL_SEQ);
 }
@@ -2310,15 +2211,13 @@ uint8_t DW1000_SmartTxPowerSet(DW1000_Handle_t* handle, uint32_t enable) {
     DW1000_ASSERT_PARAM(handle != NULL);
     DW1000_ASSERT_PARAM(enable == DW1000_SMART_TX_POWER_CONTROL_ENABLE || enable == DW1000_SMART_TX_POWER_CONTROL_DISABLE);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t systemConfig;
     /* 读取 SYS_CFG 寄存器 */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_SYS_CFG, 0, (uint8_t*) &systemConfig, sizeof(systemConfig))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_SYS_CFG, 0, (uint8_t*) &systemConfig, sizeof(systemConfig)),
+        return 1);
     /* 根据传入参数配置 */
     DW1000_MODIFY_REG(systemConfig, DW1000_REG_SYS_CFG_BIT_DIS_STXP_MSK, enable);
-
     /* 写回 SYS_CFG 寄存器 */
     return _DW1000_SPI_Write(handle, DW1000_REG_SYS_CFG, 0, (uint8_t*) &systemConfig, sizeof(systemConfig));
 }
@@ -2326,26 +2225,22 @@ uint8_t DW1000_SmartTxPowerSet(DW1000_Handle_t* handle, uint32_t enable) {
 /**
  * @brief DW1000 自动应答配置
  * @param[in] handle  DW1000句柄
- * @param[in] responseDelayTime  值非零时为发送后的延迟，最大值255（单位：符号）
+ * @param[in] respDelayTime  值非零时为发送后的延迟，最大值255（单位：符号）
  *                               值为0时表示尽可能快的发送
  * @return uint8_t
  * @note  备注
  * @attention  需要同时使能帧过滤
  */
-uint8_t DW1000_AutoAckEnable(DW1000_Handle_t* handle, uint8_t responseDelayTime) {
+uint8_t DW1000_AutoAckEnable(DW1000_Handle_t* handle, uint8_t respDelayTime) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
-    DW1000_ASSERT_PARAM(responseDelayTime <= 0xFF);
+    DW1000_ASSERT_PARAM(respDelayTime <= 0xFF);
 #endif /* USE_DW1000_FULL_ASSERT */
-    if (handle == NULL) {
-        return 2;
-    }
-    uint8_t result;
     uint32_t systemConfig = handle->backup.systemConfig;
     /* 设置自动应答回复延迟 */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_ACK_RESP_T, DW1000_SUB_REG_ACK_TIM_OFFSET, &responseDelayTime, sizeof(responseDelayTime))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_ACK_RESP_T, DW1000_SUB_REG_ACK_TIM_OFFSET, &respDelayTime, sizeof(respDelayTime)),
+        return 2);
     /* 使能自动应答 */
     DW1000_SET_BITS(systemConfig, DW1000_REG_SYS_CFG_BIT_AUTOACK_MSK);
     /* 更新系统配置备份值【实际上准确方式为先将值写入后再读取出来进行保存】 */
@@ -2430,12 +2325,11 @@ uint8_t DW1000_RxAfterTxDelaySet(DW1000_Handle_t* handle, uint32_t rxDelayTime) 
     DW1000_ASSERT_PARAM(handle != NULL);
     DW1000_ASSERT_PARAM(rxDelayTime < (0x1 << 20));
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t value;
     /* 读取 ACK_RESP_T 寄存器内容 */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_ACK_RESP_T, 0, (uint8_t*) &value, sizeof(value))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_ACK_RESP_T, 0, (uint8_t*) &value, sizeof(value)),
+        return 1);
     /* 设置延迟值 */
     DW1000_MODIFY_REG(value, DW1000_REG_ACK_RESP_T_BITS_W4R_TIM_MSK, rxDelayTime);
     /* 写回 ACK_RESP_T 寄存器 */
@@ -2452,20 +2346,19 @@ uint8_t DW1000_RxBuffPtrsSync(DW1000_Handle_t* handle) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint8_t data;
     uint8_t buff;
     /* 确保主机的缓冲区指针在开始接收前已对齐 */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_SYS_STATUS, DW1000_SUB_REG_SYS_STATUS_3_OFFSET, &buff, sizeof(buff))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_SYS_STATUS, DW1000_SUB_REG_SYS_STATUS_3_OFFSET, &buff, sizeof(buff)),
+        return 1);
     if ((!!DW1000_READ_BITS(buff, DW1000_SUB_REG_SYS_STATUS_3_BIT_ICRBP_MSK)) !=
         (!!DW1000_READ_BITS(buff, DW1000_SUB_REG_SYS_STATUS_3_BIT_HSRBP_MSK))) {
         /* 交换RX Buffer 状态寄存器 */
         DW1000_WRITE_REG(data, 0x01);
-        if (result = _DW1000_SPI_Write(handle, DW1000_REG_SYS_CTRL, DW1000_SUB_REG_SYS_CTRL_3_OFFSET, &data, sizeof(data))) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Write(handle, DW1000_REG_SYS_CTRL, DW1000_SUB_REG_SYS_CTRL_3_OFFSET, &data, sizeof(data)),
+            return 2);
     }
     return 0;
 }
@@ -2480,43 +2373,42 @@ uint8_t DW1000_ForceTrxOff(DW1000_Handle_t* handle) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t systemEventMask;
     uint32_t data;
     /* 读取 SYS_MASK 寄存器内容（暂存当前中断掩码用于后续恢复） */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_SYS_MASK, 0, (uint8_t*) &systemEventMask, sizeof(systemEventMask))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_SYS_MASK, 0, (uint8_t*) &systemEventMask, sizeof(systemEventMask)),
+        return 1);
     /* 关闭中断 */
     _DW1000_CriticalEnter(handle);
 
     /* 清除中断掩码（我们不接收不希望的中断） */
     DW1000_SET_BITS(data, 0x00);
     /* 写回 SYS_MASK 寄存器 */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_SYS_MASK, 0, (uint8_t*) &systemEventMask, sizeof(systemEventMask))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_SYS_MASK, 0, (uint8_t*) &systemEventMask, sizeof(systemEventMask)),
+        return 2);
     /* 关闭无线收发 */
     DW1000_WRITE_REG(data, DW1000_REG_SYS_CTRL_BIT_TRXOFF);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_SYS_CTRL, 0, (uint8_t*) &data, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_SYS_CTRL, 0, (uint8_t*) &data, 1),
+        return 2);
     /* 强制收发机关闭 */
     DW1000_WRITE_REG(data, DW1000_SYS_STATUS_ALL_TX_MSK |
                                DW1000_SYS_STATUS_ALL_RX_ERR_MSK |
                                DW1000_SYS_STATUS_ALL_RX_TO_MSK |
                                DW1000_SYS_STATUS_ALL_RX_GOOD_MSK);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_SYS_STATUS, 0, &data, sizeof(data))) {
-        return result;
-    }
-
-    DW1000_RxBuffPtrsSync(handle);
-
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_SYS_STATUS, 0, &data, sizeof(data)),
+        return 2);
+    /* */
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        DW1000_RxBuffPtrsSync(handle),
+        return 3);
     /* 恢复中断掩码 */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_SYS_MASK, 0, (uint8_t*) &systemEventMask, sizeof(systemEventMask))) {
-        return result;
-    }
-
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_SYS_MASK, 0, (uint8_t*) &systemEventMask, sizeof(systemEventMask)),
+        return 2);
     /* 恢复中断 */
     _DW1000_CriticalExit(handle);
     handle->init.isRxOnAfterTx = 0;
@@ -2551,14 +2443,13 @@ uint8_t DW1000_RxReset(DW1000_Handle_t* handle) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t data;
     /* 设置接收复位 */
     DW1000_WRITE_REG(data, DW1000_SUB_REG_PMSC_CTRL0_3_BITS_SOFTRESET);
     DW1000_CLEAR_BITS(data, DW1000_RX_RESET_ENABLE_8BIT);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_3_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_3_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     /* 清除接收复位设置 */
     DW1000_SET_BITS(data, DW1000_RX_RESET_DISABLE_8BIT);
     return _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_3_OFFSET, (uint8_t*) &data, sizeof(data));
@@ -2644,7 +2535,7 @@ uint8_t DW1000_RegisterCallback(DW1000_Handle_t* handle, DW1000_CallbackIdTypeDe
     DW1000_ASSERT_PARAM(handle != NULL);
     DW1000_ASSERT_PARAM(callback != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result  = 0;
+    uint8_t result = 0;
     /* 进入临界区关闭中断，避免在设置中断回调时被中断 */
     _DW1000_CriticalEnter(handle);
 
@@ -2657,7 +2548,7 @@ uint8_t DW1000_RegisterCallback(DW1000_Handle_t* handle, DW1000_CallbackIdTypeDe
             break;
         case DW1000_RX_ERROR_CB_ID:
             handle->RxErrorCallback = callback;
-                break;
+            break;
         case DW1000_RX_TIMEOUT_CB_ID:
             handle->RxTimeoutCallback = callback;
             break;
@@ -2680,12 +2571,12 @@ uint8_t DW1000_RegisterCallback(DW1000_Handle_t* handle, DW1000_CallbackIdTypeDe
  * @return uint8_t 执行结果 0: 注销成功 1: 输入参数错误
  * @note  注销回调函数后，对应的回调函数会使用默认的DW1000回调函数
  */
-uint8_t DW1000_UnregisterCallback(DW1000_Handle_t* handle, DW1000_CallbackIdTypeDef callbackId){
+uint8_t DW1000_UnregisterCallback(DW1000_Handle_t* handle, DW1000_CallbackIdTypeDef callbackId) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
     DW1000_ASSERT_PARAM(callback != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result  = 0;
+    uint8_t result = 0;
     /* 进入临界区关闭中断，避免在设置中断回调时被中断 */
     _DW1000_CriticalEnter(handle);
 
@@ -2698,7 +2589,7 @@ uint8_t DW1000_UnregisterCallback(DW1000_Handle_t* handle, DW1000_CallbackIdType
             break;
         case DW1000_RX_ERROR_CB_ID:
             handle->RxErrorCallback = DW1000_RxErrorCallback;
-                break;
+            break;
         case DW1000_RX_TIMEOUT_CB_ID:
             handle->RxTimeoutCallback = DW1000_RxTimeoutCallback;
             break;
@@ -2716,7 +2607,7 @@ uint8_t DW1000_UnregisterCallback(DW1000_Handle_t* handle, DW1000_CallbackIdType
  * @brief 检查DW1000的中断请求是否有效（替代使用中断函数）
  * @param[in] handle  DW1000句柄
  * @param[in] isActive  0: 无有效中断 1: 中断有效
- * @return uint8_t 函数执行结果 
+ * @return uint8_t 函数执行结果
  *  @arg 0: 执行成功
  *  @arg 1: 读取SYS_STATUS失败
  */
@@ -2780,7 +2671,10 @@ uint8_t DW1000_LowPowerListeningSet(DW1000_Handle_t* handle, uint32_t enable) {
 /**
  * @brief DW1000使能低功耗监听
  * @param[in] handle  DW1000句柄
- * @return uint8_t 执行结果 0: 执行成功 其他: 执行错误
+ * @return uint8_t 执行结果
+ *  @arg 0: 执行成功
+ *  @arg 1: SPI 接口读操作失败
+ *  @arg 2: SPI 接口写操作失败
  * @note  低功耗监听是DW1000的一项功能，该功能使设备主要处于休眠状态，但会定期唤醒（在“长睡眠”状态之后），
           在极短的时间内对空气进行采样，以获取前导序列。这种前导序列的采样“监听”。
           该阶段实际上是由“短休眠”时间分隔的两个接收阶段。
@@ -2803,14 +2697,13 @@ uint8_t DW1000_LplEnable(DW1000_Handle_t* handle) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t pmsc_ctrl1;
     /* 读取 PMSC_CTRL1 寄存器内容 */
     DW1000_EXEC_WITH_ERR_HANDLE(
         _DW1000_SPI_Read(handle, DW1000_REG_PMSC,
                          DW1000_SUB_REG_PMSC_CTRL1_OFFSET,
                          (uint8_t*) &pmsc_ctrl1, sizeof(pmsc_ctrl1)),
-        result);
+        return 1);
     /* 使能低功耗监听 */
     DW1000_SET_BITS(pmsc_ctrl1, DW1000_SUB_REG_PMSC_CTRL1_BIT_ARXSLP_MSK | DW1000_SUB_REG_PMSC_CTRL1_BIT_SNOZE_MSK);
     handle->init.useLowPowListen = 1;
@@ -2820,7 +2713,10 @@ uint8_t DW1000_LplEnable(DW1000_Handle_t* handle) {
 /**
  * @brief DW1000禁用低功耗监听
  * @param[in] handle  DW1000句柄
- * @return uint8_t 执行结果 0: 执行成功 其他: 执行错误
+ * @return uint8_t 执行结果
+ *  @arg 0: 执行成功
+ *  @arg 1: SPI接口读操作失败
+ *  @arg 2: SPI接口写操作失败
  * @note  低功耗监听是DW1000的一项功能，该功能使设备主要处于休眠状态，但会定期唤醒（在“长睡眠”状态之后），
           在极短的时间内对空气进行采样，以获取前导序列。这种前导序列的采样“监听”。
           该阶段实际上是由“短休眠”时间分隔的两个接收阶段。
@@ -2833,14 +2729,13 @@ uint8_t DW1000_LplDisable(DW1000_Handle_t* handle) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t pmsc_ctrl1;
     /* 读取 PMSC_CTRL1 寄存器内容 */
     DW1000_EXEC_WITH_ERR_HANDLE(
         _DW1000_SPI_Read(handle, DW1000_REG_PMSC,
                          DW1000_SUB_REG_PMSC_CTRL1_OFFSET,
                          (uint8_t*) &pmsc_ctrl1, sizeof(pmsc_ctrl1)),
-        result);
+        return 1);
     /* 使能低功耗监听 */
     DW1000_CLEAR_BITS(pmsc_ctrl1, DW1000_SUB_REG_PMSC_CTRL1_BIT_ARXSLP_MSK | DW1000_SUB_REG_PMSC_CTRL1_BIT_SNOZE_MSK);
     handle->init.useLowPowListen = 0;
@@ -2855,6 +2750,17 @@ inline uint8_t DW1000_SnoozeTimeSet(DW1000_Handle_t* handle, uint8_t snoozeTime)
     return _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_SNOZT_OFFSET, (uint8_t*) &snoozeTime, sizeof(snoozeTime));
 }
 
+/**
+ * @brief DW1000设置LED
+ * @param[in] handle  DW1000句柄
+ * @param[in] enable  Comment
+ * @return uint8_t
+ * @note  备注
+ * @attention  特别需要注意的地方进行说明
+ * @warning  对函数的警告说明
+ * @example  函数使用示例
+ * @todo 具体内容待未来补充
+ */
 uint8_t DW1000_LEDsSet(DW1000_Handle_t* handle, uint8_t enable) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
@@ -2886,13 +2792,12 @@ uint8_t DW1000_SniffModeSet(DW1000_Handle_t* handle, uint8_t enable, uint8_t tim
            (enable == DW1000_PLL2_SEQ_RX_SNIFF);
     DW1000_ASSERT_PARAM((timeOn > 0) && (timeOn <= 15));
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t pmsc_ctrl0;
     uint16_t rxSniff;
     /* 读取 PMSC_CTRL0 寄存器内容 */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &pmsc_ctrl0, sizeof(pmsc_ctrl0))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &pmsc_ctrl0, sizeof(pmsc_ctrl0)),
+        return 1);
     /* 当禁用Sniff模式时，自动将传入开关时间参数清零 */
     if (enable != DW1000_PLL2_SEQ_RX_SNIFF) {
         timeOff = 0x00;
@@ -2900,15 +2805,12 @@ uint8_t DW1000_SniffModeSet(DW1000_Handle_t* handle, uint8_t enable, uint8_t tim
     }
     /* 配置 RX_SNIFF 时间 */
     rxSniff = ((uint16_t) timeOff << 8) | timeOn;
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RX_SNIFF, 0, (uint8_t*) &rxSniff, sizeof(rxSniff))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RX_SNIFF, 0, (uint8_t*) &rxSniff, sizeof(rxSniff)),
+        return 2);
     /* 根据配置设置相应位 */
     DW1000_MODIFY_REG(pmsc_ctrl0, DW1000_SUB_REG_PMSC_CTRL0_BIT_PLL2_SEQ_EN_MSK, enable);
-    if (_DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &pmsc_ctrl0, sizeof(pmsc_ctrl0))) {
-        return result;
-    }
-    return 0;
+    return _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &pmsc_ctrl0, sizeof(pmsc_ctrl0));
 }
 
 /**
@@ -2927,24 +2829,20 @@ uint8_t DW1000_SniffModeEnable(DW1000_Handle_t* handle, uint8_t timeOn, uint8_t 
     DW1000_ASSERT_PARAM(handle != NULL);
     DW1000_ASSERT_PARAM((timeOn > 0) && (timeOn <= 15));
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t pmsc_ctrl0;
     uint16_t rxSniff;
     /* 读取 PMSC_CTRL0 寄存器内容 */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &pmsc_ctrl0, sizeof(pmsc_ctrl0))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &pmsc_ctrl0, sizeof(pmsc_ctrl0)),
+        return 1);
     /* 配置 RX_SNIFF 时间 */
     rxSniff = ((uint16_t) timeOff << 8) | timeOn;
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RX_SNIFF, 0, (uint8_t*) &rxSniff, sizeof(rxSniff))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RX_SNIFF, 0, (uint8_t*) &rxSniff, sizeof(rxSniff)),
+        return 2);
     /* 根据配置设置相应位 */
     DW1000_SET_BITS(pmsc_ctrl0, DW1000_SUB_REG_PMSC_CTRL0_BIT_PLL2_SEQ_EN_MSK);
-    if (_DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &pmsc_ctrl0, sizeof(pmsc_ctrl0))) {
-        return result;
-    }
-    return 0;
+    return _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &pmsc_ctrl0, sizeof(pmsc_ctrl0));
 }
 
 /**
@@ -2957,22 +2855,18 @@ uint8_t DW1000_SniffModeDisable(DW1000_Handle_t* handle) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t pmsc_ctrl0;
     uint16_t rxSniff = 0x0000;
     /* 读取 PMSC_CTRL0 寄存器内容 */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &pmsc_ctrl0, sizeof(pmsc_ctrl0))) {
-        return result;
-    }
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RX_SNIFF, 0, (uint8_t*) &rxSniff, sizeof(rxSniff))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &pmsc_ctrl0, sizeof(pmsc_ctrl0)),
+        return 1);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RX_SNIFF, 0, (uint8_t*) &rxSniff, sizeof(rxSniff)),
+        return 2);
     /* 根据配置设置相应位 */
     DW1000_SET_BITS(pmsc_ctrl0, DW1000_SUB_REG_PMSC_CTRL0_BIT_PLL2_SEQ_EN_MSK);
-    if (_DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &pmsc_ctrl0, sizeof(pmsc_ctrl0))) {
-        return result;
-    }
-    return 0;
+    return _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &pmsc_ctrl0, sizeof(pmsc_ctrl0));
 }
 
 
@@ -2983,35 +2877,57 @@ uint8_t DW1000_SniffModeDisable(DW1000_Handle_t* handle) {
  *                   非0：启用接收超时，超时时间从接收使能开始计算
  *                   时间单位为1.0256us（512/499.2MHz）
  * @return uint8_t
- * @note  备注
- * @attention  特别需要注意的地方进行说明
- * @warning  对函数的警告说明
- * @example  函数使用示例
+ * @note  这里原版的官方库函数不同，这里只会设置接收超时时间
+ *        并不会使能或禁用接收超时功能，因此在在设置接收超时前
+ *        需要调用 DW1000_RxTimeoutEnable 来开启接收超时功能
+ *        或调用 DW1000_RxTimeoutDisable 关闭接收超时功能
  */
-uint8_t DW1000_RxTimeoutSet(DW1000_Handle_t* handle, uint16_t timeout) {
+inline uint8_t DW1000_RxTimeoutSet(DW1000_Handle_t* handle, uint16_t timeout) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
+    return _DW1000_SPI_Write(handle, DW1000_REG_RX_FWTO, 0, (uint8_t*) &timeout, sizeof(timeout));
+}
+
+/**
+ * @brief DW1000接收超时功能使能
+ * @param[in] handle  DW1000句柄
+ * @return uint8_t 执行结果
+ *  @arg 0: 执行成功
+ *  @arg 1: SPI接口读操作失败
+ *  @arg 2: SPI接口写操作失败
+ */
+uint8_t DW1000_RxTimeoutEnable(DW1000_Handle_t* handle) {
     uint8_t data;
     /* 读取 SYS_CFG 寄存器内容（只需要偏移地址0x03 的 8位数据） */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_SYS_CFG, DW1000_SUB_REG_SYS_CFG_3_OFFSET, &data, sizeof(data))) {
-        return result;
-    }
-    if (timeout == 0) {
-        /* 禁用接收超时 */
-        DW1000_CLEAR_BITS(data, DW1000_SUB_REG_SYS_CFG_3_BIT_RXWTOE_MSK);
-        /* 更新备份的系统配置 */
-        DW1000_CLEAR_BITS(handle->backup.systemConfig, DW1000_REG_SYS_CFG_BIT_RXWTOE_MSK);
-    } else {
-        /* 启用接收超时 */
-        DW1000_SET_BITS(data, DW1000_SUB_REG_SYS_CFG_3_BIT_RXWTOE_MSK);
-        /* 更新备份的系统配置 */
-        DW1000_SET_BITS(handle->backup.systemConfig, DW1000_REG_SYS_CFG_BIT_RXWTOE_MSK);
-        if (result = _DW1000_SPI_Write(handle, DW1000_REG_RX_FWTO, 0, (uint8_t*) &timeout, sizeof(timeout))) {
-            return result;
-        }
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_SYS_CFG, DW1000_SUB_REG_SYS_CFG_3_OFFSET, &data, sizeof(data)),
+        return 1);
+    /* 启用接收超时 */
+    DW1000_SET_BITS(data, DW1000_SUB_REG_SYS_CFG_3_BIT_RXWTOE_MSK);
+    /* 更新备份的系统配置 */
+    DW1000_SET_BITS(handle->backup.systemConfig, DW1000_REG_SYS_CFG_BIT_RXWTOE_MSK);
+    return _DW1000_SPI_Write(handle, DW1000_REG_SYS_CFG, DW1000_SUB_REG_SYS_CFG_3_OFFSET, (uint8_t*) &data, sizeof(data));
+}
+
+/**
+ * @brief DW1000接收超时功能禁用
+ * @param[in] handle  DW1000句柄
+ * @return uint8_t 执行结果
+ *  @arg 0: 执行成功
+ *  @arg 1: SPI接口读操作失败
+ *  @arg 2: SPI接口写操作失败
+ */
+uint8_t DW1000_RxTimeoutDisable(DW1000_Handle_t* handle) {
+    uint8_t data;
+    /* 读取 SYS_CFG 寄存器内容（只需要偏移地址0x03 的 8位数据） */
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_SYS_CFG, DW1000_SUB_REG_SYS_CFG_3_OFFSET, &data, sizeof(data)),
+        return 1);
+    /* 启用接收超时 */
+    DW1000_CLEAR_BITS(data, DW1000_SUB_REG_SYS_CFG_3_BIT_RXWTOE_MSK);
+    /* 更新备份的系统配置 */
+    DW1000_CLEAR_BITS(handle->backup.systemConfig, DW1000_REG_SYS_CFG_BIT_RXWTOE_MSK);
     return _DW1000_SPI_Write(handle, DW1000_REG_SYS_CFG, DW1000_SUB_REG_SYS_CFG_3_OFFSET, (uint8_t*) &data, sizeof(data));
 }
 
@@ -3036,7 +2952,12 @@ uint8_t DW1000_RxTimeoutSet(DW1000_Handle_t* handle, uint16_t timeout) {
  *  @arg DW1000_RX_MODE_DELAYED: 延时接收
  *  @arg DW1000_RX_MODE_NO_SYNC_PTRS: 不同步接收指针
  *  @arg DW1000_RX_MODE_IDLE_ON_DELAY_ERR: 延时接收错误时进入空闲状态
- * @return uint8_t 执行结果 0: 执行成功 其他: 运行错误
+ * @return uint8_t 执行结果
+ *  @arg 0: 执行成功
+ *  @arg 1: SPI接口读操作失败
+ *  @arg 2: SPI接口写操作失败
+ *  @arg 3: 接收缓冲区指针同步失败
+ *  @arg 4: 强制关闭收发器失败
  * @note  备注
  * @attention  特别需要注意的地方进行说明
  * @warning  对函数的警告说明
@@ -3051,51 +2972,67 @@ uint8_t DW1000_RxEnable(DW1000_Handle_t* handle, uint8_t mode) {
                         mode == DW1000_RX_MODE_NO_SYNCDW1000_RX_MODE_DELAYED_AND_IDLE_ON_DELAY_ERR_PTRS ||
                         mode == DW1000_RX_MODE_IMMEDIATE_AND_NO_SYNC_PTRS);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint16_t data;
     /* 使能接收 */
     DW1000_WRITE_REG(data, DW1000_REG_SYS_CTRL_BIT_RXENAB);
     /* 如果设置不同步接收指针 */
     if (DW1000_READ_BITS(mode, DW1000_RX_MODE_NO_SYNC_PTRS)) {
         /* 设置不同步接收指针位 */
-        if (result = DW1000_RxBuffPtrsSync(handle)) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            DW1000_RxBuffPtrsSync(handle),
+            return 3);
     }
     /* 如果设置了延时接收 */
     if (DW1000_READ_BITS(mode, DW1000_RX_MODE_DELAYED)) {
         /* 设置延时接收位 */
         DW1000_SET_BITS(data, DW1000_REG_SYS_CTRL_BIT_RXDLYE_MSK);
-        if (result = _DW1000_SPI_Write(handle, DW1000_REG_SYS_CTRL, 0, &data, sizeof(data))) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Write(handle, DW1000_REG_SYS_CTRL, 0, &data, sizeof(data)),
+            return 2);
         /* 检查错误 */
         uint8_t systemStatus;
-        if (result = _DW1000_SPI_Read(handle, DW1000_REG_SYS_STATUS, DW1000_SUB_REG_SYS_STATUS_3_OFFSET, &systemStatus, sizeof(systemStatus))) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Read(handle, DW1000_REG_SYS_STATUS, DW1000_SUB_REG_SYS_STATUS_3_OFFSET, &systemStatus, sizeof(systemStatus)),
+            return 2);
         /* 如果延迟以达到则立即开启接收除非使能了 DW1000_RX_MODE_IDLE_ON_DELAY_ERR */
         if (DW1000_READ_BITS(systemStatus, DW1000_SUB_REG_SYS_STATUS_3_BIT_HPDWARN)) {
             /* 强制关闭收发机 */
-            if (result = DW1000_ForceTrxOff(handle)) {
-                return result;
-            }
+            DW1000_EXEC_WITH_ERR_HANDLE(
+                DW1000_ForceTrxOff(handle),
+                return 4);
             /* 如果没有使能延时错误进入空闲模式 */
             if (!DW1000_READ_BITS(mode, DW1000_RX_MODE_IDLE_ON_DELAY_ERR)) {
                 /* 重新使能接收 */
-                if (result = _DW1000_SPI_Write(handle, DW1000_REG_SYS_CTRL, 0, &data, sizeof(data))) {
-                    return result;
-                }
+                DW1000_EXEC_WITH_ERR_HANDLE(
+                    _DW1000_SPI_Write(handle, DW1000_REG_SYS_CTRL, 0, &data, sizeof(data)),
+                    return 2);
             }
         }
     } else {
         /* 立即接收 只需使能接收位 */
         DW1000_WRITE_REG(data, DW1000_REG_SYS_CTRL_BIT_RXENAB);
-        if (_DW1000_SPI_Write(handle, DW1000_REG_SYS_CTRL, 0, &data, sizeof(data))) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Write(handle, DW1000_REG_SYS_CTRL, 0, &data, sizeof(data)),
+            return 2);
     }
     return 0;
+}
+
+/**
+ * @brief DW1000接收禁用
+ * @param[in] handle  DW1000句柄
+ * @return uint8_t
+ * @note  备注
+ * @attention  特别需要注意的地方进行说明
+ * @warning  对函数的警告说明
+ * @example  函数使用示例
+ * @todo 有使能函数就应该由禁用函数，但是官方库并未编写
+ *       这里预留，以后编写
+ */
+uint8_t DW1000_RxDisable(DW1000_Handle_t* handle) {
+#if (USE_DW1000_FULL_ASSERT == 1U)
+    DW1000_ASSERT_PARAM(handle != NULL);
+#endif /* USE_DW1000_FULL_ASSERT */
 }
 
 
@@ -3118,9 +3055,9 @@ inline uint8_t DW1000_PreambleDetectTimeoutSet(DW1000_Handle_t* handle, uint16_t
 
 
 /**
- * @brief
- * @param[in] handle  Comment
- * @param[in] mask  Comment
+ * @brief DW1000设置中断
+ * @param[in] handle  DW1000句柄
+ * @param[in] event  中断事件，可以是以下的 | 组合
  *  @arg DW1000_INT_EVENT_FRAME_SENT: 帧发送完成中断
  *  @arg DW1000_INT_EVENT_FRAME_RECIVED: 帧接收完成中断
  *  @arg DW1000_INT_EVENT_RX_PHR_ERROR: PHR错误中断
@@ -3129,94 +3066,116 @@ inline uint8_t DW1000_PreambleDetectTimeoutSet(DW1000_Handle_t* handle, uint16_t
  *  @arg DW1000_INT_EVENT_RX_TIMEOUT: 接收超时中断
  *  @arg DW1000_INT_EVENT_SFD_TIMEOUT: SFD超时中断
  *  @arg DW1000_INT_EVENT_FRAME_REJECTED: 帧拒绝中断
- * @param[in] operation  Comment
- * @return uint8_t
- * @note  备注
- * @attention  特别需要注意的地方进行说明
- * @warning  对函数的警告说明
- * @example  函数使用示例
+ * @return uint8_t 执行结果
+ *  @arg 0: 执行成功
+ *  @arg 2: SPI接口写操作失败
+ * @note  该函数会清除原来的中断配置更新为写入的新中断配置
  */
 uint8_t DW1000_InterruptSet(DW1000_Handle_t* handle, uint32_t event) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
-    DW1000_ASSERT_PARAM(event == DW1000_INT_EVENT_FRAME_SENT ||
-                        event == DW1000_INT_EVENT_FRAME_RECIVED ||
-                        event == DW1000_INT_EVENT_RX_PHR_ERROR ||
-                        event == DW1000_INT_EVENT_RX_CRC_ERROR ||
-                        event == DW1000_INT_EVENT_RX_SYNC_LOST ||
-                        event == DW1000_INT_EVENT_RX_TIMEOUT ||
-                        event == DW1000_INT_EVENT_SFD_TIMEOUT ||
-                        event == DW1000_INT_EVENT_FRAME_REJECTED);
+    DW1000_ASSERT_PARAM((event & DW1000_INT_EVENT_FRAME_SENT) ||
+                        (event & DW1000_INT_EVENT_FRAME_RECIVED) ||
+                        (event & DW1000_INT_EVENT_RX_PHR_ERROR) ||
+                        (event & DW1000_INT_EVENT_RX_CRC_ERROR) ||
+                        (event & DW1000_INT_EVENT_RX_SYNC_LOST) ||
+                        (event & DW1000_INT_EVENT_RX_TIMEOUT) ||
+                        (event & DW1000_INT_EVENT_SFD_TIMEOUT) ||
+                        (event & DW1000_INT_EVENT_FRAME_REJECTED));
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t systemEventMask;
-    // stat = decamutexon();
+    /* DW1000进入临界区，避免在设置中断时被产生的中断打断 */
     _DW1000_CriticalEnter(handle);
-
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_SYS_MASK, 0, (uint8_t*) &systemEventMask, sizeof(systemEventMask))) {
-        return result;
-    }
-
-    DW1000_WRITE_REG(systemEventMask, event);
-
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_SYS_MASK, 0, (uint8_t*) &systemEventMask, sizeof(systemEventMask))) {
-        return result;
-    }
-
-    // decamutexoff(stat);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_SYS_MASK, 0, (uint8_t*) &event, sizeof(event)),
+        return 2);
+    /* DW1000退出临界区 */
     _DW1000_CriticalExit(handle);
-
     return 0;
 }
 
+/**
+ * @brief DW1000中断使能函数
+ * @param[in] handle  DW1000句柄
+ * @param[in] event  中断事件，可以是以下的 | 组合
+ *  @arg DW1000_INT_EVENT_FRAME_SENT: 帧发送完成中断
+ *  @arg DW1000_INT_EVENT_FRAME_RECIVED: 帧接收完成中断
+ *  @arg DW1000_INT_EVENT_RX_PHR_ERROR: PHR错误中断
+ *  @arg DW1000_INT_EVENT_RX_CRC_ERROR: CRC错误中断
+ *  @arg DW1000_INT_EVENT_RX_SYNC_LOST: 同步丢失中断
+ *  @arg DW1000_INT_EVENT_RX_TIMEOUT: 接收超时中断
+ *  @arg DW1000_INT_EVENT_SFD_TIMEOUT: SFD超时中断
+ *  @arg DW1000_INT_EVENT_FRAME_REJECTED: 帧拒绝中断
+ * @return uint8_t 执行结果
+ *  @arg 0: 执行成功
+ *  @arg 1: SPI接口读操作失败
+ *  @arg 2: SPI接口写操作失败
+ * @note  该函数只会使能指定的中断事件，其他中断事件配置不变
+ */
 uint8_t DW1000_InterruptEnable(DW1000_Handle_t* handle, uint32_t event) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
-    DW1000_ASSERT_PARAM(event == DW1000_INT_EVENT_FRAME_SENT ||
-                        event == DW1000_INT_EVENT_FRAME_RECIVED ||
-                        event == DW1000_INT_EVENT_RX_PHR_ERROR ||
-                        event == DW1000_INT_EVENT_RX_CRC_ERROR ||
-                        event == DW1000_INT_EVENT_RX_SYNC_LOST ||
-                        event == DW1000_INT_EVENT_RX_TIMEOUT ||
-                        event == DW1000_INT_EVENT_SFD_TIMEOUT ||
-                        event == DW1000_INT_EVENT_FRAME_REJECTED);
+    DW1000_ASSERT_PARAM((event & DW1000_INT_EVENT_FRAME_SENT) ||
+                        (event & DW1000_INT_EVENT_FRAME_RECIVED) ||
+                        (event & DW1000_INT_EVENT_RX_PHR_ERROR) ||
+                        (event & DW1000_INT_EVENT_RX_CRC_ERROR) ||
+                        (event & DW1000_INT_EVENT_RX_SYNC_LOST) ||
+                        (event & DW1000_INT_EVENT_RX_TIMEOUT) ||
+                        (event & DW1000_INT_EVENT_SFD_TIMEOUT) ||
+                        (event & DW1000_INT_EVENT_FRAME_REJECTED));
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t systemEventMask;
     _DW1000_CriticalEnter(handle);
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_SYS_MASK, 0, (uint8_t*) &systemEventMask, sizeof(systemEventMask))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_SYS_MASK, 0, (uint8_t*) &systemEventMask, sizeof(systemEventMask)),
+        return 1);
     DW1000_SET_BITS(systemEventMask, event);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_SYS_MASK, 0, (uint8_t*) &systemEventMask, sizeof(systemEventMask))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_SYS_MASK, 0, (uint8_t*) &systemEventMask, sizeof(systemEventMask)),
+        return 2);
     _DW1000_CriticalExit(handle);
     return 0;
 }
 
+/**
+ * @brief DW1000中断禁用函数
+ * @param[in] handle  DW1000句柄
+ * @param[in] event  中断事件，可以是以下的 | 组合
+ *  @arg DW1000_INT_EVENT_FRAME_SENT: 帧发送完成中断
+ *  @arg DW1000_INT_EVENT_FRAME_RECIVED: 帧接收完成中断
+ *  @arg DW1000_INT_EVENT_RX_PHR_ERROR: PHR错误中断
+ *  @arg DW1000_INT_EVENT_RX_CRC_ERROR: CRC错误中断
+ *  @arg DW1000_INT_EVENT_RX_SYNC_LOST: 同步丢失中断
+ *  @arg DW1000_INT_EVENT_RX_TIMEOUT: 接收超时中断
+ *  @arg DW1000_INT_EVENT_SFD_TIMEOUT: SFD超时中断
+ *  @arg DW1000_INT_EVENT_FRAME_REJECTED: 帧拒绝中断
+ * @return uint8_t 执行结果
+ *  @arg 0: 执行成功
+ *  @arg 1: SPI接口读操作失败
+ *  @arg 2: SPI接口写操作失败
+ * @note  该函数只会使能指定的中断事件，其他中断事件配置不变
+ */
 uint8_t DW1000_InterruptDisable(DW1000_Handle_t* handle, uint32_t event) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
-    DW1000_ASSERT_PARAM(event == DW1000_INT_EVENT_FRAME_SENT ||
-                        event == DW1000_INT_EVENT_FRAME_RECIVED ||
-                        event == DW1000_INT_EVENT_RX_PHR_ERROR ||
-                        event == DW1000_INT_EVENT_RX_CRC_ERROR ||
-                        event == DW1000_INT_EVENT_RX_SYNC_LOST ||
-                        event == DW1000_INT_EVENT_RX_TIMEOUT ||
-                        event == DW1000_INT_EVENT_SFD_TIMEOUT ||
-                        event == DW1000_INT_EVENT_FRAME_REJECTED);
+    DW1000_ASSERT_PARAM((event & DW1000_INT_EVENT_FRAME_SENT) ||
+                        (event & DW1000_INT_EVENT_FRAME_RECIVED) ||
+                        (event & DW1000_INT_EVENT_RX_PHR_ERROR) ||
+                        (event & DW1000_INT_EVENT_RX_CRC_ERROR) ||
+                        (event & DW1000_INT_EVENT_RX_SYNC_LOST) ||
+                        (event & DW1000_INT_EVENT_RX_TIMEOUT) ||
+                        (event & DW1000_INT_EVENT_SFD_TIMEOUT) ||
+                        (event & DW1000_INT_EVENT_FRAME_REJECTED));
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t systemEventMask;
     _DW1000_CriticalEnter(handle);
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_SYS_MASK, 0, (uint8_t*) &systemEventMask, sizeof(systemEventMask))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_SYS_MASK, 0, (uint8_t*) &systemEventMask, sizeof(systemEventMask)),
+        return 1);
     DW1000_CLEAR_BITS(systemEventMask, event);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_SYS_MASK, 0, (uint8_t*) &systemEventMask, sizeof(systemEventMask))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_SYS_MASK, 0, (uint8_t*) &systemEventMask, sizeof(systemEventMask)),
+        return 2);
     _DW1000_CriticalExit(handle);
     return 0;
 }
@@ -3228,11 +3187,11 @@ uint8_t DW1000_InterruptDisable(DW1000_Handle_t* handle, uint32_t event) {
  * @param[in] enable  Comment
  *  @arg DW1000_EVENT_COUNT_ENABLE: 启用事件计数器
  *  @arg DW1000_EVENT_COUNT_DISABLE: 禁用事件计数器
- * @return uint8_t
+ * @return uint8_t 执行结果
+ *  @arg 0: 执行成功
+ *  @arg 1: SPI接口读操作失败
+ *  @arg 2: SPI接口写操作失败
  * @note  备注
- * @attention  特别需要注意的地方进行说明
- * @warning  对函数的警告说明
- * @example  函数使用示例
  */
 uint8_t DW1000_EventCountersConfig(DW1000_Handle_t* handle, uint8_t enable) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
@@ -3240,13 +3199,13 @@ uint8_t DW1000_EventCountersConfig(DW1000_Handle_t* handle, uint8_t enable) {
     DW1000_ASSERT_PARAM(enable == DW1000_EVENT_COUNT_ENABLE ||
                         enable == DW1000_EVENT_COUNT_DISABLE);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint8_t eventCounterCtrl;
     /* 需要先清零和失能，不能直接清除 */
     DW1000_WRITE_REG(eventCounterCtrl, DW1000_EVENT_COUNT_CLEAR);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_DIG_DIAG, DW1000_SUB_REG_EVC_CTRL_OFFSET, (uint8_t*) &eventCounterCtrl, sizeof(eventCounterCtrl))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_DIG_DIAG, DW1000_SUB_REG_EVC_CTRL_OFFSET,
+                          (uint8_t*) &eventCounterCtrl, sizeof(eventCounterCtrl)),
+        return 2);
     /* 根据配置设置相应位 */
     DW1000_MODIFY_REG(eventCounterCtrl, DW1000_SUB_REG_EVC_CTRL_BIT_EVC_EN_MSK, enable);
     return _DW1000_SPI_Write(handle, DW1000_REG_DIG_DIAG, DW1000_SUB_REG_EVC_CTRL_OFFSET, (uint8_t*) &eventCounterCtrl, sizeof(eventCounterCtrl));
@@ -3254,25 +3213,25 @@ uint8_t DW1000_EventCountersConfig(DW1000_Handle_t* handle, uint8_t enable) {
 
 /**
  * @brief
- * @param[in] handle  Comment
+ * @param[in] handle  DW1000句柄
  * @param[in] counters  Comment
- * @return uint8_t
+ * @return uint8_t 执行结果
  * @note  备注
  * @attention  特别需要注意的地方进行说明
  * @warning  对函数的警告说明
  * @example  函数使用示例
+ * @todo 将函数修改为读取数据到句柄内部的字段里
  */
 uint8_t DW1000_EventCountersRead(DW1000_Handle_t* handle, DW1000_EVT_CNT_t* counters) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
     DW1000_ASSERT_PARAM(counters != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint16_t* ptr;
     /* 因为结构体的成员是按照DW1000芯片寄存器顺序排列的，可以直接给整个结构体赋值 */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_DIG_DIAG, DW1000_SUB_REG_EVC_PHE_OFFSET, (uint8_t*) counters, sizeof(DW1000_EVT_CNT_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_DIG_DIAG, DW1000_SUB_REG_EVC_PHE_OFFSET, (uint8_t*) counters, sizeof(DW1000_EVT_CNT_t)),
+        return 1);
     /* 有计数器长度为12bit，所以高4位需要清除 */
     for (ptr = (uint16_t*) counters; ptr < (uint16_t*) counters + sizeof(DW1000_EVT_CNT_t) / sizeof(uint16_t); ptr++) {
         *ptr &= 0x0FFF;
@@ -3293,36 +3252,34 @@ uint8_t DW1000_Softreset(DW1000_Handle_t* handle) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t data;
-    if (result = _DW1000_SequeningDisable(handle)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SequeningDisable(handle),
+        return 3);
     /* 清除 AON 自动下载位（当复位时会触发AON下载） */
     DW1000_WRITE_REG(data, 0x00);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_WCFG_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_WCFG_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     /* 清除 wakeup 配置 */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_WCFG_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_AON, DW1000_SUB_REG_AON_WCFG_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     /* 上传新的配置 */
-    if (result = _DW1000_AON_ArrayUpload(handle)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_AON_ArrayUpload(handle),
+        return 4);
     /* 复位 HIF，TX，RX 和 PMSC（复位位置位） */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_3_OFFSET, (uint8_t*) &data, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_3_OFFSET, (uint8_t*) &data, 1),
+        return 1);
     /* 延迟10us等待DW1000 PLL时钟锁定 */
     handle->delay_ms(1);
-
     /* 清除复位位 */
     DW1000_WRITE_REG(data, 0xF0);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_3_OFFSET, (uint8_t*) &data, 1)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_3_OFFSET, (uint8_t*) &data, 1),
+        return 2);
     handle->init.isRxOnAfterTx = 0;
     return 0;
 }
@@ -3347,12 +3304,21 @@ uint8_t DW1000_XtalTrimSet(DW1000_Handle_t* handle, uint8_t trimValue) {
     return _DW1000_SPI_Write(handle, DW1000_REG_FS_CTRL, DW1000_SUB_REG_FS_XTALT_OFFSET, (uint8_t*) &trimValue, sizeof(trimValue));
 }
 
+/**
+ * @brief DW1000获取晶振修正值
+ * @param[in] handle  DW1000句柄
+ * @param[in] trimValue  获取到的晶振修正值
+ * @return uint8_t 执行结果
+ * @note  备注
+ */
 uint8_t DW1000_XtalTrimGet(DW1000_Handle_t* handle, uint8_t* trimValue) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
     DW1000_ASSERT_PARAM(trimValue != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result = _DW1000_SPI_Read(handle, DW1000_REG_FS_CTRL, DW1000_SUB_REG_FS_XTALT_OFFSET, trimValue, sizeof(*trimValue));
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_FS_CTRL, DW1000_SUB_REG_FS_XTALT_OFFSET, trimValue, sizeof(*trimValue)),
+        return 1);
     /* 把高三位清零0（因为是保留位） */
     DW1000_CLEAR_BITS(*trimValue, 0xE0);
     return 0;
@@ -3377,51 +3343,47 @@ uint8_t DW1000_CW_ModeConfig(DW1000_Handle_t* handle, uint8_t channel) {
     DW1000_ASSERT_PARAM(IS_DW1000_CHANNEL(channel));
     DW1000_ASSERT_PARAM(channel <= 7 && channel > 0 && channel != 6);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t data;
     /* 禁用 TX/RX RF块sequnecing（CW模式需要） */
-    if (result = _DW1000_SequeningDisable(handle)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SequeningDisable(handle),
+        return 3);
     /* 配置RF_PLL（对于给定的频道） */
     DW1000_WRITE_REG(data, DW1000_FS_PLL_CFG[channel]);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_FS_CTRL, DW1000_SUB_REG_FS_PLLCFG_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_FS_CTRL, DW1000_SUB_REG_FS_PLLCFG_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     /* 配置 PLL 调谐 */
     DW1000_WRITE_REG(data, DW1000_FS_PLL_TUNE[channel]);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_FS_CTRL, DW1000_SUB_REG_FS_PLLTUNE_OFFSET, (uint8_t*) &data, sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_FS_CTRL, DW1000_SUB_REG_FS_PLLTUNE_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     /* 配置 RF TX 控制寄存器 */
     DW1000_WRITE_REG(data, DW1000_TX_CONFIG[channel]);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_TXCTRL_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_TXCTRL_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     /* 使能 RF PLL */
     /* 使能 LDO 和 RF PLL 块 */
     DW1000_WRITE_REG(data, DW1000_RF_CFG_ALL_PLL_ENABLE | DW1000_RF_CFG_ALL_LDO_ENABLE);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     /* 使能TX块复位 */
     DW1000_WRITE_REG(data, DW1000_RF_CFG_SWITCH_TX | DW1000_RF_CFG_ALL_LDO_ENABLE | DW1000_RF_CFG_ALL_PLL_ENABLE | DW1000_RF_CFG_TXB_ALL_ENABLE);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
-
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     /* 配置TX块 */
     DW1000_WRITE_REG(data, DW1000_SYSTEM_CLOCK_SELECT_FORCE_PLL | DW1000_TX_CLOCK_SELECT_FORCE_PLL);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &data, sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     DW1000_WRITE_REG(data, 0x07); /* 该3位应该也是有关系的，但是手册里只记录了ADCCE位，其余位没有说明 */
-
     /* 禁用 精细颗粒 Tx 时序流程 */
-    if (result = DW1000_FineGrainTxSeqCmd(handle, DW1000_TX_FINE_GRAIN_SEQ_DISABLE)) {
-        return result;
-    }
-
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        DW1000_FineGrainTxSeqCmd(handle, DW1000_TX_FINE_GRAIN_SEQ_DISABLE),
+        return 4);
     /* 配置CW模式 */
     DW1000_WRITE_REG(data, DW1000_TC_PGTEST_MODE_CW);
     return _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_PGTEST_OFFSET, (uint8_t*) &data, sizeof(uint8_t));
@@ -3439,39 +3401,36 @@ uint8_t DW1000_CF_ModeConfig(DW1000_Handle_t* handle, uint32_t repetition) {
     DW1000_ASSERT_PARAM(handle != NULL);
     DW1000_ASSERT_PARAM(repetition >= 4);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t data;
     /* 禁用 TX/RX RF块时序流程（连续帧模式要求） */
-    if (result = _DW1000_SequeningDisable(handle)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SequeningDisable(handle),
+        return 3);
     /* 使能 RF PLL 和 TX 块 */
     /* 使能 LDO 和 RF PLL 块 */
     DW1000_WRITE_REG(data, DW1000_RF_CFG_ALL_PLL_ENABLE | DW1000_RF_CFG_ALL_LDO_ENABLE);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     /* 使能TX块复位 */
     DW1000_WRITE_REG(data, DW1000_RF_CFG_SWITCH_TX | DW1000_RF_CFG_ALL_LDO_ENABLE | DW1000_RF_CFG_ALL_PLL_ENABLE | DW1000_RF_CFG_TXB_ALL_ENABLE);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
-
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     /* 配置TX块 */
-    if (result = _DW1000_ClockCmd(handle, DW1000_SYSTEM_CLOCK_SELECT_FORCE_PLL)) {
-        return result;
-    }
-    if (result = _DW1000_TxClockCmd(handle, DW1000_TX_CLOCK_SELECT_FORCE_PLL)) {
-        return result;
-    }
-
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_ClockCmd(handle, DW1000_SYSTEM_CLOCK_SELECT_FORCE_PLL),
+        return 4);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_TxClockCmd(handle, DW1000_TX_CLOCK_SELECT_FORCE_PLL),
+        return 5);
     /* 设置发送重复间隔 */
     if (repetition < 4) {
         repetition = 4;
     }
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RX_TIME, 0, (uint8_t*) &repetition, sizeof(repetition))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RX_TIME, 0, (uint8_t*) &repetition, sizeof(repetition)),
+        return 2);
     /* 配置Tx连续帧 */
     DW1000_WRITE_REG(data, DW1000_TEST_MODE_TX_PWR_SPECTRUM_ENABLE);
     return _DW1000_SPI_Write(handle, DW1000_REG_DIG_DIAG, DW1000_SUB_REG_DIAG_TMC_OFFSET, (uint8_t*) &data, sizeof(uint8_t));
@@ -3498,59 +3457,58 @@ uint8_t DW1000_RawTempVoltRead(DW1000_Handle_t* handle, uint8_t SPI_isFast, uint
     DW1000_ASSERT_PARAM(temp != NULL);
     DW1000_ASSERT_PARAM(volt != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint16_t data;
     /* 以下操作需要单字节按顺序写入 */
     DW1000_WRITE_REG(data, 0x80); /* 使能 TLD 偏置 */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, 0x11, (uint8_t*) &data, sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, 0x11, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     DW1000_WRITE_REG(data, 0x0A); /* 使能 TLD 偏置和 ADC 偏置 */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, 0x12, (uint8_t*) &data, sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, 0x12, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     DW1000_WRITE_REG(data, 0x0F); /* 使能输出（仅当偏置启动并运行后） */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, 0x12, (uint8_t*) &data, sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, 0x12, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     if (SPI_isFast) {
         /* 读取所有SAR输入 */
         DW1000_WRITE_REG(data, 0x00);
-        if (result = _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARC_OFFSET, (uint8_t*) &data, sizeof(uint8_t))) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARC_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+            return 2);
         DW1000_WRITE_REG(data, 0x01); /* 设置 SAR 使能 */
-        if (result = _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARC_OFFSET, (uint8_t*) &data, sizeof(uint8_t))) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARC_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+            return 2);
         /* 当时用PLL时钟（以及高速SPI通信），延迟是必须的 */
         handle->delay_ms(1);
         /* 读取电压和温度 */
-        if (result = _DW1000_SPI_Read(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARL_OFFSET, (uint8_t*) &data, sizeof(data))) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Read(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARL_OFFSET, (uint8_t*) &data, sizeof(data)),
+            return 2);
     } else { /* 切换为低速时钟 */
         /* 注意：设置系统为外部晶振（必须执行该步骤以确保读取的值是可靠的） */
-        if (result = _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_SYS_XTI)) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_SYS_XTI),
+            return 3);
         /* 读取所有SAR输入 */
         DW1000_WRITE_REG(data, 0x00);
-        if (result = _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARC_OFFSET, (uint8_t*) &data, sizeof(uint8_t))) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARC_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+            return 2);
         DW1000_WRITE_REG(data, 0x01); /* 设置 SAR 使能 */
-        if (result = _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARC_OFFSET, (uint8_t*) &data, sizeof(uint8_t))) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARC_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+            return 2);
         /* 读取电压和温度 */
-        if (result = _DW1000_SPI_Read(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARL_OFFSET, (uint8_t*) &data, sizeof(data))) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Read(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARL_OFFSET, (uint8_t*) &data, sizeof(data)),
+            return 1);
         /* 恢复系统默认时钟 */
-        if (result = _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_ENABLE_ALL_SEQ)) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_ENABLE_ALL_SEQ),
+            return 3);
     }
     *volt = data;      /* 低8位电压值 */
     *temp = data >> 8; /* 高8位温度值 */
@@ -3576,43 +3534,42 @@ uint8_t DW1000_RawTempVoltReadInSlowSpi(DW1000_Handle_t* handle, uint8_t* temp, 
     DW1000_ASSERT_PARAM(temp != NULL);
     DW1000_ASSERT_PARAM(volt != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint16_t data;
     /* 以下操作需要单字节按顺序写入 */
     DW1000_WRITE_REG(data, 0x80); /* 使能 TLD 偏置 */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, 0x11, (uint8_t*) &data, sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, 0x11, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     DW1000_WRITE_REG(data, 0x0A); /* 使能 TLD 偏置和 ADC 偏置 */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, 0x12, (uint8_t*) &data, sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, 0x12, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     DW1000_WRITE_REG(data, 0x0F); /* 使能输出（仅当偏置启动并运行后） */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, 0x12, (uint8_t*) &data, sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, 0x12, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     /* 切换为低速时钟 */
     /* 注意：设置系统为外部晶振（必须执行该步骤以确保读取的值是可靠的） */
-    if (result = _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_SYS_XTI)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_SYS_XTI),
+        return 3);
     /* 读取所有SAR输入 */
     DW1000_WRITE_REG(data, 0x00);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARC_OFFSET, (uint8_t*) &data, sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARC_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     DW1000_WRITE_REG(data, 0x01); /* 设置 SAR 使能 */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARC_OFFSET, (uint8_t*) &data, sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARC_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     /* 读取电压和温度 */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARL_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARL_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 1);
     /* 恢复系统默认时钟 */
-    if (result = _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_ENABLE_ALL_SEQ)) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_ENABLE_ALL_SEQ),
+        return 3);
     *volt = data;      /* 低8位电压值 */
     *temp = data >> 8; /* 高8位温度值 */
     /* 清除 SAR 使能 */
@@ -3637,36 +3594,35 @@ uint8_t DW1000_RawTempVoltReadInFastSpi(DW1000_Handle_t* handle, uint8_t* temp, 
     DW1000_ASSERT_PARAM(temp != NULL);
     DW1000_ASSERT_PARAM(volt != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint16_t data;
     /* 以下操作需要单字节按顺序写入 */
     DW1000_WRITE_REG(data, 0x80); /* 使能 TLD 偏置 */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, 0x11, (uint8_t*) &data, sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, 0x11, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     DW1000_WRITE_REG(data, 0x0A); /* 使能 TLD 偏置和 ADC 偏置 */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, 0x12, (uint8_t*) &data, sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, 0x12, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     DW1000_WRITE_REG(data, 0x0F); /* 使能输出（仅当偏置启动并运行后） */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, 0x12, (uint8_t*) &data, sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, 0x12, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     /* 读取所有SAR输入 */
     DW1000_WRITE_REG(data, 0x00);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARC_OFFSET, (uint8_t*) &data, sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARC_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     DW1000_WRITE_REG(data, 0x01); /* 设置 SAR 使能 */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARC_OFFSET, (uint8_t*) &data, sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARC_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     /* 当时用PLL时钟（以及高速SPI通信），延迟是必须的 */
     handle->delay_ms(1);
     /* 读取电压和温度 */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARL_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_SARL_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 1);
     *volt = data;      /* 低8位电压值 */
     *temp = data >> 8; /* 高8位温度值 */
     /* 清除 SAR 使能 */
@@ -3693,9 +3649,10 @@ inline float DW1000_TempRawToRealConvert(DW1000_Handle_t* handle, uint8_t rawTem
 
 /**
  * @brief
- * @param[in] realTemp  Comment
+ * @param[in] handle  Comment
+ * @param[in] realTemp_x10  Comment
  * @return uint8_t
- * @note  为了方便计算，原先浮点温度，放大10倍作为整数进行计算
+ * @note  备注
  * @attention  特别需要注意的地方进行说明
  * @warning  对函数的警告说明
  * @example  函数使用示例
@@ -3772,42 +3729,41 @@ uint8_t DW1000_BW_TempCompCalculate(DW1000_Handle_t* handle, uint16_t target, ui
     DW1000_ASSERT_PARAM(handle != NULL);
     DW1000_ASSERT_PARAM(best != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t data;
     /* 存储相关寄存器变量用于计算完成后复原 */
     uint8_t oldPmscCtrl0;
     uint16_t oldPmscCtrl1;
     uint32_t oldRfConf;
     /* 保存当前寄存器的值（用于后续恢复） */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, &oldPmscCtrl0, sizeof(oldPmscCtrl0))) {
-        return result;
-    }
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL1_OFFSET, (uint8_t*) &oldPmscCtrl1, sizeof(oldPmscCtrl1))) {
-        return result;
-    }
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &oldRfConf, sizeof(oldRfConf))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, &oldPmscCtrl0, sizeof(oldPmscCtrl0)),
+        return 1);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL1_OFFSET, (uint8_t*) &oldPmscCtrl1, sizeof(oldPmscCtrl1)),
+        return 1);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &oldRfConf, sizeof(oldRfConf)),
+        return 1);
     /* 设置时钟为XTAL */
     DW1000_WRITE_REG(data, DW1000_SYSTEM_CLOCK_SELECT_FORCE_XTI); /* 19MHz */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &data, sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     /* 禁用时序流程 */
     DW1000_WRITE_REG(data, DW1000_PMSC_ANALOG_RF_CTRL_DISABLE);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL1_OFFSET, (uint8_t*) data, sizeof(uint16_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL1_OFFSET, (uint8_t*) data, sizeof(uint16_t)),
+        return 2);
     /* 打开CLK PLL，Mix偏置 和 PG */
     DW1000_WRITE_REG(data, DW1000_RF_CFG_ALL_LDO_ENABLE | DW1000_RF_CFG_PULSE_GEN_ENABLE | DW1000_RF_CFG_TXB_MIXER_BIAS_ENABLE);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     /* 将系统和Tx时钟设置为PLL */
     DW1000_WRITE_REG(data, DW1000_SYSTEM_CLOCK_SELECT_FORCE_PLL | DW1000_TX_CLOCK_SELECT_FORCE_PLL); /* 125MHz */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &data, sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     /* 从最高位（bit8）开始猜每一位的0和1（本质上就是二分法搜索） */
     uint8_t BW_current;
     uint8_t BW_best;
@@ -3819,28 +3775,28 @@ uint8_t DW1000_BW_TempCompCalculate(DW1000_Handle_t* handle, uint16_t target, ui
     for (uint8_t i = 0x40; i != 0; i >>= 1) {
         BW_current |= i;
         /* 往PG_DELAY寄存器写入猜测的BW值 */
-        if (result = _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_PGDELAY_OFFSET, (uint8_t*) &BW_current, sizeof(BW_current))) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_PGDELAY_OFFSET, (uint8_t*) &BW_current, sizeof(BW_current)),
+            return 2);
         /* 设置计算方向和时间 */
         DW1000_WRITE_REG(data, DW1000_PG_CTRL_DIR_CONV_HIGHER | DW1000_PG_TMEAS_MAX);
-        if (result = _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_PG_CTRL_OFFSET, (uint8_t*) &data, sizeof(uint8_t))) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_PG_CTRL_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+            return 2);
         /* 开始计算 */
         DW1000_SET_BITS(data, DW1000_SUB_REG_TC_PG_CTRL_BIT_PG_START);
-        if (result = _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_PG_CTRL_OFFSET, (uint8_t*) &data, sizeof(uint8_t))) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_PG_CTRL_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+            return 2);
         /* 等待计算完成 */
         handle->delay_ms(1);
         /*
             读取计算结果
             从 TC_PG_STATUS 寄存器读取结果
         */
-        if (result = _DW1000_SPI_Read(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_PG_STATUS_OFFSET, (uint8_t*) &countRaw, sizeof(countRaw))) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Read(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_PG_STATUS_OFFSET, (uint8_t*) &countRaw, sizeof(countRaw)),
+            return 1);
         /* 跟踪最接近目标的值，避免超调 */
         if (countRaw > target) {
             countDelta = countRaw - target;
@@ -3859,15 +3815,15 @@ uint8_t DW1000_BW_TempCompCalculate(DW1000_Handle_t* handle, uint16_t target, ui
     /* 将最佳值返回 */
     *best = BW_best;
     /* 恢复之前保存的寄存器值 */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &oldPmscCtrl0, sizeof(oldPmscCtrl0))) {
-        return result;
-    }
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL1_OFFSET, (uint8_t*) &oldPmscCtrl1, sizeof(oldPmscCtrl1))) {
-        return result;
-    }
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &oldRfConf, sizeof(oldRfConf))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &oldPmscCtrl0, sizeof(oldPmscCtrl0)),
+        return 2);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL1_OFFSET, (uint8_t*) &oldPmscCtrl1, sizeof(oldPmscCtrl1)),
+        return 2);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &oldRfConf, sizeof(oldRfConf)),
+        return 2);
     return 0;
 }
 
@@ -3982,82 +3938,80 @@ uint8_t DW1000_PG_CounterCalculate(DW1000_Handle_t* handle, uint8_t pgdly, uint1
     DW1000_ASSERT_PARAM(handle != NULL);
     DW1000_ASSERT_PARAM(delayCount != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t data;
     /* 暂存相关寄存器的值便于之后复原 */
     uint8_t oldPmscCtrl0;
     uint16_t oldPmscCtrl1;
     uint32_t oldRfConf;
     /* 保存当前寄存器的值（用于后续恢复） */
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, &oldPmscCtrl0, sizeof(oldPmscCtrl0))) {
-        return result;
-    }
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL1_OFFSET, (uint8_t*) &oldPmscCtrl1, sizeof(oldPmscCtrl1))) {
-        return result;
-    }
-    if (result = _DW1000_SPI_Read(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &oldRfConf, sizeof(oldRfConf))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, &oldPmscCtrl0, sizeof(oldPmscCtrl0)),
+        return 1);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL1_OFFSET, (uint8_t*) &oldPmscCtrl1, sizeof(oldPmscCtrl1)),
+        return 1);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &oldRfConf, sizeof(oldRfConf)),
+        return 1);
     /* 设置时钟为XTAL */
     DW1000_WRITE_REG(data, DW1000_SYSTEM_CLOCK_SELECT_FORCE_XTI); /* 19MHz */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &data, sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     /* 禁用时序流程 */
     DW1000_WRITE_REG(data, DW1000_PMSC_ANALOG_RF_CTRL_DISABLE);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL1_OFFSET, (uint8_t*) data, sizeof(uint16_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL1_OFFSET, (uint8_t*) data, sizeof(uint16_t)),
+        return 2);
     /* 打开CLK PLL，Mix偏置 和 PG */
     DW1000_WRITE_REG(data, DW1000_RF_CFG_ALL_LDO_ENABLE | DW1000_RF_CFG_PULSE_GEN_ENABLE | DW1000_RF_CFG_TXB_MIXER_BIAS_ENABLE);
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &data, sizeof(data))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     /* 将系统和Tx时钟设置为PLL */
     DW1000_WRITE_REG(data, DW1000_SYSTEM_CLOCK_SELECT_FORCE_PLL | DW1000_TX_CLOCK_SELECT_FORCE_PLL); /* 125MHz */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &data, sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     uint32_t sum = 0;
     uint16_t count;
-
     for (uint8_t i = 0; i < DW1000_SAMPLE_NUM; i++) {
         /* 往PG_DELAY寄存器写入PG延迟值 */
-        if (result = _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_PGDELAY_OFFSET, (uint8_t*) &pgdly, sizeof(pgdly))) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_PGDELAY_OFFSET, (uint8_t*) &pgdly, sizeof(pgdly)),
+            return 2);
         /* 设置计算方向和时间 */
         DW1000_WRITE_REG(data, DW1000_PG_CTRL_DIR_CONV_HIGHER | DW1000_PG_TMEAS_MAX);
-        if (result = _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_PG_CTRL_OFFSET, (uint8_t*) &data, sizeof(uint8_t))) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_PG_CTRL_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+            return 2);
         /* 开始计算 */
         DW1000_SET_BITS(data, DW1000_SUB_REG_TC_PG_CTRL_BIT_PG_START);
-        if (result = _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_PG_CTRL_OFFSET, (uint8_t*) &data, sizeof(uint8_t))) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Write(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_PG_CTRL_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+            return 2);
         /* 等待计算完成 */
         handle->delay_ms(1);
         /*
             读取计算结果
             从 TC_PG_STATUS 寄存器读取结果
         */
-        if (result = _DW1000_SPI_Read(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_PG_STATUS_OFFSET, (uint8_t*) &count, sizeof(count))) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Read(handle, DW1000_REG_TX_CAL, DW1000_SUB_REG_TC_PG_STATUS_OFFSET, (uint8_t*) &count, sizeof(count)),
+            return 1);
         sum += count;
     }
     *delayCount = sum / DW1000_SAMPLE_NUM;
     /* 恢复之前保存的寄存器值 */
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &oldPmscCtrl0, sizeof(oldPmscCtrl0))) {
-        return result;
-    }
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL1_OFFSET, (uint8_t*) &oldPmscCtrl1, sizeof(oldPmscCtrl1))) {
-        return result;
-    }
-    if (result = _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &oldRfConf, sizeof(oldRfConf))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &oldPmscCtrl0, sizeof(oldPmscCtrl0)),
+        return 2);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL1_OFFSET, (uint8_t*) &oldPmscCtrl1, sizeof(oldPmscCtrl1)),
+        return 2);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_CONF_OFFSET, (uint8_t*) &oldRfConf, sizeof(oldRfConf)),
+        return 2);
     return 0;
 }
 
@@ -4071,13 +4025,12 @@ uint8_t DW1000_LDE_AlgoDisable(DW1000_Handle_t* handle) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint8_t data;
     DW1000_EXEC_WITH_ERR_HANDLE(
         _DW1000_SPI_Read(handle, DW1000_REG_PMSC,
                          DW1000_SUB_REG_PMSC_CTRL1_2_OFFSET,
                          &data, sizeof(data)),
-        result);
+        return 1);
     DW1000_CLEAR_BITS(data, DW1000_SUB_REG_PMSC_CTRL1_2_BIT_LDERUNE_MSK);
     return _DW1000_SPI_Read(handle, DW1000_REG_PMSC,
                             DW1000_SUB_REG_PMSC_CTRL1_2_OFFSET,
@@ -4094,13 +4047,12 @@ uint8_t DW1000_LDE_AlgoEnable(DW1000_Handle_t* handle) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint8_t data;
     DW1000_EXEC_WITH_ERR_HANDLE(
         _DW1000_SPI_Read(handle, DW1000_REG_PMSC,
                          DW1000_SUB_REG_PMSC_CTRL1_2_OFFSET,
                          &data, sizeof(data)),
-        result);
+        return 1);
     DW1000_SET_BITS(data, DW1000_SUB_REG_PMSC_CTRL1_2_BIT_LDERUNE_MSK);
     return _DW1000_SPI_Read(handle, DW1000_REG_PMSC,
                             DW1000_SUB_REG_PMSC_CTRL1_2_OFFSET,
@@ -4130,22 +4082,27 @@ uint8_t DW1000_Prepare(DW1000_Handle_t* handle) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t data;
     /* 在执行下面流程前需要确保DW1000的SPI通信速率小于3MHz */
-    DW1000_EXEC_WITH_ERR_HANDLE(_DW1000_SPI_LowSpeedSet(handle), result);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_LowSpeedSet(handle),
+        return 3);
     /* 读取设备ID */
-    DW1000_EXEC_WITH_ERR_HANDLE(DW1000_DEV_ID_Get(handle, &data), result);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        DW1000_DEV_ID_Get(handle, &data),
+        return 4);
     /* 如果读取到的设备ID有误则直接退出 */
     if (data != DW1000_DEV_ID) {
-        return 11;
+        return 5;
     }
     /* 软复位DW1000（确保在执行准备工作流程前DW1000已完全复位） */
-    DW1000_EXEC_WITH_ERR_HANDLE(DW1000_Softreset(handle), result);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        DW1000_Softreset(handle),
+        return 6);
     /* 将时钟切换为XTI以确保后面读取OTP内的值可靠 */
     DW1000_EXEC_WITH_ERR_HANDLE(
         _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_FORCE_SYS_XTI),
-        result);
+        return 7);
 
     /* 配置 PLL 时钟锁定检测调谐 */
     DW1000_WRITE_REG(data, DW1000_PLL_LOCK_DETECT_ENABLE);
@@ -4153,11 +4110,11 @@ uint8_t DW1000_Prepare(DW1000_Handle_t* handle) {
         _DW1000_SPI_Write(handle, DW1000_REG_EXT_SYNC,
                           DW1000_SUB_REG_EC_CTRL_OFFSET,
                           (uint8_t*) &data, sizeof(uint8_t)),
-        result);
+        return 2);
     /* DW1000在上电初始化时应从OTP中读取LDO值 */
     DW1000_EXEC_WITH_ERR_HANDLE(
         _DW1000_OTP_Read(handle, DW1000_OTP_ADDRESS_LDO_TUNE, &data),
-        result);
+        return 8);
     /* 如果最低8位有值 */
     if (DW1000_READ_BITS(data, 0xFF)) {
         DW1000_WRITE_REG(data, DW1000_SUB_REG_OTP_SF_BIT_LDO_KICK_MSK);
@@ -4165,7 +4122,7 @@ uint8_t DW1000_Prepare(DW1000_Handle_t* handle) {
             _DW1000_SPI_Write(handle, DW1000_REG_OTP_IF,
                               DW1000_SUB_REG_OTP_SF_OFFSET,
                               (uint8_t*) data, sizeof(uint8_t)),
-            result);
+            return 2);
         /* 记录设置，便于之后配置睡眠模式时使用 */
         DW1000_SET_BITS(handle->backup.sleepMode, DW1000_SUB_REG_AON_WCFG_BIT_ONW_LLDO_MSK);
     }
@@ -4173,7 +4130,7 @@ uint8_t DW1000_Prepare(DW1000_Handle_t* handle) {
     /* 读取OTP修订号和晶振微调值 */
     DW1000_EXEC_WITH_ERR_HANDLE(
         _DW1000_OTP_Read(handle, DW1000_OTP_ADDRESS_OTP_REV_XTAL_TRIM, &data),
-        result);
+        return 8);
     uint8_t xtalTrim = data & 0x1F; // data的低8位是XTAL_Trim值（实际上只有低5位有效）
     /* 备份OTP修订号 */
     handle->backup.otpRevision = data >> 8; // data的[15:0]是OTP Revision值
@@ -4183,68 +4140,72 @@ uint8_t DW1000_Prepare(DW1000_Handle_t* handle) {
         xtalTrim = DW1000_XTAL_TRIM_MIDRANG;
     }
     /* 设置XTAL 微调值 */
-    DW1000_EXEC_WITH_ERR_HANDLE(DW1000_XtalTrimSet(handle, xtalTrim), result);
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        DW1000_XtalTrimSet(handle, xtalTrim),
+        return 9);
 
     /* 根据配置选择是否从OTP中读取partID */
     if (handle->init.shouldOtpPartIdRead) {
         DW1000_EXEC_WITH_ERR_HANDLE(
             _DW1000_OTP_Read(handle, DW1000_OTP_ADDRESS_PART_ID, &data),
-            result);
+            return 8);
         handle->backup.partID = data;
     }
     /* 根据配置选择是否从OTP中读取LotID */
     if (handle->init.shouldOtpLotIdRead) {
         DW1000_EXEC_WITH_ERR_HANDLE(
             _DW1000_OTP_Read(handle, DW1000_OTP_ADDRESS_LOT_ID, &data),
-            result);
+            return 8);
         handle->backup.lotID = data;
     }
     /* 根据配置选择是否从OTP中读取refVolt */
     if (handle->init.shouldOtpRefVoltRead) {
         DW1000_EXEC_WITH_ERR_HANDLE(
             _DW1000_OTP_Read(handle, DW1000_OTP_ADDRESS_REF_VOLT, &data),
-            result);
+            return 8);
         handle->backup.refVolt = data;
     }
     /* 根据配置选择是否从OTP中读取refTemp */
     if (handle->init.shouldOtpRefTempRead) {
         DW1000_EXEC_WITH_ERR_HANDLE(
             _DW1000_OTP_Read(handle, DW1000_OTP_ADDRESS_REF_TEMP, &data),
-            result);
+            return 8);
         handle->backup.refTemp = data;
     }
     /* 根据配置选择是否从OTP中读取微码 */
     if (handle->init.shouldOtpUcodeRead) {
         DW1000_EXEC_WITH_ERR_HANDLE(
             _DW1000_LoadUcodeFromROM(handle),
-            result);
+            return 10);
         /* 如果在初始化时加载了微码在唤醒阶段也需要加载微码 */
         DW1000_SET_BITS(handle->backup.sleepMode, DW1000_SUB_REG_AON_WCFG_BIT_ONW_LLDE_MSK);
     } else { // 如果不加载微码就需要禁用LDE
-        DW1000_EXEC_WITH_ERR_HANDLE(DW1000_LDE_AlgoDisable(handle), result);
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            DW1000_LDE_AlgoDisable(handle),
+            return 11);
     }
     /* 系统时钟切换为sequencing */
     DW1000_EXEC_WITH_ERR_HANDLE(
         _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_ENABLE_ALL_SEQ),
-        result);
+        return 7);
     /* 位于AON_CFG1寄存器的这3个位必须被清零以确保DW1000在深睡眠模式下正确运行 */
     DW1000_WRITE_REG(data, 0x00);
     DW1000_EXEC_WITH_ERR_HANDLE(
         _DW1000_SPI_Write(handle, DW1000_REG_AON,
                           DW1000_SUB_REG_AON_CFG1_OFFSET,
                           (uint8_t*) &data, sizeof(uint8_t)),
-        result);
+        return 2);
     /* 读取系统配置寄存器并将值进行备份 */
     DW1000_EXEC_WITH_ERR_HANDLE(
         _DW1000_SPI_Read(handle, DW1000_REG_SYS_CFG, 0, (uint8_t*) &data, sizeof(data)),
-        result);
+        return 1);
     handle->backup.systemConfig = data;
 
     // 【此处官方还有保存了一个关于长帧的标志位，个人认为用不上，所以省略】
 
     DW1000_EXEC_WITH_ERR_HANDLE(
         _DW1000_SPI_Read(handle, DW1000_REG_TX_FCTRL, 0, (uint8_t*) &data, sizeof(data)),
-        result);
+        return 1);
     handle->backup.txFctrl = data;
 
     /* 准备工作完成，可以将SPI速率恢复到高速率 */
@@ -4255,12 +4216,11 @@ uint8_t DW1000_PrepareAfterWakeUp(DW1000_Handle_t* handle) {
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle);
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t data;
     /* 在执行下面流程前需要确保DW1000的SPI通信速率小于3MHz */
-    DW1000_EXEC_WITH_ERR_HANDLE(_DW1000_SPI_LowSpeedSet(handle), result);
+    DW1000_EXEC_WITH_ERR_HANDLE(_DW1000_SPI_LowSpeedSet(handle), return 3);
     /* 读取设备ID */
-    DW1000_EXEC_WITH_ERR_HANDLE(DW1000_DEV_ID_Get(handle, &data), result);
+    DW1000_EXEC_WITH_ERR_HANDLE(DW1000_DEV_ID_Get(handle, &data), return 4);
     /* 如果读取到的设备ID有误则直接退出 */
     if (data != DW1000_DEV_ID) {
         return 11;
@@ -4274,23 +4234,19 @@ uint8_t DW1000_PrepareAfterWakeUp(DW1000_Handle_t* handle) {
         !handle->init.shouldOtpPartIdRead &&
         !handle->init.shouldOtpRevReadAfterWakeUp) {
         /* 设置系统时钟为XTI */
-        if (result = _DW1000_SystemClockSelect(handle, DW1000_SYSTEM_CLOCK_SELECT_FORCE_XTI)) {
-            return result;
-        }
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SystemClockSelect(handle, DW1000_SYSTEM_CLOCK_SELECT_FORCE_XTI),
+            return 5);
     }
     /* 配置 PLL 时钟锁定检测调谐 */
     DW1000_WRITE_REG(data, DW1000_PLL_LOCK_DETECT_ENABLE);
-    if (result = _DW1000_SPI_Write(handle,
-                                   DW1000_REG_EXT_SYNC,
-                                   DW1000_SUB_REG_EC_CTRL_OFFSET,
-                                   (uint8_t*) &data,
-                                   sizeof(uint8_t))) {
-        return result;
-    }
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Write(handle, DW1000_REG_EXT_SYNC, DW1000_SUB_REG_EC_CTRL_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     /* 在DW1000唤醒后调用该函数时，不用读取再从OTP中读取LDO，因为已在上电初始化时完成了 */
     DW1000_EXEC_WITH_ERR_HANDLE(
         _DW1000_SPI_Read(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_LDOTUNE_OFFSET, (uint8_t*) &data, sizeof(data)),
-        result);
+        return 1);
     /* 如果LDO_TUNE寄存器内已有非默认值，说明已经从OTP中读取过LDO值了，只需记录设置 */
     if (data != DW1000_LDO_TUNE_DEFAULT) {
         DW1000_SET_BITS(handle->backup.sleepMode, DW1000_SUB_REG_AON_WCFG_BIT_ONW_LLDO_POS);
@@ -4299,7 +4255,7 @@ uint8_t DW1000_PrepareAfterWakeUp(DW1000_Handle_t* handle) {
     if (handle->init.shouldOtpRevReadAfterWakeUp) {
         DW1000_EXEC_WITH_ERR_HANDLE(
             _DW1000_OTP_Read(handle, DW1000_OTP_ADDRESS_OTP_REV, &data),
-            result);
+            return 6);
         handle->backup.otpRevision = (data >> 8);
     } else {
         /* 如果不需要OTP修订好，在唤醒后调用该函数将会把该字段清零 */
@@ -4309,28 +4265,28 @@ uint8_t DW1000_PrepareAfterWakeUp(DW1000_Handle_t* handle) {
     if (handle->init.shouldOtpPartIdRead) {
         DW1000_EXEC_WITH_ERR_HANDLE(
             _DW1000_OTP_Read(handle, DW1000_OTP_ADDRESS_PART_ID, &data),
-            result);
+            return 6);
         handle->backup.partID = data;
     }
     /* 根据配置选择是否从OTP中读取LotID */
     if (handle->init.shouldOtpLotIdRead) {
         DW1000_EXEC_WITH_ERR_HANDLE(
             _DW1000_OTP_Read(handle, DW1000_OTP_ADDRESS_LOT_ID, &data),
-            result);
+            return 6);
         handle->backup.lotID = data;
     }
     /* 根据配置选择是否从OTP中读取refVolt */
     if (handle->init.shouldOtpRefVoltRead) {
         DW1000_EXEC_WITH_ERR_HANDLE(
             _DW1000_OTP_Read(handle, DW1000_OTP_ADDRESS_REF_VOLT, &data),
-            result);
+            return 6);
         handle->backup.refVolt = data;
     }
     /* 根据配置选择是否从OTP中读取refTemp */
     if (handle->init.shouldOtpRefTempRead) {
         DW1000_EXEC_WITH_ERR_HANDLE(
             _DW1000_OTP_Read(handle, DW1000_OTP_ADDRESS_REF_TEMP, &data),
-            result);
+            return 6);
         handle->backup.refTemp = data;
     }
     /* 这里假设微码在上电准备过程中已经从ROM中被加载，所以更新睡眠设置 */
@@ -4340,29 +4296,26 @@ uint8_t DW1000_PrepareAfterWakeUp(DW1000_Handle_t* handle) {
     /* 设置系统时钟为sequencing */
     DW1000_EXEC_WITH_ERR_HANDLE(
         _DW1000_ClockCmd(handle, DW1000_CLOCK_CMD_ENABLE_ALL_SEQ),
-        result);
+        return 7);
     /* 位于AON_CFG1寄存器的这3个位必须被清零以确保DW1000在深睡眠模式下正确运行 */
     DW1000_WRITE_REG(data, 0x00);
     DW1000_EXEC_WITH_ERR_HANDLE(
         _DW1000_SPI_Write(handle, DW1000_REG_AON,
                           DW1000_SUB_REG_AON_CFG1_OFFSET,
                           (uint8_t*) &data, sizeof(uint8_t)),
-        result);
+        return 2);
     /* 读取系统配置寄存器并将值进行备份 */
     DW1000_EXEC_WITH_ERR_HANDLE(
         _DW1000_SPI_Read(handle, DW1000_REG_SYS_CFG, 0, (uint8_t*) &data, sizeof(data)),
-        result);
+        return 1);
     handle->backup.systemConfig = data;
 
     // 【此处官方还有保存了一个关于长帧的标志位，个人认为用不上，所以省略】
 
     DW1000_EXEC_WITH_ERR_HANDLE(
         _DW1000_SPI_Read(handle, DW1000_REG_TX_FCTRL, 0, (uint8_t*) &data, sizeof(data)),
-        result);
+        return 1);
     handle->backup.txFctrl = data;
-
-    /* 准备工作完成，可以将SPI速率恢复到高速率 */
-    return _DW1000_SPI_HighSpeedSet(handle);
 
     /* 准备工作完成，可以将SPI速率恢复到高速率 */
     return _DW1000_SPI_HighSpeedSet(handle);
@@ -4381,7 +4334,6 @@ uint8_t DW1000_Init(DW1000_Handle_t* handle) {
         handle->init.prf, handle->init.rxPreambleCode));
     DW1000_ASSERT_PARAM(IS_DW1000_PHR_TYPE(handle->init.phrType));
 #endif /* USE_DW1000_FULL_ASSERT */
-    uint8_t result;
     uint32_t data;
 
     /* 数据速率为110kpbps时需要特殊的配置 */
@@ -4403,9 +4355,8 @@ uint8_t DW1000_Init(DW1000_Handle_t* handle) {
     }
     DW1000_WRITE_REG(data, handle->backup.systemConfig);
     DW1000_EXEC_WITH_ERR_HANDLE(
-        _DW1000_SPI_Write(handle, DW1000_REG_SYS_CFG, 0,
-                          &data, sizeof(data)),
-        result);
+        _DW1000_SPI_Write(handle, DW1000_REG_SYS_CFG, 0, &data, sizeof(data)),
+        return 2);
     /* 设置LDE副本系数 */
     data = DW1000_LDE_REPLICA_COEFF[handle->init.rxPreambleCode];
     if (handle->init.dataRate == DW1000_DATA_RATE_110K) {
@@ -4413,103 +4364,81 @@ uint8_t DW1000_Init(DW1000_Handle_t* handle) {
         data >>= 3;
     }
     DW1000_EXEC_WITH_ERR_HANDLE(
-        _DW1000_SPI_Write(handle, DW1000_REG_LDE_IF,
-                          DW1000_SUB_REG_LDE_REPC_OFFSET,
-                          (uint8_t*) &data, sizeof(uint16_t)),
-        result);
+        _DW1000_SPI_Write(handle, DW1000_REG_LDE_IF, DW1000_SUB_REG_LDE_REPC_OFFSET, (uint8_t*) &data, sizeof(uint16_t)),
+        return 2);
     /* 配置LDE */
     if (handle->init.prf == DW1000_PRF_16M) {
         DW1000_EXEC_WITH_ERR_HANDLE(
             _DW1000_LDE_Config(handle, DW1000_LDE_TUNE_PARAM_IN_PRF16MHz),
-            result);
+            return 3);
     } else {
         DW1000_EXEC_WITH_ERR_HANDLE(
             _DW1000_LDE_Config(handle, DW1000_LDE_TUNE_PARAM_IN_PRF64MHz),
-            result);
+            return 3);
     }
     /* 设置 PLL2 和 RF PLL 块的配置（对于给定的频道）*/
     DW1000_WRITE_REG(data, DW1000_FS_PLL_CFG[handle->init.channel]);
     DW1000_EXEC_WITH_ERR_HANDLE(
-        _DW1000_SPI_Write(handle, DW1000_REG_FS_CTRL,
-                          DW1000_SUB_REG_FS_PLLCFG_OFFSET, (uint8_t*) &data, sizeof(data)),
-        result);
+        _DW1000_SPI_Write(handle, DW1000_REG_FS_CTRL, DW1000_SUB_REG_FS_PLLCFG_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     /* 设置 PLL2 和 RF PLL 块的调谐（对于给定的频道） */
     DW1000_WRITE_REG(data, DW1000_FS_PLL_TUNE[handle->init.channel]);
     DW1000_EXEC_WITH_ERR_HANDLE(
-        _DW1000_SPI_Write(handle, DW1000_REG_FS_CTRL,
-                          DW1000_SUB_REG_FS_PLLTUNE_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
-        result);
+        _DW1000_SPI_Write(handle, DW1000_REG_FS_CTRL, DW1000_SUB_REG_FS_PLLTUNE_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     /* 配置 RF RX块（对于给定的频道） */
     DW1000_WRITE_REG(data, DW1000_RX_CONFIG[handle->init.channel]);
     DW1000_EXEC_WITH_ERR_HANDLE(
-        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF,
-                          DW1000_SUB_REG_RF_RXCTRLH_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
-        result);
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_RXCTRLH_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     /* 配置RF TX块（对于给定的频道和PRF） */
     /* 配置RF TX控制 */
     DW1000_WRITE_REG(data, DW1000_TX_CONFIG[handle->init.channel]);
     DW1000_EXEC_WITH_ERR_HANDLE(
-        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF,
-                          DW1000_SUB_REG_RF_TXCTRL_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
-        result);
+        _DW1000_SPI_Write(handle, DW1000_REG_RF_CONF, DW1000_SUB_REG_RF_TXCTRL_OFFSET, (uint8_t*) &data, sizeof(uint8_t)),
+        return 2);
     /* 配置基带参数（对于给定的PRF,数据速率，PAC和SFD设置） */
     /* DTUNE0b */
     DW1000_WRITE_REG(data, DW1000_SFD_THRESHOLD[handle->init.dataRate][handle->init.useSfdNstd]);
     DW1000_EXEC_WITH_ERR_HANDLE(
-        _DW1000_SPI_Write(handle, DW1000_REG_DRX_CONF,
-                          DW1000_SUB_REG_DRX_TUNE0b_OFFSET,
-                          (uint8_t*) &data, sizeof(uint16_t)),
-        result);
+        _DW1000_SPI_Write(handle, DW1000_REG_DRX_CONF, DW1000_SUB_REG_DRX_TUNE0b_OFFSET, (uint8_t*) &data, sizeof(uint16_t)),
+        return 2);
     /* DTUNE1a */
     DW1000_WRITE_REG(data, DW1000_DRX_TUNE1A[handle->init.prf]);
     DW1000_EXEC_WITH_ERR_HANDLE(
-        _DW1000_SPI_Write(handle, DW1000_RX_CONFIG,
-                          DW1000_SUB_REG_DRX_TUNE1a_OFFSET,
-                          (uint8_t*) &data, sizeof(uint16_t)),
-        result);
+        _DW1000_SPI_Write(handle, DW1000_RX_CONFIG, DW1000_SUB_REG_DRX_TUNE1a_OFFSET, (uint8_t*) &data, sizeof(uint16_t)),
+        return 2);
     if (handle->init.dataRate == DW1000_DATA_RATE_110K) {
         DW1000_WRITE_REG(data, DW1000_DRX_TUNE1B_110K_PL);
         DW1000_EXEC_WITH_ERR_HANDLE(
-            _DW1000_SPI_Write(handle, DW1000_REG_DRX_CONF,
-                              DW1000_SUB_REG_DRX_TUNE1b_OFFSET,
-                              (uint8_t*) &data, sizeof(uint16_t)),
-            result);
+            _DW1000_SPI_Write(handle, DW1000_REG_DRX_CONF, DW1000_SUB_REG_DRX_TUNE1b_OFFSET, (uint8_t*) &data, sizeof(uint16_t)),
+            return 2);
     } else if (handle->init.txPreambleLength == DW1000_PLEN_64) {
         DW1000_WRITE_REG(data, DW1000_DRX_TUNE1B_6M8_PS);
         DW1000_EXEC_WITH_ERR_HANDLE(
-            _DW1000_SPI_Write(handle, DW1000_REG_DRX_CONF,
-                              DW1000_SUB_REG_DRX_TUNE1b_OFFSET,
-                              (uint8_t*) &data, sizeof(uint16_t)),
-            result);
+            _DW1000_SPI_Write(handle, DW1000_REG_DRX_CONF, DW1000_SUB_REG_DRX_TUNE1b_OFFSET, (uint8_t*) &data, sizeof(uint16_t)),
+            return 2);
         DW1000_WRITE_REG(data, DW1000_DRX_TUNE4H_PLEN64);
         /* DTUNE4H */
         DW1000_EXEC_WITH_ERR_HANDLE(
-            _DW1000_SPI_Write(handle, DW1000_REG_DRX_CONF,
-                              DW1000_SUB_REG_DRX_TUNE4H_OFFSET,
-                              (uint8_t*) &data, sizeof(uint16_t)),
-            result);
+            _DW1000_SPI_Write(handle, DW1000_REG_DRX_CONF, DW1000_SUB_REG_DRX_TUNE4H_OFFSET, (uint8_t*) &data, sizeof(uint16_t)),
+            return 2);
     } else {
         DW1000_WRITE_REG(data, DW1000_DRX_TUNE1B_850K_6M8_PM);
         DW1000_EXEC_WITH_ERR_HANDLE(
-            _DW1000_SPI_Write(handle, DW1000_REG_DRX_CONF,
-                              DW1000_SUB_REG_DRX_TUNE1b_OFFSET,
-                              (uint8_t*) &data, sizeof(uint16_t)),
-            result);
+            _DW1000_SPI_Write(handle, DW1000_REG_DRX_CONF, DW1000_SUB_REG_DRX_TUNE1b_OFFSET, (uint8_t*) &data, sizeof(uint16_t)),
+            return 2);
         /* DTUNE4H */
         DW1000_WRITE_REG(data, DW1000_DRX_TUNE4H_PLEN128_PLUS);
         DW1000_EXEC_WITH_ERR_HANDLE(
-            _DW1000_SPI_Write(handle, DW1000_REG_DRX_CONF,
-                              DW1000_SUB_REG_DRX_TUNE4H_OFFSET,
-                              (uint8_t*) &data, sizeof(uint16_t)),
-            result);
+            _DW1000_SPI_Write(handle, DW1000_REG_DRX_CONF, DW1000_SUB_REG_DRX_TUNE4H_OFFSET, (uint8_t*) &data, sizeof(uint16_t)),
+            return 2);
     }
     /* DTUNE2 */
     DW1000_WRITE_REG(data, DW1000_DRX_TUNE2[handle->init.prf][handle->init.rxPac]);
     DW1000_EXEC_WITH_ERR_HANDLE(
-        _DW1000_SPI_Write(handle, DW1000_REG_DRX_CONF,
-                          DW1000_SUB_REG_DRX_TUNE2_OFFSET,
-                          (uint8_t*) &data, sizeof(data)),
-        result);
+        _DW1000_SPI_Write(handle, DW1000_REG_DRX_CONF, DW1000_SUB_REG_DRX_TUNE2_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     /* 设置SFD检测超时时间 */
     /* 这里默认禁止关闭SFD检测，以防止在低功耗应用中产生较大的功耗
        因为关闭SFD超时检测，会导致DW1000在接收到错误的SFD时仍保持
@@ -4520,30 +4449,23 @@ uint8_t DW1000_Init(DW1000_Handle_t* handle) {
     }
     DW1000_WRITE_REG(data, handle->init.sfdTimeout);
     DW1000_EXEC_WITH_ERR_HANDLE(
-        _DW1000_SPI_Write(handle, DW1000_REG_DRX_CONF,
-                          DW1000_SUB_REG_DRX_SFDTOC_OFFSET,
-                          (uint8_t*) &data, sizeof(uint16_t)),
-        result);
+        _DW1000_SPI_Write(handle, DW1000_REG_DRX_CONF, DW1000_SUB_REG_DRX_SFDTOC_OFFSET, (uint8_t*) &data, sizeof(uint16_t)),
+        return 2);
     /* 配置AGC参数 */
     DW1000_WRITE_REG(data, DW1000_AGC_CFG.lo32);
     DW1000_EXEC_WITH_ERR_HANDLE(
-        _DW1000_SPI_Write(handle, DW1000_REG_AGC_CTRL,
-                          DW1000_SUB_REG_AGC_TUNE2_OFFSET,
-                          (uint8_t*) &data, sizeof(data)),
-        result);
+        _DW1000_SPI_Write(handle, DW1000_REG_AGC_CTRL, DW1000_SUB_REG_AGC_TUNE2_OFFSET, (uint8_t*) &data, sizeof(data)),
+        return 2);
     DW1000_WRITE_REG(data, DW1000_AGC_CFG.target[handle->init.prf]);
     DW1000_EXEC_WITH_ERR_HANDLE(
-        _DW1000_SPI_Write(handle, DW1000_REG_AGC_CTRL,
-                          DW1000_SUB_REG_AGC_TUNE1_OFFSET,
-                          (uint8_t*) &data, sizeof(uint16_t)),
-        result);
+        _DW1000_SPI_Write(handle, DW1000_REG_AGC_CTRL, DW1000_SUB_REG_AGC_TUNE1_OFFSET, (uint8_t*) &data, sizeof(uint16_t)),
+        return 2);
     /* 如果设置了非标SFD（用于提高性能） */
     if (handle->init.useSfdNstd) {
         DW1000_WRITE_REG(data, DW1000_NSTD_SFD_LEN[handle->init.dataRate]);
         DW1000_EXEC_WITH_ERR_HANDLE(
-            _DW1000_SPI_Write(handle, DW1000_REG_USR_SFD,
-                              0x00, (uint8_t*) &data, sizeof(uint8_t)),
-            result);
+            _DW1000_SPI_Write(handle, DW1000_REG_USR_SFD, 0x00, (uint8_t*) &data, sizeof(uint8_t)),
+            return 2);
     }
     /* 频道控制配置 */
     DW1000_WRITE_REG(data, 0);
@@ -4588,9 +4510,8 @@ uint8_t DW1000_Init(DW1000_Handle_t* handle) {
         DW1000_REG_CHAN_CTRL_BITS_RX_PCODE_MSK,
         (handle->init.rxPreambleCode) << DW1000_REG_CHAN_CTRL_BITS_RX_PCODE_POS);
     DW1000_EXEC_WITH_ERR_HANDLE(
-        _DW1000_SPI_Write(handle, DW1000_REG_CHAN_CTRL, 0,
-                          (uint8_t*) &data, sizeof(data)),
-        result);
+        _DW1000_SPI_Write(handle, DW1000_REG_CHAN_CTRL, 0, (uint8_t*) &data, sizeof(data)),
+        return 2);
     /* 设置发送前导码大小，PRF和数据速率 */
     DW1000_WRITE_REG(data, 0);
     /* 设置发送前导码长度 */
@@ -4604,9 +4525,8 @@ uint8_t DW1000_Init(DW1000_Handle_t* handle) {
         DW1000_REG_TX_FCTRL_BITS_TXPRF_MSK,
         (handle->init.prf) << DW1000_REG_TX_FCTRL_BITS_TXPRF_POS);
     DW1000_EXEC_WITH_ERR_HANDLE(
-        _DW1000_SPI_Write(handle, DW1000_REG_TX_FCTRL, 0,
-                          (uint8_t*) &data, sizeof(data)),
-        result);
+        _DW1000_SPI_Write(handle, DW1000_REG_TX_FCTRL, 0, (uint8_t*) &data, sizeof(data)),
+        return 2);
     /* 备份txFctrl写入值 */
     handle->backup.txFctrl = data;
     /* SFD传输模式由DW1000根据用户TX请求进行初始化，
