@@ -1,6 +1,7 @@
 #ifndef __DRV_DW1000_REG_H
 #define __DRV_DW1000_REG_H
 
+/* Exported macro ------------------------------------------------------------*/
 // #define OFFSET_OF(type, member)                         ((size_t) &((type*) 0)->member)
 
 // 宏函数 产生指定bit位为1的数值
@@ -25,7 +26,11 @@
 #define DW1000_SPI_EXT_SUB_ADDR_MASK                    (0x1UL << DW1000_SPI_EXT_SUB_ADDR_POS)
 // #define DW1000_SPI_EXT_SUB_ADDR_MASK                   DW1000_REG_BIT(7)
 #define DW1000_SPI_EXT_SUB_ADDR                         DW1000_SPI_EXT_SUB_ADDR_MASK
+/* Exported types ------------------------------------------------------------*/
+/* 寄存器类型定义 */
 
+
+/* Exported constants --------------------------------------------------------*/
 /***********************************************************************************************
  * @brief 寄存器文件 0x00 - DEV_ID 设备标识符 [只读]
  * @note  备注

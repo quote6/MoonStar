@@ -1,8 +1,10 @@
 #ifndef __DRV_DW1000_ASSERT_H
 #define __DRV_DW1000_ASSERT_H
 
+/* 是否使用DW1000断言功能 */
+#define USE_DW1000_FULL_ASSERT        0U
 
-#ifdef  USE_DW1000_FULL_ASSERT
+#if  (USE_DW1000_FULL_ASSERT == 1U)
 /**
   * @brief  The assert_param macro is used for function's parameters check.
   * @param  expr If expr is false, it calls assert_failed function
