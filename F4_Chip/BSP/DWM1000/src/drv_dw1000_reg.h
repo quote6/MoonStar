@@ -4,31 +4,331 @@
 /* Exported macro ------------------------------------------------------------*/
 // #define OFFSET_OF(type, member)                         ((size_t) &((type*) 0)->member)
 
+/* 定义相关位操作宏函数用于寄存器操作 */
+#define DW1000_SET_BITS(reg, bits)                 ((reg) |= (bits))
+#define DW1000_CLEAR_BITS(reg, bits)               ((reg) &= ~(bits))
+#define DW1000_READ_BITS(reg, bits)                ((reg) & (bits))
+#define DW1000_CLEAR_REG(reg)                      ((reg) = 0)
+#define DW1000_WRITE_REG(reg, value)               ((reg) = (value))
+#define DW1000_READ_REG(reg)                       ((reg))
+#define DW1000_MODIFY_REG(reg, clearMask, setMask) ((reg) = (((reg) & (~(clearMask))) | (setMask)))
+
 // 宏函数 产生指定bit位为1的数值
-#define DW1000_REG_BIT(bit)                             (0x1UL << (bit))
+#define DW1000_REG_BIT(bit)                        (0x1UL << (bit))
 // 宏函数 产生指定bit范围内全1的数值
-#define DW1000_REG_BIT_RANGE(end, start)                (((0x1UL << ((end) - (start) + 1)) - 1) << (start))
+#define DW1000_REG_BIT_RANGE(end, start)           (((0x1UL << ((end) - (start) + 1)) - 1) << (start))
 
 /* 调用该宏函数需要自行确保该宏函数不会返回负值 */
 // #define DW1000_REG_BIT_TRANSFORM(oldAdd, oldpos, newAdd) ((oldAdd) * 8 + (oldpos) - (newAdd) * 8)
 
-#define DW1000_SPI_CMD_POS                              (7U)
-#define DW1000_SPI_CMD_MASK                             (0x1UL << DW1000_SPI_CMD_POS)
+#define DW1000_SPI_CMD_POS                         (7U)
+#define DW1000_SPI_CMD_MASK                        (0x1UL << DW1000_SPI_CMD_POS)
 // #define DW1000_SPI_CMD_MASK                            DW1000_REG_BIT(7)
-#define DW1000_SPI_CMD                                  DW1000_SPI_CMD_MASK
+#define DW1000_SPI_CMD                             DW1000_SPI_CMD_MASK
 
-#define DW1000_SPI_SUB_ADDR_POS                         (6U)
-#define DW1000_SPI_SUB_ADDR_MASK                        (0x1UL << DW1000_SPI_SUB_ADDR_POS)
+#define DW1000_SPI_SUB_ADDR_POS                    (6U)
+#define DW1000_SPI_SUB_ADDR_MASK                   (0x1UL << DW1000_SPI_SUB_ADDR_POS)
 // #define DW1000_SPI_SUB_ADDR_MASK                       DW1000_REG_BIT(6)
-#define DW1000_SPI_SUB_ADDR                             DW1000_SPI_SUB_ADDR_MASK
+#define DW1000_SPI_SUB_ADDR                        DW1000_SPI_SUB_ADDR_MASK
 
-#define DW1000_SPI_EXT_SUB_ADDR_POS                     (7U)
-#define DW1000_SPI_EXT_SUB_ADDR_MASK                    (0x1UL << DW1000_SPI_EXT_SUB_ADDR_POS)
+#define DW1000_SPI_EXT_SUB_ADDR_POS                (7U)
+#define DW1000_SPI_EXT_SUB_ADDR_MASK               (0x1UL << DW1000_SPI_EXT_SUB_ADDR_POS)
 // #define DW1000_SPI_EXT_SUB_ADDR_MASK                   DW1000_REG_BIT(7)
-#define DW1000_SPI_EXT_SUB_ADDR                         DW1000_SPI_EXT_SUB_ADDR_MASK
+#define DW1000_SPI_EXT_SUB_ADDR                    DW1000_SPI_EXT_SUB_ADDR_MASK
 /* Exported types ------------------------------------------------------------*/
 /* 寄存器类型定义 */
 
+/**
+ * @brief 定义DW1000寄存器 SYS_CFG - 0x04
+ */
+typedef union {
+    uint32_t all;
+    struct {
+        uint32_t FFEN : 1;
+        uint32_t FFBC : 1;
+        uint32_t FFAB : 1;
+        uint32_t FFAD : 1;
+        uint32_t FFAA : 1;
+        uint32_t FFAM : 1;
+        uint32_t FFAR : 1;
+        uint32_t FFA4 : 1;
+        uint32_t FFA5 : 1;
+        uint32_t HIRQ_POL : 1;
+        uint32_t SPI_EDGE : 1;
+        uint32_t DIS_FCE : 1;
+        uint32_t DIS_SRXB : 1;
+        uint32_t DIS_PHE : 1;
+        uint32_t DIS_RSED : 1;
+        uint32_t FCS_INIT2F : 1;
+        uint32_t PHR_MODE : 2;
+        uint32_t DIS_STXP : 1;
+        uint32_t : 3;
+        uint32_t RXM110K : 1;
+        uint32_t : 5;
+        uint32_t RXWTOE : 1;
+        uint32_t RXAUTR : 1;
+        uint32_t AUTOACK : 1;
+        uint32_t AACKPEND : 1;
+    } bits;
+} DW1000_REG_SYS_CFG_ut;
+
+/**
+ * @brief DW1000 寄存器TX_FCTRL - 发送帧控制定义 - 0x08
+ * @note 详细请参考 《DW1000 User Manual V2.18》的
+ *        7.2.10 寄存器 0x08 - 发送帧控制
+ */
+typedef union {
+    // uint8_t all[5]; // 【因为有用不到的字段，变成32位】
+    uint32_t all;
+    struct {
+        uint16_t TFLEN : 7;    // 传输帧长度（Transmit Frame Length）
+        uint16_t TFLE : 3;     // 传输帧长度扩展（Transmit Frame Length Extension）
+        uint16_t : 3;          // 保留
+        uint16_t TXBR : 2;     // 发送Bit速率（Transmit Bit Rate）
+        uint16_t TR : 1;       // 发送测距使能（Transmit Ranging enable）
+        uint16_t TXPRF : 2;    // 发送脉冲重复频率（Transmit Pulse Repetition Frequency）
+        uint16_t TXPSR : 2;    // 发送前导码符号重复（Transmit Preamble Symbol Repetition）（这设置了以符号为单位的传输前导序列的长度）
+        uint16_t PE : 2;       // 前导码扩展（Preamble Extension）
+        uint16_t TXBOFFS : 10; // 发送缓冲区索引偏移（Transmit buffer index offset）
+        // uint8_t IFSDELAY;      // 帧间间距（Inter-Frame Spacing）【用不到的字段，暂时注释】
+    } bits;
+} DW1000_REG_TX_FCTRL_ut;
+
+/**
+ * @brief 定义DW1000寄存器 SYS_STATUS - 0x0F
+ */
+typedef union {
+    // uint8_t all[5]; /* 因为用不到，暂时注释 */
+    uint32_t all;
+    struct {
+        uint32_t IRQS : 1;
+        uint32_t CPLOCK : 1;
+        uint32_t ESYNCR : 1;
+        uint32_t AAT : 1;
+        uint32_t TXFRB : 1;
+        uint32_t TXPRS : 1;
+        uint32_t TXPHS : 1;
+        uint32_t TXFRS : 1;
+        uint32_t RXPRD : 1;
+        uint32_t RXSFDD : 1;
+        uint32_t LDEDONE : 1;
+        uint32_t RXPHD : 1;
+        uint32_t RXPHE : 1;
+        uint32_t RXDFR : 1;
+        uint32_t RXFCG : 1;
+        uint32_t RXFCE : 1;
+        uint32_t RXRFSL : 1;
+        uint32_t RXRFTO : 1;
+        uint32_t LDEERR : 1;
+        uint32_t : 1;
+        uint32_t RXOVRR : 1;
+        uint32_t RXPTO : 1;
+        uint32_t GPIOIRQ : 1;
+        uint32_t SLEP2INIT : 1;
+        uint32_t RFPLL_LL : 1;
+        uint32_t CLKPLL_LL : 1;
+        uint32_t RXSFDTO : 1;
+        uint32_t HPDWARN : 1;
+        uint32_t TXBERR : 1;
+        uint32_t AFFREJ : 1;
+        uint32_t HSRBP : 1;
+        uint32_t ICRBP : 1;
+        /* 因为用不到，暂时注释 */
+        // uint8_t RXRSCS : 1;
+        // uint8_t RXPREJ : 1;
+        // uint8_t TXPUTE : 1;
+        // uint8_t : 5;
+    } bits;
+} DW1000_REG_SYS_STATUS_t;
+
+/**
+ * @brief 定义DW1000寄存器 RX_FINFO - 0x10
+ */
+typedef union {
+    uint32_t all;
+    struct {
+        uint32_t RXFLEN : 7;  // 接收帧长度
+        uint32_t RXFLE : 3;   // 接收帧长度扩展
+        uint32_t : 1;         // 保留
+        uint32_t RXNSPL : 2;  // 接收非标前导码长度
+        uint32_t RXBR : 2;    // 接收bit速率（数据速率）
+        uint32_t RNG : 1;     // 接收器测距
+        uint32_t RXPRFR : 2;  // 接收脉冲重复速率
+        uint32_t RXPSR : 2;   // 接收前导码长度
+        uint32_t RXPACC : 12; // 前导码累积计数
+    } bits;
+} DW1000_REG_RX_FINFO_ut;
+
+/**
+ * @brief 定义DW1000寄存器 RX_FQUAL - 接收帧质量信息 - 0x12
+ */
+typedef struct {
+    uint16_t STD_NOISE; // 噪声标准差
+    uint16_t FP_AMPL2;  // 第一路径振幅点2
+    uint16_t FP_AMPL3;  // 第一路径振幅点3
+    uint16_t CIR_PWR;   // Channel Impulse Response Power - 信道脉冲响应功率
+} DW1000_REG_RX_FQUAL_t;
+
+/**
+ * @brief 定义DW1000寄存器 RX_TIME - 接收时间戳 - 0x15
+ * @note  寄存器文件 0x15 报告接收时间戳和相关信息。在帧接收期间，标记前导码结束和PHR开始的SFD检测事件是IC标记的标称点。
+ *        IEEE 802.15.4 UWB标准将这一点称为RMARKER。DW1000采用RMARKER事件发生的符号的粗略时间戳，并在此基础上添加各种校正因子以给出结果时间戳值。
+ *        请参阅《DW1000用户手册V2.18》中的第4.1.6节-RX消息时间戳，了解所应用更正的更多详细信息。
+ * @note  RX_STAMP: 此40位（5个八位字节）字段报告。完全调整的接待时间。请参阅《DW1000用户手册V2.18》中的第4.1.6节-RX消息时间戳，了解所应用调整的更多详细信息。
+ *                  低位比特的单位约为15.65皮秒。实际单位可计算为1/（128*499.2×106）秒。当前沿确定和时间戳调整完成时（当LDEDONE状态位设置时），
+ *                  该值在此处可用。
+ *        FP_INDEX: 第一个路径索引。这是一个16位值，报告了LDE算法确定为第一条路径的累加器内的位置。该值在LDE算法分析累加器数据期间设置，
+ *                  并在LDE执行完成时（LDEDONE状态位设置时）更新。该值可用于累加器数据的诊断绘图，也可用于评估接收到的消息的质量和/或LDE生成的接收时间戳。
+ *                  有关更多详细信息，请参阅《DW1000用户手册V2.18》中的第4.7节-评估接收质量和RX时间戳。第一条路径（或前沿）是亚纳秒量。
+ *                  累加器中的每个抽头对应一个采样时间，大约为1纳秒（或无线电信号在空气中的飞行时间为30厘米）。为了比这1纳秒步长更准确地报告前缘的位置，
+ *                  索引值由一个完整部分和一个分数部分组成。FP_INDEX的10个最高有效位表示数字的整数部分，6个最低有效位表示小数部分。
+ *        FP_AMPL1: 第一路径振幅点1。这是一个16位无符号值，是在LDE算法分析期间报告累加器数据存储器中看到的前沿信号幅度的一部分。
+ *                  FP_AMPL1参数中报告的样本幅度是该寄存器中报告的上升沿FP_index的整数部分之外的索引3处的累加器抽头的幅度。
+ *                  FP_AMPL1振幅值可以与寄存器文件0x12-Rx帧质量信息中报告的FP_AMPL2和FP_AMPL3值结合使用，作为评估LDE算法产生的接收时间戳质量的一部分。
+ *                  有关更多详细信息，请参阅《DW1000用户手册V2.18》中的第4.7节-评估接收质量和RX时间戳。当LDE执行完成时（当LDEDONE状态位设置时），此值会更新。
+ *        RX_RAWST: 此40位（5个八位字节）字段报告帧的原始时间戳。这是在第一PHR符号的第一个码片时捕获的系统时钟（125 MHz）的值。这里的精度约为125 MHz，
+ *                  即9个最低有效位为零。当PHR被成功解码时（当RXPHD状态位被设置时），时间戳将可供读取。如果检测到PHR错误，则不会更新时间戳。
+ */
+typedef struct {
+    uint8_t RX_STAMP[5]; // 接收时间戳
+    uint8_t FP_INDEX[2]; // 第一路径索引
+    uint8_t FP_AMPL1[2]; // 第一路径振幅点1
+    uint8_t RX_RAWST[5]; // 原始接收时间戳
+} DW1000_REG_RX_TIME_t;
+
+/**
+ * @brief 定义DW1000寄存器 TX POWER - 发送功率控制 - 0x1E
+ * @note  BOOSTNORM: 这是用于不在增强所需的数据速率和帧长度标准范围内的帧的正常功率设置，即帧持续时间超过0.5ms。
+ *                    对于所有其他三种情况，它也是用于帧的PHR部分的功率设置。
+ *        BOOSTP500: 对于持续时间小于0.5ms的帧，该值设置了在以6.8Mbps数据速率传输期间施加到帧的前导码和数据部分的功率，
+ *                    该速率由以下标准确定：
+ *                        --前导码长度为64个符号，帧长度<=333个字节。
+ *                        --前导码长度为128个符号，帧长度<=281个字节。
+ *                        --前导码长度为256个符号，帧长度<=166个字节。
+ *                    这里可以配置至少3dB的功率提升，只要外部系统将帧速率保持在每毫秒1帧以下，以确保功率提升不违反规定。
+ *                    可以应用的实际功率提升量可以按如下方式计算：
+ *                    Power Boost(dB) = 10log_10(1000us/实际帧持续时间(us))
+ *        BOOOSTP250: 对于持续时间小于0.25ms的帧，该值设置了在以6.8Mbps数据速率传输期间施加到帧的前导码和数据部分的功率，
+ *                    该速率由以下标准确定：
+ *                        --前导码长度为64个符号，帧长度<=123个字节。
+ *                        --前导码长度为128个符号，帧长度<=67个字节。
+ *                    这里可以配置至少6dB的功率提升，只要外部系统将帧速率保持在每毫秒1帧以下，以确保功率提升不违反规定。
+ *                    可以应用的实际功率提升量可以按如下方式计算：
+ *                    Power Boost(dB) = 10log_10(1000us/实际帧持续时间(us))
+ *        BOOSTP125: 对于持续时间小于0.125ms的帧，该值设置在以6.8Mbps数据速率传输期间施加到帧的前导码和数据部分的功率，
+ *                   该持续时间由以下标准确定：
+ *                       --前导码长度为64个符号，SFD长度<=16个符号，帧长度<=15个字节。
+ *                       --前导码长度为64个符号，SFD长度<=12个符号，帧长度<=19个字节。
+ *                       --前导码长度为64个符号，SFD长度为8个符号，帧长度<=23个字节。
+ *                       在PRF 64 MHz下，只要外部系统将帧速率保持在每毫秒1帧以下，以确保功率提升不违反规定，就可以在这里配置9 dB的功率提升。
+ *                       在PRF 16 MHz下，功率提升应设置为与BOOSTP250配置相同的6 dB值，以避免超过峰值功率规定。
+ * @note 详细说明请参考《DW1000用户手册 V2.18》的第7.2.31 寄存器文件 发送功率控制 - 0x1E
+ */
+typedef union {
+    uint32_t all;
+    struct {
+        uint8_t BOOSTNORM;
+        uint8_t BOOSTP500;
+        uint8_t BOOSTP250;
+        uint8_t BOOSTP125;
+    } bits;
+} DW1000_REG_TX_POWER_ut;
+
+/**
+ * @brief 定义DW1000子寄存器 TC_PGDELAY - 发送校准 脉冲生成器延迟 - 0x2A:0B
+ * @note  寄存器文件：0x2A – 发送校准块，子寄存器 0x0B 是一个8位配置寄存器，
+ *        用于设置脉冲发生器延迟值。这有效地设置了传输脉冲的宽度，从而有效地设置输出带宽。
+ *        此处使用的值取决于寄存器文件 0x1F – 信道控制 中 TX_CHAN 配置选择的TX信道。
+ *        推荐值如下表所示，然而，请注意，根据外部电路的不同，这些值可能需要调整以符合频谱调节要求。
+ *        +------------+---------------+
+ *        | Tx Channel | TC_PGDELAY 值 |
+ *        +------------+---------------+
+ *        |     1      |     0xC9      |
+ *        |     2      |     0xC2      |
+ *        |     3      |     0xC5      |
+ *        |     4      |     0x95      |
+ *        |     5      |     0xB5      |
+ *        |     6      |     0x93      |
+ *        +------------+---------------+
+ * @note 详细信息请阅读《DW1000用户手册V2.18》的第7.2.43.6 子寄存器 0x2A:0B - TC_PGDELAY
+ */
+typedef uint8_t DW1000_SREG_TC_PGDELAY_t;
+
+/**
+ * @brief 定义DW1000子寄存器 AON_WCFG - 0x2C:00
+ */
+typedef union {
+    uint16_t all;
+    struct {
+        uint16_t ONW_RADC : 1;
+        uint16_t ONW_RX : 1;
+        uint16_t : 1;
+        uint16_t ONW_LEUI : 1;
+        uint16_t : 2;
+        uint16_t ONW_LDC : 1;
+        uint16_t ONW_L64P : 1;
+        uint16_t PRES_SLEEP : 1;
+        uint16_t : 2;
+        uint16_t ONW_LLDE : 1;
+        uint16_t ONW_LLDO : 1;
+        uint16_t : 3
+    } bits;
+} DW1000_SREG_AON_WCFG_ut;
+
+/**
+ * @brief 定义DW1000寄存器 LDE_THRESH - LDE 阈值报告 - 0x2E:0000
+ * @note  寄存器文件：0x2E–前沿检测接口，子寄存器0x0000是一个16位状态寄存器，报告用于查找第一条路径的阈值。
+ *        该阈值是基于LDE算法分析累加器数据期间对噪声的估计来计算的。在某些情况下，此阈值报告可能具有诊断意义。
+ */
+typedef uint16_t DW1000_REG_LDE_THRESH_t;
+
+/**
+ * @brief 定义DW1000寄存器 DIG_DIAG - 0x2F
+ */
+typedef struct {
+    // uint32_t EVC_EN : 1;
+    // uint32_t EVC_CLR : 1;
+    // uint32_t : 30;
+    uint16_t EVC_PHE : 12;  // PHY帧头错误事件计数
+    uint16_t : 4;           // 保留
+    uint16_t EVC_RSE : 12;  // RSD错误事件计数
+    uint16_t : 4;           // 保留
+    uint16_t EVC_FCG : 12;  // 帧检查序列良好事件计数
+    uint16_t : 4;           // 保留
+    uint16_t EVC_FCE : 12;  // FCS错误事件计数
+    uint16_t : 4;           // 保留
+    uint16_t EVC_FFR : 12;  // 帧过滤拒绝计数
+    uint16_t : 4;           // 保留
+    uint16_t EVC_OVR : 12;  // 接收溢出错误事件计数
+    uint16_t : 4;           // 保留
+    uint16_t EVC_STO : 12;  // SFD超时错误计数
+    uint16_t : 4;           // 保留
+    uint16_t EVC_PTO : 12;  // 前导码超时事件计数
+    uint16_t : 4;           // 保留
+    uint16_t EVC_FWTO : 12; // 接收帧等待超时计数
+    uint16_t : 4;           // 保留
+    uint16_t EVC_TXFS : 12; // 发送帧事件计数
+    uint16_t : 4;           // 保留
+    uint16_t EVC_HPW : 12;  // 半周期警告计数
+    uint16_t : 4;           // 保留
+    uint16_t EVC_TPW : 12;  // 发送器上电警告计数
+    uint16_t : 4;           // 保留
+} DW1000_REG_DIG_DIAG_t;
+
+/**
+ * @brief 定义DW1000 OTP类型
+ */
+typedef struct {
+    // uint8_t EUID[8]; // 因为未使用，暂时注释
+    // uint8_t EUID_Alt[8]; // 因为未使用，暂时注释
+    uint32_t partID; // IC Part ID（在初始化时可配置从OTP中读取并保存在此）
+    uint32_t lotID;  // IC Lost ID（在初始化时可配置从OTP中读取并保存在此）
+    // uint8_t LDOTUNE_CAL[5]; // 因为未使用，暂时注释
+    // uint8_t XTAL_Trim; // 因为未使用，暂时注释
+    uint8_t refVolt;      // 参考电压（Vmeas @ 3.3V）
+    uint8_t refTemp;      // 参考温度（Tmeas @ 23℃）
+    uint8_t OTP_Revision; // OTP修订号（在初始化时可配置从OTP中读取并保存在此）
+} DW1000_OTP_MEM_t;
 
 /* Exported constants --------------------------------------------------------*/
 /***********************************************************************************************
