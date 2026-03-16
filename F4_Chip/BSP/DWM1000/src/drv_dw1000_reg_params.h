@@ -1428,14 +1428,28 @@
 #define DW1000_TX_MODE_DELAYED                       0x01U
 #define DW1000_TX_MODE_EXPECT_RESPONSE               0x02U
 
-
+/* 发送完成中断 */
 #define DW1000_INT_EVENT_FRAME_SENT                  DW1000_REG_SYS_MASK_BIT_MTXFRB
+/* 接收器接收帧成功中断（接收到的帧CRC校验通过） */
 #define DW1000_INT_EVENT_FRAME_RECIVED               DW1000_REG_SYS_MASK_BIT_MRXFCG
+/* 接收器帧PHY包头错误中断 */
 #define DW1000_INT_EVENT_RX_PHR_ERROR                DW1000_REG_SYS_MASK_BIT_MRXPHE
+/* 接收器帧错误（CRC校验失败） */
 #define DW1000_INT_EVENT_RX_CRC_ERROR                DW1000_REG_SYS_MASK_BIT_MRXFCE
+/* 接收器帧同步丢失中断 */
 #define DW1000_INT_EVENT_RX_SYNC_LOST                DW1000_REG_SYS_MASK_BIT_MRXRFSL
+/* 接收器等待帧超时中断 */
 #define DW1000_INT_EVENT_RX_TIMEOUT                  DW1000_REG_SYS_MASK_BIT_MRXRFTO
+/* SFD超时中断 */
 #define DW1000_INT_EVENT_SFD_TIMEOUT                 DW1000_REG_SYS_MASK_BIT_MRXSFDTO
+/* 帧拒绝中断（配置了帧过滤功能时） */
 #define DW1000_INT_EVENT_FRAME_REJECTED              DW1000_REG_SYS_MASK_BIT_MAFFREJ
+/* 微码执行完毕中断 */
+#define DW1000_INT_EVENT_LDE_DONE                    DW1000_REG_SYS_MASK_BIT_MLDEDONE_MSK
+/* 接收器帧溢出中断 */
+#define DW1000_INT_EVENT_RX_OVERRUN                  DW1000_REG_SYS_MASK_BIT_MRXOVRR_MSK
+/* 前导码检测超时中断 */
+#define DW1000_INT_EVENT_PREAMBLE_TIMEOUT            DW1000_REG_SYS_MASK_BIT_MRXPTO_MSK
+
 
 #endif

@@ -13,9 +13,9 @@ extern "C"{
  * @{
  */
 
-uint8_t dw1000_basic_init();
+uint8_t dw1000_basic_init(void);
 
-uint8_t dw1000_basic_deinit();
+uint8_t dw1000_basic_deinit(void);
 
 uint8_t dw1000_basic_send(uint8_t* buff, uint8_t len);
 

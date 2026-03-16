@@ -32,7 +32,7 @@ extern "C" {
 /* Private macros ------------------------------------------------------------*/
 /* 是否使能DW1000的注册回调函数功能 */
 #define USE_DW1000_REGISTER_CALLBACKS   0U
-/* 是否使能DW1000的注册延时函数功能 */
+/* 是否使能DW1000的注册获取计数函数功能 */
 #define USE_DW1000_REGISTER_GET_TICK    0U
 /* 是否使能DW1000的注册Debug打印功能 */
 #define USE_DW1000_REGISTER_DEBUG_PRINT 0U
@@ -80,29 +80,29 @@ typedef struct {
 
 typedef struct
 {
-    /* data */
-    uint8_t isRxOnAfterTx : 1;                 // 在发送完成后是否自动开启接收（通常用于接收应答信息）
-    uint8_t shouldOtpPartIdRead : 1;           // 是否从OTP中加载partID
-    uint8_t shouldOtpLotIdRead : 1;            // 是否从OTP中加载LOT ID
-    uint8_t shouldOtpRefVoltRead : 1;          // 是否从OTP中加载参考电压值
-    uint8_t shouldOtpRefTempRead : 1;          // 是否从OTP中加载参考温度值
-    uint8_t shouldOtpUcodeRead : 1;            // 是否从OTP中加载微码
-    uint8_t shouldOtpUcodeReadAfterWakeUp : 1; // 是否在唤醒后从OTP中加载微码
-    uint8_t shouldOtpRevReadAfterWakeUp : 1;   // 是否在唤醒后从OTP中加载OTP修订号
-    uint8_t useSfdNstd : 1;                    // 是否使用非标 SFD 以获得更好的性能
-    uint8_t useDoubleBuff : 1;                 // 是否为双缓冲模式
-    uint8_t useLowPowListen : 1;               // 是否使用低功耗监听
-    uint8_t channel : 3;                       // 频道号: DW1000_CHANNEL_x（x取值1-7，不包含6）
-    uint8_t dataRate : 2;                      // 数据速率: 110kbps 850kbps 6.8Mbps
-    uint8_t prf : 2;                           // 脉冲重复频率: 16MHz 和 64MHz
-    uint8_t phrType : 1;                       // PHR模式： StdFrameMode 和 LongFrameMode
-    uint8_t reserved : 5;                      // 保留位
-    uint8_t txPreambleLength;                  // 发送前导码长度: 64 128 256 512 1024 2048 4096
-    uint8_t rxPac;                             // 前导码查询块大小（与接收前导码长度相关）
-    uint8_t sleepMode;                         // 睡眠模式
-    uint8_t txPreambleCode;                    // 发送前导码
-    uint8_t rxPreambleCode;                    // 接收前导码
-    uint16_t sfdTimeout;                       // SFD超时值（单位 符号）
+    uint8_t isRxOnAfterTx : 1;                 /**< 在发送完成后是否自动开启接收（通常用于接收应答信息）*/
+    uint8_t shouldOtpPartIdRead : 1;           /**< 是否从OTP中加载partID */
+    uint8_t shouldOtpLotIdRead : 1;            /**< 是否从OTP中加载LOT ID */
+    uint8_t shouldOtpRefVoltRead : 1;          /**< 是否从OTP中加载参考电压值 */
+    uint8_t shouldOtpRefTempRead : 1;          /**< 是否从OTP中加载参考温度值 */
+    uint8_t shouldOtpUcodeRead : 1;            /**< 是否从OTP中加载微码 */
+    uint8_t shouldOtpUcodeReadAfterWakeUp : 1; /**< 是否在唤醒后从OTP中加载微码 */
+    uint8_t shouldOtpRevReadAfterWakeUp : 1;   /**< 是否在唤醒后从OTP中加载OTP修订号 */
+    uint8_t useSfdNstd : 1;                    /**< 是否使用非标 SFD 以获得更好的性能 */
+    uint8_t useDoubleBuff : 1;                 /**< 是否为双缓冲模式 */
+    uint8_t useLowPowListen : 1;               /**< 是否使用低功耗监听 */
+    uint8_t channel : 3;                       /**< 频道号: DW1000_CHANNEL_x（x取值1-7，不包含6） */
+    uint8_t dataRate : 2;                      /**< 数据速率: 110kbps 850kbps 6.8Mbps */
+    uint8_t prf : 2;                           /**< 脉冲重复频率: 16MHz 和 64MHz */
+    uint8_t phrType : 1;                       /**< PHR模式： StdFrameMode 和 LongFrameMode */
+    uint8_t : 5;                               /**< 保留位 */
+    uint8_t txPreambleLength;                  /**< 发送前导码长度: 64 128 256 512 1024 2048 4096 */
+    uint8_t rxPac;                             /**< 前导码查询块大小（与接收前导码长度相关） */
+    uint8_t txPreambleCode;                    /**< 发送前导码 */
+    uint8_t rxPreambleCode;                    /**< 接收前导码 */
+    uint16_t sfdTimeout;                       /**< SFD超时值（单位 符号）SFD超时 = (前导码长度 + 1 + SFD长度 - PAC大小) */
+    uint16_t rxTimeout;                        /**< 接收超时时间（在超时时间内没有接收到帧），设置为0表示禁用超时 */
+    uint32_t rxDelayTime;                      /**< 发送帧完后开启接收器的延迟时间（最短6.2us，即使设置为0） */
 } DW1000_InitTypeDef;
 
 /**
@@ -110,7 +110,7 @@ typedef struct
  */
 typedef enum {
     DW1000_STATE_ORIGINAL, /**< DW1000原始状态 */
-    DW1000_STATE_RESET,    /**< Peripheral not Initialized                         */
+    DW1000_STATE_RESET,    /**< DW1000已复位 */
     DW1000_STATE_READY,    /**< Peripheral Initialized and ready for use           */
     DW1000_STATE_BUSY,     /**< an internal process is ongoing                     */
     DW1000_STATE_BUSY_TX,  /**< Data Transmission process is ongoing               */
@@ -134,8 +134,8 @@ typedef struct {
  * @brief DW1000 SPI接口定义
  */
 typedef struct {
-    uint8_t (*init)(void);                                                         /**< SPI接口初始化 */
-    uint8_t (*deinit)(void);                                                       /**< SPI接口反初始化 */
+    // uint8_t (*init)(void);                                                         /**< SPI接口初始化 */
+    // uint8_t (*deinit)(void);                                                       /**< SPI接口反初始化 */
     uint8_t (*highSpeedSet)(void);                                                 /**< 设置SPI接口通信速率高 */
     uint8_t (*lowSpeedSet)(void);                                                  /**< 设置SPI接口通信速率低 */
     uint8_t (*read)(uint8_t* hdr, uint8_t hdrLen, uint8_t* buf, uint16_t bufLen);  /**< SPI接口读操作 */
@@ -295,6 +295,16 @@ typedef struct DW1000_Info_s {
 #define DW1000_PHR_TYPE_STD          0x0U
 #define DW1000_PHR_TYPE_EXT          0x1U
 
+/**
+ * @brief 定义DW1000的接收模式
+ */
+#define DW1000_RX_MODE_IMMEDIATE                     0x00
+#define DW1000_RX_MODE_DELAYED                       0x01
+#define DW1000_RX_MODE_IDLE_ON_DELAY_ERR             0x02
+#define DW1000_RX_MODE_NO_SYNC_PTRS                  0x04
+#define DW1000_RX_MODE_DELAYED_AND_IDLE_ON_DELAY_ERR (DW1000_RX_MODE_DELAYED | DW1000_RX_MODE_IDLE_ON_DELAY_ERR)
+#define DW1000_RX_MODE_IMMEDIATE_AND_NO_SYNC_PTRS    (DW1000_RX_MODE_IMMEDIATE |)
+
 /* Exported macro ------------------------------------------------------------*/
 
 #define IS_DW1000_CHANNEL(channel)    \
@@ -355,143 +365,236 @@ typedef struct DW1000_Info_s {
         }                                        \
     } while (0)
 
+
+/* Exported functions --------------------------------------------------------*/
+
 /**
- * @defgroup dw1000_link_driver dw1000 link driver function
- * @brief    dw1000 link driver modules
- * @ingroup  dw1000_driver
+ * @defgroup nrf24l01_link_driver nrf24l01 link driver function
+ * @brief    nrf24l01 link driver modules
+ * @ingroup  nrf24l01_driver
  * @{
  */
 
-
 /**
- * @brief 初始化 DW1000_handle_t 结构体
- * @param HANDLE 指向 DW1000_handle_t 结构体的指针
- * @param STRUCTURE DW1000_handle_t
- * @note 无
+ * @brief 初始化 DW1000_Handle_t 结构体
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] STRUCTURE DW1000_Handle_t 类型
+ * @note  无
  */
 #define DRIVER_DW1000_LINK_INIT(HANDLE, STRUCTURE)         memset(HANDLE, 0, sizeof(STRUCTURE))
 
 /**
- * @brief 链接 spi_init 函数
- * @param HANDLE 指向 DW1000_handle_t 结构体的指针
- * @param FUC 指向 spi_init 函数地址
- * @note 无
+ * @brief 初始化SPI init函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向SPI init函数的函数指针
+ * @note  备注
  */
 #define DRIVER_DW1000_LINK_SPI_INIT(HANDLE, FUC)           (HANDLE)->spi.init = FUC
 
-
 /**
- * @brief 链接 spi_deinit 函数
- * @param HANDLE 指向 DW1000_handle_t 结构体的指针
- * @param FUC 指向 spi_deinit 函数地址
- * @note 无
+ * @brief 初始化SPI deinit函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向SPI deinit函数的函数指针
+ * @note  备注
  */
 #define DRIVER_DW1000_LINK_SPI_DEINIT(HANDLE, FUC)         (HANDLE)->spi.deinit = FUC
 
 /**
- * @brief 链接 spi_read 函数
- * @param HANDLE 指向 DW1000_handle_t 结构体的指针
- * @param FUC 指向 spi_read 函数地址
- * @note 无
- */
-#define DRIVER_DW1000_LINK_SPI_READ(HANDLE, FUC)           (HANDLE)->spi.read = FUC
-
-/**
- * @brief 链接 spi_write 函数
- * @param HANDLE 指向 DW1000_handle_t 结构体的指针
- * @param FUC 指向 spi_write 函数地址
- * @note 无
- */
-#define DRIVER_DW1000_LINK_SPI_WRITE(HANDLE, FUC)          (HANDLE)->spi.write = FUC
-
-/**
- * @brief 链接 spi_highSpeedSet 函数
- * @param HANDLE 指向 DW1000_handle_t 结构体的指针
- * @param FUC 指向 spi_highSpeedSet 函数地址
- * @note 无
+ * @brief 初始化SPI highSpeedSet函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向SPI highSpeedSet函数的函数指针
+ * @note  备注
  */
 #define DRIVER_DW1000_LINK_SPI_HIGH_SPEED_SET(HANDLE, FUC) (HANDLE)->spi.highSpeedSet = FUC
 
 /**
- * @brief 链接 spi_lowSpeedSet 函数
- * @param HANDLE 指向 DW1000_handle_t 结构体的指针
- * @param FUC 指向 spi_lowSpeedSet 函数地址
- * @note 无
+ * @brief 初始化SPI lowSpeedSet函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向SPI lowSpeedSet函数的函数指针
+ * @note  备注
  */
 #define DRIVER_DW1000_LINK_SPI_LOW_SPEED_SET(HANDLE, FUC)  (HANDLE)->spi.lowSpeedSet = FUC
 
 /**
- * @brief 链接 gpio_init 函数
- * @param HANDLE 指向 DW1000_handle_t 结构体的指针
- * @param PIN 引脚名称（wakeup 或 reset）
- * @param FUC 指向 gpio_init 函数地址
+ * @brief 初始化SPI read函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向SPI read函数的函数指针
  * @note  备注
  */
-#define DRIVER_DW1000_LINK_GPIO_INIT(HANDLE, PIN, FUC)     (HANDLE)->PIN.init = FUC
-/**
- * @brief 链接 gpio_deinit 函数
- * @param HANDLE 指向 DW1000_handle_t 结构体的指针
- * @param PIN 引脚名称（wakeup 或 reset）
- * @param FUC 指向 gpio_deinit 函数地址
- * @note  备注
- */
-#define DRIVER_DW1000_LINK_GPIO_DEINIT(HANDLE, PIN, FUC)   (HANDLE)->PIN.deinit = FUC
-/**
- * @brief 链接 gpio_read 函数
- * @param HANDLE 指向 DW1000_handle_t 结构体的指针
- * @param PIN 引脚名称（wakeup 或 reset）
- * @param FUC 指向 gpio_read 函数地址
- * @note  备注
- */
-#define DRIVER_DW1000_LINK_GPIO_READ(HANDLE, PIN, FUC)     (HANDLE)->PIN.read = FUC
-/**
- * @brief 链接 gpio_write 函数
- * @param HANDLE 指向 DW1000_handle_t 结构体的指针
- * @param PIN 引脚名称（wakeup 或 reset）
- * @param FUC 指向 gpio_write 函数地址
- * @note  备注
- */
-#define DRIVER_DW1000_LINK_GPIO_WRITE(HANDLE, PIN, FUC)    (HANDLE)->PIN.write = FUC
+#define DRIVER_DW1000_LINK_SPI_READ(HANDLE, FUC)           (HANDLE)->spi.read = FUC
 
 /**
- * @brief 链接 irq_enable 函数
- * @param HANDLE 指向 DW1000_handle_t 结构体的指针
- * @param FUC 指向 irq_enable 函数地址
+ * @brief 初始化SPI write函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向SPI write函数的函数指针
  * @note  备注
  */
-#define DRIVER_DW1000_LINK_IRQ_ENABLE(HANDLE, FUC)         (HANDLE)->host_irq.enable = FUC
+#define DRIVER_DW1000_LINK_SPI_WRITE(HANDLE, FUC)          (HANDLE)->spi.write = FUC
 
 /**
- * @brief 链接 irq_disable 函数
- * @param HANDLE 指向 DW1000_handle_t 结构体的指针
- * @param FUC 指向 irq_disable 函数地址
+ * @brief 初始化SPI NSS的init函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向SPI NSS的init函数的函数指针
  * @note  备注
  */
-#define DRIVER_DW1000_LINK_IRQ_DISABLE(HANDLE, FUC)        (HANDLE)->host_irq.disable = FUC
+#define DRIVER_DW1000_LINK_SPI_NSS_INIT(HANDLE, FUC)       (HANDLE)->spi.nss.init = FUC
 
 /**
- * @brief 链接 delay_ms 函数
- * @param HANDLE 指向 DW1000_handle_t 结构体的指针
- * @param FUC 指向 delay_ms 函数地址
- * @note 无
+ * @brief 初始化SPI NSS的deinit函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向SPI NSS的deinit函数的函数指针
+ * @note  备注
  */
-#define DRIVER_DW1000_LINK_DELAY_MS(HANDLE, FUC)           (HANDLE)->delay_ms = FUC
+#define DRIVER_DW1000_LINK_SPI_NSS_DEINIT(HANDLE, FUC)     (HANDLE)->spi.nss.deinit = FUC
 
 /**
- * @brief 链接 debug_print 函数
- * @param HANDLE 指向 DW1000_handle_t 结构体的指针
- * @param FUC 指向 debug_print 函数地址
- * @note 无
+ * @brief 初始化SPI NSS的read函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向SPI NSS的read函数的函数指针
+ * @note  备注
+ */
+#define DRIVER_DW1000_LINK_SPI_NSS_READ(HANDLE, FUC)       (HANDLE)->spi.nss.read = FUC
+
+/**
+ * @brief 初始化SPI NSS的write函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向SPI NSS的write函数的函数指针
+ * @note  备注
+ */
+#define DRIVER_DW1000_LINK_SPI_NSS_WRITE(HANDLE, FUC)      (HANDLE)->spi.nss.write = FUC
+
+/**
+ * @brief 初始化GPIO wakeup的init函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向GPIO wakeup的init函数的函数指针
+ * @note  备注
+ */
+#define DRIVER_DW1000_LINK_GPIO_WAKEUP_INIT(HANDLE, FUC)   (HANDLE)->wakeup.init = FUC
+
+/**
+ * @brief 初始化GPIO wakeup的deinit函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向GPIO wakeup的deinit函数的函数指针
+ * @note  备注
+ */
+#define DRIVER_DW1000_LINK_GPIO_WAKEUP_DEINIT(HANDLE, FUC) (HANDLE)->wakeup.deinit = FUC
+
+/**
+ * @brief 初始化GPIO wakeup的read函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向GPIO wakeup的read函数的函数指针
+ * @note  备注
+ */
+#define DRIVER_DW1000_LINK_GPIO_WAKEUP_READ(HANDLE, FUC)   (HANDLE)->wakeup.read = FUC
+
+/**
+ * @brief 初始化GPIO wakeup的write函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向GPIO wakeup的write函数的函数指针
+ * @note  备注
+ */
+#define DRIVER_DW1000_LINK_GPIO_WAKEUP_WRITE(HANDLE, FUC)  (HANDLE)->wakeup.write = FUC
+
+/**
+ * @brief 初始化GPIO RSTn init函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向GPIO RSTn init函数的函数指针
+ * @note  备注
+ */
+#define DRIVER_DW1000_LINK_GPIO_RST_INIT(HANDLE, FUC)      (HANDLE)->rst.init = FUC
+
+/**
+ * @brief 初始化GPIO RSTn deinit函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向GPIO RSTn deinit函数的函数指针
+ * @note  备注
+ */
+#define DRIVER_DW1000_LINK_GPIO_RST_DEINIT(HANDLE, FUC)    (HANDLE)->rst.deinit = FUC
+
+/**
+ * @brief 初始化GPIO RSTn read函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向GPIO RSTn read函数的函数指针
+ * @note  备注
+ */
+#define DRIVER_DW1000_LINK_GPIO_RST_READ(HANDLE, FUC)      (HANDLE)->rst.read = FUC
+
+/**
+ * @brief 初始化GPIO RSTn write函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向GPIO RSTn write函数的函数指针
+ * @note  备注
+ */
+#define DRIVER_DW1000_LINK_GPIO_RST_WRITE(HANDLE, FUC)     (HANDLE)->rst.write = FUC
+
+/**
+ * @brief 初始化IRQ enable函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向IRQ enable函数的函数指针
+ * @note  备注
+ */
+#define DRIVER_DW1000_LINK_IRQ_ENABLE(HANDLE, FUC)         (HANDLE)->irq.enable = FUC
+
+/**
+ * @brief 初始化IRQ disable函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向IRQ disable函数的函数指针
+ * @note  备注
+ */
+#define DRIVER_DW1000_LINK_IRQ_DISABLE(HANDLE, FUC)        (HANDLE)->irq.disable = FUC
+
+/**
+ * @brief 初始化 getTick 函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向getTick函数的函数指针
+ * @note  备注
+ */
+#define DRIVER_DW1000_LINK_GET_TICK(HANDLE, FUC)           (HANDLE)->getTick = FUC
+
+/**
+ * @brief 初始化 debugPrint 函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向debugPrint函数的函数指针
+ * @note  备注
  */
 #define DRIVER_DW1000_LINK_DEBUG_PRINT(HANDLE, FUC)        (HANDLE)->debugPrint = FUC
+
+/**
+ * @brief 初始化 TxCompleteCallback 函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向 TxCompleteCallback 函数的函数指针
+ * @note  备注
+ */
+#define DRIVER_DW1000_LINK_TX_CPLT_CALLBACK(HANDLE, FUC)   (HANDLE)->TxCompleteCallback = FUC
+
+/**
+ * @brief 初始化 RxCompleteCallback 函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向 RxCompleteCallback 函数的函数指针
+ * @note  备注
+ */
+#define DRIVER_DW1000_LINK_RX_CPLT_CALLBACK(HANDLE, FUC)   (HANDLE)->RxCompleteCallback = FUC
+
+/**
+ * @brief 初始化 RxErrorCallback 函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向 RxErrorCallback 函数的函数指针
+ * @note  备注
+ */
+#define DRIVER_DW1000_LINK_RX_ERR_CALLBACK(HANDLE, FUC)    (HANDLE)->RxErrorCallback = FUC
+
+/**
+ * @brief 初始化 RxTimeoutCallback 函数
+ * @param [in] HANDLE DW1000_Handle_t 指针
+ * @param [in] FUC 指向 RxTimeoutCallback 函数的函数指针
+ * @note  备注
+ */
+#define DRIVER_DW1000_LINK_RX_TO_CALLBACK(HANDLE, FUC)     (HANDLE)->RxTimeoutCallback = FUC
 
 
 /**
  * @}
  */
-
-
-/* Exported functions --------------------------------------------------------*/
 
 /**
  * @defgroup dw1000_basic_driver dw1000 basic driver function
@@ -515,7 +618,8 @@ uint8_t DW1000_RegisterCallback(DW1000_Handle_t* handle, DW1000_CallbackIdTypeDe
 uint8_t DW1000_UnregisterCallback(DW1000_Handle_t* handle, DW1000_CallbackIdTypeDef callbackId);
 #endif /* USE_DW1000_REGISTER_CALLBACKS */
 
-
+void DW1000_Handle_DeInit(DW1000_Handle_t* handle);
+void DW1000_Info_DeInit(DW1000_Info_t* info);
 void DW1000_Info(DW1000_Info_t* info);
 void DW1000_IRQHandler(DW1000_Handle_t* handle);
 uint8_t DW1000_Prepare(DW1000_Handle_t* handle);
@@ -598,6 +702,7 @@ uint8_t DW1000_InterruptEnable(DW1000_Handle_t* handle, uint32_t event);
 uint8_t DW1000_InterruptDisable(DW1000_Handle_t* handle, uint32_t event);
 uint8_t DW1000_EventCountersConfig(DW1000_Handle_t* handle, uint8_t enable);
 uint8_t DW1000_EventCountersRead(DW1000_Handle_t* handle);
+uint8_t DW1000_HardReset(DW1000_Handle_t* handle);
 uint8_t DW1000_SoftReset(DW1000_Handle_t* handle);
 uint8_t DW1000_XtalTrimSet(DW1000_Handle_t* handle, uint8_t trimValue);
 uint8_t DW1000_XtalTrimGet(DW1000_Handle_t* handle, uint8_t* trimValue);
@@ -626,6 +731,8 @@ void DW1000_Delay(uint32_t delay);
 #endif /* USE_DW1000_REGISTER_GET_TICK */
 
 uint32_t DW1000_GetTick(void);
+
+void DW1000_DebugPrint(const char* const fmt, ...);
 
 void DW1000_TxCompleteCallback(DW1000_Handle_t* handle);
 void DW1000_RxCompleteCallback(DW1000_Handle_t* handle);

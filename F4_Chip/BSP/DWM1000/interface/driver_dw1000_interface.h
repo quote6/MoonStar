@@ -27,27 +27,35 @@ uint8_t dw1000_interface_spi_high_speed_set(void);
 
 uint8_t dw1000_interface_spi_low_speed_set(void);
 
-uint8_t dw1000_interface_gpio_wakeup_init(void);
+void dw1000_interface_spi_nss_init(void);
 
-uint8_t dw1000_interface_gpio_wakeup_deinit(void);
+void dw1000_interface_spi_nss_deinit(void);
+
+uint8_t dw1000_interface_spi_nss_read(uint8_t* data);
+
+uint8_t dw1000_interface_spi_nss_write(uint8_t data);
+
+void dw1000_interface_gpio_wakeup_init(void);
+
+void dw1000_interface_gpio_wakeup_deinit(void);
 
 uint8_t dw1000_interface_gpio_wakeup_read(uint8_t* data);
 
 uint8_t dw1000_interface_gpio_wakeup_write(uint8_t data);
 
-uint8_t dw1000_interface_gpio_reset_init(void);
+void dw1000_interface_gpio_rst_init(uint8_t mode);
 
-uint8_t dw1000_interface_gpio_reset_deinit(void);
+void dw1000_interface_gpio_rst_deinit(void);
 
-uint8_t dw1000_interface_gpio_reset_read(uint8_t* data);
+uint8_t dw1000_interface_gpio_rst_read(uint8_t* data);
 
-uint8_t dw1000_interface_gpio_reset_write(uint8_t data);
+uint8_t dw1000_interface_gpio_rst_write(uint8_t data);
 
 void dw1000_interface_irq_enable(void);
 
 void dw1000_interface_irq_disable(void);
 
-void dw1000_initerface_delay_ms(uint32_t ms);
+uint32_t dw1000_interface_get_tick(void);
 
 void dw1000_interface_debug_print(const char* const fmt, ...);
 

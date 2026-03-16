@@ -1429,6 +1429,28 @@ static void _DW1000_ISR_LPL(DW1000_Handle_t* handle) {
 /* Exported functions --------------------------------------------------------*/
 
 /**
+ * @brief DW1000句柄默认初始化
+ * @param[in] handle  DW1000句柄
+ * @note  备注
+ */
+inline void DW1000_Handle_DeInit(DW1000_Handle_t* handle){
+    #if (USE_DW1000_FULL_ASSERT == 1U)
+    DW1000_ASSERT_PARAM(hanlde != NULL);
+    #endif /* USE_DW1000_FULL_ASSERT */
+    /* 将 DW1000_Handle_t 内容全部清零 */
+    memset(handle, 0, sizeof(DW1000_Handle_t));
+}
+
+/**
+ * @brief DW1000信息结构体反初始化
+ * @param[in] info  信息
+ * @note  无
+ */
+inline void DW1000_Info_DeInit(DW1000_Info_t* info){
+    memset(info, 0, sizeof(DW1000_Info_t));
+}
+
+/**
  * @brief 获取芯片信息
  * @param[in] info  DW1000信息结构体指针
  * @note  备注
@@ -1830,6 +1852,7 @@ inline uint8_t DW1000_TX_AntennaDelaySet(DW1000_Handle_t* handle, uint16_t delay
     return _DW1000_SPI_Write(handle, DW1000_REG_TX_ANTD, 0, (uint8_t*) &delay, sizeof(delay));
 }
 
+#if 0 /* 使用原来的库 */
 /**
  * @brief DW1000 写入待发送数据到TX缓冲区
  * @param[in] handle  DW1000 handle 结构体指针
@@ -1842,7 +1865,7 @@ inline uint8_t DW1000_TX_AntennaDelaySet(DW1000_Handle_t* handle, uint16_t delay
  * @arg 2  handle 或 data 为空
  * @arg 3  handle 未初始化
  * @arg 4  写入数据超出缓冲区大小
- * @note  备注
+ * @note  
  * @attention  特别需要注意的地方进行说明
  * @warning  对函数的警告说明
  * @example  函数使用示例
@@ -1851,10 +1874,41 @@ inline uint8_t DW1000_TX_DataWrite(DW1000_Handle_t* handle, uint8_t* data, uint1
 #if (USE_DW1000_FULL_ASSERT == 1U)
     DW1000_ASSERT_PARAM(handle != NULL);
     DW1000_ASSERT_PARAM(data != NULL);
+    DW1000_ASSERT_PARAM(
+        (handle->init.phrType == DW1000_PHR_TYPE_EXT && len <= 1023) ||
+        (len <= 127));
     DW1000_ASSERT_PARAM(len + offset <= 1024);
-#endif                                                                             /* USE_DW1000_FULL_ASSERT */
+#endif  /* USE_DW1000_FULL_ASSERT */
+
     return _DW1000_SPI_Write(handle, DW1000_REG_TX_BUFFER, offset, data, len - 2); // 减去2字节的CRC
 }
+#else /* 使用原来的库 */
+/**
+ * @brief DW1000 写入待发送数据到TX缓冲区
+ * @param[in] handle  DW1000 handle 结构体指针
+ * @param[in] data  待写入的数据指针
+ * @param[in] len  数据长度（默认包含2字节的CRC，因此传入的len值应大于等于2）
+ * @param[in] offset  写入偏移量
+ * @return uint8_t  函数执行结果
+ * @arg 0  写入成功
+ * @arg 1  写入失败
+ * @arg 2  handle 或 data 为空
+ * @arg 3  handle 未初始化
+ * @arg 4  写入数据超出缓冲区大小
+ * @note  相比原来的库，传入长度为实际的数据长度，不包含两个字节的CRC
+ */
+inline uint8_t DW1000_TX_DataWrite(DW1000_Handle_t* handle, uint8_t* data, uint16_t len, uint16_t offset) {
+#if (USE_DW1000_FULL_ASSERT == 1U)
+    DW1000_ASSERT_PARAM(handle != NULL);
+    DW1000_ASSERT_PARAM(data != NULL);
+    DW1000_ASSERT_PARAM(
+        (h(andle->init.phrType == DW1000_PHR_TYPE_EXT) && (len <= 1023 - 2)) ||
+        (len <= 127 - 2));
+    DW1000_ASSERT_PARAM(len + offset <= 1024 - 2);
+#endif  /* USE_DW1000_FULL_ASSERT */
+    return _DW1000_SPI_Write(handle, DW1000_REG_TX_BUFFER, offset, data, len);
+}
+#endif /* 使用原来的库 */
 
 /**
  * @brief
@@ -3244,7 +3298,46 @@ uint8_t DW1000_SniffModeDisable(DW1000_Handle_t* handle) {
     return _DW1000_SPI_Write(handle, DW1000_REG_PMSC, DW1000_SUB_REG_PMSC_CTRL0_OFFSET, (uint8_t*) &pmsc_ctrl0, sizeof(pmsc_ctrl0));
 }
 
-
+#if 1 /* 使用原本的库函数 */
+/**
+ * @brief 设置接收超时
+ * @param[in] handle  DW1000句柄
+ * @param[in] timeout  0：禁用接收超时
+ *                   非0：启用接收超时，超时时间从接收使能开始计算
+ *                   时间单位为1.0256us（512/499.2MHz）
+ * @return uint8_t 执行结果 0: 设置成功 其他: 设置错误
+ * @note  
+ */
+uint8_t DW1000_RxTimeoutSet(DW1000_Handle_t* handle, uint16_t timeout) {
+#if (USE_DW1000_FULL_ASSERT == 1U)
+    DW1000_ASSERT_PARAM(handle != NULL);
+#endif /* USE_DW1000_FULL_ASSERT */
+    uint8_t data;
+    /* 读取 SYS_CFG 寄存器内容（只需要偏移地址0x03 的 8位数据） */
+    DW1000_EXEC_WITH_ERR_HANDLE(
+        _DW1000_SPI_Read(handle, DW1000_REG_SYS_CFG, DW1000_SUB_REG_SYS_CFG_3_OFFSET, &data, sizeof(data)),
+        return 1);
+    /* 如果超时时间不为0 */
+    if (timeout != 0){
+        /* 设置超时时间 */
+        DW1000_EXEC_WITH_ERR_HANDLE(
+            _DW1000_SPI_Write(handle, DW1000_REG_RX_FWTO, 0, (uint8_t*) &timeout, sizeof(timeout)),
+            return 2);
+        /* 使能接收超时 */
+        DW1000_SET_BITS(data, DW1000_SUB_REG_SYS_CFG_3_BIT_RXWTOE_MSK);
+        /* 更新备份的系统配置 */
+        // handle->instance.SYS_CFG.bits.RXWTOE = 1;
+        DW1000_SET_BITS(handle->instance.SYS_CFG.all, DW1000_REG_SYS_CFG_BIT_RXWTOE_MSK);
+    } else { // 否则禁用接收超时
+        /* 禁用接收超时 */
+        DW1000_CLEAR_BITS(data, DW1000_SUB_REG_SYS_CFG_3_BIT_RXWTOE_MSK);
+        /* 更新备份的系统配置 */
+        // handle->instance.SYS_CFG.bits.RXWTOE = 0;
+        DW1000_CLEAR_BITS(handle->instance.SYS_CFG.all, DW1000_REG_SYS_CFG_BIT_RXWTOE_MSK);
+    }
+    return _DW1000_SPI_Write(handle, DW1000_REG_SYS_CFG, DW1000_SUB_REG_SYS_CFG_3_OFFSET, (uint8_t*) &data, sizeof(data));
+}
+#else /* 使用原本的库函数 */
 /**
  * @brief 设置接收超时
  * @param[in] handle  DW1000句柄
@@ -3263,6 +3356,7 @@ inline uint8_t DW1000_RxTimeoutSet(DW1000_Handle_t* handle, uint16_t timeout) {
 #endif /* USE_DW1000_FULL_ASSERT */
     return _DW1000_SPI_Write(handle, DW1000_REG_RX_FWTO, 0, (uint8_t*) &timeout, sizeof(timeout));
 }
+#endif /* 使用原本的库函数 */
 
 /**
  * @brief DW1000接收超时功能使能
@@ -3300,22 +3394,13 @@ uint8_t DW1000_RxTimeoutDisable(DW1000_Handle_t* handle) {
     DW1000_EXEC_WITH_ERR_HANDLE(
         _DW1000_SPI_Read(handle, DW1000_REG_SYS_CFG, DW1000_SUB_REG_SYS_CFG_3_OFFSET, &data, sizeof(data)),
         return 1);
-    /* 启用接收超时 */
+    /* 禁用接收超时 */
     DW1000_CLEAR_BITS(data, DW1000_SUB_REG_SYS_CFG_3_BIT_RXWTOE_MSK);
     /* 更新备份的系统配置 */
     // handle->instance.SYS_CFG.bits.RXWTOE = 0;
     DW1000_CLEAR_BITS(handle->instance.SYS_CFG.all, DW1000_REG_SYS_CFG_BIT_RXWTOE_MSK);
     return _DW1000_SPI_Write(handle, DW1000_REG_SYS_CFG, DW1000_SUB_REG_SYS_CFG_3_OFFSET, (uint8_t*) &data, sizeof(data));
 }
-
-
-#define DW1000_RX_MODE_IMMEDIATE                     0x00
-#define DW1000_RX_MODE_DELAYED                       0x01
-#define DW1000_RX_MODE_IDLE_ON_DELAY_ERR             0x02
-#define DW1000_RX_MODE_NO_SYNC_PTRS                  0x04
-#define DW1000_RX_MODE_DELAYED_AND_IDLE_ON_DELAY_ERR (DW1000_RX_MODE_DELAYED | DW1000_RX_MODE_IDLE_ON_DELAY_ERR)
-#define DW1000_RX_MODE_IMMEDIATE_AND_NO_SYNC_PTRS    (DW1000_RX_MODE_IMMEDIATE |)
-
 
 /**
  * @brief 此调用会开启接收器，可以是立即开启或延迟开启（取决于模式参数）。
