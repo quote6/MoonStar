@@ -42,8 +42,8 @@ typedef struct RMWCP_V2_Status_s {
 
 /* 定义RMWCP_V2状态共用体类型（方便整体赋值） */
 typedef union RMWCP_V2_Status_u {
-    RMWCP_V2_Status_t status;
-    uint16_t statuss; // 末尾多一个s用于跟上面的变量区分
+    RMWCP_V2_Status_t bits;
+    uint16_t all;
 }RMWCP_V2_Status_ut;
 
 typedef struct RMWCP_V2_Control_s
@@ -54,8 +54,8 @@ typedef struct RMWCP_V2_Control_s
 
 typedef union RMWCP_V2_Control_u
 {
-    RMWCP_V2_Control_t control;
-    uint16_t controll; // 末尾多一个l用于跟上面的变量区分
+    RMWCP_V2_Control_t bits;
+    uint16_t all;
 }RMWCP_V2_Control_ut;
 
 /**
@@ -78,12 +78,12 @@ typedef struct RMWCP_V2_Pack_s {
 } RMWCP_V2_Pack_t;
 
 /* 定义RMWCP_V2 数据包最大长度 */
-#define RMWCP_v2_PACK_MAX_LENGTH (sizeof(RMWCP_V2_Pack_t))
+#define RMWCP_V2_PACK_MAX_LENGTH (sizeof(RMWCP_V2_Pack_t))
 
 /* 定义RMWCP_V2 数据包公用体类型（方便数据包装包与解包） */
 typedef union RMWCP_V2_Pack_u {
     RMWCP_V2_Pack_t pack;
-    uint8_t array[RMWCP_v2_PACK_MAX_LENGTH + 4]; // +4 确保公用体中的array能覆盖pack的所有范围
+    uint8_t array[RMWCP_V2_PACK_MAX_LENGTH + 4]; // +4 确保公用体中的array能覆盖pack的所有范围
 }RMWCP_V2_Pack_ut;
 
 
