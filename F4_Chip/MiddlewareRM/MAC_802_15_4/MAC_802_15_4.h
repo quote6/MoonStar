@@ -111,15 +111,15 @@ typedef enum PanIdCompress_e {
 
 
 #if 0 /* 该部分暂时未使用，直接注释 */
-typedef enum SEQ_NUM_Suppress_e{
+typedef enum SeqNumSuppress_e{
     SEQ_NUM_SUPPRESS_PRESENT = 0,
     SEQ_NUM_SUPPRESS_NOT_PRESENT
-}SEQ_NUM_Suppress_t;
+}SeqNumSuppress_t;
 
-typedef enum IE_Present_e{
+typedef enum IePresent_e{
     IE_PRESENT_NO = 0,
     IE_PRESENT_YES
-}IE_Present_t;
+}IePresent_t;
 #endif
 
 /**
@@ -149,7 +149,7 @@ typedef enum DstAddrMode_e {
 /**
  * @brief 源地址模式定义
  * @note  用于指定帧是否包含源地址以及地址字段的大小（若存在）
- * @param SRC_ADDR_MODE_NO_PEND_AND_ADDR: 帧中不存在目标地址或目标PAN ID
+ * @param SRC_ADDR_MODE_NO_PEND_AND_ADDR: 帧中不存在源地址或源PAN ID
  * @param SRC_ADDR_MODE_RESERVED: 保留
  * @param SRC_ADDR_MODE_SHORT_ADDR_16_BITS: 源地址字段长度16位
  * @param SRC_ADDR_MODE_EXT_ADDR_64_BITS: 源地址字段长度64位
@@ -372,21 +372,21 @@ typedef struct MacFrame_802_15_4_s {
         *src = frame->mhr.parts.addr_src;           \
     } while (0)
 
-uint8_t MAC_Frame_802_15_4_Init(MacFrame_802_15_4_t* frame);
-uint8_t MAC_Frame_Control_AR_ENABLE(MacFrame_802_15_4_t* frame);
-uint8_t MAC_Frame_Control_AR_DISABLE(MacFrame_802_15_4_t* frame);
-uint8_t MAC_Frame_802_15_4_SeqNumSet(MacFrame_802_15_4_t* frame, uint8_t seq);
-uint8_t MAC_Frame_802_15_4_PAN_ID_DST_Set(MacFrame_802_15_4_t* frame, PanIdDst_t dst);
-uint8_t MAC_Frame_802_15_4_ADDR_DST_Set(MacFrame_802_15_4_t* frame, AddrDst_t dst);
-// uint8_t MAC_Frame_802_15_4_PAN_ID_SRC_Set(MacFrame_802_15_4_t* frame, PanIdSrc_t src);
-uint8_t MAC_Frame_802_15_4_ADDR_SRC_Set(MacFrame_802_15_4_t* frame, AddrSrc_t src);
-uint8_t MAC_Frame_802_15_4_SeqNumUpdate(MacFrame_802_15_4_t* frame);
+uint8_t mac_frame_802_15_4_init(MacFrame_802_15_4_t* frame);
+uint8_t mac_frame_ctrl_ar_enable(MacFrame_802_15_4_t* frame);
+uint8_t mac_frame_ctrl_ar_disable(MacFrame_802_15_4_t* frame);
+uint8_t mac_frame_802_15_4_seq_num_set(MacFrame_802_15_4_t* frame, uint8_t seq);
+uint8_t mac_frame_802_15_4_pan_id_dst_set(MacFrame_802_15_4_t* frame, PanIdDst_t dst);
+uint8_t mac_frame_802_15_4_addr_dst_set(MacFrame_802_15_4_t* frame, AddrDst_t dst);
+// uint8_t mac_frame_802_15_4_pan_id_src_set(MacFrame_802_15_4_t* frame, PanIdSrc_t src);
+uint8_t mac_frame_802_15_4_addr_src_set(MacFrame_802_15_4_t* frame, AddrSrc_t src);
+uint8_t mac_frame_802_15_4_seq_num_update(MacFrame_802_15_4_t* frame);
 
-uint8_t MAC_Frame_802_15_4_SeqNumGet(MacFrame_802_15_4_t* frame, uint8_t* seq);
-uint8_t MAC_Frame_802_15_4_PAN_ID_DST_Get(MacFrame_802_15_4_t* frame, PanIdDst_t* dst);
-uint8_t MAC_Frame_802_15_4_ADDR_DST_Get(MacFrame_802_15_4_t* frame, AddrDst_t* dst);
-// uint8_t MAC_Frame_802_15_4_PAN_ID_SRC_Get(MacFrame_802_15_4_t* frame, PanIdSrc_t* src);
-uint8_t MAC_Frame_802_15_4_ADDR_SRC_Get(MacFrame_802_15_4_t* frame, AddrSrc_t* src);
+uint8_t mac_frame_802_15_4_seq_num_get(MacFrame_802_15_4_t* frame, uint8_t* seq);
+uint8_t mac_frame_802_15_4_pan_id_dst_get(MacFrame_802_15_4_t* frame, PanIdDst_t* dst);
+uint8_t mac_frame_802_15_4_addr_dst_get(MacFrame_802_15_4_t* frame, AddrDst_t* dst);
+// uint8_t mac_frame_802_15_4_pan_id_src_get(MacFrame_802_15_4_t* frame, PanIdSrc_t* src);
+uint8_t mac_frame_802_15_4_addr_src_get(MacFrame_802_15_4_t* frame, AddrSrc_t* src);
 
 
 #endif

@@ -111,12 +111,12 @@ typedef struct
 typedef enum {
     DW1000_STATE_ORIGINAL, /**< DW1000原始状态 */
     DW1000_STATE_RESET,    /**< DW1000已复位 */
-    DW1000_STATE_READY,    /**< Peripheral Initialized and ready for use           */
-    DW1000_STATE_BUSY,     /**< an internal process is ongoing                     */
-    DW1000_STATE_BUSY_TX,  /**< Data Transmission process is ongoing               */
-    DW1000_STATE_BUSY_RX,  /**< Data Reception process is ongoing                  */
-    DW1000_STATE_ERROR,    /**< DW1000 error state                                    */
-    DW1000_STATE_ABORT,    /**< DW1000 abort is ongoing                               */
+    DW1000_STATE_READY,    /**< Peripheral Initialized and ready for use */
+    DW1000_STATE_BUSY,     /**< an internal process is ongoing */
+    DW1000_STATE_BUSY_TX,  /**< Data Transmission process is ongoing */
+    DW1000_STATE_BUSY_RX,  /**< Data Reception process is ongoing */
+    DW1000_STATE_ERROR,    /**< DW1000 error state */
+    DW1000_STATE_ABORT,    /**< DW1000 abort is ongoing */
     DW1000_STATE_RESETING  /**< DW1000 复位中 */
 } DW1000_StateTypeDef;
 
@@ -190,6 +190,7 @@ typedef struct DW1000_Handle_s {
 #endif /* USE_DW1000_REGISTER_CALLBACKS */
 } DW1000_Handle_t;
 
+
 #if (USE_DW1000_REGISTER_DEBUG_PRINT == 1U)
 typedef void (*DW1000_DebugPrintTypeDef)(const char* const fmt, ...);
 #endif /* USE_DW1000_REGISTER_DEBUG_PRINT */
@@ -235,65 +236,65 @@ typedef struct DW1000_Info_s {
 /** @defgroup DW1000_Error_Code DW1000 Error Code
  * @{
  */
-#define DW1000_ERR_CODE_NONE         (0x00000000U) /* 无错误 */
-#define DW1000_ERR_CODE_READ         (0x1U << 1)   /* 读取失败（通过SPI读取） */
-#define DW1000_ERR_CODE_WRITE        (0x1U << 2)   /* 写入失败（通过SPI写入） */
-#define DW1000_ERR_CODE_TRX_OFF      (0x1U << 3)   /* 收发器关闭失败 */
-#define DW1000_ERR_CODE_RX_RESET     (0x1U << 4)   /* 接收器复位失败 */
-#define DW1000_ERR_CODE_RX_OFF       (0x1U << 5)   /* 接收器关闭失败 */
+#define DW1000_ERR_CODE_NONE                         (0x00000000U) /* 无错误 */
+#define DW1000_ERR_CODE_READ                         (0x1U << 1)   /* 读取失败（通过SPI读取） */
+#define DW1000_ERR_CODE_WRITE                        (0x1U << 2)   /* 写入失败（通过SPI写入） */
+#define DW1000_ERR_CODE_TRX_OFF                      (0x1U << 3)   /* 收发器关闭失败 */
+#define DW1000_ERR_CODE_RX_RESET                     (0x1U << 4)   /* 接收器复位失败 */
+#define DW1000_ERR_CODE_RX_OFF                       (0x1U << 5)   /* 接收器关闭失败 */
 
 /**
  * @}
  */
 
 /* DW1000支持的频道数 */
-#define DW1000_SUPPORT_CHANNEL_NUM   6
+#define DW1000_SUPPORT_CHANNEL_NUM                   6
 /* DW1000支持的数据速率数量 */
-#define DW1000_SUPPORT_DATA_RATE_NUM 3
+#define DW1000_SUPPORT_DATA_RATE_NUM                 3
 /* DW1000支持的SFD类型数量 */
-#define DW1000_SUPPORT_SFD_TYPE_NUM  2
+#define DW1000_SUPPORT_SFD_TYPE_NUM                  2
 /* DW1000支持的PRF数量 */
-#define DW1000_SUPPORT_PRF_NUM       2
+#define DW1000_SUPPORT_PRF_NUM                       2
 /* DW1000支持的PAC数量 */
-#define DW1000_SUPPORT_PAC_NUM       4
+#define DW1000_SUPPORT_PAC_NUM                       4
 /* 支持的前导码数量（包含无前导码情况） */
-#define DW1000_SUPPORT_PCODE_NUM     25
+#define DW1000_SUPPORT_PCODE_NUM                     25
 
 /* 索引从0开始是为了方便与频道相关的数组取值 */
-#define DW1000_CHANNEL_1             0
-#define DW1000_CHANNEL_2             1
-#define DW1000_CHANNEL_3             2
-#define DW1000_CHANNEL_4             3
-#define DW1000_CHANNEL_5             4 /* 频道5 */
-#define DW1000_CHANNEL_6             5 /* 频道6不支持 */
-#define DW1000_CHANNEL_7             6 /* 频道7 */
+#define DW1000_CHANNEL_1                             0
+#define DW1000_CHANNEL_2                             1
+#define DW1000_CHANNEL_3                             2
+#define DW1000_CHANNEL_4                             3
+#define DW1000_CHANNEL_5                             4 /* 频道5 */
+#define DW1000_CHANNEL_6                             5 /* 频道6不支持 */
+#define DW1000_CHANNEL_7                             6 /* 频道7 */
 
 
-#define DW1000_DATA_RATE_110K        0
-#define DW1000_DATA_RATE_850K        1
-#define DW1000_DATA_RATE_6M8         2
+#define DW1000_DATA_RATE_110K                        0
+#define DW1000_DATA_RATE_850K                        1
+#define DW1000_DATA_RATE_6M8                         2
 
-#define DW1000_PAC8                  0
-#define DW1000_PAC16                 1
-#define DW1000_PAC32                 2
-#define DW1000_PAC64                 3
+#define DW1000_PAC8                                  0
+#define DW1000_PAC16                                 1
+#define DW1000_PAC32                                 2
+#define DW1000_PAC64                                 3
 
-#define DW1000_PRF_4M                0 /* DW1000不支持该频率的PRF */
-#define DW1000_PRF_16M               1
-#define DW1000_PRF_64M               2
+#define DW1000_PRF_4M                                0 /* DW1000不支持该频率的PRF */
+#define DW1000_PRF_16M                               1
+#define DW1000_PRF_64M                               2
 
 /* 这里的值是初始值，赋值时需要根据字段所在位进行移位 */
-#define DW1000_PLEN_4096             0x03U
-#define DW1000_PLEN_2048             0x0AU
-#define DW1000_PLEN_1536             0x06U
-#define DW1000_PLEN_1024             0x02U
-#define DW1000_PLEN_512              0x0DU
-#define DW1000_PLEN_256              0x09U
-#define DW1000_PLEN_128              0x05U
-#define DW1000_PLEN_64               0x01U
+#define DW1000_PLEN_4096                             0x03U
+#define DW1000_PLEN_2048                             0x0AU
+#define DW1000_PLEN_1536                             0x06U
+#define DW1000_PLEN_1024                             0x02U
+#define DW1000_PLEN_512                              0x0DU
+#define DW1000_PLEN_256                              0x09U
+#define DW1000_PLEN_128                              0x05U
+#define DW1000_PLEN_64                               0x01U
 
-#define DW1000_PHR_TYPE_STD          0x0U
-#define DW1000_PHR_TYPE_EXT          0x1U
+#define DW1000_PHR_TYPE_STD                          0x0U
+#define DW1000_PHR_TYPE_EXT                          0x1U
 
 /**
  * @brief 定义DW1000的接收模式
@@ -723,6 +724,12 @@ uint32_t DW1000_TxPowerTempCompCalculate(uint8_t channel, uint32_t txPowerRef, i
 uint8_t DW1000_PG_CounterCalculate(DW1000_Handle_t* handle, uint8_t pgdly, uint16_t* delayCount);
 uint8_t DW1000_LDE_AlgoDisable(DW1000_Handle_t* handle);
 uint8_t DW1000_LDE_AlgoEnable(DW1000_Handle_t* handle);
+
+uint8_t DW1000_Transmit(DW1000_Handle_t* handle, const uint8_t* data, uint16_t len, uint32_t timeout);
+uint8_t DW1000_Receive(DW1000_Handle_t* handle, uint8_t* data, uint16_t len, uint32_t timeout);
+uint8_t DW1000_Transmit_IT(DW1000_Handle_t* handle, const uint8_t* data, uint16_t len);
+uint8_t DW1000_Receive_IT(DW1000_Handle_t* handle, uint8_t* data, uint16_t len);
+
 
 #if (USE_DW1000_REGISTER_GET_TICK == 1U)
 void DW1000_Delay(DW1000_Handle_t* handle, uint32_t delay);
